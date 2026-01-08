@@ -101,7 +101,7 @@ export const projects: Project[] = [
     title: 'LAB-EVAL-HELPER',
     description:
       'DSA lab survival tool with reusable templates and patterns for common data structure evaluation problems',
-    image: '/project/lab-eval-helper.png',
+    image: '/project/lab-eval.png',
     link: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     technologies: [
       { name: 'C++', icon: <Cpp key="cpp" /> },
@@ -116,7 +116,7 @@ export const projects: Project[] = [
     title: 'VIGIL OS Pro',
     description:
       'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming',
-    image: '/project/vigil-os-pro.png',
+    image: '/project/vigil-os.png',
     link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
     technologies: [
       { name: 'React', icon: <ReactIcon key="react" /> },
