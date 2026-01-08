@@ -13,7 +13,7 @@ export interface PageMeta {
 export const siteConfig = {
   name: heroConfig.name,
   title: 'Sleek Portfolio',
-  description: 'Sleek Portfolio Template by @Ramxcodes',
+  description: 'Sleek Portfolio Template by @Pratham',
   url: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
   ogImage: '/meta/opengraph-image.png',
   author: {
