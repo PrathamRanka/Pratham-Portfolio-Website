@@ -86,7 +86,7 @@ export const projects: Project[] = [
     title: 'TCP Server in Go',
     description:
       'Low-level TCP networking from scratch with stream-based communication, concurrent connection handling using goroutines',
-    image: '/project/tcp-server-go.png',
+    image: '/project/tcp.png',
     link: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     technologies: [
       { name: 'Go', icon: <Go key="go" /> },
