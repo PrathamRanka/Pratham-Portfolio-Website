@@ -14,10 +14,10 @@ export default function Navbar() {
           <Link href="/">
             <Image
               className="h-12 w-12 rounded-md border border-gray-200 bg-blue-300 transition-all duration-300 ease-in-out hover:scale-90 dark:bg-yellow-300"
-              src={navbarConfig.logo.src}
-              alt={navbarConfig.logo.alt}
-              width={navbarConfig.logo.width}
-              height={navbarConfig.logo.height}
+              src={navbarConfig.pfp.src}
+              alt={navbarConfig.pfp.alt}
+              width={navbarConfig.pfp.width}
+              height={navbarConfig.pfp.height}
             />
           </Link>
           <div className="flex items-center justify-center gap-4">

@@ -9,7 +9,7 @@ sleek-portfolio/
 ├── public/              # Static assets
 │   ├── assets/         # General assets
 │   ├── blog/           # Blog post images
-│   ├── company/        # Company logos
+│   ├── company/        # Company pfps
 │   ├── meta/          # Meta images
 │   ├── project/       # Project thumbnails
 │   ├── setup/         # Setup related files

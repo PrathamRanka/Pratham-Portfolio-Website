@@ -4,9 +4,9 @@ export interface NavItem {
 }
 
 export const navbarConfig = {
-  logo: {
-    src: '/assets/logo.png',
-    alt: 'logo',
+  pfp: {
+    src: '/assets/pfp.png',
+    alt: 'pfp',
     width: 100,
     height: 100,
   },

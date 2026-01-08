@@ -27,7 +27,7 @@ function AlertDialogPortal({
   );
 }
 
-function AlertDialogOverlay({
+function AlertDiapfpverlay({
   className,
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Overlay>) {
@@ -49,7 +49,7 @@ function AlertDialogContent({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Content>) {
   return (
     <AlertDialogPortal>
-      <AlertDialogOverlay />
+      <AlertDiapfpverlay />
       <AlertDialogPrimitive.Content
         data-slot="alert-dialog-content"
         className={cn(
@@ -144,7 +144,7 @@ function AlertDialogCancel({
 export {
   AlertDialog,
   AlertDialogPortal,
-  AlertDialogOverlay,
+  AlertDiapfpverlay,
   AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,

@@ -28,7 +28,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const [diapfppen, setDiapfppen] = useState<boolean>(false);
 
   return (
     <Card className="group h-full w-full overflow-hidden border-gray-100 p-0 shadow-none transition-all dark:border-gray-800">
@@ -42,7 +42,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             height={1080}
           />
           {project.video && (
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <Dialog open={diapfppen} onOpenChange={setDiapfppen}>
               <DialogTrigger asChild>
                 <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100 hover:backdrop-blur-xs">
                   <button className="flex size-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-colors duration-200 group-hover:cursor-pointer hover:bg-white/30">

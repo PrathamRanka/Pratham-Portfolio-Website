@@ -1,14 +1,8 @@
-# Sleek Portfolio by ramxcodes
+# Portfolio
 
 A modern, responsive portfolio website built with Next.js 15, TypeScript, Tailwind CSS, and Shadcn UI. Features a blog system, project showcase, work experience timeline, and contact form with Telegram integration.
 
-![Portfolio Preview](/public/meta/hero.png)
 
-## Deploy
-
-Click here to your portfolio template now:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Framxcodes%2Fsleek-portfolio&env=TELEGRAM_BOT_TOKEN,TELEGRAM_CHAT_ID,GEMINI_API_KEY,NEXT_PUBLIC_URL,NEXT_PUBLIC_UMAMI_SRC,NEXT_PUBLIC_UMAMI_ID)
 
 ## Features
 
@@ -18,7 +12,7 @@ Click here to your portfolio template now:
 - **Dark/Light** mode
 - **Responsive** design
 - **MDX** for blog posts and project details
-- **Contact Form** with Telegram integration
+<!-- - **Contact Form** with Telegram integration   -->
 - **SEO** optimized
 - **TypeScript** for type safety
 - **Umami Analytics** for privacy-focused web analytics
@@ -138,15 +132,6 @@ export const NewTechIcon = () => {
   return <svg>// SVG content from devicon</svg>;
 };
 ```
-
-## Adding Content
-
-### Blog Posts
-
-1. Create a new MDX file in `src/data/blog/`
-2. Add metadata and content following existing post structure
-3. Add blog thumbnail in `public/blog/`
-
 ### Projects
 
 1. Create a new MDX file in `src/data/projects/`

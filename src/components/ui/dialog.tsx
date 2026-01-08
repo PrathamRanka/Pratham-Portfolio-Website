@@ -29,7 +29,7 @@ function DialogClose({
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
-function DialogOverlay({
+function Diapfpverlay({
   className,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
@@ -55,7 +55,7 @@ function DialogContent({
 }) {
   return (
     <DialogPortal data-slot="dialog-portal">
-      <DialogOverlay />
+      <Diapfpverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
@@ -135,7 +135,7 @@ export {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
+  Diapfpverlay,
   DialogPortal,
   DialogTitle,
   DialogTrigger,
