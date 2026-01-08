@@ -75,8 +75,7 @@ NEXT_PUBLIC_UMAMI_ID="your-umami-website-id"
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ramxcodes/sleek-portfolio.git
-   cd sleek-portfolio
+   cd portfolio
    ```
 
 2. Install dependencies:
