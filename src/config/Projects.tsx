@@ -44,8 +44,8 @@ export const projects: Project[] = [
     title: 'OWASP Recruitment Quiz Portal',
     description:
       'High-performance recruitment assessment platform supporting 15,000+ concurrent candidates with secure authentication and analytics',
-    image: '/project/owasp-quiz.png',
-    link: 'https://owasp-quiz.example.com',
+    image: '/project/owasp.png',
+    link: 'https://github.com/PrathamRanka/quizBackend',
     technologies: [
       { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
       { name: 'Express.js', icon: <ExpressJs key="expressjs" /> },
@@ -53,8 +53,8 @@ export const projects: Project[] = [
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'React', icon: <ReactIcon key="react" /> },
     ],
-    github: 'https://github.com/PrathamRanka/owasp-quiz',
-    live: 'https://owasp-quiz.example.com',
+    github: 'https://github.com/PrathamRanka/quizBackend',
+    live: '/',
     details: true,
     projectDetailsPageSlug: '/projects/owasp-quiz-portal',
     isWorking: true,
