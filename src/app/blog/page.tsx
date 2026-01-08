@@ -67,13 +67,7 @@ function BlogPageLoading() {
   );
 }
 
+// Blog disabled — returning empty page to remove blog from public site
 export default function BlogPage() {
-  const allPosts = getPublishedBlogPosts();
-  const allTags = getAllTags();
-
-  return (
-    <Suspense fallback={<BlogPageLoading />}>
-      <BlogPageClient initialPosts={allPosts} initialTags={allTags} />
-    </Suspense>
-  );
+  return null;
 }

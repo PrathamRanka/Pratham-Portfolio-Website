@@ -11,8 +11,8 @@ export const contactConfig = {
     },
     placeholders: {
       name: 'Your name',
-      email: 'your.email@example.com',
-      phone: '+1 (555) 123-4567',
+      email: 'pranka0789@gmail.com',
+      phone: '+91 7023206003',
       message: 'Tell me about your project...',
     },
     submitButton: 'Send Message',
