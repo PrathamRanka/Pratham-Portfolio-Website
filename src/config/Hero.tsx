@@ -94,7 +94,7 @@ export const heroConfig = {
   // Description Configuration
   description: {
     template:
-      'I am Pratham Ranka, a full-stack developer specializing in {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. I build scalable web applications with a focus on clean code and modern architecture.',
+      'I am Pratham Ranka, a full-stack developer specializing in {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4} I build scalable web applications with a focus on clean code and modern architecture.',
   },
 
   // Buttons Configuration
