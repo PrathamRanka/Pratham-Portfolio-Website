@@ -6,6 +6,7 @@ import { Quote } from '@/components/common/Quote';
 import { ThemeProvider } from '@/components/common/ThemeProviders';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import ReactLenis from 'lenis/react';
 import { ViewTransitions } from 'next-view-transitions';
 
@@ -38,6 +39,7 @@ export default function RootLayout({
             </ReactLenis>
           </ThemeProvider>
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ViewTransitions>
