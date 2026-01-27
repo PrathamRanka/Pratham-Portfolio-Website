@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 import * as z from 'zod';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -14,7 +15,6 @@ const contactSchema = z.object({
 });
 
 function getClientIP(request: NextRequest): string {
-  // Get IP from various headers in order of preference
   const forwarded = request.headers.get('x-forwarded-for');
   const realIP = request.headers.get('x-real-ip');
   const cfConnectingIP = request.headers.get('cf-connecting-ip');
@@ -40,7 +40,6 @@ function checkRateLimit(clientIP: string): {
   const clientData = rateLimitStore.get(clientIP);
 
   if (!clientData || now > clientData.resetTime) {
-    // First request or window expired
     rateLimitStore.set(clientIP, {
       count: 1,
       resetTime: now + RATE_LIMIT_WINDOW,
@@ -52,7 +51,6 @@ function checkRateLimit(clientIP: string): {
     return { allowed: false, remaining: 0 };
   }
 
-  // Increment count
   clientData.count++;
   rateLimitStore.set(clientIP, clientData);
 
@@ -61,8 +59,6 @@ function checkRateLimit(clientIP: string): {
     remaining: RATE_LIMIT_MAX_REQUESTS - clientData.count,
   };
 }
-
-// Telegram delivery removed — keep only basic API behavior (validation + rate limiting)
 
 export async function POST(request: NextRequest) {
   try {
@@ -86,15 +82,83 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if email is configured
+    const emailUser = process.env.EMAIL_USER;
+    const emailPassword = process.env.EMAIL_PASSWORD;
+    const emailFrom = process.env.EMAIL_FROM || emailUser;
+    const emailTo = process.env.EMAIL_TO || emailUser;
+
+    if (!emailUser || !emailPassword) {
+      console.error('Email credentials not configured');
+      return NextResponse.json(
+        { error: 'Email service not configured' },
+        { status: 500 },
+      );
+    }
+
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    // Basic handling: validation passed and rate limit OK. External delivery
-    // (e.g. Telegram) was removed per request. Return a simple success
-    // acknowledgement. Consumers can later implement delivery integrations.
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: emailUser,
+        pass: emailPassword,
+      },
+    });
+
+    // Email content
+    const mailOptions = {
+      from: emailFrom,
+      to: emailTo,
+      subject: `New Contact Form Message from ${validatedData.name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #333; border-bottom: 2px solid #4F46E5; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          
+          <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 10px 0;"><strong>Name:</strong> ${validatedData.name}</p>
+            <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
+            <p style="margin: 10px 0;"><strong>Phone:</strong> <a href="tel:${validatedData.phone}">${validatedData.phone}</a></p>
+          </div>
+          
+          <div style="margin: 20px 0;">
+            <h3 style="color: #333;">Message:</h3>
+            <p style="background-color: #f9fafb; padding: 15px; border-left: 4px solid #4F46E5; border-radius: 4px; white-space: pre-wrap;">
+              ${validatedData.message}
+            </p>
+          </div>
+          
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px;">
+            <p>This message was sent from your portfolio contact form.</p>
+            <p>Received at: ${new Date().toLocaleString()}</p>
+          </div>
+        </div>
+      `,
+      text: `
+New Contact Form Submission
+
+Name: ${validatedData.name}
+Email: ${validatedData.email}
+Phone: ${validatedData.phone}
+
+Message:
+${validatedData.message}
+
+---
+Received at: ${new Date().toLocaleString()}
+      `,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
     return NextResponse.json(
       {
-        message: 'Message received',
+        message: 'Message sent successfully',
         success: true,
       },
       {
@@ -118,7 +182,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Failed to send message. Please try again.' },
       { status: 500 },
     );
   }
