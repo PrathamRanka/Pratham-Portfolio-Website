@@ -1,0 +1,250 @@
+---
+title: 'VIGIL OS Pro'
+description: 'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming'
+image: '/project/vigil-os.png'
+technologies:
+  [
+    'React',
+    'TypeScript',
+    'Node.js',
+    'Express.js',
+    'Kafka',
+    'MongoDB',
+    'Supabase',
+    'Next.js',
+    'Tailwind CSS',
+  ]
+github: 'https://github.com/PrathamRanka/NSUT_HACK_2K25'
+live: 'https://github.com/PrathamRanka/NSUT_HACK_2K25'
+timeline: '36 Hours (Hackathon)'
+role: 'Full Stack Developer'
+team: 'Team of 4'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Implementing real-time fraud detection',
+    'Setting up Kafka event streaming',
+    'Building scalable microservices architecture',
+    'Time constraints of hackathon',
+  ]
+learnings:
+  [
+    'Event-driven architecture patterns',
+    'Apache Kafka integration',
+    'Real-time data processing',
+    'Microservices design',
+  ]
+isPublished: true
+---
+
+# VIGIL OS Pro: Real-time Fraud Detection Platform
+
+## Overview
+
+VIGIL OS Pro is an enterprise-grade fraud detection and vendor risk monitoring platform built during NSUT Hackathon 2025. The system leverages event-driven architecture with Apache Kafka to process transaction streams in real-time, identify fraudulent patterns, and provide comprehensive vendor risk analytics.
+
+## How It Works
+
+- **Transaction Streaming**: Real-time transaction ingestion via Kafka
+- **Fraud Detection**: ML-powered anomaly detection algorithms
+- **Risk Scoring**: Automated vendor risk assessment
+- **Alert System**: Instant notifications for suspicious activities
+- **Analytics Dashboard**: Comprehensive insights and visualizations
+
+## Key Features
+
+### **Real-time Fraud Detection**
+
+- Stream processing of transactions as they occur
+- ML-based anomaly detection algorithms
+- Pattern recognition for fraudulent behavior
+- Instant alert generation for suspicious activities
+- Configurable risk thresholds
+
+### **Vendor Risk Monitoring**
+
+- Comprehensive vendor profile management
+- Historical transaction analysis
+- Risk score calculation and tracking
+- Vendor behavior pattern analysis
+- Compliance monitoring
+
+### **Event-Driven Architecture**
+
+- Apache Kafka for event streaming
+- Microservices-based design
+- Scalable message processing
+- Asynchronous communication
+- Event sourcing for audit trails
+
+### **Analytics Dashboard**
+
+- Real-time transaction monitoring
+- Interactive data visualizations
+- Fraud trend analysis
+- Vendor performance metrics
+- Customizable reports and exports
+
+## Why We Built This
+
+VIGIL OS Pro was created to address critical challenges in financial security:
+
+- **Fraud Prevention**: Combat increasing financial fraud
+- **Real-time Processing**: Detect threats as they happen
+- **Scalability**: Handle high transaction volumes
+- **Vendor Management**: Comprehensive risk assessment
+- **Hackathon Challenge**: Solve a real-world problem in 36 hours
+
+## Tech Stack
+
+### Frontend
+
+- **Next.js**: React framework for server-side rendering
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Modern, responsive UI design
+- **React**: Component-based architecture
+- **Chart.js**: Data visualization
+
+### Backend
+
+- **Node.js**: Asynchronous server runtime
+- **Express.js**: Web application framework
+- **Apache Kafka**: Event streaming platform
+- **MongoDB**: NoSQL database for transaction data
+- **Supabase**: Authentication and real-time features
+
+### Infrastructure
+
+- **Microservices**: Distributed service architecture
+- **Event-Driven**: Kafka-based messaging
+- **Docker**: Containerization (planned)
+- **REST APIs**: Service communication
+
+## Technical Implementation
+
+### Event Streaming with Kafka
+
+```javascript
+// Simplified Kafka producer example
+const producer = kafka.producer();
+
+async function publishTransaction(transaction) {
+  await producer.send({
+    topic: 'transactions',
+    messages: [
+      {
+        key: transaction.id,
+        value: JSON.stringify(transaction),
+      },
+    ],
+  });
+}
+```
+
+### Fraud Detection Pipeline
+
+1. **Transaction Ingestion**: Kafka receives transaction events
+2. **Stream Processing**: Real-time analysis of transaction patterns
+3. **Anomaly Detection**: ML algorithms identify suspicious behavior
+4. **Risk Scoring**: Calculate fraud probability scores
+5. **Alert Generation**: Trigger alerts for high-risk transactions
+
+### Microservices Architecture
+
+- **API Gateway**: Request routing and authentication
+- **Transaction Service**: Transaction processing and storage
+- **Fraud Detection Service**: ML-based fraud analysis
+- **Vendor Service**: Vendor management and risk scoring
+- **Notification Service**: Alert and notification handling
+
+## System Architecture
+
+### **Event Flow**
+
+```
+Transaction → Kafka Producer → Kafka Topic → Kafka Consumer → Fraud Detection → Alert System
+```
+
+### **Data Flow**
+
+- **Ingestion**: Transactions enter via API or batch upload
+- **Processing**: Kafka streams distribute to microservices
+- **Analysis**: Fraud detection algorithms process data
+- **Storage**: Results stored in MongoDB
+- **Visualization**: Dashboard displays real-time insights
+
+## Key Features Breakdown
+
+### **Transaction Monitoring**
+
+- Real-time transaction tracking
+- Historical transaction analysis
+- Transaction categorization
+- Duplicate detection
+- Velocity checks
+
+### **Fraud Detection Algorithms**
+
+- Amount-based anomaly detection
+- Frequency pattern analysis
+- Geographic anomaly detection
+- Vendor behavior analysis
+- Time-based pattern recognition
+
+### **Risk Scoring System**
+
+- Multi-factor risk calculation
+- Historical behavior analysis
+- Vendor reputation scoring
+- Transaction pattern evaluation
+- Configurable risk weights
+
+## Challenges Overcome
+
+### **Time Constraints**
+
+Building a complex system in 36 hours required:
+
+- Efficient task distribution among team members
+- Prioritizing core features over nice-to-haves
+- Rapid prototyping and iteration
+- Minimal viable product approach
+
+### **Kafka Integration**
+
+Setting up Kafka in limited time involved:
+
+- Quick learning of Kafka concepts
+- Simplified producer-consumer setup
+- Basic topic configuration
+- Testing with mock data
+
+### **Real-time Processing**
+
+Implementing real-time features required:
+
+- Efficient stream processing
+- Low-latency data pipelines
+- Optimized database queries
+- WebSocket for live updates
+
+## Impact and Results
+
+VIGIL OS Pro successfully demonstrated:
+
+- **Real-time Capability**: Sub-second fraud detection
+- **Scalability**: Event-driven architecture ready for scale
+- **User Experience**: Intuitive dashboard for monitoring
+- **Team Collaboration**: Effective coordination under pressure
+- **Hackathon Success**: Completed functional prototype in 36 hours
+
+## Behind the Scenes
+
+Building VIGIL OS Pro during a hackathon was an intense but rewarding experience. The 36-hour time constraint pushed us to make quick decisions, prioritize ruthlessly, and collaborate efficiently.
+
+Learning Kafka on the fly while implementing a fraud detection system was challenging but incredibly educational. The event-driven architecture pattern proved to be the right choice for handling real-time transaction streams.
+
+The most exciting moment was seeing the entire pipeline work end-to-end—from transaction ingestion through Kafka, to fraud detection, to real-time dashboard updates. It validated our architectural decisions and demonstrated the power of event-driven systems.
+
+This project taught us valuable lessons about building scalable systems, working under pressure, and the importance of clear communication in team projects. The experience of going from concept to working prototype in such a short time was invaluable for our growth as developers.

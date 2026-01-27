@@ -1,0 +1,201 @@
+---
+title: 'Krypt DeFi'
+description: 'Decentralized finance platform for peer-to-peer ETH transfers with smart contracts and wallet integration'
+image: '/project/krypt-defi.png'
+technologies:
+  [
+    'React',
+    'TypeScript',
+    'Tailwind CSS',
+    'Vercel',
+    'Node.js',
+    'Solidity',
+    'Ethereum',
+    'Web3.js',
+  ]
+github: 'https://github.com/PrathamRanka/krypt-defi'
+live: 'https://krypt-defi.vercel.app'
+timeline: '2 Weeks'
+role: 'Full Stack Developer'
+team: 'Solo'
+status: 'completed'
+featured: false
+challenges:
+  [
+    'Smart contract development and testing',
+    'Web3 wallet integration',
+    'Transaction security and validation',
+    'Blockchain interaction optimization',
+  ]
+learnings:
+  [
+    'Solidity smart contract development',
+    'Web3.js and Ethereum integration',
+    'Blockchain transaction handling',
+    'Cryptocurrency wallet connectivity',
+  ]
+isPublished: true
+---
+
+# Krypt DeFi: Decentralized Finance Platform
+
+## Overview
+
+Krypt DeFi is a decentralized finance (DeFi) platform that enables secure peer-to-peer Ethereum (ETH) transfers through smart contracts. Built on the Ethereum blockchain, this application provides a user-friendly interface for cryptocurrency transactions while maintaining the security and transparency of blockchain technology.
+
+## How It Works
+
+- **Wallet Connection**: Connect MetaMask or other Web3 wallets
+- **Transfer ETH**: Send Ethereum to any wallet address
+- **Smart Contracts**: Transactions executed through secure smart contracts
+- **Transaction History**: View all past transactions on the blockchain
+- **Real-time Updates**: Live transaction status and confirmations
+
+## Key Features
+
+### **Web3 Wallet Integration**
+
+- Seamless MetaMask wallet connection
+- Support for multiple Web3 wallet providers
+- Automatic network detection and switching
+- Secure wallet authentication
+
+### **Smart Contract Transactions**
+
+- Solidity-based smart contracts for secure transfers
+- Gas fee estimation and optimization
+- Transaction validation and error handling
+- Blockchain confirmation tracking
+
+### **User-Friendly Interface**
+
+- Clean, modern design with Tailwind CSS
+- Intuitive transaction flow
+- Real-time balance updates
+- Transaction history visualization
+
+### **Security Features**
+
+- Client-side transaction signing
+- Smart contract security best practices
+- Input validation and sanitization
+- Error handling for failed transactions
+
+## Why I Built This
+
+I created Krypt DeFi to explore several key areas:
+
+- **Blockchain Technology**: Deep dive into Ethereum and smart contracts
+- **Web3 Development**: Learn Web3.js and blockchain integration
+- **DeFi Understanding**: Understand decentralized finance principles
+- **Smart Contracts**: Practice Solidity development and testing
+- **User Experience**: Make blockchain technology more accessible
+
+## Tech Stack
+
+### Frontend
+
+- **React**: Component-based UI architecture
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Modern, responsive styling
+- **Web3.js**: Ethereum blockchain interaction
+- **Vercel**: Fast deployment and hosting
+
+### Blockchain
+
+- **Solidity**: Smart contract development
+- **Ethereum**: Blockchain network (Goerli testnet)
+- **Hardhat**: Smart contract development environment
+- **MetaMask**: Wallet integration and transaction signing
+
+## Technical Implementation
+
+### Smart Contract Development
+
+- **Transfer Contract**: Solidity contract for ETH transfers
+- **Event Logging**: Transaction events for history tracking
+- **Gas Optimization**: Efficient contract code to minimize fees
+- **Security Auditing**: Following best practices for contract security
+
+### Web3 Integration
+
+- **Provider Setup**: Web3 provider configuration and initialization
+- **Wallet Connection**: MetaMask and Web3 wallet detection
+- **Transaction Signing**: Client-side transaction creation and signing
+- **Event Listening**: Real-time blockchain event monitoring
+
+### User Experience
+
+- **Loading States**: Clear feedback during transaction processing
+- **Error Handling**: User-friendly error messages for common issues
+- **Transaction Status**: Real-time updates on transaction confirmations
+- **Responsive Design**: Mobile-friendly interface for on-the-go transactions
+
+## Technical Highlights
+
+### **Smart Contract Architecture**
+
+```solidity
+// Simplified example of the transfer contract
+contract Transactions {
+    event Transfer(
+        address from,
+        address receiver,
+        uint amount,
+        string message,
+        uint256 timestamp
+    );
+
+    function addToBlockchain(
+        address payable receiver,
+        uint amount,
+        string memory message
+    ) public {
+        // Transfer logic
+        emit Transfer(msg.sender, receiver, amount, message, block.timestamp);
+    }
+}
+```
+
+### **Web3 Connection**
+
+- Automatic wallet detection and connection
+- Network validation (Ethereum mainnet/testnet)
+- Transaction gas estimation
+- Blockchain event subscription
+
+## Challenges Overcome
+
+### **Gas Fee Management**
+
+Understanding and optimizing gas fees was crucial:
+
+- Implemented gas estimation before transactions
+- Optimized smart contract code for efficiency
+- Provided clear gas fee information to users
+
+### **Wallet Integration**
+
+Ensuring smooth wallet connectivity required:
+
+- Handling multiple wallet providers
+- Managing connection states
+- Dealing with network switching
+- Error handling for rejected transactions
+
+### **Transaction Security**
+
+Maintaining security while ensuring usability involved:
+
+- Input validation for addresses and amounts
+- Transaction confirmation flows
+- Error handling for edge cases
+- Clear security warnings for users
+
+## Behind the Scenes
+
+Building Krypt DeFi was an eye-opening journey into blockchain development. Working with Solidity and understanding how smart contracts execute on the Ethereum Virtual Machine (EVM) provided deep insights into decentralized systems.
+
+The project taught me that blockchain development requires a different mindset—every transaction costs gas, immutability means bugs are permanent, and security is paramount. These constraints push developers to write more thoughtful, efficient code.
+
+The most exciting aspect was seeing transactions execute on the actual blockchain, knowing that the code I wrote was running on a decentralized network of thousands of nodes worldwide.
