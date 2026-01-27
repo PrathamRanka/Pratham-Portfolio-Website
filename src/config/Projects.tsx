@@ -45,7 +45,7 @@ export const projects: Project[] = [
     isWorking: true,
   },
   {
-    title: 'OWASP Recruitment Quiz Portal',
+    title: 'OWASP Quiz Portal',
     description:
       'High-performance recruitment assessment platform supporting 15,000+ concurrent candidates with secure authentication and analytics',
     image: '/project/owasp.png',
@@ -90,12 +90,13 @@ export const projects: Project[] = [
     link: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     technologies: [
       { name: 'Go', icon: <Go key="go" /> },
+      { name: 'GitHub', icon: <Github key="github" /> },
     ],
     github: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     live: 'https://github.com/PrathamRanka/Tcp-Server-Go',
-    details: false,
+    details: true,
     projectDetailsPageSlug: '/projects/tcp-server-go',
-    isWorking: false,
+    isWorking: true,
   },
   {
     title: 'LAB-EVAL-HELPER',
@@ -105,12 +106,13 @@ export const projects: Project[] = [
     link: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     technologies: [
       { name: 'C++', icon: <Cpp key="cpp" /> },
+      { name: 'GitHub', icon: <Github key="github" /> },
     ],
     github: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     live: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
-    details: false,
+    details: true,
     projectDetailsPageSlug: '/projects/lab-eval-helper',
-    isWorking: false,
+    isWorking: true,
   },
   {
     title: 'VIGIL OS Pro',
@@ -119,6 +121,7 @@ export const projects: Project[] = [
     image: '/project/vigil-os.png',
     link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
     technologies: [
+      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
       { name: 'React', icon: <ReactIcon key="react" /> },
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
@@ -129,8 +132,8 @@ export const projects: Project[] = [
     ],
     github: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
     live: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    details: false,
+    details: true,
     projectDetailsPageSlug: '/projects/vigil-os-pro',
-    isWorking: false,
+    isWorking: true,
   },
 ];
