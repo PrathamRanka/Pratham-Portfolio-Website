@@ -6,7 +6,7 @@ import Experience from '@/components/landing/Experience';
 import Github from '@/components/landing/Github';
 import Hero from '@/components/landing/Hero';
 import Journey from '@/components/landing/Journey';
-import PositionsOfResponsibility from '@/components/landing/PositionsOfResponsibility';
+// import PositionsOfResponsibility from '@/components/landing/PositionsOfResponsibility';
 import Work from '@/components/landing/Projects';
 import Setup from '@/components/landing/Setup';
 import React from 'react';
@@ -17,7 +17,7 @@ export default function page() {
       <Hero />
       <Experience />
       <Work />
-                  <PositionsOfResponsibility />
+      {/* <PositionsOfResponsibility /> */}
       <About />
       <Github />
 
