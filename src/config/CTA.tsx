@@ -11,9 +11,9 @@ export const ctaConfig = {
   profileAlt: 'Profile',
 
   // CTA button settings
-  linkText: 'Book a Free Call',
+  linkText: "Let's Build Together",
   calLink: 'Pratham/meeting',
 
   // Pre-text message
-  preText: "Hey, you scrolled this far, let's talk.",
+  preText: "Open to internships, software engineering, and product roles.",
 };

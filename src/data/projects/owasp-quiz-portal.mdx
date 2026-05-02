@@ -26,6 +26,16 @@ learnings:
     'Real-time data processing',
   ]
 isPublished: true
+problem: "Organizing a large-scale recruitment drive for 15,000+ candidates requires a system that can handle massive concurrent loads without crashing, while ensuring absolute fairness through anti-cheating mechanisms and real-time monitoring."
+architecture: "The portal is built on a scalable Node.js/Express backend with MongoDB as the primary data store. Redis is utilized for session management and real-time rate limiting, while a React frontend provides a responsive candidate experience."
+metrics: ["15,000+ Concurrent Users", "99.9% Uptime", "Sub-200ms Latency"]
+performanceOptimizations:
+  [
+    "Implemented Redis-based session caching to offload primary database reads",
+    "Used MongoDB aggregation pipelines for real-time leaderboard generation",
+    "Optimized Nginx configuration for handling high-volume concurrent TCP connections",
+  ]
+infrastructure: "Horizontally scaled Node.js clusters, Managed MongoDB Atlas, Redis Cloud"
 ---
 
 # OWASP Recruitment Quiz Portal

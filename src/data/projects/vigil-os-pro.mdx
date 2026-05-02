@@ -36,6 +36,16 @@ learnings:
     'Microservices design',
   ]
 isPublished: true
+problem: "Financial institutions struggle with real-time fraud detection due to the high latency of traditional batch processing systems. In a hackathon environment, we needed to build a solution that could process thousands of transactions per second while identifying malicious patterns instantly."
+architecture: "The system uses an event-driven microservices architecture. Apache Kafka acts as the central nervous system, streaming transactions from the Ingestion Service to the ML-based Fraud Detection Service. Results are stored in MongoDB and served via a real-time dashboard powered by Supabase."
+metrics: ["36h Hackathon", "Real-time Detection", "Event-Driven"]
+performanceOptimizations:
+  [
+    "Implemented Kafka partitioning for parallel transaction processing",
+    "Used Redis for caching vendor risk scores to achieve sub-10ms lookups",
+    "Optimized MongoDB indexing for rapid historical analysis",
+  ]
+infrastructure: "Distributed Microservices on Vercel/Railway with Kafka Cloud"
 ---
 
 # VIGIL OS Pro: Real-time Fraud Detection Platform

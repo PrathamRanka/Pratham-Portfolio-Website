@@ -57,7 +57,7 @@ export const skillComponents = {
 export const heroConfig = {
   // Personal Information
   name: 'Pratham Ranka',
-  title: 'A Full Stack web developer.',
+  title: 'Software Engineer building scalable backend systems and product-first applications.',
   avatar: '/assets/pfp.png',
 
   // Skills Configuration
@@ -66,34 +66,46 @@ export const heroConfig = {
     { name: 'React', href: 'https://react.dev/', component: 'ReactIcon' },
     { name: 'Next.js', href: 'https://nextjs.org/', component: 'NextJs' },
     { name: 'Node.js', href: 'https://nodejs.org/', component: 'NodeJs' },
+    { name: 'Python', href: 'https://www.python.org/', component: null },
+    { name: 'Go', href: 'https://go.dev/', component: null },
     { name: 'PostgreSQL', href: 'https://www.postgresql.org/', component: 'PostgreSQL' },
     { name: 'MongoDB', href: 'https://www.mongodb.com/', component: 'MongoDB' },
-    { name: 'Prisma', href: 'https://www.prisma.io/', component: 'Prisma' },
-    { name: 'WebSockets', href: 'https://socket.io/', component: 'SocketIo' },
-    { name: 'Docker', href: 'https://www.docker.com/', component: null },
-    { name: 'AWS', href: 'https://aws.amazon.com/', component: 'AWS' },
     { name: 'Redis', href: 'https://redis.io/', component: null },
-    { name: 'Tailwind CSS', href: 'https://tailwindcss.com/', component: 'TailwindCss' },
-    { name: 'System Design', href: '#', component: null },
-    { name: 'APIs', href: '#', component: null },
-    { name: 'Performance Optimization', href: '#', component: null },
+    { name: 'Kafka', href: 'https://kafka.apache.org/', component: null },
+    { name: 'Docker', href: 'https://www.docker.com/', component: null },
+    { name: 'Kubernetes', href: 'https://kubernetes.io/', component: null },
+    { name: 'AWS', href: 'https://aws.amazon.com/', component: 'AWS' },
+    { name: 'FastAPI', href: 'https://fastapi.tiangolo.com/', component: null },
+    { name: 'Prisma', href: 'https://www.prisma.io/', component: 'Prisma' },
+    { name: 'CI/CD', href: '#', component: null },
   ],
 
   // Description Configuration
   description: {
     template:
-      'I am Pratham Ranka, a software engineer who ships fast and owns products end-to-end. I specialize in architecting scalable backend systems, high-performance UIs, and real-time infrastructure for early-stage startups.',
+      'I am a startup engineer who ships fast and owns products end-to-end. I specialize in distributed systems, scalable backend infrastructure, real-time architectures, and driving product execution from zero to one.',
   },
 
   // Buttons Configuration
   buttons: [
     {
+      variant: 'default',
+      text: 'View Projects',
+      href: '#projects', // Assuming smooth scroll or link to projects section
+      icon: null,
+    },
+    {
       variant: 'outline',
-      text: 'Resume / CV',
+      text: 'View Resume',
       href: '/resume',
       icon: 'CV',
     },
-
+    {
+      variant: 'outline',
+      text: "Let's Build Together",
+      href: 'https://wa.me/+917023206003', // Placeholder mail
+      icon: 'Chat',
+    },
   ],
 };
 

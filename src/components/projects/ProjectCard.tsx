@@ -114,6 +114,28 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Description */}
           <p className="text-secondary line-clamp-3">{project.description}</p>
 
+          {/* Metrics */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {project.metrics.map((metric, idx) => (
+                <div key={idx} className="flex items-center rounded-md border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-indigo-500 uppercase">
+                  {metric}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Architecture Highlights */}
+          {project.architectureHighlights && project.architectureHighlights.length > 0 && (
+            <div className="text-secondary mt-2 flex flex-wrap gap-2">
+              {project.architectureHighlights.map((highlight, idx) => (
+                <div key={idx} className="tag-inner-shadow rounded bg-black/5 px-2 py-1 text-xs dark:bg-white/5">
+                  ✓ {highlight}
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Technologies */}
           <div>
             <h4 className="text-secondary mb-2 text-sm font-medium">

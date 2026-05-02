@@ -40,12 +40,16 @@ export interface Experience {
   technologies: Technology[];
   isCurrent: boolean;
   isBlur?: boolean;
+  badge?: string;
+  metrics?: string[];
 }
 
 export const experiences: Experience[] = [
   {
     isCurrent: true,
-    company: 'PAASA (YC S24)',
+    company: 'PAASA',
+    badge: 'YC S24',
+    metrics: ['$19M+ Assets', 'Real-time Systems', 'Payments Infra', 'KYC Systems'],
     position: 'Software Engineering Intern — Hybrid',
     location: 'Remote',
     image: '/company/paasa.png',

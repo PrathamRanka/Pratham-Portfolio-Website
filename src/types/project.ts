@@ -10,6 +10,8 @@ export interface Project {
   details: boolean;
   projectDetailsPageSlug: string;
   isWorking: boolean;
+  architectureHighlights?: string[];
+  metrics?: string[];
 }
 
 export interface ProjectCaseStudyFrontmatter {
@@ -27,6 +29,11 @@ export interface ProjectCaseStudyFrontmatter {
   challenges?: string[];
   learnings?: string[];
   isPublished: boolean;
+  problem?: string;
+  architecture?: string;
+  performanceOptimizations?: string[];
+  infrastructure?: string;
+  metrics?: string[];
 }
 
 export interface ProjectCaseStudy {

@@ -11,22 +11,22 @@ interface Position {
 
 const positions: Position[] = [
   {
-    organization: 'OWASP TIET',
-    role: 'Core Member',
+    organization: 'HACK4DELHI 2026',
+    role: 'Top 28 Finalist (out of 1,200 teams)',
     bullets: [
-      'Built and deployed the official OWASP TIET website',
-      'Developed a Quiz Portal and Capture The Flag (CTF) platform',
-      'Platforms served 5,000+ users',
-      'Followed secure development practices and scalability principles',
+      'Built and pitched an enterprise-grade solution in a high-pressure 24-hour hackathon',
+      'Competed against 5,000+ participants in an IEEE-sponsored, Government-backed event',
+      'Demonstrated rapid prototyping, system architecture, and product execution',
     ],
   },
   {
-    organization: 'Google Developer Group (GDG)',
-    role: 'Core Member',
+    organization: 'OWASP TIET Chapter',
+    role: 'Core Developer',
     bullets: [
-      'Contributed to DevFest planning and execution',
-      'Supported technical workshops focused on web and backend systems',
-      'Collaborated with speakers and developers for smooth event delivery',
+      'Architected and built the official OWASP TIET website',
+      'Developed a scalable Quiz Portal and Capture The Flag (CTF) platform',
+      'Platforms served 5,000+ users efficiently without downtime',
+      'Championed secure development practices and scalable architectures',
     ],
   },
 ];
@@ -35,8 +35,8 @@ export default function PositionsOfResponsibility() {
   return (
     <Container className="mt-20">
       <SectionHeading
-        subHeading="Voluntary"
-        heading="Positions of Responsibility"
+        subHeading="Milestones"
+        heading="Leadership & Achievements"
       />
       <div className="mt-8 flex flex-col gap-12">
         {positions.map((position, index) => (

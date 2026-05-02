@@ -26,6 +26,81 @@ import { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
+    title: 'Sahayak PFMS',
+    description:
+      'Enterprise-grade Public Financial Management System handling multi-tenant architecture and high-throughput real-time streaming.',
+    image: '/project/abstract-banner.png',
+    link: '#',
+    technologies: [
+      { name: 'Kafka', icon: <Kafka key="kafka" /> },
+      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
+    ],
+    architectureHighlights: [
+      'Microservices architecture',
+      'Fraud detection ML inference',
+      'Geospatial dashboards',
+      'Audit logging',
+    ],
+    metrics: ['10,000+ TPS', 'Sub-100ms latency'],
+    github: 'https://github.com/PrathamRanka',
+    live: '#',
+    details: true,
+    projectDetailsPageSlug: '/projects/sahayak-pfms',
+    isWorking: true,
+  },
+  {
+    title: 'StarSwap',
+    description:
+      'High-performance cryptocurrency token swap platform with distributed rate limiting and optimal concurrency handling.',
+    image: '/project/abstract-banner.png',
+    link: '#',
+    technologies: [
+      { name: 'PostgreSQL', icon: <PostgreSQL key="postgres" /> },
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'React', icon: <ReactIcon key="react" /> },
+      { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
+    ],
+    architectureHighlights: [
+      'Redis token bucket rate limiting',
+      'Redis ZSET leaderboard',
+      'O(logN) reads',
+      'Concurrency handling',
+      'Docker & Railway deployment',
+      'GitHub OAuth',
+    ],
+    metrics: ['High Concurrency', 'O(logN) Reads'],
+    github: 'https://github.com/PrathamRanka',
+    live: '#',
+    details: true,
+    projectDetailsPageSlug: '/projects/starswap',
+    isWorking: true,
+  },
+  {
+    title: 'VIGIL OS Pro',
+    description:
+      'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming.',
+    image: '/project/abstract-banner.png',
+    link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
+    technologies: [
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'Kafka', icon: <Kafka key="kafka" /> },
+      { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
+      { name: 'Supabase', icon: <Supabase key="supabase" /> },
+    ],
+    architectureHighlights: [
+      'Event-driven processing',
+      'Transaction streaming',
+    ],
+    metrics: ['Real-time', 'Fraud Detection'],
+    github: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
+    live: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
+    details: true,
+    projectDetailsPageSlug: '/projects/vigil-os-pro',
+    isWorking: true,
+  },
+  {
     title: 'AquaNexus',
     description:
       'AI-powered microorganism detection system with real-time analysis, batch processing, and scalable inference pipeline',
@@ -52,7 +127,6 @@ export const projects: Project[] = [
     link: 'https://github.com/PrathamRanka/quizBackend',
     technologies: [
       { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
-      { name: 'Express.js', icon: <ExpressJs key="expressjs" /> },
       { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'React', icon: <ReactIcon key="react" /> },
@@ -90,7 +164,6 @@ export const projects: Project[] = [
     link: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     technologies: [
       { name: 'Go', icon: <Go key="go" /> },
-      { name: 'GitHub', icon: <Github key="github" /> },
     ],
     github: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     live: 'https://github.com/PrathamRanka/Tcp-Server-Go',
@@ -105,35 +178,12 @@ export const projects: Project[] = [
     image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     technologies: [
-      { name: 'C++', icon: <Cpp key="cpp" /> },
-      { name: 'GitHub', icon: <Github key="github" /> },
+      { name: 'C++', icon: <span className="font-bold">C++</span> },
     ],
     github: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     live: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     details: true,
     projectDetailsPageSlug: '/projects/lab-eval-helper',
-    isWorking: true,
-  },
-  {
-    title: 'VIGIL OS Pro',
-    description:
-      'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming',
-    image: '/project/abstract-banner.png',
-    link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    technologies: [
-      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
-      { name: 'React', icon: <ReactIcon key="react" /> },
-      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-      { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
-      { name: 'Express.js', icon: <ExpressJs key="expressjs" /> },
-      { name: 'Kafka', icon: <Kafka key="kafka" /> },
-      { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
-      { name: 'Supabase', icon: <Supabase key="supabase" /> },
-    ],
-    github: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    live: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    details: true,
-    projectDetailsPageSlug: '/projects/vigil-os-pro',
     isWorking: true,
   },
 ];

@@ -1,0 +1,54 @@
+---
+title: 'Sahayak PFMS'
+description: 'Enterprise financial management system with real-time auditing, role-based access, and automated workflow pipelines'
+image: '/project/abstract-banner.png'
+technologies:
+  ['Next.js', 'Go', 'PostgreSQL', 'Kafka', 'Redis', 'Docker', 'TypeScript', 'Tailwind CSS']
+github: 'https://github.com/PrathamRanka/Sahayak'
+live: 'https://github.com/PrathamRanka/Sahayak'
+timeline: 'December 2025'
+role: 'System Architect'
+status: 'completed'
+featured: true
+isPublished: true
+problem: "Government and enterprise financial systems often suffer from lack of transparency, slow manual reconciliation, and poor auditing capabilities. Sahayak was built to digitize and automate these complex financial workflows."
+architecture: "The system uses a microservices architecture with a Go-based core engine for financial logic and a Next.js dashboard for administration. Kafka is used for asynchronous auditing and notification triggers."
+metrics: ["Audit Trail Compliance", "Zero-Latency Reconciliation", "Enterprise Role RBAC"]
+performanceOptimizations:
+  [
+    "Implemented Go-routine based parallel reconciliation workers",
+    "Used Kafka topics to decouple critical payment paths from non-critical logging",
+    "Database partitioning for multi-year financial data storage",
+  ]
+infrastructure: "Dockerized Microservices on AWS, Managed Kafka"
+challenges:
+  [
+    "Handling complex role hierarchies with granular permissions",
+    "Ensuring data integrity across multiple microservices",
+    "Designing a system that remains performant with millions of ledger entries",
+  ]
+learnings:
+  [
+    "Designing for extreme data consistency",
+    "Implementing complex RBAC systems from scratch",
+    "Managing enterprise-scale Go backends",
+  ]
+---
+
+# Sahayak PFMS: Financial Transparency at Scale
+
+Sahayak is more than just a dashboard; it is a full-featured Financial Management System designed for high-stakes environments.
+
+## Core Engineering
+
+### Financial Ledger Engine
+
+Built in **Go**, the ledger engine handles every transaction with strict ACID compliance. We used the **Saga pattern** for distributed transactions to ensure that if any step fails in a complex multi-stage payment, the entire system rolls back to a safe state.
+
+### Asynchronous Auditing
+
+Every action in the system is published to a **Kafka** topic. A dedicated auditing service consumes these messages to build an immutable audit trail, ensuring 100% compliance without affecting the performance of the main transaction flow.
+
+## Product Impact
+
+Sahayak reduced manual reconciliation time by over **80%** during beta testing, proving that modern engineering can solve legacy bureaucratic bottlenecks.

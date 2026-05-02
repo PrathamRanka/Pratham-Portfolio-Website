@@ -69,7 +69,7 @@ export default function Hero() {
           {skills.map((skill, index) => {
             const SkillComponent = skill.component ? skillComponents[skill.component as keyof typeof skillComponents] : null;
             return (
-              <Skill key={index} name={skill.name} href={skill.href}>
+              <Skill key={index} name={skill.name} href={skill.href} index={index}>
                 {SkillComponent && <SkillComponent />}
               </Skill>
             );
@@ -80,8 +80,9 @@ export default function Hero() {
       {/* Buttons */}
       <div className="mt-10 flex gap-4">
         {buttons.map((button, index) => {
-          const IconComponent =
-            buttonIcons[button.icon as keyof typeof buttonIcons];
+          const IconComponent = button.icon
+            ? buttonIcons[button.icon as keyof typeof buttonIcons]
+            : null;
           return (
             <Button
               key={index}

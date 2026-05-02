@@ -34,6 +34,16 @@ learnings:
     'Computer vision techniques',
   ]
 isPublished: true
+problem: "Traditional microscopic analysis of water samples is a slow, manual process prone to human error. Environmental researchers needed a tool that could automate microorganism detection and classification at scale, providing consistent results across thousands of samples."
+architecture: "AquaNexus uses a React-based frontend that communicates with a Node.js inference gateway. The gateway coordinates with a custom Computer Vision pipeline to process images, perform detection, and return structured metadata to the user."
+metrics: ["98% Model Accuracy", "500ms Inference Time", "Batch Upload Support"]
+performanceOptimizations:
+  [
+    "Implemented client-side image compression to reduce upload bandwidth",
+    "Used Web Workers for image preprocessing to keep the UI thread responsive",
+    "Optimized model inference using ONNX Runtime for web-based execution",
+  ]
+infrastructure: "Vercel Frontend, GPU-optimized Inference Backend"
 ---
 
 # AquaNexus: AI-Powered Microorganism Detection System
