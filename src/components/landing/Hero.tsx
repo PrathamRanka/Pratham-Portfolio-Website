@@ -24,15 +24,7 @@ export default function Hero() {
     const parts = parseTemplate(description.template, skills);
 
     return parts.map((part) => {
-      if (part.type === 'skill' && 'skill' in part && part.skill) {
-        const SkillComponent =
-          skillComponents[part.skill.component as keyof typeof skillComponents];
-        return (
-          <Skill key={part.key} name={part.skill.name} href={part.skill.href}>
-            <SkillComponent />
-          </Skill>
-        );
-      } else if (part.type === 'bold' && 'text' in part) {
+      if (part.type === 'bold' && 'text' in part) {
         return (
           <b key={part.key} className="text-primary whitespace-pre-wrap">
             {part.text}
@@ -66,13 +58,27 @@ export default function Hero() {
           Hi, I&apos;m {name} — <span className="text-secondary">{title}</span>
         </h1>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base whitespace-pre-wrap text-neutral-500 md:text-lg">
+        <div className="mt-4 text-base whitespace-pre-wrap text-neutral-500 md:text-lg">
           {renderDescription()}
         </div>
       </div>
 
+      {/* Floating Badges for Skills */}
+      <div className="mt-8">
+        <div className="flex flex-wrap items-center gap-3">
+          {skills.map((skill, index) => {
+            const SkillComponent = skill.component ? skillComponents[skill.component as keyof typeof skillComponents] : null;
+            return (
+              <Skill key={index} name={skill.name} href={skill.href}>
+                {SkillComponent && <SkillComponent />}
+              </Skill>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Buttons */}
-      <div className="mt-8 flex gap-4">
+      <div className="mt-10 flex gap-4">
         {buttons.map((button, index) => {
           const IconComponent =
             buttonIcons[button.icon as keyof typeof buttonIcons];
@@ -100,7 +106,7 @@ export default function Hero() {
               <Link
                 href={link.href}
                 key={link.name}
-                className="text-secondary flex items-center gap-2"
+                className="text-secondary hover:text-primary flex items-center gap-2 transition-colors"
               >
                 <span className="size-6">{link.icon}</span>
               </Link>

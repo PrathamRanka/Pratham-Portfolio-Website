@@ -13,13 +13,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 interface ExperienceCardProps {
   experience: Experience;
+  isPreview?: boolean;
 }
 
-const parseDescription = (text: string): string => {
-  return text.replace(/\*(.*?)\*/g, '<b>$1</b>');
-};
-
-export function ExperienceCard({ experience }: ExperienceCardProps) {
+export function ExperienceCard({ experience, isPreview = false }: ExperienceCardProps) {
   return (
     <div className="flex flex-col gap-4">
       {/* Company Header */}
@@ -136,18 +133,15 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
       </div>
 
       {/* Description */}
-      <div className="text-secondary flex flex-col">
-        {experience.description.map(
-          (description: string, descIndex: number) => (
-            <p
-              key={descIndex}
-              dangerouslySetInnerHTML={{
-                __html: `• ${parseDescription(description)}`,
-              }}
-            />
+      <ul className="text-secondary flex flex-col space-y-2 pl-4 list-disc marker:text-primary/50">
+        {(isPreview && experience.shortDescription ? experience.shortDescription : experience.description).map(
+          (desc: React.ReactNode, descIndex: number) => (
+            <li key={descIndex} className="pl-1">
+              {desc}
+            </li>
           ),
         )}
-      </div>
+      </ul>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export const navbarConfig = {
   navItems: [
     {
       label: 'Work',
-      href: '/work-experience',
+      href: '/work',
     },
     {
       label: 'Projects',

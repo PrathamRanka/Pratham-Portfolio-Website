@@ -35,20 +35,23 @@ import NodeJs from '@/components/technologies/NodeJs';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
 import Prisma from '@/components/technologies/Prisma';
 import ReactIcon from '@/components/technologies/ReactIcon';
-// Technology Components
 import TypeScript from '@/components/technologies/TypeScript';
+import AWS from '@/components/technologies/AWS';
+import TailwindCss from '@/components/technologies/TailwindCss';
+import SocketIo from '@/components/technologies/SocketIo';
 
 // Component mapping for skills
 export const skillComponents = {
   TypeScript: TypeScript,
   ReactIcon: ReactIcon,
   NextJs: NextJs,
-  Bun: Bun,
-  PostgreSQL: PostgreSQL,
   NodeJs: NodeJs,
+  PostgreSQL: PostgreSQL,
   MongoDB: MongoDB,
   Prisma: Prisma,
-  JavaScript: JavaScript,
+  AWS: AWS,
+  TailwindCss: TailwindCss,
+  SocketIo: SocketIo,
 };
 
 export const heroConfig = {
@@ -59,42 +62,27 @@ export const heroConfig = {
 
   // Skills Configuration
   skills: [
-    {
-      name: 'Typescript',
-      href: 'https://www.typescriptlang.org/',
-      component: 'TypeScript',
-    },
-    {
-      name: 'React',
-      href: 'https://react.dev/',
-      component: 'ReactIcon',
-    },
-    {
-      name: 'Next.js',
-      href: 'https://nextjs.org/',
-      component: 'NextJs',
-    },
-    {
-      name: 'Prisma',
-      href: 'https://www.prisma.io/',
-      component: 'Prisma',
-    },
-    {
-      name: 'MongoDB',
-      href: 'https://www.mongodb.com/',
-      component: 'MongoDB',
-    },
-    // {
-    //   name: 'MongoDB',
-    //   href: 'https://www.mongodb.com/',
-    //   component: 'MongoDB',
-    // }
+    { name: 'TypeScript', href: 'https://www.typescriptlang.org/', component: 'TypeScript' },
+    { name: 'React', href: 'https://react.dev/', component: 'ReactIcon' },
+    { name: 'Next.js', href: 'https://nextjs.org/', component: 'NextJs' },
+    { name: 'Node.js', href: 'https://nodejs.org/', component: 'NodeJs' },
+    { name: 'PostgreSQL', href: 'https://www.postgresql.org/', component: 'PostgreSQL' },
+    { name: 'MongoDB', href: 'https://www.mongodb.com/', component: 'MongoDB' },
+    { name: 'Prisma', href: 'https://www.prisma.io/', component: 'Prisma' },
+    { name: 'WebSockets', href: 'https://socket.io/', component: 'SocketIo' },
+    { name: 'Docker', href: 'https://www.docker.com/', component: null },
+    { name: 'AWS', href: 'https://aws.amazon.com/', component: 'AWS' },
+    { name: 'Redis', href: 'https://redis.io/', component: null },
+    { name: 'Tailwind CSS', href: 'https://tailwindcss.com/', component: 'TailwindCss' },
+    { name: 'System Design', href: '#', component: null },
+    { name: 'APIs', href: '#', component: null },
+    { name: 'Performance Optimization', href: '#', component: null },
   ],
 
   // Description Configuration
   description: {
     template:
-      'I am Pratham Ranka, a Software Engineer and Full Stack Developer specializing in {skills:0}, {skills:1}, and {skills:2} I architect scalable, production-ready web applications and MVPs. As an Open Source Contributor and Startup Engineer, I focus on clean code, Core Web Vitals, and premium user experiences.',
+      'I am Pratham Ranka, a software engineer who ships fast and owns products end-to-end. I specialize in architecting scalable backend systems, high-performance UIs, and real-time infrastructure for early-stage startups.',
   },
 
   // Buttons Configuration

@@ -31,16 +31,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [diapfppen, setDiapfppen] = useState<boolean>(false);
 
   return (
-    <Card className="group h-full w-full overflow-hidden border-gray-100 p-0 shadow-none transition-all dark:border-gray-800">
+    <Card className="group h-full w-full overflow-hidden border-black/10 bg-white p-0 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl dark:border-white/10 dark:bg-black/40 dark:backdrop-blur-sm">
       <CardHeader className="p-0">
         <div className="group relative aspect-video overflow-hidden">
           <Image
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             src={project.image}
             alt={project.title}
             width={1920}
             height={1080}
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60 pointer-events-none" />
           {project.video && (
             <Dialog open={diapfppen} onOpenChange={setDiapfppen}>
               <DialogTrigger asChild>
@@ -72,7 +73,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Project Header - Title and Icons */}
           <div className="flex items-center justify-between gap-4">
             <Link href={project.projectDetailsPageSlug}>
-              <h3 className="group-hover:text-primary text-xl leading-tight font-semibold hover:cursor-pointer">
+              <h3 className="group-hover:text-primary text-xl leading-tight tracking-tight font-bold hover:cursor-pointer transition-colors">
                 {project.title}
               </h3>
             </Link>

@@ -62,7 +62,7 @@ export const pageMetadata: Record<string, PageMeta> = {
   },
 
   // Work Experience page
-  '/work-experience': {
+  '/work': {
     title: 'Work Experience - Professional Journey',
     description:
       'Explore my professional work experience across different companies and roles in software development.',

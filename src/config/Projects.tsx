@@ -29,7 +29,7 @@ export const projects: Project[] = [
     title: 'AquaNexus',
     description:
       'AI-powered microorganism detection system with real-time analysis, batch processing, and scalable inference pipeline',
-    image: '/project/aquanexus.png',
+    image: '/project/abstract-banner.png',
     link: 'https://aquanexus.vercel.app',
     technologies: [
       { name: 'React', icon: <ReactIcon key="react" /> },
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: 'OWASP Quiz Portal',
     description:
       'High-performance recruitment assessment platform supporting 15,000+ concurrent candidates with secure authentication and analytics',
-    image: '/project/owasp.png',
+    image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/quizBackend',
     technologies: [
       { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     title: 'Krypt DeFi',
     description:
       'Decentralized finance platform for peer-to-peer ETH transfers with smart contracts and wallet integration',
-    image: '/project/krypt-defi.png',
+    image: '/project/abstract-banner.png',
     link: 'https://krypt-defi.vercel.app',
     technologies: [
       { name: 'React', icon: <ReactIcon key="react" /> },
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     title: 'TCP Server in Go',
     description:
       'Low-level TCP networking from scratch with stream-based communication, concurrent connection handling using goroutines',
-    image: '/project/tcp.png',
+    image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     technologies: [
       { name: 'Go', icon: <Go key="go" /> },
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     title: 'LAB-EVAL-HELPER',
     description:
       'DSA lab survival tool with reusable templates and patterns for common data structure evaluation problems',
-    image: '/project/lab-eval.png',
+    image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     technologies: [
       { name: 'C++', icon: <Cpp key="cpp" /> },
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     title: 'VIGIL OS Pro',
     description:
       'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming',
-    image: '/project/vigil-os.png',
+    image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
     technologies: [
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },

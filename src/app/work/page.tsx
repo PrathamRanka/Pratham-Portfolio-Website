@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import { Robots } from 'next/dist/lib/metadata/types/metadata-types';
 
 export const metadata: Metadata = {
-  ...getMetadata('/work-experience'),
+  ...getMetadata('/work'),
   robots: {
     index: true,
     follow: true,
