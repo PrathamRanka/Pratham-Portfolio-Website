@@ -42,7 +42,7 @@ export default function Hero() {
   };
 
   return (
-    <Container className="mx-auto max-w-5xl">
+    <Container>
       {/* Image */}
       <Image
         src={avatar}
@@ -67,9 +67,16 @@ export default function Hero() {
       <div className="mt-8">
         <div className="flex flex-wrap items-center gap-3">
           {skills.map((skill, index) => {
-            const SkillComponent = skill.component ? skillComponents[skill.component as keyof typeof skillComponents] : null;
+            const SkillComponent = skill.component
+              ? skillComponents[skill.component as keyof typeof skillComponents]
+              : null;
             return (
-              <Skill key={index} name={skill.name} href={skill.href} index={index}>
+              <Skill
+                key={index}
+                name={skill.name}
+                href={skill.href}
+                index={index}
+              >
                 {SkillComponent && <SkillComponent />}
               </Skill>
             );

@@ -1,8 +1,5 @@
-import Container from '@/components/common/Container';
 import { ProjectContent } from '@/components/projects/ProjectContent';
 import { ProjectNavigation } from '@/components/projects/ProjectNavigation';
-import ArrowLeft from '@/components/svgs/ArrowLeft';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/config/Meta';
 import {
@@ -13,7 +10,9 @@ import {
 } from '@/lib/project';
 import { Metadata } from 'next';
 import { Link } from 'next-view-transitions';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import React from 'react';
 
 interface ProjectCaseStudyPageProps {
   params: Promise<{
@@ -24,10 +23,7 @@ interface ProjectCaseStudyPageProps {
 // Generate static paths for all project case studies
 export async function generateStaticParams() {
   const slugs = getProjectCaseStudySlugs();
-
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
 }
 
 // Generate metadata for each project case study
@@ -38,26 +34,24 @@ export async function generateMetadata({
   const caseStudy = await getProjectCaseStudyBySlug(slug);
 
   if (!caseStudy || !caseStudy.frontmatter.isPublished) {
-    return {
-      title: 'Project Not Found',
-    };
+    return { title: 'Project Not Found' };
   }
 
   const { title, description, image } = caseStudy.frontmatter;
 
   return {
     metadataBase: new URL(siteConfig.url),
-    title: `${title} - Project Case Study`,
+    title: `${title} — Engineering Case Study`,
     description,
     openGraph: {
-      title: `${title} - Project Case Study`,
+      title: `${title} — Engineering Case Study`,
       description,
       images: [image],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} - Project Case Study`,
+      title: `${title} — Engineering Case Study`,
       description,
       images: [image],
     },
@@ -78,102 +72,70 @@ export default async function ProjectCaseStudyPage({
   const relatedProjects = await getRelatedProjectCaseStudies(slug, 2);
 
   return (
-    <Container className="py-16">
-      <div className="space-y-12">
-        {/* Back Button */}
-        <div>
-          <Button variant="ghost" asChild className="group">
-            <Link href="/projects" className="flex items-center space-x-2">
-              <ArrowLeft className="size-4" />
-              <span>Back to Projects</span>
-            </Link>
-          </Button>
-        </div>
+    <main className="min-h-screen">
+      {/* Main Project Content - Handles its own containers and Hero */}
+      <ProjectContent
+        frontmatter={caseStudy.frontmatter}
+        content={caseStudy.content}
+      />
 
-        {/* Project Content */}
-        <ProjectContent
-          frontmatter={caseStudy.frontmatter}
-          content={caseStudy.content}
-        />
+      {/* Post-Content Section */}
+      <div className="mx-auto max-w-7xl px-6 pb-32 lg:px-8">
+        <Separator className="mb-20 opacity-5" />
 
         {/* Project Navigation */}
-        <ProjectNavigation
-          previous={navigation.previous}
-          next={navigation.next}
-        />
+        <div className="mb-32">
+          <ProjectNavigation
+            previous={navigation.previous}
+            next={navigation.next}
+          />
+        </div>
 
         {/* Related Projects */}
         {relatedProjects.length > 0 && (
-          <div className="space-y-6">
-            <Separator />
-            <div className="space-y-6">
-              <h2 className="text-2xl font-semibold">Related Projects</h2>
-              <div className="grid gap-6 md:grid-cols-2">
-                {relatedProjects.map((project) => (
-                  <div
-                    key={project.slug}
-                    className="group bg-card hover:bg-muted/50 rounded-lg border p-6 transition-colors"
-                  >
-                    <Link href={`/projects/${project.slug}`}>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <h3 className="group-hover:text-primary text-lg font-semibold">
-                            {project.frontmatter.title}
-                          </h3>
-                          <div className="text-xs">
-                            <div
-                              className={`inline-block rounded px-2 py-1 text-xs font-medium ${
-                                project.frontmatter.status === 'completed'
-                                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-                                  : project.frontmatter.status === 'in-progress'
-                                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
-                                    : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400'
-                              }`}
-                            >
-                              {project.frontmatter.status
-                                .charAt(0)
-                                .toUpperCase() +
-                                project.frontmatter.status.slice(1)}
-                            </div>
-                          </div>
-                        </div>
-                        <p className="text-muted-foreground line-clamp-2 text-sm">
-                          {project.frontmatter.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {project.frontmatter.technologies
-                            .slice(0, 3)
-                            .map((tech) => (
-                              <span
-                                key={tech}
-                                className="bg-muted rounded px-2 py-1 text-xs"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          {project.frontmatter.technologies.length > 3 && (
-                            <span className="bg-muted rounded px-2 py-1 text-xs">
-                              +{project.frontmatter.technologies.length - 3}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </Link>
+          <div className="space-y-16">
+            <div className="flex flex-col gap-4">
+              <h2 className="text-[10px] font-black tracking-[0.2em] text-indigo-500 uppercase">
+                Next Steps
+              </h2>
+              <h3 className="text-4xl font-black tracking-tight md:text-5xl">
+                Related Case Studies
+              </h3>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {relatedProjects.map((project) => (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className="group"
+                >
+                  <div className="glass-morphism premium-glow overflow-hidden rounded-[2.5rem] p-4 transition-all duration-500 hover:bg-white/[0.07]">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-[2rem]">
+                      <Image
+                        src={project.frontmatter.image}
+                        alt={project.frontmatter.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+
+                    <div className="p-6">
+                      <h4 className="text-2xl font-black tracking-tight transition-colors group-hover:text-indigo-400">
+                        {project.frontmatter.title}
+                      </h4>
+                      <p className="text-secondary mt-4 line-clamp-2 text-lg">
+                        {project.frontmatter.description}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                </Link>
+              ))}
             </div>
           </div>
         )}
-
-        {/* Back to Projects CTA */}
-        <div className="text-center">
-          <Separator className="mb-8" />
-          <Button asChild size="lg">
-            <Link href="/projects">View All Projects</Link>
-          </Button>
-        </div>
       </div>
-    </Container>
+    </main>
   );
 }

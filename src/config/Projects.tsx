@@ -1,25 +1,13 @@
-import Appwrite from '@/components/technologies/Appwrite';
-import Bun from '@/components/technologies/Bun';
 import Cpp from '@/components/technologies/Cpp';
-import ExpressJs from '@/components/technologies/ExpressJs';
-import Github from '@/components/technologies/Github';
 import Go from '@/components/technologies/Go';
 import Kafka from '@/components/technologies/Kafka';
-import MDXIcon from '@/components/technologies/MDXIcon';
 import MongoDB from '@/components/technologies/MongoDB';
-import Motion from '@/components/technologies/Motion';
-import Netlify from '@/components/technologies/Netlify';
 import NextJs from '@/components/technologies/NextJs';
 import NodeJs from '@/components/technologies/NodeJs';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
-import Prisma from '@/components/technologies/Prisma';
 import ReactIcon from '@/components/technologies/ReactIcon';
-import Sanity from '@/components/technologies/Sanity';
-import Shadcn from '@/components/technologies/Shadcn';
-import SocketIo from '@/components/technologies/SocketIo';
 import Supabase from '@/components/technologies/Supabase';
 import TailwindCss from '@/components/technologies/TailwindCss';
-import ThreeJs from '@/components/technologies/ThreeJs';
 import TypeScript from '@/components/technologies/TypeScript';
 import Vercel from '@/components/technologies/Vercel';
 import { Project } from '@/types/project';
@@ -30,7 +18,7 @@ export const projects: Project[] = [
     description:
       'Enterprise-grade Public Financial Management System handling multi-tenant architecture and high-throughput real-time streaming.',
     image: '/project/abstract-banner.png',
-    link: '#',
+    link: 'https://github.com/PrathamRanka/NSUT_HACK_2k26',
     technologies: [
       { name: 'Kafka', icon: <Kafka key="kafka" /> },
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
@@ -44,8 +32,8 @@ export const projects: Project[] = [
       'Audit logging',
     ],
     metrics: ['10,000+ TPS', 'Sub-100ms latency'],
-    github: 'https://github.com/PrathamRanka',
-    live: '#',
+    github: 'https://github.com/PrathamRanka/NSUT_HACK_2k26',
+    live: 'https://github.com/PrathamRanka/NSUT_HACK_2k26',
     details: true,
     projectDetailsPageSlug: '/projects/sahayak-pfms',
     isWorking: true,
@@ -55,7 +43,7 @@ export const projects: Project[] = [
     description:
       'High-performance cryptocurrency token swap platform with distributed rate limiting and optimal concurrency handling.',
     image: '/project/abstract-banner.png',
-    link: '#',
+    link: 'https://github.com/PrathamRanka/starswap',
     technologies: [
       { name: 'PostgreSQL', icon: <PostgreSQL key="postgres" /> },
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
@@ -71,33 +59,10 @@ export const projects: Project[] = [
       'GitHub OAuth',
     ],
     metrics: ['High Concurrency', 'O(logN) Reads'],
-    github: 'https://github.com/PrathamRanka',
-    live: '#',
+    github: 'https://github.com/PrathamRanka/starswap',
+    live: 'https://github.com/PrathamRanka/starswap',
     details: true,
     projectDetailsPageSlug: '/projects/starswap',
-    isWorking: true,
-  },
-  {
-    title: 'VIGIL OS Pro',
-    description:
-      'Real-time fraud detection and vendor risk monitoring platform with event-driven architecture supporting transaction streaming.',
-    image: '/project/abstract-banner.png',
-    link: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    technologies: [
-      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-      { name: 'Kafka', icon: <Kafka key="kafka" /> },
-      { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
-      { name: 'Supabase', icon: <Supabase key="supabase" /> },
-    ],
-    architectureHighlights: [
-      'Event-driven processing',
-      'Transaction streaming',
-    ],
-    metrics: ['Real-time', 'Fraud Detection'],
-    github: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    live: 'https://github.com/PrathamRanka/NSUT_HACK_2K25',
-    details: true,
-    projectDetailsPageSlug: '/projects/vigil-os-pro',
     isWorking: true,
   },
   {
@@ -132,7 +97,7 @@ export const projects: Project[] = [
       { name: 'React', icon: <ReactIcon key="react" /> },
     ],
     github: 'https://github.com/PrathamRanka/quizBackend',
-    live: '/',
+    live: 'https://github.com/PrathamRanka/quizBackend',
     details: true,
     projectDetailsPageSlug: '/projects/owasp-quiz-portal',
     isWorking: true,
@@ -162,9 +127,7 @@ export const projects: Project[] = [
       'Low-level TCP networking from scratch with stream-based communication, concurrent connection handling using goroutines',
     image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/Tcp-Server-Go',
-    technologies: [
-      { name: 'Go', icon: <Go key="go" /> },
-    ],
+    technologies: [{ name: 'Go', icon: <Go key="go" /> }],
     github: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     live: 'https://github.com/PrathamRanka/Tcp-Server-Go',
     details: true,
@@ -177,9 +140,7 @@ export const projects: Project[] = [
       'DSA lab survival tool with reusable templates and patterns for common data structure evaluation problems',
     image: '/project/abstract-banner.png',
     link: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
-    technologies: [
-      { name: 'C++', icon: <span className="font-bold">C++</span> },
-    ],
+    technologies: [{ name: 'C++', icon: <Cpp key="cpp" /> }],
     github: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     live: 'https://github.com/PrathamRanka/LAB-EVAL-HELPER',
     details: true,
