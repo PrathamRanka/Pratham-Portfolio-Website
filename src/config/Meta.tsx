@@ -14,7 +14,7 @@ export const siteConfig = {
   name: heroConfig.name,
   title: 'Sleek Portfolio',
   description: 'Sleek Portfolio Template by @Pratham',
-  url: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
+  url: process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in',
   ogImage: '/meta/opengraph-image.png',
   author: {
     name: about.name,
@@ -174,14 +174,17 @@ export function generateMetadata(pathname: string) {
     title: pageMeta.title,
     description: pageMeta.description,
     keywords: pageMeta.keywords?.join(', '),
-    authors: [{ name: siteConfig.author.name }],
+    authors: [{ name: siteConfig.author.name, url: siteConfig.author.linkedin }],
     creator: siteConfig.author.name,
+    publisher: siteConfig.author.name,
+    category: 'technology',
     openGraph: {
       type: 'website',
       url: `${siteConfig.url}${pathname}`,
       title: pageMeta.title,
       description: pageMeta.description,
       siteName: siteConfig.title,
+      locale: 'en_US',
       images: [
         {
           url: pageMeta.ogImage || siteConfig.ogImage,
@@ -196,21 +199,24 @@ export function generateMetadata(pathname: string) {
       title: pageMeta.title,
       description: pageMeta.description,
       creator: siteConfig.author.twitter,
+      site: siteConfig.author.twitter,
       images: [pageMeta.ogImage || siteConfig.ogImage],
     },
     robots: {
       index: true,
       follow: true,
+      nocache: false,
       googleBot: {
         index: true,
         follow: true,
+        noimageindex: false,
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
       },
     },
     alternates: {
-      canonical: `${siteConfig.url}${pathname}`,
+      canonical: pathname === '/' ? siteConfig.url : `${siteConfig.url}${pathname}`,
     },
   };
 }

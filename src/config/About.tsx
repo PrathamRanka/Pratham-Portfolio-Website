@@ -22,7 +22,7 @@ export const mySkills = [
 
 export const about = {
   name: 'Pratham Ranka',
-  description: `I'm a Full Stack web developer and Open Source Contributor, I love building products to solve real-world problems. I'm specialized in building scalable applications and MVPs.`,
+  description: `I'm a Software Engineer and Full Stack Web Developer who thrives on architecting robust digital products. Specializing in the Next.js and React ecosystems, I build scalable applications, high-performance MVPs, and modern web experiences. As an active Open Source Contributor, I focus on delivering clean, maintainable code that solves real-world business challenges.`,
 };
 
 export const skillsText = {

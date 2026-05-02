@@ -10,6 +10,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import ReactLenis from 'lenis/react';
 import { ViewTransitions } from 'next-view-transitions';
 
+import Script from 'next/script';
+import Schema from '@/components/common/Schema';
 import './globals.css';
 
 export const metadata = getMetadata('/');
@@ -40,6 +42,33 @@ export default function RootLayout({
           </ThemeProvider>
           <Analytics />
           <SpeedInsights />
+          
+          {/* SEO & Analytics Placeholders */}
+          <Schema />
+          
+          {/* Google Analytics Placeholder
+          <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `}
+          </Script>
+          */}
+
+          {/* Microsoft Clarity Placeholder
+          <Script id="microsoft-clarity" strategy="afterInteractive">
+            {`
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "XXXXXXXXXX");
+            `}
+          </Script>
+          */}
         </body>
       </html>
     </ViewTransitions>
