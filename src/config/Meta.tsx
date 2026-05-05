@@ -171,6 +171,7 @@ export function generateMetadata(pathname: string) {
 
   return {
     metadataBase: new URL(siteConfig.url),
+    applicationName: siteConfig.title,
     title: pageMeta.title,
     description: pageMeta.description,
     keywords: pageMeta.keywords?.join(', '),
@@ -180,6 +181,17 @@ export function generateMetadata(pathname: string) {
     creator: siteConfig.author.name,
     publisher: siteConfig.author.name,
     category: 'technology',
+    manifest: '/manifest.webmanifest',
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    appleWebApp: {
+      capable: true,
+      title: siteConfig.title,
+      statusBarStyle: 'default',
+    },
     icons: {
       icon: '/assets/logo.png',
       shortcut: '/assets/logo.png',

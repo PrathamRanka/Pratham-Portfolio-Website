@@ -43,16 +43,48 @@ export async function generateMetadata({
     metadataBase: new URL(siteConfig.url),
     title: `${title} — Engineering Case Study`,
     description,
+    alternates: {
+      canonical: `${siteConfig.url}/projects/${slug}`,
+    },
+    authors: [
+      { name: siteConfig.author.name, url: siteConfig.author.linkedin },
+    ],
+    creator: siteConfig.author.name,
+    publisher: siteConfig.author.name,
+    category: 'technology',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title: `${title} — Engineering Case Study`,
       description,
-      images: [siteConfig.ogImage],
+      url: `${siteConfig.url}/projects/${slug}`,
+      siteName: siteConfig.title,
+      locale: 'en_US',
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${title} — Engineering Case Study`,
+        },
+      ],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} — Engineering Case Study`,
       description,
+      creator: siteConfig.author.twitter,
+      site: siteConfig.author.twitter,
       images: [siteConfig.ogImage],
     },
   };
