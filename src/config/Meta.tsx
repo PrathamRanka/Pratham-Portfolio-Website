@@ -15,7 +15,7 @@ export const siteConfig = {
   title: 'Sleek Portfolio',
   description: 'Sleek Portfolio Template by @Pratham',
   url: process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in',
-  ogImage: '/meta/opengraph-image.png',
+  ogImage: '/assets/logo.png',
   author: {
     name: about.name,
     twitter: '@pratham_develops',
@@ -47,7 +47,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'web development',
       'projects',
     ],
-    ogImage: '/meta/hero.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 
@@ -57,7 +57,7 @@ export const pageMetadata: Record<string, PageMeta> = {
     description:
       "Get in touch with me for collaborations, projects, or opportunities. I'd love to hear from you!",
     keywords: ['contact', 'hire', 'collaboration', 'freelance', 'developer'],
-    ogImage: '/assets/pfp.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary',
   },
 
@@ -73,7 +73,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'software developer',
       'employment history',
     ],
-    ogImage: '/meta/work.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 
@@ -89,7 +89,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'applications',
       'software',
     ],
-    ogImage: '/meta/projects.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 
@@ -105,7 +105,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'web development',
       'technical writing',
     ],
-    ogImage: '/meta/blogs.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 
@@ -121,7 +121,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'qualifications',
       'download',
     ],
-    ogImage: '/meta/resume.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary',
   },
 
@@ -138,7 +138,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'productivity',
       'development environment',
     ],
-    ogImage: '/meta/gears.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 
@@ -155,7 +155,7 @@ export const pageMetadata: Record<string, PageMeta> = {
       'development environment',
       'guide',
     ],
-    ogImage: '/meta/setup.png',
+    ogImage: '/assets/logo.png',
     twitterCard: 'summary_large_image',
   },
 };
@@ -174,10 +174,17 @@ export function generateMetadata(pathname: string) {
     title: pageMeta.title,
     description: pageMeta.description,
     keywords: pageMeta.keywords?.join(', '),
-    authors: [{ name: siteConfig.author.name, url: siteConfig.author.linkedin }],
+    authors: [
+      { name: siteConfig.author.name, url: siteConfig.author.linkedin },
+    ],
     creator: siteConfig.author.name,
     publisher: siteConfig.author.name,
     category: 'technology',
+    icons: {
+      icon: '/assets/logo.png',
+      shortcut: '/assets/logo.png',
+      apple: '/assets/logo.png',
+    },
     openGraph: {
       type: 'website',
       url: `${siteConfig.url}${pathname}`,
@@ -216,7 +223,8 @@ export function generateMetadata(pathname: string) {
       },
     },
     alternates: {
-      canonical: pathname === '/' ? siteConfig.url : `${siteConfig.url}${pathname}`,
+      canonical:
+        pathname === '/' ? siteConfig.url : `${siteConfig.url}${pathname}`,
     },
   };
 }

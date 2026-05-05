@@ -37,7 +37,7 @@ export async function generateMetadata({
     return { title: 'Project Not Found' };
   }
 
-  const { title, description, image } = caseStudy.frontmatter;
+  const { title, description } = caseStudy.frontmatter;
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -46,14 +46,14 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} — Engineering Case Study`,
       description,
-      images: [image],
+      images: [siteConfig.ogImage],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} — Engineering Case Study`,
       description,
-      images: [image],
+      images: [siteConfig.ogImage],
     },
   };
 }
