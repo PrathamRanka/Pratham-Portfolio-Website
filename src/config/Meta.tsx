@@ -1,3 +1,6 @@
+// Helper function to generate complete metadata object for Next.js
+import { Metadata } from 'next';
+
 import { about } from './About';
 import { heroConfig } from './Hero';
 
@@ -165,11 +168,10 @@ export function getPageMetadata(pathname: string): PageMeta {
   return pageMetadata[pathname] || pageMetadata['/'];
 }
 
-// Helper function to generate complete metadata object for Next.js
-export function generateMetadata(pathname: string) {
+export function getMetadata(pathname: string): Metadata {
   const pageMeta = getPageMetadata(pathname);
 
-  return {
+  const metadata: Metadata = {
     metadataBase: new URL(siteConfig.url),
     applicationName: siteConfig.title,
     title: pageMeta.title,
@@ -239,4 +241,8 @@ export function generateMetadata(pathname: string) {
         pathname === '/' ? siteConfig.url : `${siteConfig.url}${pathname}`,
     },
   };
+
+  return metadata;
 }
+
+export const generateMetadata = getMetadata;
