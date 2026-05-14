@@ -55,7 +55,7 @@ export const experiences: Experience[] = [
       'Payments Infra',
       'KYC Systems',
     ],
-    position: 'Software Engineering Intern — Hybrid',
+    position: 'Software Engineering Intern — Remote',
     location: 'Remote',
     image: '/company/paasa.png',
     shortDescription: [

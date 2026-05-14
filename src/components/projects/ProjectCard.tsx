@@ -41,7 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             width={1920}
             height={1080}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60 pointer-events-none" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-60" />
           {project.video && (
             <Dialog open={diapfppen} onOpenChange={setDiapfppen}>
               <DialogTrigger asChild>
@@ -73,7 +73,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {/* Project Header - Title and Icons */}
           <div className="flex items-center justify-between gap-4">
             <Link href={project.projectDetailsPageSlug}>
-              <h3 className="group-hover:text-primary text-xl leading-tight tracking-tight font-bold hover:cursor-pointer transition-colors">
+              <h3 className="group-hover:text-primary text-base leading-tight font-bold tracking-tight transition-colors hover:cursor-pointer sm:text-lg md:text-xl">
                 {project.title}
               </h3>
             </Link>
@@ -118,7 +118,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.metrics && project.metrics.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {project.metrics.map((metric, idx) => (
-                <div key={idx} className="flex items-center rounded-md border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-indigo-500 uppercase">
+                <div
+                  key={idx}
+                  className="flex items-center rounded-md border border-indigo-500/30 bg-indigo-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-indigo-500 uppercase"
+                >
                   {metric}
                 </div>
               ))}
@@ -126,15 +129,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
 
           {/* Architecture Highlights */}
-          {project.architectureHighlights && project.architectureHighlights.length > 0 && (
-            <div className="text-secondary mt-2 flex flex-wrap gap-2">
-              {project.architectureHighlights.map((highlight, idx) => (
-                <div key={idx} className="tag-inner-shadow rounded bg-black/5 px-2 py-1 text-xs dark:bg-white/5">
-                  ✓ {highlight}
-                </div>
-              ))}
-            </div>
-          )}
+          {project.architectureHighlights &&
+            project.architectureHighlights.length > 0 && (
+              <div className="text-secondary mt-2 flex flex-wrap gap-2">
+                {project.architectureHighlights.map((highlight, idx) => (
+                  <div
+                    key={idx}
+                    className="tag-inner-shadow rounded bg-black/5 px-2 py-1 text-xs dark:bg-white/5"
+                  >
+                    ✓ {highlight}
+                  </div>
+                ))}
+              </div>
+            )}
 
           {/* Technologies */}
           <div>

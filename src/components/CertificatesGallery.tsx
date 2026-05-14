@@ -55,7 +55,7 @@ export default function CertificatesGallery({
   return (
     <>
       <div
-        className={`grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 ${className}`}
+        className={`grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-2 ${className}`}
       >
         {certificates.map((cert) => (
           <Card
@@ -75,20 +75,25 @@ export default function CertificatesGallery({
               </div>
             </CardHeader>
 
-            <CardContent className="px-6">
+            <CardContent className="px-4 sm:px-6">
               <div className="space-y-2">
-                <h3 className="group-hover:text-primary text-xl leading-tight font-semibold">
+                <h3 className="group-hover:text-primary text-base leading-tight font-semibold sm:text-lg md:text-xl">
                   {cert.title || 'Certificate'}
                 </h3>
                 {cert.issuer && (
-                  <p className="text-secondary text-sm">{cert.issuer}</p>
+                  <p className="text-secondary text-xs sm:text-sm">
+                    {cert.issuer}
+                  </p>
                 )}
               </div>
             </CardContent>
 
             {cert.date && (
-              <CardFooter className="p-6 pt-0">
-                <time className="text-secondary text-sm" dateTime={cert.date}>
+              <CardFooter className="px-4 py-3 pt-0 sm:px-6 sm:py-4">
+                <time
+                  className="text-secondary text-xs sm:text-sm"
+                  dateTime={cert.date}
+                >
                   {formatDate(cert.date)}
                 </time>
               </CardFooter>

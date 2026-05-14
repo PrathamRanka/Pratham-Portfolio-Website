@@ -16,25 +16,28 @@ interface ExperienceCardProps {
   isPreview?: boolean;
 }
 
-export function ExperienceCard({ experience, isPreview = false }: ExperienceCardProps) {
+export function ExperienceCard({
+  experience,
+  isPreview = false,
+}: ExperienceCardProps) {
   return (
     <div className="flex flex-col gap-4">
       {/* Company Header */}
-      <div className="flex flex-col gap-2 md:flex-row md:justify-between">
+      <div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-4">
         {/* Left Side */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-3 sm:items-center sm:gap-4">
           <Image
             src={experience.image}
             alt={experience.company}
             width={100}
             height={100}
-            className="size-12 rounded-md"
+            className="size-10 flex-shrink-0 rounded-md sm:size-12"
           />
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-wrap items-center gap-1 sm:gap-2">
               <h3
                 className={cn(
-                  'text-lg font-bold',
+                  'text-base font-bold sm:text-lg md:text-xl',
                   experience.isBlur ? 'blur-[5px]' : 'blur-none',
                 )}
               >
@@ -150,14 +153,15 @@ export function ExperienceCard({ experience, isPreview = false }: ExperienceCard
       </div>
 
       {/* Description */}
-      <ul className="text-secondary flex flex-col space-y-2 pl-4 list-disc marker:text-primary/50">
-        {(isPreview && experience.shortDescription ? experience.shortDescription : experience.description).map(
-          (desc: React.ReactNode, descIndex: number) => (
-            <li key={descIndex} className="pl-1">
-              {desc}
-            </li>
-          ),
-        )}
+      <ul className="text-secondary marker:text-primary/50 flex list-disc flex-col space-y-2 pl-4">
+        {(isPreview && experience.shortDescription
+          ? experience.shortDescription
+          : experience.description
+        ).map((desc: React.ReactNode, descIndex: number) => (
+          <li key={descIndex} className="pl-1">
+            {desc}
+          </li>
+        ))}
       </ul>
     </div>
   );

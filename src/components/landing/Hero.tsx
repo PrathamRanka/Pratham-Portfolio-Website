@@ -54,11 +54,11 @@ export default function Hero() {
 
       {/* Text Area */}
       <div className="mt-8 flex flex-col gap-2">
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">
           Hi, I&apos;m {name} — <span className="text-secondary">{title}</span>
         </h1>
 
-        <div className="mt-4 text-base whitespace-pre-wrap text-neutral-500 md:text-lg">
+        <div className="mt-4 text-sm whitespace-pre-wrap text-neutral-500 sm:text-base md:text-lg">
           {renderDescription()}
         </div>
       </div>

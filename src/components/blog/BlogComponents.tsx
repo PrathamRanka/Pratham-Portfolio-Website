@@ -31,7 +31,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h1 className="mb-6 text-4xl font-bold" {...props}>
+    <h1 className="mb-6 text-2xl font-bold sm:text-3xl md:text-4xl" {...props}>
       {children}
     </h1>
   ),
@@ -42,7 +42,10 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h2 className="mt-8 mb-4 text-3xl font-semibold" {...props}>
+    <h2
+      className="mt-8 mb-4 text-xl font-semibold sm:text-2xl md:text-3xl"
+      {...props}
+    >
       {children}
     </h2>
   ),
@@ -53,7 +56,10 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h3 className="mt-6 mb-3 text-2xl font-medium" {...props}>
+    <h3
+      className="mt-6 mb-3 text-lg font-medium sm:text-xl md:text-2xl"
+      {...props}
+    >
       {children}
     </h3>
   ),
