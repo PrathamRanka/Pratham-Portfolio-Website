@@ -14,10 +14,10 @@ export default function Projects() {
     <Container className="mt-20">
       <SectionHeading subHeading="Featured" heading="Projects" />
 
-      <ProjectList className="mt-8" projects={projects.slice(0, 6)} />
+      <ProjectList className="mt-8" projects={projects.slice(0, 2)} />
       <div className="mt-8 flex justify-center">
         <Button variant="outline">
-          <Link href="/projects">Show all projects</Link>
+          <Link href="/projects">View more projects</Link>
         </Button>
       </div>
     </Container>
