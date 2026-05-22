@@ -85,7 +85,7 @@ export default function Hero() {
       </div>
 
       {/* Buttons */}
-      <div className="mt-10 flex gap-4">
+      <div className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         {buttons.map((button, index) => {
           const IconComponent = button.icon
             ? buttonIcons[button.icon as keyof typeof buttonIcons]
@@ -95,6 +95,7 @@ export default function Hero() {
               key={index}
               variant={button.variant as 'outline' | 'default'}
               className={cn(
+                'w-full justify-center sm:w-auto',
                 button.variant === 'outline' && 'inset-shadow-indigo-500',
                 button.variant === 'default' && 'inset-shadow-indigo-500',
               )}
