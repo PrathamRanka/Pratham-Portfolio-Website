@@ -113,7 +113,8 @@ a:focus-visible {
   align-items: center;
 }
 
-.hero-copy { max-width: 720px; }
+.hero-copy { width: 100%; min-width: 0; max-width: 720px; }
+.hero-copy > div { min-width: 0; }
 .availability {
   width: fit-content;
   margin-bottom: 38px;
@@ -146,7 +147,7 @@ a:focus-visible {
 
 h1, h2, h3, p { margin-top: 0; }
 h1 {
-  max-width: 800px;
+  max-width: min(100%, 800px);
   margin-bottom: 30px;
   font-size: clamp(52px, 6.3vw, 88px);
   line-height: .98;
@@ -405,7 +406,7 @@ h1 {
     gap: 50px;
   }
   .availability { margin-bottom: 28px; }
-  h1 { font-size: clamp(47px, 14vw, 66px); }
+  h1 { font-size: clamp(43px, 12.6vw, 60px); letter-spacing: -.058em; }
   .hero-intro { font-size: 17px; }
   .portrait-column { justify-self: start; width: min(84vw, 360px); }
   .hero-meta { grid-column: auto; padding-top: 8px; }
