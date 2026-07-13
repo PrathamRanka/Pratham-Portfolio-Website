@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, MusicIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
-import { FadeIn, Magnetic, PortraitScene } from '@/components/motion';
+import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
-import { getGithubStats, getMusicTracks } from '@/lib/external-data';
+import { getGithubContributions, getGithubStats, getMusicTracks } from '@/lib/external-data';
 
-export const revalidate = 1800;
+export const revalidate = 300;
 const email = 'prathamworks06@gmail.com';
 const phoneDisplay = '+91 70232 06003';
 const phoneHref = 'tel:+917023206003';
@@ -34,7 +34,11 @@ function Dock() {
 }
 
 export default async function Home() {
-  const [github, musicTracks] = await Promise.all([getGithubStats(), getMusicTracks()]);
+  const [github, contributions, musicTracks] = await Promise.all([
+    getGithubStats(),
+    getGithubContributions(),
+    getMusicTracks(),
+  ]);
 
   return <>
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
@@ -42,16 +46,17 @@ export default async function Home() {
 
     <main id="top">
       <section className="hero page-shell" aria-labelledby="hero-heading">
+        <div className="hero-kanji" aria-hidden="true">構築</div>
+        <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
         <div className="hero-copy">
-          <FadeIn delay={0.06} eager><p className="eyebrow">Pratham Ranka / Backend Engineer</p><h1 id="hero-heading">Systems thinking,<br /><span>product<span className="mobile-break"><br /></span> instinct.</span></h1></FadeIn>
+          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> S45 · Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span></h1><p className="hero-role">Backend engineer building production systems that survive real traffic, real failures, and real deadlines.</p></FadeIn>
           <FadeIn delay={0.12} eager>
-            <p className="hero-intro">I build reliable backend infrastructure and production software for the moments when scale, correctness, and speed all matter.</p>
+            <div className="hero-direct-contact"><a href={`mailto:${email}`}><MailIcon size={17} /><span>{email}</span><ArrowUpRight size={15} /></a><a href={phoneHref}><PhoneIcon size={17} /><span>{phoneDisplay}</span></a></div>
             <div className="hero-actions">
               <Magnetic><a className="button button-primary" href={resumeUrl} target="_blank" rel="noreferrer"><FileIcon /> Resume <ArrowUpRight /></a></Magnetic>
-              <Magnetic><a className="button button-secondary" href={`mailto:${email}`}><MailIcon /> Contact</a></Magnetic>
+              <Magnetic><a className="button button-secondary" href="#work"><LayersIcon /> Selected work</a></Magnetic>
               <div className="social-actions" aria-label="Social profiles"><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a><a href="https://www.linkedin.com/in/prathamranka06/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a></div>
             </div>
-            <div className="hero-contact-line"><a href={`mailto:${email}`}>{email}</a><span>/</span><a href={phoneHref}>{phoneDisplay}</a></div>
           </FadeIn>
         </div>
         <FadeIn delay={0.1} className="portrait-column" eager>
@@ -64,7 +69,7 @@ export default async function Home() {
 
       <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
         <FadeIn><SectionLabel index="01">Experience</SectionLabel><div className="section-heading-row"><h2 id="experience-heading">Work measured in <span>outcomes.</span></h2><p>Roles where ownership meant making hard systems understandable, dependable, and ready for real users.</p></div></FadeIn>
-        <div className="timeline"><div className="timeline-track" aria-hidden="true"><span /></div>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item"><div className="timeline-logo-cell"><CompanyLogo logo={item.logo} company={item.company} /><span className={item.current ? 'timeline-dot is-current' : 'timeline-dot'} /></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><b>Y</b> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</div>
+        <TimelineRail>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item"><div className="timeline-logo-cell"><span className={item.current ? 'timeline-node is-current' : 'timeline-node'}><CompanyLogo logo={item.logo} company={item.company} /></span></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><b>Y</b> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</TimelineRail>
       </section>
 
       <section className="section page-shell" id="work" aria-labelledby="work-heading">
@@ -81,7 +86,7 @@ export default async function Home() {
         <FadeIn><SectionLabel index="04">Open source & GitHub</SectionLabel></FadeIn>
         <div className="oss-layout">
           <FadeIn className="oss-panel"><div className="medusa-mark"><span>M</span></div><div className="oss-copy"><p className="oss-kicker">Medusa / Contributor</p><h2 id="oss-heading">Contributing to the infrastructure behind modern commerce.</h2><p>Thoughtful code contributions to Medusa&apos;s open-source commerce platform, with the same emphasis on clarity and maintainability I bring to product work.</p></div><a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer" className="text-link">Explore Medusa <ArrowUpRight /></a></FadeIn>
-          <FadeIn delay={0.08} className="github-panel"><div className="github-panel-header"><div><GithubIcon size={20} /><span>{github.live ? 'Live public profile' : 'Public profile snapshot'}</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">@PrathamRanka <ArrowUpRight size={13} /></a></div><div className="github-stats"><div><strong>{github.repositories}</strong><span>Repositories</span></div><div><strong>{github.stars}</strong><span>Stars earned</span></div><div><strong>{github.followers}</strong><span>Followers</span></div><div><strong>{github.forks}</strong><span>Forks</span></div></div><div className="github-repositories">{github.recentRepositories.map((repository) => <a key={repository.name} href={repository.html_url} target="_blank" rel="noreferrer"><span><b>{repository.name}</b><small>{repository.language ?? 'Code'} · {repository.stargazers_count} stars</small></span><ArrowUpRight size={14} /></a>)}</div></FadeIn>
+          <FadeIn delay={0.08} className="github-panel"><div className="github-panel-header"><div><GithubIcon size={20} /><span>{contributions.live ? 'Live contribution signal' : 'Public profile snapshot'}</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">@PrathamRanka <ArrowUpRight size={13} /></a></div><div className="github-stats"><div><strong>{github.repositories}</strong><span>Repositories</span></div><div><strong>{github.stars}</strong><span>Stars earned</span></div><div><strong>{github.followers}</strong><span>Followers</span></div><div><strong>{contributions.live ? contributions.total : github.forks}</strong><span>{contributions.live ? 'Contributions' : 'Forks'}</span></div></div>{contributions.days.length ? <div className="contribution-calendar" aria-label={`${contributions.total} GitHub contributions in the last year`}>{contributions.days.map((day) => <i key={day.date} data-level={day.level} title={`${day.count} contributions on ${day.date}`} />)}</div> : <div className="heatmap-empty"><span>ACTIVITY FEED LOCKED</span><p>Add <code>GITHUB_TOKEN</code> to render the real contribution calendar. Profile stats remain live.</p></div>}<div className="github-repositories">{github.recentRepositories.slice(0, 2).map((repository) => <a key={repository.name} href={repository.html_url} target="_blank" rel="noreferrer"><span><b>{repository.name}</b><small>{repository.language ?? 'Code'} · {repository.stargazers_count} stars</small></span><ArrowUpRight size={14} /></a>)}</div></FadeIn>
         </div>
       </section>
 

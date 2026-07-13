@@ -26,6 +26,18 @@ export type GithubStats = {
   live: boolean;
 };
 
+export type ContributionDay = {
+  date: string;
+  count: number;
+  level: number;
+};
+
+export type GithubContributions = {
+  total: number;
+  days: ContributionDay[];
+  live: boolean;
+};
+
 const githubSnapshot: GithubStats = {
   followers: 65,
   repositories: 46,
@@ -70,11 +82,11 @@ export async function getGithubStats(): Promise<GithubStats> {
     const [userResponse, repositoriesResponse] = await Promise.all([
       fetch('https://api.github.com/users/PrathamRanka', {
         headers: githubHeaders,
-        next: { revalidate: 3600 },
+        next: { revalidate: 300, tags: ['github-data'] },
       }),
       fetch(
         'https://api.github.com/users/PrathamRanka/repos?per_page=100&sort=updated',
-        { headers: githubHeaders, next: { revalidate: 3600 } },
+        { headers: githubHeaders, next: { revalidate: 300, tags: ['github-data'] } },
       ),
     ]);
 
@@ -109,6 +121,85 @@ export async function getGithubStats(): Promise<GithubStats> {
     };
   } catch {
     return githubSnapshot;
+  }
+}
+
+type ContributionCalendarResponse = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions?: number;
+          weeks?: {
+            contributionDays?: {
+              date?: string;
+              contributionCount?: number;
+              contributionLevel?: string;
+            }[];
+          }[];
+        };
+      };
+    };
+  };
+};
+
+const contributionLevels: Record<string, number> = {
+  NONE: 0,
+  FIRST_QUARTILE: 1,
+  SECOND_QUARTILE: 2,
+  THIRD_QUARTILE: 3,
+  FOURTH_QUARTILE: 4,
+};
+
+export async function getGithubContributions(): Promise<GithubContributions> {
+  if (!process.env.GITHUB_TOKEN) return { total: 0, days: [], live: false };
+
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `query PortfolioContributions {
+          user(login: "PrathamRanka") {
+            contributionsCollection {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays { date contributionCount contributionLevel }
+                }
+              }
+            }
+          }
+        }`,
+      }),
+      next: { revalidate: 300, tags: ['github-data'] },
+    });
+    if (!response.ok) return { total: 0, days: [], live: false };
+
+    const result = (await response.json()) as ContributionCalendarResponse;
+    const calendar = result.data?.user?.contributionsCollection?.contributionCalendar;
+    if (!calendar?.weeks) return { total: 0, days: [], live: false };
+
+    return {
+      total: calendar.totalContributions ?? 0,
+      live: true,
+      days: calendar.weeks.flatMap((week) =>
+        (week.contributionDays ?? []).flatMap((day) =>
+          day.date
+            ? [{
+                date: day.date,
+                count: day.contributionCount ?? 0,
+                level: contributionLevels[day.contributionLevel ?? 'NONE'] ?? 0,
+              }]
+            : [],
+        ),
+      ),
+    };
+  } catch {
+    return { total: 0, days: [], live: false };
   }
 }
 

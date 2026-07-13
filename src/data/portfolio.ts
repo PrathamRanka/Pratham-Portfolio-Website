@@ -30,32 +30,32 @@ export const resumeUrl =
 
 export const experience = [
   {
-    company: 'S45',
-    role: 'Software Engineer',
-    date: 'May 2026 - Present',
-    description:
-      'Building backend infrastructure and product systems with an emphasis on reliability, observability, and clean execution.',
-    current: true,
-    logo: '/company/s45.png',
+  company: "S45",
+  role: "Software Engineer",
+  date: "May 2026 - Present",
+  description:
+    "Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.",
+  current: true,
+  logo: "/company/s45.png",
   },
   {
-    company: 'Paasa',
-    role: 'Software Engineer',
-    date: 'Mar 2026 - May 2026',
-    badge: 'YC S24',
+    company: "Paasa",
+    role: "Software Engineer Intern",
+    date: "Mar 2026 - May 2026",
+    badge: "YC S24",
     description:
-      'Owned critical financial workflows across banking integrations, real-time transactions, payments, KYC, and internal APIs serving $19M+ in assets.',
+      "Engineered fintech infrastructure powering banking and payment workflows across KYC, payouts, collections, and financial reconciliation. Built and optimized backend APIs, integrated banking partners, improved transaction reliability, automated internal operations, and contributed to production systems handling over $19M+ in assets while working closely with product and engineering teams.",
     current: false,
-    logo: '/company/paasa.png',
+    logo: "/company/paasa.png",
   },
   {
-    company: 'Talkeys',
-    role: 'Full-Stack Engineering Intern',
-    date: 'Jun 2025 - Aug 2025',
+    company: "TalKeys",
+    role: "Full-Stack Engineering Intern",
+    date: "Jun 2025 - Aug 2025",
     description:
-      'Shipped production features, stabilized API integrations, and improved application reliability across a collaborative product codebase.',
+      "Developed production-ready features across the React and Node.js stack, implemented REST APIs, integrated third-party services, improved application performance, resolved production issues, and collaborated in an agile environment to ship customer-facing functionality with a focus on reliability and maintainability.",
     current: false,
-    logo: '/company/talkeys.png',
+    logo: "/company/talkeys.png",
   },
 ];
 

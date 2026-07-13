@@ -2,11 +2,13 @@
 
 import {
   motion,
+  useScroll,
   useMotionValue,
   useReducedMotion,
   useSpring,
   useTransform,
 } from 'motion/react';
+import { useRef } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -96,5 +98,23 @@ export function Magnetic({ children, className }: { children: ReactNode; classNa
     >
       {children}
     </motion.div>
+  );
+}
+
+export function TimelineRail({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start 72%', 'end 68%'],
+  });
+
+  return (
+    <div className="timeline" ref={ref}>
+      <div className="timeline-track" aria-hidden="true">
+        <motion.span style={reduceMotion ? { scaleY: 1 } : { scaleY: scrollYProgress }} />
+      </div>
+      {children}
+    </div>
   );
 }
