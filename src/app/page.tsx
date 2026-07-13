@@ -43,7 +43,6 @@ export default async function Home() {
     <main id="top">
       <section className="hero page-shell" aria-labelledby="hero-heading">
         <div className="hero-copy">
-          {/* <FadeIn eager><div className="availability"><span /> Available for select collaborations</div></FadeIn> */}
           <FadeIn delay={0.06} eager><p className="eyebrow">Pratham Ranka / Backend Engineer</p><h1 id="hero-heading">Systems thinking,<br /><span>product<span className="mobile-break"><br /></span> instinct.</span></h1></FadeIn>
           <FadeIn delay={0.12} eager>
             <p className="hero-intro">I build reliable backend infrastructure and production software for the moments when scale, correctness, and speed all matter.</p>
