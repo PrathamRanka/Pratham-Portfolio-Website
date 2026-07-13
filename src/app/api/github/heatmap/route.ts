@@ -17,6 +17,7 @@ export async function GET() {
       'Content-Type': 'image/svg+xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60',
       'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'",
+      'X-Robots-Tag': 'noindex, nofollow',
     },
   });
 }
