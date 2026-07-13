@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, MusicIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
+import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 import { getGithubContributions, getGithubStats} from '@/lib/external-data';
@@ -24,7 +24,6 @@ function Dock() {
     { href: '#experience', label: 'Experience', icon: <BriefcaseIcon /> },
     { href: '#work', label: 'Work', icon: <LayersIcon /> },
     { href: '#capabilities', label: 'Skills', icon: <SparkIcon /> },
-    { href: '#music', label: 'Music', icon: <MusicIcon /> },
   ];
   return <nav className="glass-dock" aria-label="Page navigation">
     {items.map((item) => <a href={item.href} key={item.href} aria-label={item.label}><span className="dock-tooltip">{item.label}</span>{item.icon}</a>)}
@@ -34,10 +33,9 @@ function Dock() {
 }
 
 export default async function Home() {
-  const [github, contributions, musicTracks] = await Promise.all([
+  const [github, contributions] = await Promise.all([
     getGithubStats(),
     getGithubContributions(),
-    getMusicTracks(),
   ]);
 
   return <>
@@ -64,7 +62,6 @@ export default async function Home() {
           <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.png" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Currently</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
           <div className="portrait-coordinate coordinate-one">19.0760 N</div><div className="portrait-coordinate coordinate-two">72.8777 E</div>
         </FadeIn>
-        {/* <div className="hero-meta"><p><span>01 / Base</span> India<br />Working globally</p><p><span>02 / Practice</span> Distributed systems<br />Product engineering</p><p><span>03 / Principle</span> Build for failure.<br />Design for clarity.</p></div> */}
       </section>
 
       <section className="section page-shell" id="experience" aria-labelledby="experience-heading">

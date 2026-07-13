@@ -62,13 +62,6 @@ const githubSnapshot: GithubStats = {
   ],
 };
 
-export type MusicTrack = {
-  title: string;
-  artist: string;
-  image: string;
-  href: string;
-};
-
 const githubHeaders: HeadersInit = {
   Accept: 'application/vnd.github+json',
   'X-GitHub-Api-Version': '2022-11-28',
@@ -157,16 +150,3 @@ export async function getGithubContributions(): Promise<GithubContributions> {
     return { total: 0, days: [], live: false };
   }
 }
-
-type PlaylistItem = {
-  snippet?: {
-    title?: string;
-    videoOwnerChannelTitle?: string;
-    resourceId?: { videoId?: string };
-    thumbnails?: {
-      medium?: { url?: string };
-      default?: { url?: string };
-    };
-  };
-};
-

@@ -124,10 +124,6 @@ export function SparkIcon({ size = 18 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.4 3.6 8.3 9 9-5.4.7-8.3 3.6-9 9-.7-5.4-3.6-8.3-9-9 5.4-.7 8.3-3.6 9-9Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
 }
 
-export function MusicIcon({ size = 18 }: { size?: number }) {
-  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M9 18V6l11-2v12M9 18a3 3 0 1 1-3-3h3v3Zm11-2a3 3 0 1 1-3-3h3v3Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
-}
-
 export function PhoneIcon({ size = 18 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M7.3 3H4.5C3.7 3 3 3.7 3.1 4.5c.7 8.7 7.7 15.7 16.4 16.4.8.1 1.5-.6 1.5-1.4v-2.8l-4-1.6-1.4 2.3a15.2 15.2 0 0 1-9-9L9 7 7.3 3Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
 }
