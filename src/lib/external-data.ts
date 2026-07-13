@@ -124,79 +124,34 @@ export async function getGithubStats(): Promise<GithubStats> {
   }
 }
 
-type ContributionCalendarResponse = {
-  data?: {
-    user?: {
-      contributionsCollection?: {
-        contributionCalendar?: {
-          totalContributions?: number;
-          weeks?: {
-            contributionDays?: {
-              date?: string;
-              contributionCount?: number;
-              contributionLevel?: string;
-            }[];
-          }[];
-        };
-      };
-    };
-  };
-};
-
-const contributionLevels: Record<string, number> = {
-  NONE: 0,
-  FIRST_QUARTILE: 1,
-  SECOND_QUARTILE: 2,
-  THIRD_QUARTILE: 3,
-  FOURTH_QUARTILE: 4,
-};
-
 export async function getGithubContributions(): Promise<GithubContributions> {
-  if (!process.env.GITHUB_TOKEN) return { total: 0, days: [], live: false };
-
   try {
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
+    const response = await fetch('https://github.com/users/PrathamRanka/contributions', {
       headers: {
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
+        Accept: 'text/html',
+        'User-Agent': 'PrathamRanka-Portfolio',
       },
-      body: JSON.stringify({
-        query: `query PortfolioContributions {
-          user(login: "PrathamRanka") {
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays { date contributionCount contributionLevel }
-                }
-              }
-            }
-          }
-        }`,
-      }),
       next: { revalidate: 300, tags: ['github-data'] },
     });
     if (!response.ok) return { total: 0, days: [], live: false };
 
-    const result = (await response.json()) as ContributionCalendarResponse;
-    const calendar = result.data?.user?.contributionsCollection?.contributionCalendar;
-    if (!calendar?.weeks) return { total: 0, days: [], live: false };
+    const html = await response.text();
+    const days = Array.from(
+      html.matchAll(
+        /<tool-tip[^>]*>(No|[\d,]+) contributions?[^<]*<\/tool-tip>\s*<td[^>]*data-date="([^"]+)"[^>]*data-level="(\d)"[^>]*>/g,
+      ),
+      (match) => ({
+        count: match[1] === 'No' ? 0 : Number(match[1].replaceAll(',', '')),
+        date: match[2],
+        level: Number(match[3]),
+      }),
+    );
+    if (days.length < 300) return { total: 0, days: [], live: false };
 
     return {
-      total: calendar.totalContributions ?? 0,
+      total: days.reduce((total, day) => total + day.count, 0),
       live: true,
-      days: calendar.weeks.flatMap((week) =>
-        (week.contributionDays ?? []).flatMap((day) =>
-          day.date
-            ? [{
-                date: day.date,
-                count: day.contributionCount ?? 0,
-                level: contributionLevels[day.contributionLevel ?? 'NONE'] ?? 0,
-              }]
-            : [],
-        ),
-      ),
+      days,
     };
   } catch {
     return { total: 0, days: [], live: false };
@@ -215,35 +170,3 @@ type PlaylistItem = {
   };
 };
 
-export async function getMusicTracks(): Promise<MusicTrack[]> {
-  const apiKey = process.env.YOUTUBE_API_KEY;
-  const playlistId = process.env.YOUTUBE_MUSIC_PLAYLIST_ID;
-  if (!apiKey || !playlistId) return [];
-
-  try {
-    const endpoint = new URL('https://www.googleapis.com/youtube/v3/playlistItems');
-    endpoint.searchParams.set('part', 'snippet');
-    endpoint.searchParams.set('maxResults', '5');
-    endpoint.searchParams.set('playlistId', playlistId);
-    endpoint.searchParams.set('key', apiKey);
-
-    const response = await fetch(endpoint, { next: { revalidate: 1800 } });
-    if (!response.ok) return [];
-
-    const data = (await response.json()) as { items?: PlaylistItem[] };
-    return (data.items ?? []).flatMap((item) => {
-      const snippet = item.snippet;
-      const videoId = snippet?.resourceId?.videoId;
-      const image = snippet?.thumbnails?.medium?.url ?? snippet?.thumbnails?.default?.url;
-      if (!snippet?.title || !videoId || !image) return [];
-      return [{
-        title: snippet.title,
-        artist: snippet.videoOwnerChannelTitle ?? 'YouTube Music',
-        image,
-        href: `https://music.youtube.com/watch?v=${videoId}`,
-      }];
-    });
-  } catch {
-    return [];
-  }
-}
