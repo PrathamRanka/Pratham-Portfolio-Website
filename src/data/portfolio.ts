@@ -1,57 +1,179 @@
+export type IconName =
+  | 'typescript'
+  | 'go'
+  | 'python'
+  | 'cplusplus'
+  | 'node'
+  | 'fastapi'
+  | 'websocket'
+  | 'postgresql'
+  | 'redis'
+  | 'kafka'
+  | 'mongodb'
+  | 'docker'
+  | 'kubernetes'
+  | 'githubActions'
+  | 'nextjs'
+  | 'react'
+  | 'aws'
+  | 'solidity'
+  | 'snarkjs'
+  | 'ethers'
+  | 'base'
+  | 'ffmpeg'
+  | 'githubactions'
+  | 'jest'
+  | 'cli';
+
+export const resumeUrl =
+  'https://drive.google.com/file/d/1bFqVi04xFWRHssvIjcZ7oqcisKJ00li6/preview';
+
 export const experience = [
   {
     company: 'S45',
     role: 'Software Engineer',
-    date: 'May 2026 — Present',
-    description: 'Building production systems across backend infrastructure and product engineering.',
+    date: 'May 2026 - Present',
+    description:
+      'Building backend infrastructure and product systems with an emphasis on reliability, observability, and clean execution.',
     current: true,
+    logo: '/company/s45.png',
   },
   {
     company: 'Paasa',
     role: 'Software Engineer',
-    date: 'Mar 2026 — May 2026',
+    date: 'Mar 2026 - May 2026',
     badge: 'YC S24',
-    description: 'Owned financial platform infrastructure across banking integrations, real-time transaction workflows, payments, KYC, and APIs.',
+    description:
+      'Owned critical financial workflows across banking integrations, real-time transactions, payments, KYC, and internal APIs serving $19M+ in assets.',
     current: false,
+    logo: '/company/paasa.png',
   },
   {
     company: 'Talkeys',
     role: 'Full-Stack Engineering Intern',
-    date: 'Jun 2025 — Aug 2025',
-    description: 'Shipped production features, stabilized API integrations, and improved reliability across a shared product codebase.',
+    date: 'Jun 2025 - Aug 2025',
+    description:
+      'Shipped production features, stabilized API integrations, and improved application reliability across a collaborative product codebase.',
     current: false,
+    logo: '/company/talkeys.png',
   },
 ];
 
-export const projects = [
+export const projects: {
+  name: string;
+  mark: string;
+  accent: string;
+  description: string;
+  technologies: IconName[];
+  github: string;
+  live?: string;
+}[] = [
   {
-    name: 'Sahayak PFMS',
-    description: 'Public finance infrastructure built around high-throughput event streaming and auditable workflows.',
-    github: 'https://github.com/PrathamRanka/NSUT_HACK_2k26',
+    name: "LeaseForge",
+    mark: "LF",
+    accent: "emerald",
+    description:
+      "Cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.",
+    technologies: [
+      "typescript",
+      "nextjs",
+      "kubernetes",
+      "docker",
+      "aws",
+      "redis",
+    ],
+    github: "https://github.com/PrathamRanka/sendaifun",
   },
+
   {
-    name: 'StarSwap',
-    description: 'Token exchange architecture with distributed rate limiting and concurrency-safe execution.',
-    github: 'https://github.com/PrathamRanka/starswap',
+    name: "StarSwap",
+    mark: "SS",
+    accent: "violet",
+    description:
+      "Developer platform for discovering GitHub repositories with intelligent recommendations, GitHub OAuth, Redis-powered caching and rate limiting, PostgreSQL, real-time leaderboards, and a scalable full-stack architecture.",
+    technologies: [
+      "nextjs",
+      "react",
+      "typescript",
+      "node",
+      "redis",
+      "postgresql",
+    ],
+    github: "https://github.com/PrathamRanka/starswap",
   },
+
   {
-    name: 'AquaNexus',
-    description: 'Real-time microorganism analysis with a scalable batch inference pipeline.',
-    github: 'https://github.com/PrathamRanka/aquanexus',
-    live: 'https://aquanexus.vercel.app',
+    name: "ZKavach",
+    mark: "ZK",
+    accent: "cyan",
+    description:
+      "Privacy-preserving payment infrastructure implementing Coinbase x402 with Groth16 zk-SNARKs, Poseidon hashing, Solidity smart contracts, and programmable USDC payments for autonomous AI agents.",
+    technologies: [
+      "nextjs",
+      "typescript",
+      "solidity",
+      "snarkjs",
+      "ethers",
+      "base",
+    ],
+    github: "https://github.com/PrathamRanka/ZKavach",
   },
+
   {
-    name: 'TCP Server in Go',
-    description: 'Low-level TCP server with goroutine-based concurrent connection handling.',
-    github: 'https://github.com/PrathamRanka/Tcp-Server-Go',
+    name: "SpotifyDownloader",
+    mark: "SD",
+    accent: "green",
+    description:
+      "Production-ready TypeScript CLI featuring concurrent download workers, resumable pipelines, intelligent source matching, FFmpeg processing, ID3 metadata embedding, automated testing, CI/CD, and cross-platform support.",
+    technologies: [
+      "typescript",
+      "node",
+      "ffmpeg",
+      "githubactions",
+      "jest",
+      "cli",
+    ],
+    github: "https://github.com/PrathamRanka/SpotifyDownloader",
   },
 ];
 
-export const skillGroups = [
-  { label: 'Languages', skills: ['TypeScript', 'Go', 'Python', 'C++'] },
-  { label: 'Backend', skills: ['Node.js', 'FastAPI', 'WebSockets', 'REST APIs'] },
-  { label: 'Data & systems', skills: ['PostgreSQL', 'Redis', 'Kafka', 'MongoDB'] },
-  { label: 'Infrastructure', skills: ['Docker', 'Kubernetes', 'AWS', 'CI/CD'] },
+export const skillGroups: { label: string; skills: { name: string; icon: IconName }[] }[] = [
+  {
+    label: 'Languages',
+    skills: [
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Go', icon: 'go' },
+      { name: 'Python', icon: 'python' },
+      { name: 'C++', icon: 'cplusplus' },
+    ],
+  },
+  {
+    label: 'Backend',
+    skills: [
+      { name: 'Node.js', icon: 'node' },
+      { name: 'FastAPI', icon: 'fastapi' },
+      { name: 'WebSockets', icon: 'websocket' },
+      { name: 'Next.js', icon: 'nextjs' },
+    ],
+  },
+  {
+    label: 'Data & systems',
+    skills: [
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'Redis', icon: 'redis' },
+      { name: 'Kafka', icon: 'kafka' },
+      { name: 'MongoDB', icon: 'mongodb' },
+    ],
+  },
+  {
+    label: 'Infrastructure',
+    skills: [
+      { name: 'Docker', icon: 'docker' },
+      { name: 'Kubernetes', icon: 'kubernetes' },
+      { name: 'GitHub Actions', icon: 'githubActions' },
+      { name: 'React', icon: 'react' },
+    ],
+  },
 ];
 
 export const socialLinks = [

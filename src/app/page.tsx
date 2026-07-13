@@ -1,206 +1,103 @@
 import Image from 'next/image';
 
-import { FadeIn, PortraitFrame } from '@/components/motion';
-import {
-  experience,
-  projects,
-  skillGroups,
-  socialLinks,
-} from '@/data/portfolio';
+import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, MusicIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
+import { InteractionRuntime } from '@/components/interactions';
+import { FadeIn, Magnetic, PortraitScene } from '@/components/motion';
+import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
+import { getGithubStats, getMusicTracks } from '@/lib/external-data';
 
-function ArrowUpRight({ size = 16 }: { size?: number }) {
-  return (
-    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M7 17 17 7M8 7h9v9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function GithubIcon() {
-  return (
-    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.55v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18A10.96 10.96 0 0 1 12 6.12c.98 0 1.95.13 2.86.38 2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.78 1.07.78 2.16v3.27c0 .3.21.66.8.55A11.5 11.5 0 0 0 12 .7Z" />
-    </svg>
-  );
-}
+export const revalidate = 1800;
+const email = 'prathamworks06@gmail.com';
+const phoneDisplay = '+91 70232 06003';
+const phoneHref = 'tel:+917023206003';
 
 function SectionLabel({ index, children }: { index: string; children: React.ReactNode }) {
-  return (
-    <div className="section-label">
-      <span>{index}</span>
-      <p>{children}</p>
-    </div>
-  );
+  return <div className="section-label"><span>{index}</span><p>{children}</p></div>;
 }
 
-export default function Home() {
-  return (
-    <>
-      <header className="site-header">
-        <nav className="nav-shell" aria-label="Primary navigation">
-          <a className="wordmark" href="#top" aria-label="Pratham Ranka, home">
-            PR<span className="wordmark-dot">.</span>
-          </a>
-          <div className="nav-links">
-            <a href="#experience">Experience</a>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-          </div>
-          <a className="nav-cta" href="mailto:pranka0789@gmail.com">
-            Let&apos;s talk <ArrowUpRight size={14} />
-          </a>
-        </nav>
-      </header>
+function CompanyLogo({ logo, company }: { logo: string; company: string }) {
+  return <div className="company-logo"><Image src={logo} alt={`${company} logo`} width={48} height={48} sizes="48px" /></div>;
+}
 
-      <main id="top">
-        <section className="hero page-shell" aria-labelledby="hero-heading">
-          <div className="hero-copy">
-            <FadeIn>
-              <div className="availability"><span /> Available for select collaborations</div>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <p className="eyebrow">Pratham Ranka · Backend Engineer</p>
-              <h1 id="hero-heading">I build systems that stay fast when the stakes get real.</h1>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p className="hero-intro">
-                Software engineer focused on distributed systems, reliable backend infrastructure, and production products that scale without drama.
-              </p>
-              <div className="hero-actions">
-                <a className="button button-primary" href="#work">Explore selected work <ArrowUpRight /></a>
-                <a className="button button-secondary" href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">GitHub <GithubIcon /></a>
-              </div>
-            </FadeIn>
-          </div>
+function Dock() {
+  const items = [
+    { href: '#top', label: 'Home', icon: <HomeIcon /> },
+    { href: '#experience', label: 'Experience', icon: <BriefcaseIcon /> },
+    { href: '#work', label: 'Work', icon: <LayersIcon /> },
+    { href: '#capabilities', label: 'Skills', icon: <SparkIcon /> },
+    { href: '#music', label: 'Music', icon: <MusicIcon /> },
+  ];
+  return <nav className="glass-dock" aria-label="Page navigation">
+    {items.map((item) => <a href={item.href} key={item.href} aria-label={item.label}><span className="dock-tooltip">{item.label}</span>{item.icon}</a>)}
+    <span className="dock-divider" />
+    <a href={`mailto:${email}`} aria-label="Email Pratham"><span className="dock-tooltip">Email</span><MailIcon /></a>
+  </nav>;
+}
 
-          <FadeIn delay={0.12} className="portrait-column">
-            <PortraitFrame>
-              <div className="portrait-wrap">
-                <div className="portrait-glow" />
-                <Image
-                  src="/assets/pfp.png"
-                  alt="Portrait of Pratham Ranka"
-                  width={820}
-                  height={823}
-                  priority
-                  sizes="(max-width: 760px) 78vw, 360px"
-                  className="portrait"
-                />
-                <div className="portrait-caption">
-                  <span>Currently</span>
-                  <strong>S45 · Software Engineer</strong>
-                </div>
-              </div>
-            </PortraitFrame>
-          </FadeIn>
+export default async function Home() {
+  const [github, musicTracks] = await Promise.all([getGithubStats(), getMusicTracks()]);
 
-          <div className="hero-meta" aria-label="Location and focus">
-            <p><span>01</span> Based in India<br />Working globally</p>
-            <p><span>02</span> Backend systems<br />Product engineering</p>
-          </div>
-        </section>
+  return <>
+    <InteractionRuntime />
+    <div className="ambient-layer" aria-hidden="true"><div className="ambient-orb ambient-orb-one" /><div className="ambient-orb ambient-orb-two" /><div className="noise" /></div>
+    <a className="floating-identity" href="#top" aria-label="Pratham Ranka, home">PR<span>.</span></a>
+    <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
+    <Dock />
 
-        <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
-          <FadeIn>
-            <SectionLabel index="01">Experience</SectionLabel>
-            <div className="section-heading-row">
-              <h2 id="experience-heading">Built in production.</h2>
-              <p>Roles where ownership meant shipping dependable systems, not just features.</p>
+    <main id="top">
+      <section className="hero page-shell" aria-labelledby="hero-heading">
+        <div className="hero-copy">
+          <FadeIn eager><div className="availability"><span /> Available for select collaborations</div></FadeIn>
+          <FadeIn delay={0.06} eager><p className="eyebrow">Pratham Ranka / Backend Engineer</p><h1 id="hero-heading">Systems thinking,<br /><span>product<span className="mobile-break"><br /></span> instinct.</span></h1></FadeIn>
+          <FadeIn delay={0.12} eager>
+            <p className="hero-intro">I build reliable backend infrastructure and production software for the moments when scale, correctness, and speed all matter.</p>
+            <div className="hero-actions">
+              <Magnetic><a className="button button-primary" href={resumeUrl} target="_blank" rel="noreferrer"><FileIcon /> Resume <ArrowUpRight /></a></Magnetic>
+              <Magnetic><a className="button button-secondary" href={`mailto:${email}`}><MailIcon /> Contact</a></Magnetic>
+              <div className="social-actions" aria-label="Social profiles"><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a><a href="https://www.linkedin.com/in/prathamranka06/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a></div>
             </div>
+            <div className="hero-contact-line"><a href={`mailto:${email}`}>{email}</a><span>/</span><a href={phoneHref}>{phoneDisplay}</a></div>
           </FadeIn>
-          <div className="timeline">
-            {experience.map((item, index) => (
-              <FadeIn key={item.company} delay={index * 0.06}>
-                <article className="timeline-item">
-                  <div className="timeline-marker"><span className={item.current ? 'is-current' : ''} /></div>
-                  <div className="timeline-date">{item.date}</div>
-                  <div className="timeline-content">
-                    <div className="timeline-title">
-                      <h3>{item.company}</h3>
-                      {item.badge && <span className="mini-badge">{item.badge}</span>}
-                    </div>
-                    <p className="role">{item.role}</p>
-                    <p>{item.description}</p>
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
+        </div>
+        <FadeIn delay={0.1} className="portrait-column" eager>
+          <div className="portrait-aura" aria-hidden="true" />
+          <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.png" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Currently</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
+          <div className="portrait-coordinate coordinate-one">19.0760 N</div><div className="portrait-coordinate coordinate-two">72.8777 E</div>
+        </FadeIn>
+        <div className="hero-meta"><p><span>01 / Base</span> India<br />Working globally</p><p><span>02 / Practice</span> Distributed systems<br />Product engineering</p><p><span>03 / Principle</span> Build for failure.<br />Design for clarity.</p></div>
+      </section>
 
-        <section className="section page-shell" id="work" aria-labelledby="work-heading">
-          <FadeIn>
-            <SectionLabel index="02">Selected work</SectionLabel>
-            <div className="section-heading-row">
-              <h2 id="work-heading">Small list. Real depth.</h2>
-              <p>A focused selection of systems work across finance, infrastructure, and developer tooling.</p>
-            </div>
-          </FadeIn>
-          <div className="project-list">
-            {projects.map((project, index) => (
-              <FadeIn key={project.name} delay={index * 0.05}>
-                <article className="project-row">
-                  <span className="project-index">0{index + 1}</span>
-                  <div className="project-name"><h3>{project.name}</h3><p>{project.description}</p></div>
-                  <div className="project-links">
-                    <a href={project.github} target="_blank" rel="noreferrer" aria-label={`${project.name} on GitHub`}><GithubIcon /></a>
-                    {project.live && <a href={project.live} target="_blank" rel="noreferrer" aria-label={`Open live ${project.name}`}><ArrowUpRight size={18} /></a>}
-                  </div>
-                </article>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
+      <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
+        <FadeIn><SectionLabel index="01">Experience</SectionLabel><div className="section-heading-row"><h2 id="experience-heading">Work measured in <span>outcomes.</span></h2><p>Roles where ownership meant making hard systems understandable, dependable, and ready for real users.</p></div></FadeIn>
+        <div className="timeline"><div className="timeline-track" aria-hidden="true"><span /></div>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item"><div className="timeline-logo-cell"><CompanyLogo logo={item.logo} company={item.company} /><span className={item.current ? 'timeline-dot is-current' : 'timeline-dot'} /></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><b>Y</b> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</div>
+      </section>
 
-        <section className="section page-shell" id="about" aria-labelledby="about-heading">
-          <FadeIn>
-            <SectionLabel index="03">About & capabilities</SectionLabel>
-          </FadeIn>
-          <div className="about-grid">
-            <FadeIn className="about-copy">
-              <h2 id="about-heading">Engineering for the unglamorous moments.</h2>
-              <p>I&apos;m a backend-focused software engineer who enjoys the hard parts: distributed workflows, failure handling, clean interfaces, and turning ambiguous product ideas into reliable production systems.</p>
-            </FadeIn>
-            <div className="skills-groups">
-              {skillGroups.map((group, index) => (
-                <FadeIn key={group.label} delay={index * 0.05} className="skill-group">
-                  <p>{group.label}</p>
-                  <div>{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
+      <section className="section page-shell" id="work" aria-labelledby="work-heading">
+        <FadeIn><SectionLabel index="02">Selected work</SectionLabel><div className="section-heading-row"><h2 id="work-heading">A small list with <span>real depth.</span></h2><p>Selected systems spanning infrastructure, privacy, developer tools, and production software.</p></div></FadeIn>
+        <div className="project-list">{projects.map((project, index) => <FadeIn key={project.name} delay={index * 0.04}><article className="project-row" data-cursor="Open"><div className={`project-mark project-mark-${project.accent}`} aria-hidden="true"><span>{project.mark}</span></div><div className="project-copy"><div className="project-title-line"><span>0{index + 1}</span><h3>{project.name}</h3></div><p>{project.description}</p></div><div className="project-tech">{project.technologies.map((technology) => <span key={technology} title={technology}><TechIcon name={technology} /></span>)}</div><div className="project-links"><a href={project.github} target="_blank" rel="noreferrer"><GithubIcon /><span>Code</span></a>{project.live && <a href={project.live} target="_blank" rel="noreferrer"><ArrowUpRight /><span>Live</span></a>}</div></article></FadeIn>)}</div>
+      </section>
 
-        <section className="section page-shell" id="open-source" aria-labelledby="oss-heading">
-          <FadeIn>
-            <SectionLabel index="04">Open source</SectionLabel>
-            <div className="oss-panel">
-              <div className="oss-mark" aria-hidden="true">M</div>
-              <div className="oss-copy">
-                <p className="oss-kicker">Medusa · Contributor</p>
-                <h2 id="oss-heading">Improving the infrastructure behind modern commerce.</h2>
-                <p>Contributing code and thoughtful improvements to Medusa&apos;s open-source commerce platform.</p>
-              </div>
-              <a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer" className="text-link">View project <ArrowUpRight /></a>
-            </div>
-          </FadeIn>
-        </section>
+      <section className="section page-shell" id="capabilities" aria-labelledby="capabilities-heading">
+        <FadeIn><SectionLabel index="03">Capabilities</SectionLabel><div className="capability-intro"><h2 id="capabilities-heading">Tools change.<br /><span>Engineering judgment compounds.</span></h2><p>My work centers on backend engineering, distributed workflows, open source, and turning ambiguous requirements into maintainable production systems.</p></div></FadeIn>
+        <div className="skill-board">{skillGroups.map((group, groupIndex) => <FadeIn key={group.label} delay={groupIndex * 0.05} className="skill-group"><div className="skill-group-heading"><span>0{groupIndex + 1}</span><h3>{group.label}</h3></div><div className="skill-grid">{group.skills.map((skill) => <div className="skill-chip" key={skill.name}><span className="skill-icon"><TechIcon name={skill.icon} size={20} /></span><span>{skill.name}</span></div>)}</div></FadeIn>)}</div>
+      </section>
 
-        <section className="contact page-shell" id="contact" aria-labelledby="contact-heading">
-          <FadeIn>
-            <p className="eyebrow">Have a difficult system to build?</p>
-            <h2 id="contact-heading">Let&apos;s make it dependable.</h2>
-            <a className="contact-email" href="mailto:pranka0789@gmail.com">pranka0789@gmail.com <ArrowUpRight size={24} /></a>
-          </FadeIn>
-        </section>
-      </main>
+      <section className="section page-shell" id="open-source" aria-labelledby="oss-heading">
+        <FadeIn><SectionLabel index="04">Open source & GitHub</SectionLabel></FadeIn>
+        <div className="oss-layout">
+          <FadeIn className="oss-panel"><div className="medusa-mark"><span>M</span></div><div className="oss-copy"><p className="oss-kicker">Medusa / Contributor</p><h2 id="oss-heading">Contributing to the infrastructure behind modern commerce.</h2><p>Thoughtful code contributions to Medusa&apos;s open-source commerce platform, with the same emphasis on clarity and maintainability I bring to product work.</p></div><a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer" className="text-link">Explore Medusa <ArrowUpRight /></a></FadeIn>
+          <FadeIn delay={0.08} className="github-panel"><div className="github-panel-header"><div><GithubIcon size={20} /><span>{github.live ? 'Live public profile' : 'Public profile snapshot'}</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">@PrathamRanka <ArrowUpRight size={13} /></a></div><div className="github-stats"><div><strong>{github.repositories}</strong><span>Repositories</span></div><div><strong>{github.stars}</strong><span>Stars earned</span></div><div><strong>{github.followers}</strong><span>Followers</span></div><div><strong>{github.forks}</strong><span>Forks</span></div></div><div className="github-repositories">{github.recentRepositories.map((repository) => <a key={repository.name} href={repository.html_url} target="_blank" rel="noreferrer"><span><b>{repository.name}</b><small>{repository.language ?? 'Code'} · {repository.stargazers_count} stars</small></span><ArrowUpRight size={14} /></a>)}</div></FadeIn>
+        </div>
+      </section>
 
-      <footer className="footer page-shell">
-        <p>© {new Date().getFullYear()} Pratham Ranka</p>
-        <div>{socialLinks.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}</div>
-        <a href="#top">Back to top ↑</a>
-      </footer>
-    </>
-  );
+      <section className="section page-shell" id="music" aria-labelledby="music-heading">
+        <FadeIn><SectionLabel index="05">Current rotation</SectionLabel><div className="section-heading-row music-heading"><h2 id="music-heading">What&apos;s playing while <span>I build.</span></h2><p>A small personal signal beyond the code. Tracks come from a configured public YouTube Music playlist.</p></div></FadeIn>
+        <FadeIn className="music-panel"><div className="music-visual" aria-hidden="true"><MusicIcon size={28} /><i /><i /><i /><i /></div>{musicTracks.length ? <div className="track-list">{musicTracks.map((track, index) => <a href={track.href} target="_blank" rel="noreferrer" key={`${track.href}-${index}`}><Image src={track.image} alt="" width={54} height={54} sizes="54px" /><span><b>{track.title}</b><small>{track.artist}</small></span><ArrowUpRight /></a>)}</div> : <div className="music-empty"><p className="oss-kicker">YouTube Music / Ready to connect</p><h3>Public playlist connection prepared.</h3><p>Add the playlist ID and API key to show your real current rotation. Private listening history is never guessed or exposed.</p><a href="https://music.youtube.com" target="_blank" rel="noreferrer">Open YouTube Music <ArrowUpRight /></a></div>}</FadeIn>
+      </section>
+
+      <section className="contact page-shell" id="contact" aria-labelledby="contact-heading"><FadeIn><p className="eyebrow">Have a difficult system to build?</p><h2 id="contact-heading">Let&apos;s make it<br /><span>dependable.</span></h2><div className="contact-row"><div className="contact-links"><a className="contact-email" href={`mailto:${email}`}>{email} <ArrowUpRight size={22} /></a><a className="contact-phone" href={phoneHref}><PhoneIcon /> {phoneDisplay}</a></div><p>Open to thoughtful conversations about ambitious products, infrastructure, and engineering teams that care about the details.</p></div></FadeIn></section>
+    </main>
+
+    <footer className="footer page-shell"><p>&copy; {new Date().getFullYear()} Pratham Ranka</p><div>{socialLinks.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}<a href={`mailto:${email}`}>Email</a><a href={phoneHref}>Phone</a></div><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></footer>
+  </>;
 }
