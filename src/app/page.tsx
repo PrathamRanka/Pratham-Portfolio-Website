@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, MusicIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
-import { InteractionRuntime } from '@/components/interactions';
 import { FadeIn, Magnetic, PortraitScene } from '@/components/motion';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 import { getGithubStats, getMusicTracks } from '@/lib/external-data';
@@ -38,16 +37,13 @@ export default async function Home() {
   const [github, musicTracks] = await Promise.all([getGithubStats(), getMusicTracks()]);
 
   return <>
-    <InteractionRuntime />
-    <div className="ambient-layer" aria-hidden="true"><div className="ambient-orb ambient-orb-one" /><div className="ambient-orb ambient-orb-two" /><div className="noise" /></div>
-    <a className="floating-identity" href="#top" aria-label="Pratham Ranka, home">PR<span>.</span></a>
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />
 
     <main id="top">
       <section className="hero page-shell" aria-labelledby="hero-heading">
         <div className="hero-copy">
-          <FadeIn eager><div className="availability"><span /> Available for select collaborations</div></FadeIn>
+          {/* <FadeIn eager><div className="availability"><span /> Available for select collaborations</div></FadeIn> */}
           <FadeIn delay={0.06} eager><p className="eyebrow">Pratham Ranka / Backend Engineer</p><h1 id="hero-heading">Systems thinking,<br /><span>product<span className="mobile-break"><br /></span> instinct.</span></h1></FadeIn>
           <FadeIn delay={0.12} eager>
             <p className="hero-intro">I build reliable backend infrastructure and production software for the moments when scale, correctness, and speed all matter.</p>
@@ -64,7 +60,7 @@ export default async function Home() {
           <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.png" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Currently</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
           <div className="portrait-coordinate coordinate-one">19.0760 N</div><div className="portrait-coordinate coordinate-two">72.8777 E</div>
         </FadeIn>
-        <div className="hero-meta"><p><span>01 / Base</span> India<br />Working globally</p><p><span>02 / Practice</span> Distributed systems<br />Product engineering</p><p><span>03 / Principle</span> Build for failure.<br />Design for clarity.</p></div>
+        {/* <div className="hero-meta"><p><span>01 / Base</span> India<br />Working globally</p><p><span>02 / Practice</span> Distributed systems<br />Product engineering</p><p><span>03 / Principle</span> Build for failure.<br />Design for clarity.</p></div> */}
       </section>
 
       <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
