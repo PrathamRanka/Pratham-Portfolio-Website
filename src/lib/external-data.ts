@@ -138,7 +138,7 @@ export async function getGithubContributions(): Promise<GithubContributions> {
         date: match[2],
         level: Number(match[3]),
       }),
-    );
+    ).sort((a, b) => a.date.localeCompare(b.date));
     if (days.length < 300) return { total: 0, days: [], live: false };
 
     return {
