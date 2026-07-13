@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
-import { getGithubContributions, getGithubStats} from '@/lib/external-data';
 
 export const revalidate = 300;
 const email = 'prathamworks06@gmail.com';
@@ -32,12 +31,7 @@ function Dock() {
   </nav>;
 }
 
-export default async function Home() {
-  const [github, contributions] = await Promise.all([
-    getGithubStats(),
-    getGithubContributions(),
-  ]);
-
+export default function Home() {
   return <>
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />
@@ -83,7 +77,7 @@ export default async function Home() {
         <FadeIn><SectionLabel index="04">Open source & GitHub</SectionLabel></FadeIn>
         <div className="oss-layout">
           <FadeIn className="oss-panel"><div className="medusa-mark"><span>M</span></div><div className="oss-copy"><p className="oss-kicker">Medusa / Contributor</p><h2 id="oss-heading">Contributing to the infrastructure behind modern commerce.</h2><p>Thoughtful code contributions to Medusa&apos;s open-source commerce platform, with the same emphasis on clarity and maintainability I bring to product work.</p></div><a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer" className="text-link">Explore Medusa <ArrowUpRight /></a></FadeIn>
-          <FadeIn delay={0.08} className="github-panel"><div className="github-panel-header"><div><GithubIcon size={20} /><span>{contributions.live ? 'Live public contribution signal' : 'Public profile snapshot'}</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">@PrathamRanka <ArrowUpRight size={13} /></a></div><div className="github-stats"><div><strong>{github.repositories}</strong><span>Repositories</span></div><div><strong>{github.stars}</strong><span>Stars earned</span></div><div><strong>{github.followers}</strong><span>Followers</span></div><div><strong>{contributions.live ? contributions.total : github.forks}</strong><span>{contributions.live ? 'Contributions' : 'Forks'}</span></div></div>{contributions.days.length ? <div className="contribution-calendar" aria-label={`${contributions.total} public GitHub contributions in the last year`}>{contributions.days.map((day) => <i key={day.date} data-level={day.level} title={`${day.count} public contributions on ${day.date}`} />)}</div> : <div className="heatmap-empty"><span>PUBLIC ACTIVITY UNAVAILABLE</span><p>The public contribution calendar could not be loaded. Profile statistics remain available.</p></div>}<div className="github-repositories">{github.recentRepositories.slice(0, 2).map((repository) => <a key={repository.name} href={repository.html_url} target="_blank" rel="noreferrer"><span><b>{repository.name}</b><small>{repository.language ?? 'Code'} · {repository.stargazers_count} stars</small></span><ArrowUpRight size={14} /></a>)}</div></FadeIn>
+          <FadeIn delay={0.08} className="github-heatmap-card"><div className="github-heatmap-heading"><div><GithubIcon size={20} /><span>Autonomous public GitHub signal</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">Open profile <ArrowUpRight size={13} /></a></div><a className="github-heatmap-link" href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="Open Pratham Ranka on GitHub"><Image src="/api/github/heatmap" alt="Pratham Ranka public GitHub contribution heatmap with live statistics" width={854} height={289} unoptimized sizes="(max-width: 900px) calc(100vw - 40px), 854px" /></a></FadeIn>
         </div>
       </section>
 
