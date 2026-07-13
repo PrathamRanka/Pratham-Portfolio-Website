@@ -90,11 +90,6 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section page-shell" id="music" aria-labelledby="music-heading">
-        <FadeIn><SectionLabel index="05">Current rotation</SectionLabel><div className="section-heading-row music-heading"><h2 id="music-heading">What&apos;s playing while <span>I build.</span></h2><p>A small personal signal beyond the code. Tracks come from a configured public YouTube Music playlist.</p></div></FadeIn>
-        <FadeIn className="music-panel"><div className="music-visual" aria-hidden="true"><MusicIcon size={28} /><i /><i /><i /><i /></div>{musicTracks.length ? <div className="track-list">{musicTracks.map((track, index) => <a href={track.href} target="_blank" rel="noreferrer" key={`${track.href}-${index}`}><Image src={track.image} alt="" width={54} height={54} sizes="54px" /><span><b>{track.title}</b><small>{track.artist}</small></span><ArrowUpRight /></a>)}</div> : <div className="music-empty"><p className="oss-kicker">YouTube Music / Ready to connect</p><h3>Public playlist connection prepared.</h3><p>Add the playlist ID and API key to show your real current rotation. Private listening history is never guessed or exposed.</p><a href="https://music.youtube.com" target="_blank" rel="noreferrer">Open YouTube Music <ArrowUpRight /></a></div>}</FadeIn>
-      </section>
-
       <section className="contact page-shell" id="contact" aria-labelledby="contact-heading"><FadeIn><p className="eyebrow">Have a difficult system to build?</p><h2 id="contact-heading">Let&apos;s make it<br /><span>dependable.</span></h2><div className="contact-row"><div className="contact-links"><a className="contact-email" href={`mailto:${email}`}>{email} <ArrowUpRight size={22} /></a><a className="contact-phone" href={phoneHref}><PhoneIcon /> {phoneDisplay}</a></div><p>Open to thoughtful conversations about ambitious products, infrastructure, and engineering teams that care about the details.</p></div></FadeIn></section>
     </main>
 
