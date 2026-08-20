@@ -35,7 +35,7 @@ export const experience = [
   date: "May 2026 - Present",
   description:
     "Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.",
-  current: true,
+  current: false,
   logo: "/company/s45.png",
   },
   {
