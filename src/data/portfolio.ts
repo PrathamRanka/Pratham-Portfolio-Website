@@ -1,6 +1,6 @@
 export type IconName =
   | 'typescript'
-  | 'go'
+  // | 'go'
   | 'python'
   | 'cplusplus'
   | 'node'
@@ -142,7 +142,7 @@ export const skillGroups: { label: string; skills: { name: string; icon: IconNam
     label: 'Languages',
     skills: [
       { name: 'TypeScript', icon: 'typescript' },
-      { name: 'Go', icon: 'go' },
+      // { name: 'Go', icon: 'go' },
       { name: 'Python', icon: 'python' },
       { name: 'C++', icon: 'cplusplus' },
     ],
