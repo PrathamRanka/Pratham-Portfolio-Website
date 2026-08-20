@@ -1,7 +1,9 @@
 import Image from 'next/image';
 
+import { CustomCursor } from '@/components/custom-cursor';
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
+import { SkillsShowcase } from '@/components/skills-showcase';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
 export const revalidate = 300;
@@ -33,6 +35,7 @@ function Dock() {
 
 export default function Home() {
   return <>
+    <CustomCursor />
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />
 
@@ -70,7 +73,7 @@ export default function Home() {
 
       <section className="section page-shell" id="capabilities" aria-labelledby="capabilities-heading">
         <FadeIn><SectionLabel index="03">Capabilities</SectionLabel><div className="capability-intro"><h2 id="capabilities-heading">Tools change.<br /><span>Engineering judgment compounds.</span></h2><p>My work centers on backend engineering, distributed workflows, open source, and turning ambiguous requirements into maintainable production systems.</p></div></FadeIn>
-        <div className="skill-board">{skillGroups.map((group, groupIndex) => <FadeIn key={group.label} delay={groupIndex * 0.05} className="skill-group"><div className="skill-group-heading"><span>0{groupIndex + 1}</span><h3>{group.label}</h3></div><div className="skill-grid">{group.skills.map((skill) => <div className="skill-chip" key={skill.name}><span className="skill-icon"><TechIcon name={skill.icon} size={20} /></span><span>{skill.name}</span></div>)}</div></FadeIn>)}</div>
+        <SkillsShowcase groups={skillGroups} />
       </section>
 
       <section className="section page-shell" id="open-source" aria-labelledby="oss-heading">

@@ -9,7 +9,8 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Responsive single-page portfolio with an editorial, dark visual system
 - Experience timeline, selected projects, skills, open-source work, and contact sections
 - Live GitHub profile statistics and contribution heatmap
-- Smooth entrance, hover, and pointer interactions using Motion
+- Smooth entrance, hover, pointer, and custom-cursor interactions using Motion and GSAP
+- Performance-aware animation loading: GSAP is requested only when an eligible interaction needs it
 - Search-engine metadata, Open Graph cards, JSON-LD, sitemap, and robots configuration
 - Installable PWA manifest and application icons
 - Vercel Analytics and Speed Insights integration
@@ -23,7 +24,7 @@ This repository is designed to be forked and personalized. Replace the content, 
 | Framework | Next.js 15 App Router |
 | UI | React 19, TypeScript |
 | Styling | Global CSS with custom properties and responsive layouts |
-| Motion | Motion for React |
+| Motion | Motion for React, GSAP |
 | Icons | Custom React icons and Simple Icons |
 | Analytics | Vercel Analytics and Speed Insights |
 | Quality | ESLint, Prettier, TypeScript |
@@ -87,6 +88,9 @@ Most portfolio content lives in a few focused files:
 | GitHub username fallback and data behavior | `src/lib/external-data.ts` |
 | PWA name, description, theme, and icons | `src/app/manifest.ts` |
 | Colors, typography, spacing, responsive behavior, and component styles | `src/app/globals.css` |
+| Custom cursor behavior | `src/components/custom-cursor.tsx` |
+| Skills presentation and content layout | `src/components/skills-showcase.tsx` |
+| Deferred skills interactions | `src/components/skills-interactions.tsx` |
 | Portrait and brand images | `public/assets/` |
 | Company logos | `public/company/` |
 | Social preview image | `public/social/` |
@@ -149,8 +153,11 @@ Portfolio-Website/
 |   |   |-- robots.ts
 |   |   `-- sitemap.ts
 |   |-- components/
+|   |   |-- custom-cursor.tsx
 |   |   |-- icons.tsx
-|   |   `-- motion.tsx
+|   |   |-- motion.tsx
+|   |   |-- skills-interactions.tsx
+|   |   `-- skills-showcase.tsx
 |   |-- data/
 |   |   `-- portfolio.ts
 |   `-- lib/
@@ -228,7 +235,30 @@ npm run start
 
 ## Accessibility and Performance
 
-The interface uses semantic sections, descriptive labels, keyboard focus styles, responsive images, local fonts, and reduced-motion handling. When customizing it, preserve meaningful image alt text, visible focus states, heading order, and sufficient color contrast.
+The interface uses semantic sections, descriptive labels, keyboard focus styles, responsive images, local fonts, and reduced-motion handling. The portfolio content remains server-rendered, so search engines and visitors receive the complete skills content without waiting for JavaScript.
+
+Animation is implemented as progressive enhancement:
+
+- GSAP is dynamically imported instead of being included in the initial page execution path.
+- The custom cursor initializes during browser idle time and only on devices with a fine pointer.
+- Skills tilt effects load only when the capabilities section approaches the viewport.
+- Touch devices do not initialize pointer-tracking effects.
+- Visitors using `prefers-reduced-motion` receive the complete interface without decorative motion.
+- High-frequency pointer values are applied directly through refs and GSAP setters instead of React state, avoiding render loops.
+- Animated elements use `transform` and `opacity` to avoid layout shifts and expensive reflow.
+
+These safeguards help protect Largest Contentful Paint, Interaction to Next Paint, Cumulative Layout Shift, accessibility, and SEO while retaining the interactive desktop experience.
+
+Before deployment, measure the optimized production build rather than the development server:
+
+```bash
+npm run build
+npm run start
+```
+
+Then run Lighthouse against the local production URL or the deployed site. Re-test after changing images, fonts, analytics, animation timing, or third-party scripts because those changes can affect Core Web Vitals.
+
+When customizing the interface, preserve meaningful image alt text, visible focus states, heading order, sufficient color contrast, and reduced-motion behavior.
 
 ## Contributing
 
