@@ -32,7 +32,7 @@ export const experience = [
   {
   company: "S45",
   role: "Software Engineer",
-  date: "May 2026 - Present",
+  date: "July 2026 - Aug 2026",
   description:
     "Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.",
   current: false,
