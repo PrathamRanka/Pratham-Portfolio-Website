@@ -43,11 +43,11 @@ export async function getGithubStats(): Promise<GithubStats | null> {
     const [userResponse, repositoriesResponse] = await Promise.all([
       fetch(`https://api.github.com/users/${githubUsername}`, {
         headers: githubHeaders,
-        next: { revalidate: 300, tags: ['github-data'] },
+        next: { revalidate: 3600, tags: ['github-data'] },
       }),
       fetch(
         `https://api.github.com/users/${githubUsername}/repos?per_page=100&sort=updated`,
-        { headers: githubHeaders, next: { revalidate: 300, tags: ['github-data'] } },
+        { headers: githubHeaders, next: { revalidate: 3600, tags: ['github-data'] } },
       ),
     ]);
 
@@ -81,7 +81,7 @@ export async function getGithubContributions(): Promise<GithubContributions> {
         Accept: 'text/html',
         'User-Agent': 'PrathamRanka-Portfolio',
       },
-      next: { revalidate: 300, tags: ['github-data'] },
+      next: { revalidate: 3600, tags: ['github-data'] },
     });
     if (!response.ok) return { total: 0, days: [], live: false };
 

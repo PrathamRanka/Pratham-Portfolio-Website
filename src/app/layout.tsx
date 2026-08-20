@@ -1,8 +1,26 @@
 import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './globals.css';
+
+const hanken = localFont({
+  src: [
+    {
+      path: '../../public/fonts/HankenGrotesk-Variable.ttf',
+      style: 'normal',
+      weight: '100 900',
+    },
+    {
+      path: '../../public/fonts/HankenGrotesk-Italic-Variable.ttf',
+      style: 'italic',
+      weight: '100 900',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-hanken',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in';
 
@@ -136,7 +154,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         familyName: 'Ranka',
         jobTitle: 'Software Engineer',
         url: siteUrl,
-        image: `${siteUrl}/assets/pfp.png`,
+        image: `${siteUrl}/assets/pfp.webp`,
         email: 'mailto:prathamworks06@gmail.com',
         telephone: '+91-70232-06003',
         address: { '@type': 'PostalAddress', addressCountry: 'IN' },
@@ -172,7 +190,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="me" href="https://www.linkedin.com/in/prathamranka06/" />
         <link rel="me" href="https://x.com/pr7ham_develops" />
       </head>
-      <body>
+      <body className={hanken.variable}>
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         <Analytics />

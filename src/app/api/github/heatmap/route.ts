@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { getGithubContributions, getGithubStats, githubUsername } from '@/lib/external-data';
 import { renderGithubHeatmap } from '@/lib/github-heatmap';
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function GET() {
   const [contributions, stats] = await Promise.all([
@@ -15,7 +15,7 @@ export async function GET() {
   return new NextResponse(svg, {
     headers: {
       'Content-Type': 'image/svg+xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60',
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
       'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'",
       'X-Robots-Tag': 'noindex, nofollow',
     },

@@ -8,7 +8,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -25,17 +25,41 @@ export function FadeIn({
   eager?: boolean;
 }) {
   const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || reduceMotion || eager) return;
+
+    const bounds = node.getBoundingClientRect();
+    if (bounds.top <= window.innerHeight * 0.92) {
+      node.classList.add('is-revealed');
+      return;
+    }
+
+    node.classList.add('is-reveal-ready');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        node.classList.add('is-revealed');
+        observer.disconnect();
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.01 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [eager, reduceMotion]);
+
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
       data-reveal
-      initial={reduceMotion || eager ? false : { opacity: 0, y: 22 }}
-      whileInView={reduceMotion || eager ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-72px' }}
-      transition={{ duration: 0.72, delay, ease }}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

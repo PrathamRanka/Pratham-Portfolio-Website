@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
-      images: [`${url}/social/pratham-ranka-og.png`, `${url}/assets/pfp.png`],
+      images: [`${url}/social/pratham-ranka-og.png`, `${url}/assets/pfp.webp`],
     },
   ];
 }

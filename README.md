@@ -9,8 +9,8 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Responsive single-page portfolio with an editorial, dark visual system
 - Experience timeline, selected projects, skills, open-source work, and contact sections
 - Live GitHub profile statistics and contribution heatmap
-- Smooth entrance, hover, pointer, and custom-cursor interactions using Motion and GSAP
-- Performance-aware animation loading: GSAP is requested only when an eligible interaction needs it
+- Smooth entrance and component motion using Motion for React
+- Lightweight native pointer interactions for the custom cursor and skills tilt effects
 - Search-engine metadata, Open Graph cards, JSON-LD, sitemap, and robots configuration
 - Installable PWA manifest and application icons
 - Vercel Analytics and Speed Insights integration
@@ -24,7 +24,7 @@ This repository is designed to be forked and personalized. Replace the content, 
 | Framework | Next.js 15 App Router |
 | UI | React 19, TypeScript |
 | Styling | Global CSS with custom properties and responsive layouts |
-| Motion | Motion for React, GSAP |
+| Motion | Motion for React with native pointer interactions |
 | Icons | Custom React icons and Simple Icons |
 | Analytics | Vercel Analytics and Speed Insights |
 | Quality | ESLint, Prettier, TypeScript |
@@ -122,12 +122,11 @@ Generated directories such as `.next/` and `node_modules/` are intentionally omi
 Portfolio-Website/
 |-- public/
 |   |-- assets/
-|   |   |-- logo.png
-|   |   `-- pfp.png
+|   |   `-- pfp.webp
 |   |-- company/
-|   |   |-- paasa.png
-|   |   |-- s45.png
-|   |   `-- talkeys.png
+|   |   |-- paasa.webp
+|   |   |-- s45.webp
+|   |   `-- talkeys.webp
 |   |-- fonts/
 |   |   |-- HankenGrotesk-Italic-Variable.ttf
 |   |   `-- HankenGrotesk-Variable.ttf
@@ -239,12 +238,12 @@ The interface uses semantic sections, descriptive labels, keyboard focus styles,
 
 Animation is implemented as progressive enhancement:
 
-- GSAP is dynamically imported instead of being included in the initial page execution path.
-- The custom cursor initializes during browser idle time and only on devices with a fine pointer.
+- Pointer interactions use native animation frames, avoiding a second animation runtime.
+- The custom cursor initializes only after the first pointer movement on devices with a fine pointer.
 - Skills tilt effects load only when the capabilities section approaches the viewport.
 - Touch devices do not initialize pointer-tracking effects.
 - Visitors using `prefers-reduced-motion` receive the complete interface without decorative motion.
-- High-frequency pointer values are applied directly through refs and GSAP setters instead of React state, avoiding render loops.
+- High-frequency pointer values are applied directly through refs and animation frames instead of React state, avoiding render loops.
 - Animated elements use `transform` and `opacity` to avoid layout shifts and expensive reflow.
 
 These safeguards help protect Largest Contentful Paint, Interaction to Next Paint, Cumulative Layout Shift, accessibility, and SEO while retaining the interactive desktop experience.

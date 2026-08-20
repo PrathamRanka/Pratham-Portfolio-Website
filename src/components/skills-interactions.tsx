@@ -12,36 +12,32 @@ export function SkillsInteractions() {
     if (reducedMotion) return;
 
     board.classList.add('is-motion-ready');
-    let disposed = false;
     let removeTilt: (() => void) | undefined;
 
-    const initializeTilt = async () => {
+    const initializeTilt = () => {
       if (!finePointer) return;
-
-      const { default: gsap } = await import('gsap');
-      if (disposed) return;
 
       const cards = Array.from(board.querySelectorAll<HTMLElement>('.capability-card'));
       const cleanups = cards.map((card) => {
         const glow = card.querySelector<HTMLElement>('.capability-glow');
-        const setRotateX = gsap.quickTo(card, 'rotateX', { duration: 0.42, ease: 'power3.out' });
-        const setRotateY = gsap.quickTo(card, 'rotateY', { duration: 0.42, ease: 'power3.out' });
-        const setGlowX = glow ? gsap.quickTo(glow, 'x', { duration: 0.28, ease: 'power3.out' }) : null;
-        const setGlowY = glow ? gsap.quickTo(glow, 'y', { duration: 0.28, ease: 'power3.out' }) : null;
+        let frame = 0;
 
         const handleMove = (event: PointerEvent) => {
           const bounds = card.getBoundingClientRect();
           const x = event.clientX - bounds.left;
           const y = event.clientY - bounds.top;
-          setRotateY(((x / bounds.width) - 0.5) * 5);
-          setRotateX(((y / bounds.height) - 0.5) * -5);
-          setGlowX?.(x);
-          setGlowY?.(y);
+          window.cancelAnimationFrame(frame);
+          frame = window.requestAnimationFrame(() => {
+            card.style.setProperty('--tilt-y', `${((x / bounds.width) - 0.5) * 5}deg`);
+            card.style.setProperty('--tilt-x', `${((y / bounds.height) - 0.5) * -5}deg`);
+            glow?.style.setProperty('--glow-x', `${x}px`);
+            glow?.style.setProperty('--glow-y', `${y}px`);
+          });
         };
 
         const handleLeave = () => {
-          setRotateX(0);
-          setRotateY(0);
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
         };
 
         card.addEventListener('pointermove', handleMove, { passive: true });
@@ -50,7 +46,7 @@ export function SkillsInteractions() {
         return () => {
           card.removeEventListener('pointermove', handleMove);
           card.removeEventListener('pointerleave', handleLeave);
-          gsap.killTweensOf(glow ? [card, glow] : card);
+          window.cancelAnimationFrame(frame);
         };
       });
 
@@ -62,7 +58,7 @@ export function SkillsInteractions() {
         if (!entry.isIntersecting) return;
         board.classList.add('is-revealed');
         observer.disconnect();
-        void initializeTilt();
+        initializeTilt();
       },
       { rootMargin: '280px 0px', threshold: 0.01 },
     );
@@ -70,7 +66,6 @@ export function SkillsInteractions() {
     observer.observe(board);
 
     return () => {
-      disposed = true;
       observer.disconnect();
       removeTilt?.();
     };

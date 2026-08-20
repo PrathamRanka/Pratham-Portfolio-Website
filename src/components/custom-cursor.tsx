@@ -11,116 +11,73 @@ export function CustomCursor() {
   useEffect(() => {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
     if (!finePointer.matches || reducedMotion.matches) return;
 
-    let disposed = false;
-    let removeInteractions: (() => void) | undefined;
+    let initialized = false;
+    let frame = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let ringX = 0;
+    let ringY = 0;
+    let activeTarget: HTMLElement | null = null;
 
-    const initialize = async () => {
-      const { default: gsap } = await import('gsap');
-      if (disposed) return;
+    const cursor = cursorRef.current;
+    const ring = ringRef.current;
+    const dot = dotRef.current;
+    const label = labelRef.current;
+    if (!cursor || !ring || !dot || !label) return;
 
-      const cursor = cursorRef.current;
-      const ring = ringRef.current;
-      const dot = dotRef.current;
-      const label = labelRef.current;
-      if (!cursor || !ring || !dot || !label) return;
+    const renderRing = () => {
+      ringX += (targetX - ringX) * 0.18;
+      ringY += (targetY - ringY) * 0.18;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+      frame = window.requestAnimationFrame(renderRing);
+    };
 
+    const updateTarget = (event: PointerEvent) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+      cursor.dataset.visible = 'true';
+
+      const target = event.target instanceof Element ? event.target : null;
+      const interactive = target?.closest<HTMLElement>('[data-cursor], a, button') ?? null;
+      if (interactive === activeTarget) return;
+
+      activeTarget = interactive;
+      label.textContent = interactive?.dataset.cursor ?? (interactive ? 'Open' : '');
+      cursor.dataset.active = interactive ? 'true' : 'false';
+    };
+
+    const handlePointerDown = () => { cursor.dataset.pressed = 'true'; };
+    const handlePointerUp = () => { cursor.dataset.pressed = 'false'; };
+    const hide = () => { cursor.dataset.visible = 'false'; };
+
+    const initialize = (event: PointerEvent) => {
+      if (initialized) return;
+      initialized = true;
+      targetX = ringX = event.clientX;
+      targetY = ringY = event.clientY;
       document.body.classList.add('has-custom-cursor');
-
-      const dotX = gsap.quickTo(dot, 'x', { duration: 0.08, ease: 'power3.out' });
-      const dotY = gsap.quickTo(dot, 'y', { duration: 0.08, ease: 'power3.out' });
-      const ringX = gsap.quickTo(ring, 'x', { duration: 0.42, ease: 'power3.out' });
-      const ringY = gsap.quickTo(ring, 'y', { duration: 0.42, ease: 'power3.out' });
-      const ringScale = gsap.quickTo(ring, 'scale', { duration: 0.24, ease: 'power3.out' });
-      const dotScale = gsap.quickTo(dot, 'scale', { duration: 0.16, ease: 'power3.out' });
-
-      let activeTarget: HTMLElement | null = null;
-      let cursorVisible = false;
-
-      const setVisible = (visible: boolean) => {
-        if (cursorVisible === visible) return;
-        cursorVisible = visible;
-        gsap.to(cursor, { autoAlpha: visible ? 1 : 0, duration: 0.18, ease: 'power2.out' });
-      };
-
-      const handlePointerMove = (event: PointerEvent) => {
-        dotX(event.clientX);
-        dotY(event.clientY);
-        ringX(event.clientX);
-        ringY(event.clientY);
-        setVisible(true);
-
-        const target = event.target instanceof Element ? event.target : null;
-        const interactive = target?.closest<HTMLElement>('[data-cursor], a, button') ?? null;
-        if (interactive === activeTarget) return;
-
-        activeTarget = interactive;
-        const cursorLabel = interactive?.dataset.cursor ?? (interactive ? 'Open' : '');
-        label.textContent = cursorLabel;
-        cursor.dataset.active = interactive ? 'true' : 'false';
-        ringScale(interactive ? 1.75 : 1);
-
-        gsap.to(ring, {
-          borderColor: interactive ? 'rgba(120, 230, 239, .66)' : 'rgba(255, 255, 255, .38)',
-          backgroundColor: interactive ? 'rgba(120, 230, 239, .08)' : 'transparent',
-          duration: 0.2,
-          ease: 'power2.out',
-        });
-        gsap.to(label, {
-          autoAlpha: cursorLabel ? 1 : 0,
-          scale: cursorLabel ? 1 : 0.86,
-          duration: 0.16,
-          ease: 'power2.out',
-        });
-      };
-
-      const handlePointerDown = () => {
-        ringScale(0.78);
-        dotScale(1.8);
-      };
-
-      const handlePointerUp = () => {
-        ringScale(activeTarget ? 1.75 : 1);
-        dotScale(1);
-      };
-
-      const hide = () => setVisible(false);
-
-      window.addEventListener('pointermove', handlePointerMove, { passive: true });
+      updateTarget(event);
+      frame = window.requestAnimationFrame(renderRing);
+      window.addEventListener('pointermove', updateTarget, { passive: true });
       window.addEventListener('pointerdown', handlePointerDown, { passive: true });
       window.addEventListener('pointerup', handlePointerUp, { passive: true });
       document.documentElement.addEventListener('mouseleave', hide);
-
-      removeInteractions = () => {
-        document.body.classList.remove('has-custom-cursor');
-        window.removeEventListener('pointermove', handlePointerMove);
-        window.removeEventListener('pointerdown', handlePointerDown);
-        window.removeEventListener('pointerup', handlePointerUp);
-        document.documentElement.removeEventListener('mouseleave', hide);
-        gsap.killTweensOf([cursor, ring, dot, label]);
-      };
     };
 
-    const idleWindow = window as unknown as {
-      requestIdleCallback?: Window['requestIdleCallback'];
-      cancelIdleCallback?: Window['cancelIdleCallback'];
-    };
-    let cancelScheduledInitialization: () => void;
-
-    if (idleWindow.requestIdleCallback) {
-      const idleId = idleWindow.requestIdleCallback(() => void initialize(), { timeout: 1800 });
-      cancelScheduledInitialization = () => idleWindow.cancelIdleCallback?.(idleId);
-    } else {
-      const timeoutId = window.setTimeout(() => void initialize(), 900);
-      cancelScheduledInitialization = () => window.clearTimeout(timeoutId);
-    }
+    window.addEventListener('pointermove', initialize, { once: true, passive: true });
 
     return () => {
-      disposed = true;
-      cancelScheduledInitialization();
-      removeInteractions?.();
+      window.removeEventListener('pointermove', initialize);
+      if (!initialized) return;
+      document.body.classList.remove('has-custom-cursor');
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('pointermove', updateTarget);
+      window.removeEventListener('pointerdown', handlePointerDown);
+      window.removeEventListener('pointerup', handlePointerUp);
+      document.documentElement.removeEventListener('mouseleave', hide);
     };
   }, []);
 

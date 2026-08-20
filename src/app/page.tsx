@@ -6,7 +6,7 @@ import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/moti
 import { SkillsShowcase } from '@/components/skills-showcase';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
-export const revalidate = 300;
+export const revalidate = 3600;
 const email = 'prathamworks06@gmail.com';
 const phoneDisplay = '+91 70232 06003';
 const phoneHref = 'tel:+917023206003';
@@ -44,7 +44,7 @@ export default function Home() {
         <div className="hero-kanji" aria-hidden="true">構築</div>
         <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
         <div className="hero-copy">
-          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> S45 · Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span></h1><p className="hero-role">Backend engineer building production systems that survive real traffic, real failures, and real deadlines.</p></FadeIn>
+          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span></h1><p className="hero-role">Backend engineer building production systems that survive real traffic, real failures, and real deadlines.</p></FadeIn>
           <FadeIn delay={0.12} eager>
             <div className="hero-direct-contact"><a href={`mailto:${email}`}><MailIcon size={17} /><span>{email}</span><ArrowUpRight size={15} /></a><a href={phoneHref}><PhoneIcon size={17} /><span>{phoneDisplay}</span></a></div>
             <div className="hero-actions">
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
         <FadeIn delay={0.1} className="portrait-column" eager>
           <div className="portrait-aura" aria-hidden="true" />
-          <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.png" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Currently</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
+          <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.webp" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Recent role</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
           <div className="portrait-coordinate coordinate-one">19.0760 N</div><div className="portrait-coordinate coordinate-two">72.8777 E</div>
         </FadeIn>
       </section>

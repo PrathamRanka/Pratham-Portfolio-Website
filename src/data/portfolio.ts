@@ -36,7 +36,7 @@ export const experience = [
   description:
     "Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.",
   current: false,
-  logo: "/company/s45.png",
+  logo: "/company/s45.webp",
   },
   {
     company: "Paasa",
@@ -46,7 +46,7 @@ export const experience = [
     description:
       "Engineered fintech infrastructure powering banking and payment workflows across KYC, payouts, collections, and financial reconciliation. Built and optimized backend APIs, integrated banking partners, improved transaction reliability, automated internal operations, and contributed to production systems handling over $19M+ in assets while working closely with product and engineering teams.",
     current: false,
-    logo: "/company/paasa.png",
+    logo: "/company/paasa.webp",
   },
   {
     company: "TalKeys",
@@ -55,7 +55,7 @@ export const experience = [
     description:
       "Developed production-ready features across the React and Node.js stack, implemented REST APIs, integrated third-party services, improved application performance, resolved production issues, and collaborated in an agile environment to ship customer-facing functionality with a focus on reliability and maintainability.",
     current: false,
-    logo: "/company/talkeys.png",
+    logo: "/company/talkeys.webp",
   },
 ];
 
@@ -69,8 +69,8 @@ export const projects: {
   live?: string;
 }[] = [
   {
-    name: "LeaseForge",
-    mark: "LF",
+    name: "SendAI Fun",
+    mark: "SF",
     accent: "emerald",
     description:
       "Cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.",
