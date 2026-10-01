@@ -26,6 +26,7 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23ff0055"><circle cx="12" cy="12" r="10"/></svg>') 12 12, auto;
   font-family: var(--font-hanken), sans-serif;
   font-size: 16px;
   line-height: 1.55;
@@ -697,79 +698,6 @@ body::after {
   .glass-dock { width: calc(100vw - 20px); justify-content: center; }
 }
 
-/* Native cursor — precise enough for the control-room visual language. */
-.custom-cursor {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 160ms ease-out, visibility 160ms ease-out;
-}
-.custom-cursor[data-visible='true'] { opacity: 1; visibility: visible; }
-.cursor-ring,
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  translate: -50% -50%;
-  will-change: transform;
-}
-.cursor-ring {
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255,255,255,.38);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 0 1px rgba(5,6,7,.25), inset 0 0 18px rgba(120,230,239,.025);
-  scale: 1;
-  transition: scale 180ms ease-out, border-color 180ms ease, background-color 180ms ease;
-}
-.cursor-ring::before,
-.cursor-ring::after {
-  content: '';
-  position: absolute;
-  background: rgba(120,230,239,.5);
-}
-.cursor-ring::before { width: 7px; height: 1px; left: -4px; }
-.cursor-ring::after { width: 1px; height: 7px; top: -4px; }
-.cursor-ring span {
-  color: #dffcff;
-  font-size: 5px;
-  font-weight: 760;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: 0;
-  scale: .86;
-  transition: opacity 150ms ease-out, scale 150ms ease-out;
-}
-.cursor-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #dffcff;
-  box-shadow: 0 0 12px rgba(120,230,239,.9);
-  scale: 1;
-  transition: scale 120ms ease-out;
-}
-.custom-cursor[data-active='true'] .cursor-ring {
-  scale: 1.75;
-  border-color: rgba(120,230,239,.66);
-  background: rgba(120,230,239,.08);
-}
-.custom-cursor[data-active='true'] .cursor-ring span { opacity: 1; scale: 1; }
-.custom-cursor[data-pressed='true'] .cursor-ring { scale: .78; }
-.custom-cursor[data-pressed='true'] .cursor-dot { scale: 1.8; }
-
-@media (hover: hover) and (pointer: fine) {
-  .has-custom-cursor,
-  .has-custom-cursor a,
-  .has-custom-cursor button,
-  .has-custom-cursor [data-cursor] { cursor: none; }
-}
-
 /* Capability console — bento density, moving focus, no decorative filler. */
 .capability-console {
   position: relative;
@@ -1018,5 +946,4 @@ body::after {
   .capability-card,
   .capability-glow { transform: none !important; }
   .capability-console.is-revealed .capability-card { animation: none; }
-  .custom-cursor { display: none; }
 }

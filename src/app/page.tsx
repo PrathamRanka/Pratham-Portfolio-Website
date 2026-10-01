@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import { CustomCursor } from '@/components/custom-cursor';
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { SkillsShowcase } from '@/components/skills-showcase';
@@ -35,7 +34,6 @@ function Dock() {
 
 export default function Home() {
   return <>
-    <CustomCursor />
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />
 

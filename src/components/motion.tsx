@@ -83,7 +83,6 @@ export function PortraitScene({ children }: { children: ReactNode }) {
     <motion.div
       className="portrait-scene"
       data-portrait
-      data-cursor="View"
       onMouseMove={handleMove}
       onMouseLeave={() => {
         x.set(0);

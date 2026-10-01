@@ -37,7 +37,6 @@ export function SkillsShowcase({ groups }: { groups: SkillGroup[] }) {
         {groups.map((group, groupIndex) => (
           <article
             className={`capability-card capability-card-${groupIndex + 1}`}
-            data-cursor="Scan"
             key={group.label}
           >
             <div className="capability-glow" aria-hidden="true" />
