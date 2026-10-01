@@ -87,7 +87,8 @@ a:focus-visible, button:focus-visible {
   position: fixed;
   z-index: 60;
   left: 50%;
-  bottom: max(18px, env(safe-area-inset-bottom));
+  top: max(18px, env(safe-area-inset-top));
+  bottom: auto;
   translate: -50% 0;
   min-height: 64px;
   padding: 8px;
@@ -102,10 +103,10 @@ a:focus-visible, button:focus-visible {
 }
 .glass-dock::before { content: ''; position: absolute; inset: 1px 10px auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); }
 .glass-dock a { position: relative; width: 47px; height: 47px; border: 1px solid transparent; border-radius: 14px; display: grid; place-items: center; color: #9da4ab; transition: color .22s ease, background .22s ease, border-color .22s ease, transform .22s cubic-bezier(.22,1,.36,1); }
-.glass-dock a:hover { color: #f7fdff; border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.08); transform: translateY(-5px) scale(1.08); }
+.glass-dock a:hover { color: #f7fdff; border-color: rgba(255,255,255,.1); background: rgba(255,255,255,.08); transform: translateY(5px) scale(1.08); }
 .glass-dock a:last-child:hover { color: var(--cyan); background: rgba(120,230,239,.1); }
 .dock-divider { width: 1px; height: 30px; margin-inline: 4px; background: rgba(255,255,255,.11); }
-.dock-tooltip { position: absolute; left: 50%; bottom: calc(100% + 10px); padding: 5px 8px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; color: #cbd0d5; background: rgba(12,14,16,.9); font-size: 9px; white-space: nowrap; opacity: 0; transform: translate(-50%, 4px); pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+.dock-tooltip { position: absolute; left: 50%; top: calc(100% + 10px); padding: 5px 8px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; color: #cbd0d5; background: rgba(12,14,16,.9); font-size: 9px; white-space: nowrap; opacity: 0; transform: translate(-50%, -4px); pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
 .glass-dock a:hover .dock-tooltip { opacity: 1; transform: translate(-50%, 0); }
 
 .hero {
@@ -302,7 +303,7 @@ a:focus-visible, button:focus-visible {
   .floating-contact { top: 14px; }
   .floating-contact { right: 14px; width: 42px; padding: 0; justify-content: center; }
   .floating-contact span { display: none; }
-  .glass-dock { bottom: max(10px, env(safe-area-inset-bottom)); min-height: 58px; max-width: calc(100vw - 20px); padding: 6px; border-radius: 18px; }
+  .glass-dock { top: max(10px, env(safe-area-inset-top)); bottom: auto; min-height: 58px; max-width: calc(100vw - 20px); padding: 6px; border-radius: 18px; }
   .glass-dock a { width: 43px; height: 43px; border-radius: 12px; }
   .dock-divider { margin-inline: 1px; }
   .dock-tooltip { display: none; }
