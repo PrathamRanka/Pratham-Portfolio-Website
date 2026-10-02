@@ -10,5 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       images: [`${url}/social/pratham-ranka-og.png`, `${url}/assets/pfp.webp`],
     },
+    {
+      url: `${url}/projects/agentpay`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }

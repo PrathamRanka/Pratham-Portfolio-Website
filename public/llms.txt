@@ -17,6 +17,8 @@ Last updated: October 2026
   open-source contributions, and contact details
 - [Projects](https://www.prathamranka.in/#work) — selected systems spanning infrastructure,
   privacy, developer tools, and production software
+- [AgentPay case study](https://www.prathamranka.in/projects/agentpay) — architecture, security,
+  performance measurements, and implementation details for the featured project
 - [Capabilities](https://www.prathamranka.in/#capabilities) — backend engineering, distributed
   workflows, infrastructure, data systems, and product engineering
 - [Open-source work](https://www.prathamranka.in/#open-source) — contributions to Medusa's
@@ -134,6 +136,7 @@ Ruby, with GitHub Actions CI, OpenAPI and AsyncAPI validation, and automated sec
 testing.
 
 GitHub: https://github.com/PrathamRanka/AgentPay
+Case study: https://www.prathamranka.in/projects/agentpay
 
 ### SendAI Fun
 TypeScript, Next.js, Kubernetes, Docker, AWS, Redis
@@ -209,6 +212,11 @@ A: AgentPay is a Go modular monolith for non-custodial x402 USDC payments on Bas
 uses AWS Lambda, API Gateway, DynamoDB, S3 Object Lock, KMS signatures, Terraform, and a
 Next.js frontend to support secure API purchases, cryptographic evidence, dispute resolution,
 and AI-agent tooling.
+
+Q: How does Pratham approach engineering work?
+A: He clarifies requirements and failure modes, models domain boundaries and access patterns,
+designs APIs and security controls, measures performance under realistic load, and documents
+operational decisions and tradeoffs.
 
 Q: How can I contact Pratham Ranka?
 A: Email prathamworks06@gmail.com or visit https://www.prathamranka.in/#contact for the public

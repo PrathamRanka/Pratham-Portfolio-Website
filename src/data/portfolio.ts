@@ -67,6 +67,8 @@ export const projects: {
   technologies: IconName[];
   github: string;
   live?: string;
+  caseStudy?: string;
+  status?: 'Featured' | 'Active' | 'Completed';
 }[] = [
   {
     name: "AgentPay",
@@ -82,6 +84,8 @@ export const projects: {
       "githubactions",
     ],
     github: "https://github.com/PrathamRanka/AgentPay",
+    caseStudy: "/projects/agentpay",
+    status: "Featured",
   },
   {
     name: "SendAI Fun",
@@ -98,6 +102,7 @@ export const projects: {
       "redis",
     ],
     github: "https://github.com/PrathamRanka/sendaifun",
+    status: "Active",
   },
 
   {
@@ -115,6 +120,7 @@ export const projects: {
       "postgresql",
     ],
     github: "https://github.com/PrathamRanka/starswap",
+    status: "Completed",
   },
 
   {
@@ -132,6 +138,7 @@ export const projects: {
       "base",
     ],
     github: "https://github.com/PrathamRanka/ZKavach",
+    status: "Completed",
   },
 
   {
@@ -149,6 +156,7 @@ export const projects: {
       "cli",
     ],
     github: "https://github.com/PrathamRanka/SpotifyDownloader",
+    status: "Completed",
   },
 ];
 
