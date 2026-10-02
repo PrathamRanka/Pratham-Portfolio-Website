@@ -1,6 +1,6 @@
 export type IconName =
   | 'typescript'
-  // | 'go'
+  | 'go'
   | 'python'
   | 'cplusplus'
   | 'node'
@@ -68,6 +68,21 @@ export const projects: {
   github: string;
   live?: string;
 }[] = [
+  {
+    name: "AgentPay",
+    mark: "AP",
+    accent: "amber",
+    description:
+      "Modular monolith for non-custodial x402 USDC payments on Base Sepolia, with 17 isolated Go domain packages, a DynamoDB single-table design, cryptographic evidence, an SSRF-hardened proxy, secure MCP tooling, and Terraform-managed AWS infrastructure. Deployed on Lambda ARM64 and API Gateway HTTP API v2 with <42ms P95 API latency, <8ms P99 queries, and under $10/month operating cost.",
+    technologies: [
+      "go",
+      "aws",
+      "nextjs",
+      "typescript",
+      "githubactions",
+    ],
+    github: "https://github.com/PrathamRanka/AgentPay",
+  },
   {
     name: "SendAI Fun",
     mark: "SF",
@@ -142,7 +157,7 @@ export const skillGroups: { label: string; skills: { name: string; icon: IconNam
     label: 'Languages',
     skills: [
       { name: 'TypeScript', icon: 'typescript' },
-      // { name: 'Go', icon: 'go' },
+      { name: 'Go', icon: 'go' },
       { name: 'Python', icon: 'python' },
       { name: 'C++', icon: 'cplusplus' },
     ],
@@ -150,6 +165,7 @@ export const skillGroups: { label: string; skills: { name: string; icon: IconNam
   {
     label: 'Backend',
     skills: [
+      { name: 'Go', icon: 'go' },
       { name: 'Node.js', icon: 'node' },
       { name: 'FastAPI', icon: 'fastapi' },
       { name: 'WebSockets', icon: 'websocket' },
@@ -160,6 +176,7 @@ export const skillGroups: { label: string; skills: { name: string; icon: IconNam
     label: 'Data & systems',
     skills: [
       { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'DynamoDB', icon: 'aws' },
       { name: 'Redis', icon: 'redis' },
       { name: 'Kafka', icon: 'kafka' },
       { name: 'MongoDB', icon: 'mongodb' },

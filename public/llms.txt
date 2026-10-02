@@ -89,22 +89,51 @@ and collaborated in an agile environment to ship reliable customer-facing functi
 ## Skills
 
 ### Languages
-TypeScript, Python, C++
+Go, TypeScript, Python, C++
 
 ### Backend and application development
-Node.js, FastAPI, WebSockets, Next.js, React
+Go, Node.js, FastAPI, WebSockets, Next.js, React
 
 ### Data and systems
-PostgreSQL, Redis, Kafka, MongoDB
+PostgreSQL, DynamoDB, Redis, Kafka, MongoDB
 
 ### Infrastructure and delivery
-Docker, Kubernetes, GitHub Actions
+AWS Lambda, API Gateway, Terraform, Docker, Kubernetes, GitHub Actions
 
 ### Focus areas
 Backend engineering, distributed systems, production reliability, testing infrastructure,
-open-source software, developer tooling, fintech infrastructure, and product development.
+cloud infrastructure, payments, cryptographic verification, open-source software, developer
+tooling, fintech infrastructure, and product development.
 
 ## Projects
+
+### AgentPay
+Go 1.22+, AWS Lambda ARM64, API Gateway HTTP API v2, DynamoDB, Terraform, Next.js 14,
+TypeScript, x402 Protocol
+
+Modular monolith with 17 isolated domain packages across catalog, intents, payments, proxy,
+evidence, disputes, and settlement. It enables non-custodial x402 USDC micro-transactions on
+Base Sepolia so AI agents and browser buyers can purchase APIs with exact-price on-chain
+settlement. The system achieved less than 42ms P95 API latency, less than 8ms P99 DynamoDB query
+latency, and operational costs under $10/month.
+
+The backend uses a DynamoDB single-table architecture with four GSIs, more than 188 entity access
+patterns, and conditional-write idempotency without distributed locking. An append-only audit
+ledger uses S3 Object Lock, AWS KMS P-256 ECDSA signatures, and chained transaction hashes for
+deterministic dispute resolution. The upstream proxy is SSRF-hardened with URL sanitization,
+private IP and AWS metadata endpoint blocking, replay protection, and short-lived ES256 execution
+capabilities.
+
+Terraform provisions 67 AWS resources across foundation, identity, and application modules using
+S3 remote state, DynamoDB locking, IAM least privilege, and AWS Budgets. A TypeScript MCP
+connector uses stdio JSON-RPC, five-minute ES256 capabilities, and seller confirmation grants for
+secure IDE agent interactions. The Next.js 14 frontend uses the App Router, React Server
+Components, and Tailwind CSS, with 100/100 Lighthouse Accessibility and SEO scores and less than
+80ms FCP. SDKs and cryptographic verification cover Go, TypeScript, Python, Java, .NET, PHP, and
+Ruby, with GitHub Actions CI, OpenAPI and AsyncAPI validation, and automated security regression
+testing.
+
+GitHub: https://github.com/PrathamRanka/AgentPay
 
 ### SendAI Fun
 TypeScript, Next.js, Kubernetes, Docker, AWS, Redis
@@ -172,8 +201,14 @@ A: His listed experience includes S45, Paasa, and TalKeys. The experience sectio
 the dates and responsibilities for each role.
 
 Q: What projects has Pratham Ranka built?
-A: Selected projects include SendAI Fun, StarSwap, ZKavach, and SpotifyDownloader. Each project
+A: Selected projects include AgentPay, SendAI Fun, StarSwap, ZKavach, and SpotifyDownloader. Each project
 section above includes its focus, technologies, and source repository.
+
+Q: What is AgentPay?
+A: AgentPay is a Go modular monolith for non-custodial x402 USDC payments on Base Sepolia. It
+uses AWS Lambda, API Gateway, DynamoDB, S3 Object Lock, KMS signatures, Terraform, and a
+Next.js frontend to support secure API purchases, cryptographic evidence, dispute resolution,
+and AI-agent tooling.
 
 Q: How can I contact Pratham Ranka?
 A: Email prathamworks06@gmail.com or visit https://www.prathamranka.in/#contact for the public

@@ -5,6 +5,7 @@ import {
   siEthers,
   siFastapi,
   siFfmpeg,
+  siGo,
   siGithubactions,
   siKubernetes,
   siJest,
@@ -25,6 +26,7 @@ import type { IconName } from '@/data/portfolio';
 
 const icons: Record<IconName, SimpleIcon> = {
   typescript: siTypescript,
+  go: siGo,
   python: siPython,
   cplusplus: siCplusplus,
   node: siNodedotjs,
