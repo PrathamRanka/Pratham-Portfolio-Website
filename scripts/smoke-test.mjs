@@ -1,5 +1,13 @@
 const baseUrl = (process.env.SITE_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
-const routes = ['/', '/llms.txt', '/sitemap.xml', '/robots.txt', '/projects/agentpay'];
+const routes = [
+  '/',
+  '/llms.txt',
+  '/sitemap.xml',
+  '/robots.txt',
+  '/.well-known/agent.json',
+  '/api/agent',
+  '/projects/agentpay',
+];
 const failures = [];
 
 for (const route of routes) {

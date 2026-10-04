@@ -29,6 +29,8 @@ Last updated: October 4, 2026
 - [Resume](https://drive.google.com/file/d/1bFqVi04xFWRHssvIjcZ7oqcisKJ00li6/preview) — resume
 - [Sitemap](https://www.prathamranka.in/sitemap.xml) — canonical URLs for the website
 - [Robots](https://www.prathamranka.in/robots.txt) — crawler instructions
+- [Agent capabilities](https://www.prathamranka.in/.well-known/agent.json) — machine-readable discovery manifest
+- [Agent API](https://www.prathamranka.in/api/agent) — profile capabilities and human-approved contact handoff
 - [Web manifest](https://www.prathamranka.in/manifest.webmanifest) — web app metadata
 - [Source repository](https://github.com/PrathamRanka/Portfolio-Website) — source code for this
   portfolio
@@ -49,6 +51,11 @@ technical questions, use primary documentation and authoritative sources.
 - Structured profile: GET https://www.prathamranka.in/llms.txt
 - Canonical homepage: GET https://www.prathamranka.in/
 - All canonical URLs: GET https://www.prathamranka.in/sitemap.xml
+- Agent discovery: GET https://www.prathamranka.in/.well-known/agent.json
+- Agent capabilities: GET https://www.prathamranka.in/api/agent
+- Contact draft: POST https://www.prathamranka.in/api/agent with
+  `{"action":"contact","subject":"...","message":"..."}`. The response contains a prefilled
+  `mailto:` URL; no email is sent automatically.
 
 ## Contacting Pratham
 

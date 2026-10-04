@@ -4,7 +4,26 @@ export default function robots(): MetadataRoute.Robots {
   const url = process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in';
   return {
     rules: [
-      { userAgent: '*', allow: '/', disallow: ['/api/'] },
+      {
+        userAgent: '*',
+        allow: ['/', '/llms.txt', '/sitemap.xml', '/api/agent', '/.well-known/agent.json'],
+        disallow: ['/api/github/'],
+      },
+      {
+        userAgent: [
+          'GPTBot',
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'ClaudeBot',
+          'Claude-SearchBot',
+          'PerplexityBot',
+          'Google-Extended',
+          'Amazonbot',
+          'Bytespider',
+        ],
+        allow: ['/', '/llms.txt', '/sitemap.xml', '/api/agent', '/.well-known/agent.json'],
+        disallow: ['/api/github/'],
+      },
       {
         userAgent: 'Googlebot-Image',
         allow: ['/assets/', '/icons/', '/social/'],

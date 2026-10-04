@@ -4,6 +4,8 @@ import { resolve } from 'node:path';
 const layout = readFileSync(resolve('src', 'app', 'layout.tsx'), 'utf8');
 const sitemap = readFileSync(resolve('src', 'app', 'sitemap.ts'), 'utf8');
 const robots = readFileSync(resolve('src', 'app', 'robots.ts'), 'utf8');
+const agentRoute = readFileSync(resolve('src', 'app', 'api', 'agent', 'route.ts'), 'utf8');
+const agentManifest = readFileSync(resolve('src', 'app', '.well-known', 'agent.json', 'route.ts'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
   ['metadata description', /description:\s*['"`]/],
@@ -13,8 +15,12 @@ const checks = [
   ['sitemap route', /MetadataRoute\.Sitemap/],
   ['robots route', /MetadataRoute\.Robots/],
   ['OG image', /social\/pratham-ranka-og\.png/],
+  ['AI crawler access', /GPTBot[\s\S]*ClaudeBot[\s\S]*PerplexityBot/],
+  ['agent capabilities route', /export function GET/],
+  ['agent contact action', /action !== 'contact'/],
+  ['agent discovery manifest', /schema_version/],
 ];
-const failures = checks.filter(([, pattern]) => !pattern.test(`${layout}\n${sitemap}\n${robots}`));
+const failures = checks.filter(([, pattern]) => !pattern.test(`${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}`));
 if (!existsSync(resolve('public', 'llms.txt'))) failures.push(['public llms.txt', /./]);
 if (failures.length) {
   console.error(`SEO checks failed: ${failures.map(([name]) => name).join(', ')}`);

@@ -22,6 +22,32 @@ const nextConfig: NextConfig = {
 						key: 'Permissions-Policy',
 						value: 'camera=(), microphone=(), geolocation=()',
 					},
+					{
+						key: 'X-Robots-Tag',
+						value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+					},
+				],
+			},
+			{
+				source: '/llms.txt',
+				headers: [
+					{ key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+					{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400' },
+					{ key: 'X-Robots-Tag', value: 'index, follow' },
+				],
+			},
+			{
+				source: '/api/agent',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=300, s-maxage=3600' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' },
+				],
+			},
+			{
+				source: '/.well-known/agent.json',
+				headers: [
+					{ key: 'Content-Type', value: 'application/json; charset=utf-8' },
+					{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400' },
 				],
 			},
 		];
