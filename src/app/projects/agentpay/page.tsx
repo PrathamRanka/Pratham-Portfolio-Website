@@ -4,20 +4,20 @@ import Link from 'next/link';
 const siteUrl = 'https://prathamranka.in';
 
 export const metadata: Metadata = {
-  title: 'AgentPay — Case Study',
+  title: 'AgentPay | x402 Payments and AI-Agent API Commerce',
   description:
-    'A Go modular monolith for secure x402 USDC payments, cryptographic evidence, and AI-agent API commerce.',
+    'AgentPay is a Go modular monolith for x402 USDC payments, cryptographic evidence, secure API commerce, and AI-agent infrastructure.',
   alternates: { canonical: `${siteUrl}/projects/agentpay` },
   openGraph: {
-    title: 'AgentPay — Case Study | Pratham Ranka',
-    description: 'Secure x402 payments and API commerce infrastructure built on Go and AWS.',
+    title: 'AgentPay | x402 Payments and AI-Agent API Commerce',
+    description: 'Go and AWS infrastructure for secure x402 payments, cryptographic evidence, and AI-agent API commerce.',
     type: 'article',
     url: `${siteUrl}/projects/agentpay`,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AgentPay — Case Study | Pratham Ranka',
-    description: 'Secure x402 payments and API commerce infrastructure built on Go and AWS.',
+    title: 'AgentPay | x402 Payments and AI-Agent API Commerce',
+    description: 'Go and AWS infrastructure for secure x402 payments, cryptographic evidence, and AI-agent API commerce.',
   },
 };
 
@@ -29,9 +29,9 @@ export default function AgentPayCaseStudy() {
     <main className="case-study page-shell">
       <Link className="case-back" href="/#work">← Back to selected work</Link>
       <header className="case-hero">
-        <p className="eyebrow">Featured project / AgentPay</p>
+        <p className="eyebrow">Featured project / AgentPay payments infrastructure</p>
         <h1>Payments for APIs,<br /><span>built to be verified.</span></h1>
-        <p className="case-lede">A Go modular monolith for non-custodial x402 USDC micro-transactions on Base Sepolia, giving AI agents and browser buyers a secure path to purchase APIs with exact-price settlement.</p>
+        <p className="case-lede">AgentPay is a Go modular monolith for non-custodial x402 USDC micro-transactions on Base Sepolia, giving AI agents and browser buyers a secure path to purchase APIs with exact-price settlement.</p>
         <div className="case-links"><a className="button button-primary" href="https://github.com/PrathamRanka/AgentPay" target="_blank" rel="noreferrer">View source ↗</a><Link className="button button-secondary" href="/#contact">Discuss the system</Link></div>
       </header>
 

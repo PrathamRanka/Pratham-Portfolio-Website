@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: '%s | Pratham Ranka',
   },
   description:
-    'Pratham Ranka is a backend and full-stack engineer in India building distributed systems, cloud infrastructure, and developer tools.',
+    'Pratham Ranka is an Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools.',
   applicationName: 'Pratham Ranka',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
@@ -52,6 +52,10 @@ export const metadata: Metadata = {
     'backend systems engineer',
     'software engineer India',
     'distributed systems engineer',
+    'full-stack development',
+    'fintech infrastructure',
+    'AI agent infrastructure',
+    'cloud-native software',
   ],
   authors: [{ name: 'Pratham Ranka', url: siteUrl }],
   creator: 'Pratham Ranka',
@@ -86,7 +90,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Pratham Ranka | Backend & Full-Stack Engineer',
     description:
-      'Backend and full-stack engineer building distributed systems, cloud infrastructure, and developer tools.',
+      'Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools.',
     url: siteUrl,
     siteName: 'Pratham Ranka',
     locale: 'en_IN',
@@ -100,7 +104,7 @@ export const metadata: Metadata = {
         url: '/social/pratham-ranka-og.png',
         width: 1200,
         height: 630,
-        alt: 'Pratham Ranka — Backend Engineer',
+        alt: 'Pratham Ranka, Indian backend and full-stack software engineer',
         type: 'image/png',
       },
     ],
@@ -109,7 +113,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pratham Ranka | Backend & Full-Stack Engineer',
     description:
-      'Backend and full-stack engineer building distributed systems, cloud infrastructure, and developer tools.',
+      'Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools.',
     creator: '@pr7ham_develops',
     site: '@pr7ham_develops',
     images: ['/social/pratham-ranka-og.png'],
@@ -166,7 +170,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         url: siteUrl,
         name: 'Pratham Ranka | Backend & Full-Stack Engineer',
         description:
-          'Portfolio of Pratham Ranka, a backend engineer building distributed systems and production infrastructure.',
+          'Portfolio of Pratham Ranka, an Indian software engineer specialising in backend development, distributed systems, cloud infrastructure, and production software.',
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url: `${siteUrl}/social/pratham-ranka-og.png`,
@@ -213,7 +217,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         url: siteUrl,
         name: 'Pratham Ranka',
         description:
-          'Portfolio of Pratham Ranka, a software engineer building reliable backend systems, distributed infrastructure, and open-source software.',
+          'Portfolio of Pratham Ranka, an Indian software engineer specialising in backend development, full-stack systems, distributed infrastructure, and open-source software.',
         inLanguage: 'en-IN',
         author: { '@id': `${siteUrl}/#person` },
         publisher: { '@id': `${siteUrl}/#person` },
@@ -261,9 +265,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         '@type': 'WebPage',
         '@id': `${siteUrl}/#home`,
         url: siteUrl,
-        name: 'Pratham Ranka — Backend Engineer Portfolio',
+        name: 'Pratham Ranka | Backend and Full-Stack Software Engineer Portfolio',
         description:
-          'Portfolio of Pratham Ranka featuring backend engineering, distributed systems, cloud infrastructure, open-source work, and production software projects.',
+          'Portfolio of Pratham Ranka featuring backend development, full-stack engineering, distributed systems, cloud infrastructure, and production software projects.',
         isPartOf: { '@id': `${siteUrl}/#website` },
         about: { '@id': `${siteUrl}/#person` },
         primaryImageOfPage: { '@id': `${siteUrl}/#profile` },

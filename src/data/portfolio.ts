@@ -34,7 +34,7 @@ export const experience = [
   role: "Software Engineer",
   date: "July 2026 - Aug 2026",
   description:
-    "Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.",
+    "Contributing to production backend systems by implementing features from HLD and LLD specifications, building a standardised multi-layer testing framework, and developing shared testing infrastructure. Writing unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Working with the team on code reviews, bug fixes, and production engineering practices that support maintainable, reliable, and scalable software.",
   current: false,
   logo: "/company/s45.webp",
   },
@@ -44,7 +44,7 @@ export const experience = [
     date: "Mar 2026 - May 2026",
     badge: "YC S24",
     description:
-      "Engineered fintech infrastructure powering banking and payment workflows across KYC, payouts, collections, and financial reconciliation. Built and optimized backend APIs, integrated banking partners, improved transaction reliability, automated internal operations, and contributed to production systems handling over $19M+ in assets while working closely with product and engineering teams.",
+      "Engineered fintech infrastructure for banking and payment workflows across KYC, payouts, collections, and financial reconciliation. Built and optimised backend APIs, integrated banking partners, improved transaction reliability, automated internal operations, and contributed to production systems handling over $19M in assets while working closely with product and engineering teams.",
     current: false,
     logo: "/company/paasa.webp",
   },
@@ -53,7 +53,7 @@ export const experience = [
     role: "Full-Stack Engineering Intern",
     date: "Jun 2025 - Aug 2025",
     description:
-      "Developed production-ready features across the React and Node.js stack, implemented REST APIs, integrated third-party services, improved application performance, resolved production issues, and collaborated in an agile environment to ship customer-facing functionality with a focus on reliability and maintainability.",
+      "Developed production-ready features across the React and Node.js stack, implemented REST APIs, integrated third-party services, improved application performance, resolved production issues, and collaborated in an agile environment to ship reliable, maintainable customer-facing software.",
     current: false,
     logo: "/company/talkeys.webp",
   },
@@ -75,7 +75,7 @@ export const projects: {
     mark: "AP",
     accent: "amber",
     description:
-      "Modular monolith for non-custodial x402 USDC payments on Base Sepolia, with 17 isolated Go domain packages, a DynamoDB single-table design, cryptographic evidence, an SSRF-hardened proxy, secure MCP tooling, and Terraform-managed AWS infrastructure. Deployed on Lambda ARM64 and API Gateway HTTP API v2 with <42ms P95 API latency, <8ms P99 queries, and under $10/month operating cost.",
+      "A modular monolith for non-custodial x402 USDC payments on Base Sepolia, with 17 isolated Go domain packages, a DynamoDB single-table design, cryptographic evidence, an SSRF-hardened proxy, secure MCP tooling, and Terraform-managed AWS infrastructure. Deployed on Lambda ARM64 and API Gateway HTTP API v2 with <42ms P95 API latency, <8ms P99 queries, and operating costs below $10 per month.",
     technologies: [
       "go",
       "aws",
@@ -92,7 +92,7 @@ export const projects: {
     mark: "SF",
     accent: "emerald",
     description:
-      "Cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.",
+      "A cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.",
     technologies: [
       "typescript",
       "nextjs",
@@ -110,7 +110,7 @@ export const projects: {
     mark: "SS",
     accent: "violet",
     description:
-      "Developer platform for discovering GitHub repositories with intelligent recommendations, GitHub OAuth, Redis-powered caching and rate limiting, PostgreSQL, real-time leaderboards, and a scalable full-stack architecture.",
+      "A developer platform for discovering GitHub repositories through intelligent recommendations, GitHub OAuth, Redis-powered caching and rate limiting, PostgreSQL, real-time leaderboards, and a scalable full-stack architecture.",
     technologies: [
       "nextjs",
       "react",
@@ -146,7 +146,7 @@ export const projects: {
     mark: "SD",
     accent: "green",
     description:
-      "Production-ready TypeScript CLI featuring concurrent download workers, resumable pipelines, intelligent source matching, FFmpeg processing, ID3 metadata embedding, automated testing, CI/CD, and cross-platform support.",
+      "A production-ready TypeScript CLI with concurrent download workers, resumable pipelines, intelligent source matching, FFmpeg processing, ID3 metadata embedding, automated testing, CI/CD, and cross-platform support.",
     technologies: [
       "typescript",
       "node",

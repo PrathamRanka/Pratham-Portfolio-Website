@@ -171,7 +171,7 @@ try {
   const homepageH1s = [...homepage.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)];
   const homepageAlternates = [...homepage.matchAll(/<link rel="alternate" hrefLang="([^"]+)" href="([^"]+)"/g)];
   const homepageDescription = homepage.match(/<meta name="description" content="([^"]+)"/)?.[1] || '';
-  if (homepageH1s.length !== 1 || !homepageH1s[0][1].includes('Backend Engineer Building Reliable Systems')) {
+  if (homepageH1s.length !== 1 || !homepageH1s[0][1].includes('Indian Backend and Full-Stack Engineer')) {
     failures.push('homepage: expected one descriptive H1');
   }
   if (homepageDescription.length < 100 || homepageDescription.length > 160) {
@@ -192,7 +192,7 @@ try {
   if (!project.includes('property="og:url" content="https://prathamranka.in/projects/agentpay"')) {
     failures.push('AgentPay: incorrect Open Graph URL');
   }
-  if (!project.includes('name="twitter:title" content="AgentPay — Case Study | Pratham Ranka"')) {
+  if (!project.includes('name="twitter:title" content="AgentPay | x402 Payments and AI-Agent API Commerce"')) {
     failures.push('AgentPay: missing route-specific Twitter title');
   }
   if (homepageResponse.headers.has('x-powered-by')) {
