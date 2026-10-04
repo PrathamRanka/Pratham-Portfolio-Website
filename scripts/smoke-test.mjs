@@ -98,6 +98,48 @@ try {
   failures.push(`${error instanceof Error ? error.message : 'Markdown request failed'} /auth.md`);
 }
 
+try {
+  const response = await fetch(`${baseUrl}/sitemap.xml`, { redirect: 'follow' });
+  const body = await response.text();
+  const requiredSitemapUrls = [
+    `${baseUrl}/`,
+    `${baseUrl}/projects/agentpay`,
+    `${baseUrl}/llms.txt`,
+    `${baseUrl}/api/profile`,
+    `${baseUrl}/api/projects`,
+    `${baseUrl}/.well-known/agent.json`,
+    `${baseUrl}/.well-known/ai-catalog.json`,
+  ];
+  if (!response.ok || !body.includes('<urlset')) failures.push('/sitemap.xml: invalid XML response');
+  for (const url of requiredSitemapUrls) {
+    if (!body.includes(`<loc>${url}</loc>`)) failures.push(`/sitemap.xml: missing ${url}`);
+  }
+} catch (error) {
+  failures.push(`${error instanceof Error ? error.message : 'Sitemap request failed'} /sitemap.xml`);
+}
+
+try {
+  const [robotsResponse, llmsResponse, homepageResponse] = await Promise.all([
+    fetch(`${baseUrl}/robots.txt`),
+    fetch(`${baseUrl}/llms.txt`),
+    fetch(baseUrl),
+  ]);
+  const robots = await robotsResponse.text();
+  const llms = await llmsResponse.text();
+  const linkHeader = homepageResponse.headers.get('link') || '';
+  for (const path of ['/sitemap.xml', '/llms.txt', '/api/profile', '/api/projects', '/api/agent', '/.well-known/']) {
+    if (!robots.includes(`Allow: ${path}`) && path !== '/.well-known/') {
+      failures.push(`/robots.txt: missing Allow ${path}`);
+    }
+  }
+  for (const resource of ['/.well-known/ai-catalog.json', '/.well-known/api-catalog', '/.well-known/mcp/server-card.json', '/.well-known/agent-skills/index.json']) {
+    if (!llms.includes(resource)) failures.push(`/llms.txt: missing ${resource}`);
+    if (!linkHeader.includes(resource)) failures.push('homepage Link header: missing ' + resource);
+  }
+} catch (error) {
+  failures.push(`${error instanceof Error ? error.message : 'Discovery surface request failed'} discovery surfaces`);
+}
+
 if (failures.length) {
   console.error(`Smoke test failures:\n${failures.join('\n')}`);
   process.exit(1);

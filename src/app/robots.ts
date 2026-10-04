@@ -6,7 +6,18 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/llms.txt', '/sitemap.xml', '/feed.xml', '/updates.xml', '/api/', '/.well-known/'],
+        allow: [
+          '/',
+          '/llms.txt',
+          '/sitemap.xml',
+          '/feed.xml',
+          '/updates.xml',
+          '/api/profile',
+          '/api/projects',
+          '/api/agent',
+          '/.well-known/',
+          '/auth.md',
+        ],
         disallow: ['/api/github/'],
       },
       {
@@ -21,7 +32,18 @@ export default function robots(): MetadataRoute.Robots {
           'Amazonbot',
           'Bytespider',
         ],
-        allow: ['/', '/llms.txt', '/sitemap.xml', '/feed.xml', '/updates.xml', '/api/', '/.well-known/'],
+        allow: [
+          '/',
+          '/llms.txt',
+          '/sitemap.xml',
+          '/feed.xml',
+          '/updates.xml',
+          '/api/profile',
+          '/api/projects',
+          '/api/agent',
+          '/.well-known/',
+          '/auth.md',
+        ],
         disallow: ['/api/github/'],
       },
       {

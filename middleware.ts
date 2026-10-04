@@ -11,6 +11,11 @@ Pratham Ranka is a software engineer in India building distributed systems, prod
 - Agent capabilities: https://www.prathamranka.in/api/agent
 - Discovery manifest: https://www.prathamranka.in/.well-known/agent.json
 - API catalog: https://www.prathamranka.in/.well-known/api-catalog
+- AI catalog: https://www.prathamranka.in/.well-known/ai-catalog.json
+- MCP server card: https://www.prathamranka.in/.well-known/mcp/server-card.json
+- Agent Skills index: https://www.prathamranka.in/.well-known/agent-skills/index.json
+- Sitemap: https://www.prathamranka.in/sitemap.xml
+- RSS feed: https://www.prathamranka.in/feed.xml
 - Contact: mailto:prathamworks06@gmail.com
 `;
 
@@ -20,32 +25,47 @@ Allow: /llms.txt
 Allow: /sitemap.xml
 Allow: /feed.xml
 Allow: /updates.xml
-Allow: /api/
+Allow: /api/profile
+Allow: /api/projects
+Allow: /api/agent
 Allow: /.well-known/
+Allow: /auth.md
 Disallow: /api/github/
 
 User-agent: GPTBot
 Allow: /
-Allow: /api/
+Allow: /api/profile
+Allow: /api/projects
+Allow: /api/agent
 Allow: /.well-known/
+Allow: /auth.md
 Disallow: /api/github/
 
 User-agent: OAI-SearchBot
 Allow: /
-Allow: /api/
+Allow: /api/profile
+Allow: /api/projects
+Allow: /api/agent
 Allow: /.well-known/
+Allow: /auth.md
 Disallow: /api/github/
 
 User-agent: ClaudeBot
 Allow: /
-Allow: /api/
+Allow: /api/profile
+Allow: /api/projects
+Allow: /api/agent
 Allow: /.well-known/
+Allow: /auth.md
 Disallow: /api/github/
 
 User-agent: PerplexityBot
 Allow: /
-Allow: /api/
+Allow: /api/profile
+Allow: /api/projects
+Allow: /api/agent
 Allow: /.well-known/
+Allow: /auth.md
 Disallow: /api/github/
 
 Content-Signal: ai-train=no, search=yes, ai-input=yes
@@ -66,7 +86,7 @@ export function middleware(request: NextRequest) {
         'Content-Type': 'text/markdown; charset=utf-8',
         'X-Markdown-Tokens': String(homepageMarkdown.length),
         'Vary': 'Accept',
-        'Link': '</api/profile>; rel="service-desc", </.well-known/api-catalog>; rel="service-doc"',
+        'Link': '</api/profile>; rel="service-desc", </api/projects>; rel="service-desc", </api/agent>; rel="service-doc", </.well-known/agent.json>; rel="describedby", </.well-known/ai-catalog.json>; rel="describedby", </.well-known/api-catalog>; rel="service-doc", </.well-known/mcp/server-card.json>; rel="describedby", </.well-known/agent-skills/index.json>; rel="describedby", </sitemap.xml>; rel="alternate", </feed.xml>; rel="alternate"',
       },
     });
   }

@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
 					},
 					{
 						key: 'Link',
-						value: '</.well-known/api-catalog>; rel="api-catalog", </.well-known/agent.json>; rel="describedby", </api/agent>; rel="service-doc", </.well-known/api-catalog; rel="service-desc"',
+						value: '</.well-known/api-catalog>; rel="api-catalog", </.well-known/agent.json>; rel="describedby", </.well-known/ai-catalog.json>; rel="describedby", </.well-known/mcp/server-card.json>; rel="describedby", </.well-known/agent-skills/index.json>; rel="describedby", </api/profile>; rel="service-desc", </api/projects>; rel="service-desc", </api/agent>; rel="service-doc", </sitemap.xml>; rel="alternate", </feed.xml>; rel="alternate"',
 					},
 				],
 			},

@@ -30,10 +30,19 @@ Last updated: October 4, 2026
 - [Sitemap](https://www.prathamranka.in/sitemap.xml) — canonical URLs for the website
 - [Robots](https://www.prathamranka.in/robots.txt) — crawler instructions
 - [Agent capabilities](https://www.prathamranka.in/.well-known/agent.json) — machine-readable discovery manifest
+- [AI catalog](https://www.prathamranka.in/.well-known/ai-catalog.json) — Agentic Resource Discovery capability catalog
+- [API catalog](https://www.prathamranka.in/.well-known/api-catalog) — linkset of public API documentation and status resources
+- [MCP server card](https://www.prathamranka.in/.well-known/mcp/server-card.json) — MCP capability metadata
+- [Agent Skills index](https://www.prathamranka.in/.well-known/agent-skills/index.json) — discoverable agent skills and digests
 - [Agent API](https://www.prathamranka.in/api/agent) — profile capabilities and human-approved contact handoff
 - [Structured profile](https://www.prathamranka.in/api/profile) — JSON profile, experience, projects, skills, and contact
 - [Project index](https://www.prathamranka.in/api/projects) — JSON project index
 - [Engineering feed](https://www.prathamranka.in/feed.xml) — RSS updates for projects and experience
+- [Updates feed](https://www.prathamranka.in/updates.xml) — RSS-compatible updates alias
+- [Auth metadata](https://www.prathamranka.in/auth.md) — public access model and contact confirmation rules
+- [OAuth protected-resource metadata](https://www.prathamranka.in/.well-known/oauth-protected-resource) — declares that public APIs require no OAuth
+- [OAuth authorization metadata](https://www.prathamranka.in/.well-known/oauth-authorization-server) — declares unsupported OAuth/agent registration state
+- [OpenID configuration](https://www.prathamranka.in/.well-known/openid-configuration) — compatibility discovery metadata
 - [Security policy](https://www.prathamranka.in/.well-known/security.txt) — vulnerability reporting contact
 - [Web manifest](https://www.prathamranka.in/manifest.webmanifest) — web app metadata
 - [Source repository](https://github.com/PrathamRanka/Portfolio-Website) — source code for this
