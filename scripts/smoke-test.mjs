@@ -161,6 +161,29 @@ try {
   failures.push(`${error instanceof Error ? error.message : 'Discovery surface request failed'} discovery surfaces`);
 }
 
+try {
+  const [homepageResponse, projectResponse] = await Promise.all([
+    fetch(baseUrl),
+    fetch(`${baseUrl}/projects/agentpay`),
+  ]);
+  const homepage = await homepageResponse.text();
+  const project = await projectResponse.text();
+  if (!homepage.includes('<link rel="canonical" href="https://www.prathamranka.in"')) {
+    failures.push('homepage: incorrect canonical URL');
+  }
+  if (!homepage.includes('property="og:url" content="https://www.prathamranka.in"')) {
+    failures.push('homepage: incorrect Open Graph URL');
+  }
+  if (!project.includes('<link rel="canonical" href="https://www.prathamranka.in/projects/agentpay"')) {
+    failures.push('AgentPay: incorrect canonical URL');
+  }
+  if (!project.includes('property="og:url" content="https://www.prathamranka.in/projects/agentpay"')) {
+    failures.push('AgentPay: incorrect Open Graph URL');
+  }
+} catch (error) {
+  failures.push(`${error instanceof Error ? error.message : 'Canonical metadata request failed'} canonical metadata`);
+}
+
 if (failures.length) {
   console.error(`Smoke test failures:\n${failures.join('\n')}`);
   process.exit(1);

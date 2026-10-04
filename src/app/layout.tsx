@@ -24,7 +24,7 @@ const hanken = localFont({
   variable: '--font-hanken',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in';
+const siteUrl = 'https://www.prathamranka.in';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -61,11 +61,11 @@ export const metadata: Metadata = {
     'Global portfolio of Pratham Ranka, a backend engineer building distributed systems, cloud infrastructure, and production software.',
   classification: 'Software engineering portfolio',
   alternates: {
-    canonical: '/',
+    canonical: siteUrl,
     languages: {
-      'x-default': '/',
-      en: '/',
-      'en-IN': '/',
+      'x-default': siteUrl,
+      en: siteUrl,
+      'en-IN': siteUrl,
     },
   },
   other: {

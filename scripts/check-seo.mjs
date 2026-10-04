@@ -14,10 +14,13 @@ const ardRoute = readFileSync(resolve('src', 'app', '.well-known', 'ai-catalog.j
 const authRoute = readFileSync(resolve('src', 'app', 'auth.md', 'route.ts'), 'utf8');
 const protectedResourceRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-protected-resource', 'route.ts'), 'utf8');
 const authorizationServerRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-authorization-server', 'route.ts'), 'utf8');
+const agentPayPage = readFileSync(resolve('src', 'app', 'projects', 'agentpay', 'page.tsx'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
   ['metadata description', /description:\s*['"`]/],
-  ['canonical URL', /alternates:\s*\{\s*canonical:/],
+  ['canonical URL', /alternates:\s*\{[\s\S]*canonical:\s*siteUrl/],
+  ['preferred canonical hostname', /https:\/\/www\.prathamranka\.in/],
+  ['no stale canonical hostname', /^(?![\s\S]*owasptiet\.com\/recruit-core)[\s\S]*$/],
   ['JSON-LD', /application\/ld\+json/],
   ['llms alternate', /href="\/llms\.txt"/],
   ['sitemap route', /MetadataRoute\.Sitemap/],
@@ -44,8 +47,10 @@ const checks = [
   ['authorization server issuer', /issuer:\s*siteUrl/],
   ['no fabricated authorization endpoint', /^(?![\s\S]*authorization_endpoint:)[\s\S]*$/],
   ['no fabricated registration endpoint', /^(?![\s\S]*registration_endpoint:)[\s\S]*$/],
+  ['AgentPay canonical URL', /canonical:\s*`\$\{siteUrl\}\/projects\/agentpay`/],
+  ['AgentPay Open Graph URL', /url:\s*`\$\{siteUrl\}\/projects\/agentpay`/],
 ];
-const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}`;
+const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}\n${agentPayPage}`;
 const failures = checks.filter(([, pattern]) => !pattern.test(source));
 if (!existsSync(resolve('public', 'llms.txt'))) failures.push(['public llms.txt', /./]);
 if (failures.length) {

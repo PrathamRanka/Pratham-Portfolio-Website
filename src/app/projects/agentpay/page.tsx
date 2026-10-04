@@ -1,15 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+const siteUrl = 'https://www.prathamranka.in';
+
 export const metadata: Metadata = {
   title: 'AgentPay — Case Study',
   description:
     'A Go modular monolith for secure x402 USDC payments, cryptographic evidence, and AI-agent API commerce.',
-  alternates: { canonical: '/projects/agentpay' },
+  alternates: { canonical: `${siteUrl}/projects/agentpay` },
   openGraph: {
     title: 'AgentPay — Case Study | Pratham Ranka',
     description: 'Secure x402 payments and API commerce infrastructure built on Go and AWS.',
     type: 'article',
+    url: `${siteUrl}/projects/agentpay`,
   },
 };
 
