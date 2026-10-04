@@ -51,6 +51,18 @@ _a2a._agents.prathamranka.in.    HTTPS 1 . alpn="h2" endpoint="https://www.prath
 The exact `HTTPS` record syntax varies by DNS provider; preserve the `_agents` owner names,
 HTTPS/SVCB service mode, `alpn`, and `endpoint` parameters.
 
+Verify publication with:
+
+```bash
+dig +short HTTPS _index._agents.prathamranka.in
+dig +short HTTPS _a2a._agents.prathamranka.in
+dig +short DS prathamranka.in
+```
+
+The `DS` query must return a record for DNSSEC validation to be active. DNS records cannot
+be created by this Next.js project; they must be applied in the registrar or DNS provider
+dashboard for `prathamranka.in`.
+
 ## Tech Stack
 
 | Category | Technology |

@@ -8,21 +8,21 @@ export function GET() {
     host: { name: 'Pratham Ranka', url: siteUrl },
     entries: [
       {
-        id: 'urn:air:prathamranka.in:portfolio:profile',
+        identifier: 'urn:air:prathamranka.in:portfolio:profile',
         displayName: 'Structured portfolio profile',
         type: 'application/json',
         url: `${siteUrl}/api/profile`,
         representativeQueries: ['Who is Pratham Ranka?', 'What skills does Pratham Ranka have?', 'Where is Pratham Ranka based?'],
       },
       {
-        id: 'urn:air:prathamranka.in:portfolio:projects',
+        identifier: 'urn:air:prathamranka.in:portfolio:projects',
         displayName: 'Portfolio projects',
         type: 'application/json',
         url: `${siteUrl}/api/projects`,
         representativeQueries: ['What projects has Pratham Ranka built?', 'Show AgentPay details.', 'Which projects use Go?'],
       },
       {
-        id: 'urn:air:prathamranka.in:portfolio:agent',
+        identifier: 'urn:air:prathamranka.in:portfolio:agent',
         displayName: 'Portfolio agent actions',
         type: 'application/json',
         url: `${siteUrl}/api/agent`,

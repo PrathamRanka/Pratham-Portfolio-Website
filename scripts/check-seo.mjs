@@ -10,6 +10,9 @@ const profileRoute = readFileSync(resolve('src', 'app', 'api', 'profile', 'route
 const projectsRoute = readFileSync(resolve('src', 'app', 'api', 'projects', 'route.ts'), 'utf8');
 const securityRoute = readFileSync(resolve('src', 'app', '.well-known', 'security.txt', 'route.ts'), 'utf8');
 const feedRoute = readFileSync(resolve('src', 'app', 'feed.xml', 'route.ts'), 'utf8');
+const ardRoute = readFileSync(resolve('src', 'app', '.well-known', 'ai-catalog.json', 'route.ts'), 'utf8');
+const authRoute = readFileSync(resolve('src', 'app', 'auth.md', 'route.ts'), 'utf8');
+const protectedResourceRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-protected-resource', 'route.ts'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
   ['metadata description', /description:\s*['"`]/],
@@ -27,8 +30,11 @@ const checks = [
   ['project index route', /projects\.map/],
   ['security contact policy', /Contact: mailto:/],
   ['RSS feed', /application\/rss\+xml/],
+  ['ARD identifiers', /identifier:\s*'urn:air:/],
+  ['Auth.md heading', /# Auth\.md/],
+  ['protected resource metadata', /authorization_servers[\s\S]*scopes_supported/],
 ];
-const failures = checks.filter(([, pattern]) => !pattern.test(`${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}`));
+const failures = checks.filter(([, pattern]) => !pattern.test(`${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}`));
 if (!existsSync(resolve('public', 'llms.txt'))) failures.push(['public llms.txt', /./]);
 if (failures.length) {
   console.error(`SEO checks failed: ${failures.map(([name]) => name).join(', ')}`);

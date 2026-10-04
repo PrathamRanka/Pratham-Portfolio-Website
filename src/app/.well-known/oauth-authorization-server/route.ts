@@ -14,8 +14,11 @@ export function GET() {
     registration_endpoint: `${siteUrl}/auth.md`,
     agent_auth: {
       status: 'not_required',
+      register_uri: null,
       supported_identity_types: [],
       credential_types: [],
+      claims_uri: null,
+      revocation_uri: null,
       policy: `${siteUrl}/auth.md`,
     },
   });

@@ -1,5 +1,7 @@
 export function GET() {
-  return new Response(`# Agent authentication
+  return new Response(`# Auth.md
+
+## Agent authentication
 
 This portfolio's APIs are public and currently require no OAuth, OIDC, API key, or agent registration.
 

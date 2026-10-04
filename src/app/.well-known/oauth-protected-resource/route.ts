@@ -10,6 +10,7 @@ export function GET() {
     bearer_methods_supported: [],
     resource_name: 'Pratham Ranka public portfolio APIs',
     authentication_required: false,
+    resource_documentation: `${siteUrl}/auth.md`,
     documentation: `${siteUrl}/auth.md`,
   });
 }
