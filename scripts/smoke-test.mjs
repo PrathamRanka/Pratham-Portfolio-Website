@@ -48,6 +48,9 @@ async function expectJson(route, assertions) {
 await expectJson('/.well-known/oauth-protected-resource', [
   ['canonical resource identifier', (body) => body.resource === baseUrl],
   ['public authentication state', (body) => body.authentication_required === false],
+  ['public authorization state', (body) => body.authorization_required === false],
+  ['OAuth unsupported state', (body) => body.oauth_supported === false],
+  ['agent registration unsupported state', (body) => body.agent_registration_supported === false],
   ['no authorization servers', (body) => Array.isArray(body.authorization_servers) && body.authorization_servers.length === 0],
   ['no scopes', (body) => Array.isArray(body.scopes_supported) && body.scopes_supported.length === 0],
 ]);

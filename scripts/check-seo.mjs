@@ -39,6 +39,7 @@ const checks = [
   ['Auth.md human confirmation', /human[\s\S]*review[\s\S]*send it/],
   ['protected resource identifier', /resource:\s*siteUrl/],
   ['protected resource public metadata', /authorization_servers:\s*\[\][\s\S]*authentication_required:\s*false/],
+  ['protected resource unsupported metadata', /authorization_required:\s*false[\s\S]*oauth_supported:\s*false[\s\S]*agent_registration_supported:\s*false/],
   ['authorization server unsupported state', /status:\s*'not_supported'/],
   ['authorization server issuer', /issuer:\s*siteUrl/],
   ['no fabricated authorization endpoint', /^(?![\s\S]*authorization_endpoint:)[\s\S]*$/],
