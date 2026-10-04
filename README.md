@@ -17,6 +17,7 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Local variable fonts and optimized images
 - Type-safe content configuration with TypeScript
 - Automated `llms.txt` freshness updates through GitHub Actions
+- Generated portfolio data and CI validation for links, SEO, builds, and deployments
 
 ## Tech Stack
 
@@ -81,7 +82,10 @@ Open `http://localhost:3000` in your browser.
 
 The `public/llms.txt` profile is refreshed automatically after every push to `main`. The
 workflow updates its `Last updated` date from the latest commit and pushes a bot commit only when
-the file changes. To run the same update locally:
+the file changes. Its portfolio section is generated from `src/data/portfolio.ts`. Pull requests
+also run lint, build, profile, SEO, and link checks. A weekly maintenance workflow runs dependency
+audits, production smoke tests, and Lighthouse checks; Dependabot opens npm and GitHub Actions
+update pull requests.
 
 ```bash
 npm run update:llms

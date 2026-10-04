@@ -9,7 +9,7 @@ Phone: +91 70232 06003
 GitHub: https://github.com/PrathamRanka
 LinkedIn: https://www.linkedin.com/in/prathamranka06/
 X: https://x.com/pr7ham_develops
-Last updated: October 2, 2026
+Last updated: October 4, 2026
 
 ## Key Links
 
@@ -60,6 +60,56 @@ Pratham Ranka is a software engineer focused on backend engineering, distributed
 production infrastructure, open-source software, and product development. His work includes
 backend APIs, distributed workflows, fintech infrastructure, cloud-native systems,
 privacy-preserving payments, developer tools, testing infrastructure, and full-stack products.
+
+<!-- BEGIN GENERATED PORTFOLIO DATA -->
+## Portfolio Data (Generated)
+
+This section is generated from `src/data/portfolio.ts`. Do not edit it manually.
+
+## Experience
+
+### Software Engineer — S45
+July 2026 - Aug 2026
+
+Contributing to production backend systems by implementing features from HLD/LLD specifications, building a standardized multi-layer testing framework, developing shared testing infrastructure, writing comprehensive unit and integration tests, strengthening repository contract tests, validating database migrations, and improving CI quality gates. Collaborating on code reviews, bug fixes, and production engineering practices to improve maintainability, reliability, and long-term scalability.
+
+### Software Engineer Intern — Paasa
+Mar 2026 - May 2026
+
+Engineered fintech infrastructure powering banking and payment workflows across KYC, payouts, collections, and financial reconciliation. Built and optimized backend APIs, integrated banking partners, improved transaction reliability, automated internal operations, and contributed to production systems handling over $19M+ in assets while working closely with product and engineering teams.
+
+### Full-Stack Engineering Intern — TalKeys
+Jun 2025 - Aug 2025
+
+Developed production-ready features across the React and Node.js stack, implemented REST APIs, integrated third-party services, improved application performance, resolved production issues, and collaborated in an agile environment to ship customer-facing functionality with a focus on reliability and maintainability.
+
+## Projects
+
+### AgentPay
+Modular monolith for non-custodial x402 USDC payments on Base Sepolia, with 17 isolated Go domain packages, a DynamoDB single-table design, cryptographic evidence, an SSRF-hardened proxy, secure MCP tooling, and Terraform-managed AWS infrastructure. Deployed on Lambda ARM64 and API Gateway HTTP API v2 with <42ms P95 API latency, <8ms P99 queries, and under $10/month operating cost.
+
+GitHub: https://github.com/PrathamRanka/AgentPay
+
+### SendAI Fun
+Cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.
+
+GitHub: https://github.com/PrathamRanka/sendaifun
+
+### StarSwap
+Developer platform for discovering GitHub repositories with intelligent recommendations, GitHub OAuth, Redis-powered caching and rate limiting, PostgreSQL, real-time leaderboards, and a scalable full-stack architecture.
+
+GitHub: https://github.com/PrathamRanka/starswap
+
+### ZKavach
+Privacy-preserving payment infrastructure implementing Coinbase x402 with Groth16 zk-SNARKs, Poseidon hashing, Solidity smart contracts, and programmable USDC payments for autonomous AI agents.
+
+GitHub: https://github.com/PrathamRanka/ZKavach
+
+### SpotifyDownloader
+Production-ready TypeScript CLI featuring concurrent download workers, resumable pipelines, intelligent source matching, FFmpeg processing, ID3 metadata embedding, automated testing, CI/CD, and cross-platform support.
+
+GitHub: https://github.com/PrathamRanka/SpotifyDownloader
+<!-- END GENERATED PORTFOLIO DATA -->
 
 ## Work Experience
 

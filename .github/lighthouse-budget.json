@@ -1,0 +1,8 @@
+{
+  "categories": {
+    "accessibility": ["warn", { "minScore": 0.95 }],
+    "best-practices": ["warn", { "minScore": 0.9 }],
+    "performance": ["warn", { "minScore": 0.85 }],
+    "seo": ["error", { "minScore": 0.95 }]
+  }
+}
