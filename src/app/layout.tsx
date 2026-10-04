@@ -57,17 +57,28 @@ export const metadata: Metadata = {
   creator: 'Pratham Ranka',
   publisher: 'Pratham Ranka',
   manifest: '/manifest.webmanifest',
+  abstract:
+    'Global portfolio of Pratham Ranka, a backend engineer building distributed systems, cloud infrastructure, and production software.',
+  classification: 'Software engineering portfolio',
+  alternates: {
+    canonical: '/',
+    languages: {
+      'x-default': '/',
+      en: '/',
+      'en-IN': '/',
+    },
+  },
   other: {
     'llms-txt': `${siteUrl}/llms.txt`,
     'profile-page': siteUrl,
     'recruiter-contact': `${siteUrl}/#contact`,
+    'content-language': 'en-IN',
+    'audience': 'recruiters, engineering leaders, founders, and open-source maintainers',
     'mobile-web-app-capable': 'yes',
     'msapplication-TileColor': '#050607',
     'msapplication-TileImage': '/icons/icon-192.png',
   },
   formatDetection: { email: false, address: false, telephone: false },
-  alternates: { canonical: '/' },
-  category: 'technology',
   openGraph: {
     title: 'Pratham Ranka — Backend Engineer',
     description:
@@ -75,6 +86,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: 'Pratham Ranka',
     locale: 'en_IN',
+    alternateLocale: ['en_US', 'en_GB', 'en_SG', 'en_AU', 'en_AE', 'en_JP'],
     type: 'profile',
     firstName: 'Pratham',
     lastName: 'Ranka',
@@ -95,6 +107,7 @@ export const metadata: Metadata = {
     description:
       'Backend engineer building reliable production systems, distributed infrastructure, and open-source software.',
     creator: '@pr7ham_develops',
+    site: '@pr7ham_develops',
     images: ['/social/pratham-ranka-og.png'],
   },
   icons: {
