@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "update:llms": "node scripts/update-llms.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

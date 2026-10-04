@@ -16,6 +16,7 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Vercel Analytics and Speed Insights integration
 - Local variable fonts and optimized images
 - Type-safe content configuration with TypeScript
+- Automated `llms.txt` freshness updates through GitHub Actions
 
 ## Tech Stack
 
@@ -75,6 +76,16 @@ npm run dev
 ```
 
 Open `http://localhost:3000` in your browser.
+
+### Updating the LLM profile
+
+The `public/llms.txt` profile is refreshed automatically after every push to `main`. The
+workflow updates its `Last updated` date from the latest commit and pushes a bot commit only when
+the file changes. To run the same update locally:
+
+```bash
+npm run update:llms
+```
 
 ## Personalizing the Portfolio
 
