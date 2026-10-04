@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   applicationName: 'Pratham Ranka',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
-  category: 'technology',
   keywords: [
     'Pratham Ranka',
     'backend engineer',
@@ -62,6 +61,7 @@ export const metadata: Metadata = {
   },
   formatDetection: { email: false, address: false, telephone: false },
   alternates: { canonical: '/' },
+  category: 'technology',
   openGraph: {
     title: 'Pratham Ranka — Backend Engineer',
     description:
@@ -204,7 +204,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             description: project.description,
             codeRepository: project.github,
             keywords: project.technologies.join(', '),
-            url: project.github,
+            url: `${siteUrl}${project.caseStudy || `/#work-${project.name.toLowerCase().replace(/\s+/g, '-')}`}`,
           },
         })),
       },
@@ -224,6 +224,24 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             memberOf: { '@type': 'Organization', name: item.company },
           },
         })),
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${siteUrl}/#home`,
+        url: siteUrl,
+        name: 'Pratham Ranka — Backend Engineer Portfolio',
+        description:
+          'Portfolio of Pratham Ranka featuring backend engineering, distributed systems, cloud infrastructure, open-source work, and production software projects.',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#person` },
+        primaryImageOfPage: { '@id': `${siteUrl}/#profile` },
+        significantLink: [
+          `${siteUrl}/#experience`,
+          `${siteUrl}/#work`,
+          `${siteUrl}/#capabilities`,
+          `${siteUrl}/#open-source`,
+          `${siteUrl}/#contact`,
+        ],
       },
     ],
   };

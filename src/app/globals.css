@@ -185,6 +185,27 @@ a:focus-visible, button:focus-visible {
 
 .hero-copy { width: 100%; min-width: 0; max-width: 760px; }
 .hero-copy > div { min-width: 0; }
+.hero-proof {
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 22px;
+  padding: 10px 13px;
+  border-left: 2px solid var(--coral);
+  color: #aeb5bc;
+  background: linear-gradient(90deg, rgba(255, 156, 120, .08), transparent);
+  font-size: 11px;
+  letter-spacing: .02em;
+}
+.hero-proof span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--coral);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.hero-proof strong { color: #dce1e4; font-weight: 550; }
 .eyebrow { margin: 0 0 21px; color: #7e858e; font-size: 11px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; }
 .hero h1 {
   max-width: min(100%, 820px);

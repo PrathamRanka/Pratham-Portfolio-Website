@@ -8,7 +8,21 @@ const llms = readFileSync(llmsPath, 'utf8');
 
 const projects = [...portfolio.matchAll(
   /name:\s*"([^"]+)"[\s\S]*?description:\s*"([^"]+)"[\s\S]*?github:\s*"([^"]+)"/g,
-)].map(([, name, description, github]) => `### ${name}\n${description}\n\nGitHub: ${github}`);
+)].map((match) => {
+  const [, name, description, github] = match;
+  const blockEnd = portfolio.indexOf('\n  },', match.index);
+  const block = portfolio.slice(match.index, blockEnd === -1 ? undefined : blockEnd);
+  const caseStudy = block.match(/caseStudy:\s*"([^"]+)"/)?.[1];
+  const live = block.match(/live:\s*"([^"]+)"/)?.[1];
+  return [
+    `### ${name}`,
+    description,
+    '',
+    `GitHub: ${github}`,
+    caseStudy ? `Case study: https://www.prathamranka.in${caseStudy}` : '',
+    live ? `Live: ${live}` : '',
+  ].filter(Boolean).join('\n');
+});
 
 const experience = [...portfolio.matchAll(
   /company:\s*"([^"]+)"[\s\S]*?role:\s*"([^"]+)"[\s\S]*?date:\s*"([^"]+)"[\s\S]*?description:\s*\n?\s*"([^"]+)"/g,
