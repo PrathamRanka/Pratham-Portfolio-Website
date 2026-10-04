@@ -101,18 +101,39 @@ try {
 try {
   const response = await fetch(`${baseUrl}/sitemap.xml`, { redirect: 'follow' });
   const body = await response.text();
-  const requiredSitemapUrls = [
-    `${baseUrl}/`,
-    `${baseUrl}/projects/agentpay`,
-    `${baseUrl}/llms.txt`,
-    `${baseUrl}/api/profile`,
-    `${baseUrl}/api/projects`,
-    `${baseUrl}/.well-known/agent.json`,
-    `${baseUrl}/.well-known/ai-catalog.json`,
+  const canonicalSitemapBase = 'https://www.prathamranka.in';
+  const requiredSitemapUrls = [`${canonicalSitemapBase}/`, `${canonicalSitemapBase}/projects/agentpay`];
+  const forbiddenSitemapPaths = [
+    '/api/',
+    '/feed.xml',
+    '/updates.xml',
+    '/llms.txt',
+    '/auth.md',
+    '/.well-known/',
   ];
   if (!response.ok || !body.includes('<urlset')) failures.push('/sitemap.xml: invalid XML response');
   for (const url of requiredSitemapUrls) {
     if (!body.includes(`<loc>${url}</loc>`)) failures.push(`/sitemap.xml: missing ${url}`);
+  }
+  if (!body.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) {
+    failures.push('/sitemap.xml: missing standard sitemap namespace');
+  }
+  for (const path of forbiddenSitemapPaths) {
+    if (body.includes(`<loc>${canonicalSitemapBase}${path}`)) {
+      failures.push(`/sitemap.xml: contains non-indexable resource ${path}`);
+    }
+  }
+  const sitemapLocs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  for (const loc of sitemapLocs) {
+    if (!loc.startsWith(`${canonicalSitemapBase}/`)) {
+      failures.push(`/sitemap.xml: non-canonical hostname ${loc}`);
+    }
+    const verificationUrl = loc.replace(canonicalSitemapBase, baseUrl);
+    const pageResponse = await fetch(verificationUrl, { redirect: 'manual' });
+    const contentType = pageResponse.headers.get('content-type') || '';
+    if (pageResponse.status !== 200 || !contentType.startsWith('text/html')) {
+      failures.push(`/sitemap.xml: ${loc} is not a successful HTML page`);
+    }
   }
 } catch (error) {
   failures.push(`${error instanceof Error ? error.message : 'Sitemap request failed'} /sitemap.xml`);
