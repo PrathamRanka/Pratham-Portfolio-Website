@@ -5,7 +5,7 @@ import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/moti
 import { SkillsShowcase } from '@/components/skills-showcase';
 import { ContactDraftForm } from '@/components/contact-draft-form';
 import { WebMcpTools } from '@/components/webmcp-tools';
-import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
+import { education, experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
 export const revalidate = 3600;
 const email = 'prathamworks06@gmail.com';
@@ -45,7 +45,7 @@ export default function Home() {
         <div className="hero-kanji" aria-hidden="true">構築</div>
         <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
         <div className="hero-copy">
-          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span><span className="sr-only"> — Indian Backend and Full-Stack Engineer</span></h1><p className="hero-role">Indian software engineer specialising in backend development, distributed systems, reliable infrastructure, and production software.</p><div className="hero-proof"><span>Focus</span><strong>Backend development · Cloud infrastructure · Developer tools</strong></div></FadeIn>
+          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · TIET COE 2028</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span><span className="sr-only"> — Indian Backend and Full-Stack Engineer</span></h1><p className="hero-role">Indian software engineer and {education.department} student at {education.institution}, specialising in backend development, distributed systems, and reliable infrastructure.</p><div className="hero-proof"><span>Focus</span><strong>Backend development · Cloud infrastructure · Developer tools</strong></div></FadeIn>
           <FadeIn delay={0.12} eager>
             <div className="hero-direct-contact"><a href={`mailto:${email}`}><MailIcon size={17} /><span>{email}</span><ArrowUpRight size={15} /></a><a href={phoneHref}><PhoneIcon size={17} /><span>{phoneDisplay}</span></a></div>
             <div className="hero-actions">

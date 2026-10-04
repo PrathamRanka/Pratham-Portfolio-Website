@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
+import { education, experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
 const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
 
@@ -18,6 +18,7 @@ export function GET() {
       website: siteUrl,
       resume: resumeUrl,
       profiles: socialLinks,
+      education,
     },
     experience,
     projects,

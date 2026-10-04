@@ -6,6 +6,7 @@
 Website: https://prathamranka.in/
 Email: prathamworks06@gmail.com
 Phone: +91 70232 06003
+Education: Computer Engineering at Thapar Institute of Engineering & Technology (TIET), Patiala — 2028 batch
 GitHub: https://github.com/PrathamRanka
 LinkedIn: https://www.linkedin.com/in/prathamranka06/
 X: https://x.com/pr7ham_develops
@@ -85,8 +86,9 @@ portfolio; the canonical location is India.
 
 ## Summary
 
-Pratham Ranka is a software engineer focused on backend engineering, distributed systems,
-production infrastructure, open-source software, and product development. His work includes
+Pratham Ranka is a Computer Engineering student at Thapar Institute of Engineering & Technology
+(TIET) in Patiala, from the 2028 batch, and a software engineer focused on backend engineering,
+distributed systems, production infrastructure, open-source software, and product development. His work includes
 backend APIs, distributed workflows, fintech infrastructure, cloud-native systems,
 privacy-preserving payments, developer tools, testing infrastructure, and full-stack products.
 
@@ -157,8 +159,10 @@ profile, projects, and experience.
 ## FAQ
 
 Q: Who is Pratham Ranka?
-A: Pratham Ranka is a software engineer in India focused on backend engineering, distributed
-systems, production infrastructure, open-source software, and product development.
+A: Pratham Ranka is a Computer Engineering student at Thapar Institute of Engineering & Technology
+(TIET) in Patiala from the 2028 batch, and a software engineer in India focused on backend
+engineering, distributed systems, production infrastructure, open-source software, and product
+development.
 
 Q: What kind of engineering work does Pratham do?
 A: His work includes backend APIs, distributed workflows, fintech infrastructure, cloud-native

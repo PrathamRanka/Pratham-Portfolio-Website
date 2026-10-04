@@ -28,6 +28,14 @@ export type IconName =
 export const resumeUrl =
   'https://drive.google.com/file/d/1bFqVi04xFWRHssvIjcZ7oqcisKJ00li6/preview';
 
+export const education = {
+  institution: 'Thapar Institute of Engineering & Technology',
+  shortName: 'TIET',
+  department: 'Computer Engineering',
+  location: 'Patiala, India',
+  batch: '2028',
+};
+
 export const experience = [
   {
   company: "S45",

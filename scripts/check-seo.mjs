@@ -19,8 +19,8 @@ const homepage = readFileSync(resolve('src', 'app', 'page.tsx'), 'utf8');
 const nextConfig = readFileSync(resolve('next.config.ts'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
-  ['homepage title positioning', /default:\s*'Pratham Ranka \| Backend & Full-Stack Engineer'/],
-  ['concise homepage description', /Pratham Ranka is an Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools\./],
+  ['TIET homepage title', /default:\s*'Pratham Ranka \| TIET COE 2028 Software Engineer'/],
+  ['TIET homepage description', /TIET Computer Engineering student from the 2028 batch/],
   ['canonical URL', /alternates:\s*\{[\s\S]*canonical:\s*siteUrl/],
   ['single language alternate', /languages:\s*\{\s*'x-default': siteUrl,\s*'en-IN': siteUrl,\s*\}/],
   ['preferred canonical hostname', /https:\/\/prathamranka\.in/],
@@ -36,6 +36,7 @@ const checks = [
   ['agent contact action', /action !== 'contact'/],
   ['agent discovery manifest', /schema_version/],
   ['structured profile route', /experience[\s\S]*projects[\s\S]*skills/],
+  ['structured education profile', /education/],
   ['project index route', /projects\.map/],
   ['security contact policy', /Contact: mailto:/],
   ['RSS feed', /application\/rss\+xml/],
@@ -56,6 +57,7 @@ const checks = [
   ['AgentPay Open Graph URL', /url:\s*`\$\{siteUrl\}\/projects\/agentpay`/],
   ['AgentPay Twitter metadata', /twitter:\s*\{[\s\S]*AgentPay \| x402 Payments and AI-Agent API Commerce/],
   ['descriptive homepage H1', /name-last">Ranka<\/span><span className="sr-only"> — Indian Backend and Full-Stack Engineer/],
+  ['TIET homepage copy', /Software Engineer · TIET COE 2028/],
   ['disable powered by header', /poweredByHeader:\s*false/],
 ];
 const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}\n${agentPayPage}\n${homepage}\n${nextConfig}`;

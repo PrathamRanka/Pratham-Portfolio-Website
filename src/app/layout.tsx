@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import { experience, projects, skillGroups, socialLinks } from '@/data/portfolio';
+import { education, experience, projects, skillGroups, socialLinks } from '@/data/portfolio';
 import { SmoothScroll } from '@/components/smooth-scroll';
 import './globals.css';
 
@@ -29,11 +29,11 @@ const siteUrl = 'https://prathamranka.in';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Pratham Ranka | Backend & Full-Stack Engineer',
+    default: 'Pratham Ranka | TIET COE 2028 Software Engineer',
     template: '%s | Pratham Ranka',
   },
   description:
-    'Pratham Ranka is an Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools.',
+    'Pratham Ranka is a TIET Computer Engineering student from the 2028 batch and an Indian software engineer specialising in backend and full-stack development.',
   applicationName: 'Pratham Ranka',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
@@ -56,6 +56,11 @@ export const metadata: Metadata = {
     'fintech infrastructure',
     'AI agent infrastructure',
     'cloud-native software',
+    'Thapar Institute of Engineering & Technology',
+    'TIET',
+    'Computer Engineering',
+    'TIET COE 2028',
+    'Computer Engineering student in Patiala',
   ],
   authors: [{ name: 'Pratham Ranka', url: siteUrl }],
   creator: 'Pratham Ranka',
@@ -88,9 +93,9 @@ export const metadata: Metadata = {
   },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    title: 'Pratham Ranka | Backend & Full-Stack Engineer',
+    title: 'Pratham Ranka | TIET COE 2028 Software Engineer',
     description:
-      'Indian software engineer specialising in backend and full-stack development, distributed systems, cloud infrastructure, and developer tools.',
+      'TIET Computer Engineering student from the 2028 batch and Indian software engineer specialising in backend and full-stack development, distributed systems, and cloud infrastructure.',
     url: siteUrl,
     siteName: 'Pratham Ranka',
     locale: 'en_IN',
@@ -168,9 +173,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         '@type': 'ProfilePage',
         '@id': `${siteUrl}/#profile`,
         url: siteUrl,
-        name: 'Pratham Ranka | Backend & Full-Stack Engineer',
+        name: 'Pratham Ranka | TIET COE 2028 Software Engineer',
         description:
-          'Portfolio of Pratham Ranka, an Indian software engineer specialising in backend development, distributed systems, cloud infrastructure, and production software.',
+          'Portfolio of Pratham Ranka, a TIET Computer Engineering student from the 2028 batch and Indian software engineer specialising in backend development, distributed systems, cloud infrastructure, and production software.',
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url: `${siteUrl}/social/pratham-ranka-og.png`,
@@ -192,8 +197,29 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         email: 'mailto:prathamworks06@gmail.com',
         telephone: '+91-70232-06003',
         address: { '@type': 'PostalAddress', addressCountry: 'IN' },
+        affiliation: {
+          '@type': 'EducationalOrganization',
+          name: education.institution,
+          alternateName: education.shortName,
+          department: education.department,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Patiala',
+            addressCountry: 'IN',
+          },
+          description: `Computer Engineering, ${education.batch} batch`,
+        },
         knowsLanguage: 'English',
-        knowsAbout: ['Backend Engineering', 'Distributed Systems', 'Production Infrastructure', 'Open Source Software', ...skills],
+        knowsAbout: [
+          'Backend Engineering',
+          'Full-Stack Development',
+          'Distributed Systems',
+          'Production Infrastructure',
+          'Open Source Software',
+          education.institution,
+          education.department,
+          ...skills,
+        ],
         sameAs: profileLinks,
         hasOccupation: {
           '@type': 'Occupation',
@@ -217,7 +243,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         url: siteUrl,
         name: 'Pratham Ranka',
         description:
-          'Portfolio of Pratham Ranka, an Indian software engineer specialising in backend development, full-stack systems, distributed infrastructure, and open-source software.',
+          'Portfolio of Pratham Ranka, a TIET Computer Engineering student from the 2028 batch specialising in backend development, full-stack systems, distributed infrastructure, and open-source software.',
         inLanguage: 'en-IN',
         author: { '@id': `${siteUrl}/#person` },
         publisher: { '@id': `${siteUrl}/#person` },
@@ -267,7 +293,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         url: siteUrl,
         name: 'Pratham Ranka | Backend and Full-Stack Software Engineer Portfolio',
         description:
-          'Portfolio of Pratham Ranka featuring backend development, full-stack engineering, distributed systems, cloud infrastructure, and production software projects.',
+          'Portfolio of Pratham Ranka, a Computer Engineering student at Thapar Institute of Engineering & Technology in the 2028 batch, featuring backend development, full-stack engineering, distributed systems, and production software projects.',
         isPartOf: { '@id': `${siteUrl}/#website` },
         about: { '@id': `${siteUrl}/#person` },
         primaryImageOfPage: { '@id': `${siteUrl}/#profile` },
