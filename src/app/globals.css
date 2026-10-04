@@ -1270,3 +1270,4 @@ body::after {
 .project-links a:hover { color: var(--coral); border-color: rgba(255, 156, 120, .3); background: var(--coral-soft); }
 .contact-email:hover { color: var(--coral); border-color: var(--coral); }
 .footer a:hover { color: var(--coral); }
+ 
