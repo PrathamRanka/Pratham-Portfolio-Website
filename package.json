@@ -14,7 +14,7 @@
     "smoke": "node scripts/smoke-test.mjs"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.6.1",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "gsap": "^3.15.0",
     "motion": "^13.5.0",
