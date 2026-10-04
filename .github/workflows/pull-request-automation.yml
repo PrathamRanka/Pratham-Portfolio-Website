@@ -1,0 +1,173 @@
+name: Pull request automation
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_run:
+    workflows: ["Quality checks"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      pull_request:
+        description: "Pull request number to evaluate"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: pull-request-automation-${{ github.event.pull_request.number || github.event.workflow_run.id || github.event.inputs.pull_request }}
+  cancel-in-progress: true
+
+jobs:
+  repair-generated-profile:
+    if: >-
+      github.event_name == 'pull_request_target' &&
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether the change is safe to repair
+        id: scope
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pullNumber = context.payload.pull_request.number;
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner,
+              repo,
+              pull_number: pullNumber,
+              per_page: 100,
+            });
+            const allowed = new Set([
+              'package.json',
+              'package-lock.json',
+              'public/llms.txt',
+            ]);
+            const unsafe = files.filter(({ filename }) => !allowed.has(filename));
+            core.setOutput('repairable', unsafe.length === 0 ? 'true' : 'false');
+            if (unsafe.length > 0) {
+              core.info(`Skipping repair because the PR changes: ${unsafe.map(({ filename }) => filename).join(', ')}`);
+            }
+
+      - name: Check out the dependency pull request
+        if: steps.scope.outputs.repairable == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        if: steps.scope.outputs.repairable == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Repair generated profile
+        if: steps.scope.outputs.repairable == 'true'
+        run: npm run update:llms
+
+      - name: Commit generated profile repair
+        if: steps.scope.outputs.repairable == 'true'
+        env:
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          if git diff --quiet -- public/llms.txt; then
+            echo "public/llms.txt is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/llms.txt
+          git commit -m "chore: refresh generated llms profile"
+          git push origin "HEAD:${PR_BRANCH}"
+
+  enable-safe-auto-merge:
+    if: >-
+      (github.event_name == 'pull_request_target' &&
+      github.event.pull_request.user.login == 'dependabot[bot]') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate checks and enable auto-merge
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            let pullNumber = context.payload.pull_request?.number;
+
+            if (!pullNumber && context.eventName === 'workflow_run') {
+              const pullRequests = context.payload.workflow_run.pull_requests || [];
+              pullNumber = pullRequests[0]?.number;
+            }
+
+            if (!pullNumber && context.eventName === 'workflow_dispatch') {
+              pullNumber = Number(context.payload.inputs.pull_request);
+            }
+
+            if (!pullNumber) {
+              core.info('No pull request is associated with this event.');
+              return;
+            }
+
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: pullNumber,
+            });
+
+            if (pullRequest.user.login !== 'dependabot[bot]' || pullRequest.draft) {
+              core.info('Only non-draft Dependabot pull requests are eligible.');
+              return;
+            }
+
+            const { data: checks } = await github.rest.checks.listForRef({
+              owner,
+              repo,
+              ref: pullRequest.head.sha,
+              per_page: 100,
+            });
+            const requiredChecks = ['validate', 'links'];
+            const checkByName = new Map(checks.check_runs.map((check) => [check.name, check]));
+            const missing = requiredChecks.filter((name) => !checkByName.has(name));
+            const unsuccessful = requiredChecks.filter((name) => {
+              const check = checkByName.get(name);
+              return check && (check.status !== 'completed' ||
+                !['success', 'neutral', 'skipped'].includes(check.conclusion));
+            });
+
+            if (missing.length > 0 || unsuccessful.length > 0) {
+              core.info(`Waiting for required checks. Missing: ${missing.join(', ') || 'none'}; not successful: ${unsuccessful.join(', ') || 'none'}.`);
+              return;
+            }
+
+            if (pullRequest.mergeable_state !== 'clean') {
+              core.info(`Pull request is not clean (${pullRequest.mergeable_state}); no auto-merge was enabled.`);
+              return;
+            }
+
+            await github.graphql(`
+              mutation EnablePullRequestAutoMerge($pullRequestId: ID!) {
+                enablePullRequestAutoMerge(
+                  input: {
+                    pullRequestId: $pullRequestId
+                    mergeMethod: SQUASH
+                  }
+                ) {
+                  pullRequest {
+                    number
+                    autoMergeRequest {
+                      mergeMethod
+                    }
+                  }
+                }
+              }
+            `, { pullRequestId: pullRequest.node_id });
+
+            core.info(`Enabled squash auto-merge for #${pullNumber}.`);

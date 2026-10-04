@@ -18,6 +18,15 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Type-safe content configuration with TypeScript
 - Automated `llms.txt` freshness updates through GitHub Actions
 - Generated portfolio data and CI validation for links, SEO, builds, and deployments
+- Guarded Dependabot pull request automation with generated-file repair and squash auto-merge
+
+### Pull request automation
+
+Dependabot pull requests are evaluated by `.github/workflows/pull-request-automation.yml`.
+The workflow only repairs the generated `public/llms.txt` file when a dependency update
+has no other source changes. It enables squash auto-merge only for non-draft Dependabot
+pull requests after both `validate` and `links` pass and GitHub reports the pull request
+as clean. Other pull requests are never modified or merged automatically.
 
 ## Tech Stack
 
