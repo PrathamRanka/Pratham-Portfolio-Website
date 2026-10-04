@@ -4,7 +4,7 @@ const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').r
 
 export function GET() {
   return NextResponse.json({
-    resource: `${siteUrl}/api`,
+    resource: siteUrl,
     authorization_servers: [],
     scopes_supported: [],
     bearer_methods_supported: [],

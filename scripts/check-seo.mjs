@@ -13,6 +13,7 @@ const feedRoute = readFileSync(resolve('src', 'app', 'feed.xml', 'route.ts'), 'u
 const ardRoute = readFileSync(resolve('src', 'app', '.well-known', 'ai-catalog.json', 'route.ts'), 'utf8');
 const authRoute = readFileSync(resolve('src', 'app', 'auth.md', 'route.ts'), 'utf8');
 const protectedResourceRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-protected-resource', 'route.ts'), 'utf8');
+const authorizationServerRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-authorization-server', 'route.ts'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
   ['metadata description', /description:\s*['"`]/],
@@ -32,9 +33,17 @@ const checks = [
   ['RSS feed', /application\/rss\+xml/],
   ['ARD identifiers', /identifier:\s*'urn:air:/],
   ['Auth.md heading', /# Auth\.md/],
-  ['protected resource metadata', /authorization_servers[\s\S]*scopes_supported/],
+  ['Auth.md public access model', /public[\s\S]*require no OAuth[\s\S]*agent registration/],
+  ['Auth.md registration limitation', /Agent registration[\s\S]*not supported or required/],
+  ['Auth.md human confirmation', /human[\s\S]*review[\s\S]*send it/],
+  ['protected resource identifier', /resource:\s*siteUrl/],
+  ['protected resource public metadata', /authorization_servers:\s*\[\][\s\S]*authentication_required:\s*false/],
+  ['authorization server unsupported state', /status:\s*'not_supported'/],
+  ['no fabricated authorization endpoint', /^(?![\s\S]*authorization_endpoint:)[\s\S]*$/],
+  ['no fabricated registration endpoint', /^(?![\s\S]*registration_endpoint:)[\s\S]*$/],
 ];
-const failures = checks.filter(([, pattern]) => !pattern.test(`${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}`));
+const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}`;
+const failures = checks.filter(([, pattern]) => !pattern.test(source));
 if (!existsSync(resolve('public', 'llms.txt'))) failures.push(['public llms.txt', /./]);
 if (failures.length) {
   console.error(`SEO checks failed: ${failures.map(([name]) => name).join(', ')}`);
