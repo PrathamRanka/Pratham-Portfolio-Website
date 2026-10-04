@@ -51,6 +51,7 @@ export default function Home() {
               <Magnetic><a className="button button-secondary" href="#work"><LayersIcon /> Selected work</a></Magnetic>
               <div className="social-actions" aria-label="Social profiles"><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a><a href="https://www.linkedin.com/in/prathamranka06/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a><a className="social-text" href="https://x.com/pr7ham_develops" target="_blank" rel="noreferrer" aria-label="X">𝕏</a></div>
             </div>
+            <div className="hero-index" aria-label="Portfolio overview"><span><b>05</b> selected systems</span><span><b>03</b> production roles</span><span><b>∞</b> failure modes considered</span></div>
           </FadeIn>
         </div>
         <FadeIn delay={0.1} className="portrait-column" eager>
@@ -68,10 +69,6 @@ export default function Home() {
       <section className="section page-shell" id="work" aria-labelledby="work-heading">
         <FadeIn><SectionLabel index="02">Selected work</SectionLabel><div className="section-heading-row"><h2 id="work-heading">A small list with <span>real depth.</span></h2><p>Selected systems spanning infrastructure, privacy, developer tools, and production software.</p></div></FadeIn>
         <div className="project-list">{projects.map((project, index) => <FadeIn key={project.name} delay={index * 0.04}><article className="project-row" id={`work-${project.name.toLowerCase().replace(/\s+/g, '-')}`}><div className={`project-mark project-mark-${project.accent}`} aria-hidden="true"><span>{project.mark}</span></div><div className="project-copy"><div className="project-title-line"><span>0{index + 1}</span><h3>{project.name}</h3>{project.status && <small className="project-status">{project.status}</small>}</div><p>{project.description}</p></div><div className="project-tech">{project.technologies.map((technology) => <span key={technology} title={technology}><TechIcon name={technology} /></span>)}</div><div className="project-links"><a href={project.github} target="_blank" rel="noreferrer"><GithubIcon /><span>Code</span></a>{project.caseStudy && <a href={project.caseStudy}><ArrowUpRight /><span>Case study</span></a>}{project.live && <a href={project.live} target="_blank" rel="noreferrer"><ArrowUpRight /><span>Live</span></a>}</div></article></FadeIn>)}</div>
-      </section>
-
-      <section className="metrics-strip page-shell" aria-label="Selected engineering metrics">
-        <div><strong>17</strong><span>AgentPay domains</span></div><div><strong>&lt;42ms</strong><span>P95 API latency</span></div><div><strong>&lt;8ms</strong><span>P99 data queries</span></div><div><strong>67</strong><span>AWS resources managed</span></div><div><strong>$10</strong><span>Monthly operating cost</span></div>
       </section>
 
       <section className="section page-shell" id="capabilities" aria-labelledby="capabilities-heading">
