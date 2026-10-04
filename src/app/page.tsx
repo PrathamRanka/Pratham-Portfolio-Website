@@ -45,7 +45,7 @@ export default function Home() {
         <div className="hero-kanji" aria-hidden="true">構築</div>
         <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
         <div className="hero-copy">
-          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span></h1><p className="hero-role">Backend engineer building distributed systems, reliable infrastructure, and production software that survives real traffic, real failures, and real deadlines.</p><div className="hero-proof"><span>Focus</span><strong>Backend systems · Cloud infrastructure · Developer tools</strong></div></FadeIn>
+          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · India</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span><span className="sr-only"> — Backend Engineer Building Reliable Systems</span></h1><p className="hero-role">Backend engineer building distributed systems, reliable infrastructure, and production software that survives real traffic, real failures, and real deadlines.</p><div className="hero-proof"><span>Focus</span><strong>Backend systems · Cloud infrastructure · Developer tools</strong></div></FadeIn>
           <FadeIn delay={0.12} eager>
             <div className="hero-direct-contact"><a href={`mailto:${email}`}><MailIcon size={17} /><span>{email}</span><ArrowUpRight size={15} /></a><a href={phoneHref}><PhoneIcon size={17} /><span>{phoneDisplay}</span></a></div>
             <div className="hero-actions">
@@ -53,7 +53,7 @@ export default function Home() {
               <Magnetic><a className="button button-secondary" href="#work"><LayersIcon /> Selected work</a></Magnetic>
               <div className="social-actions" aria-label="Social profiles"><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a><a href="https://www.linkedin.com/in/prathamranka06/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a><a className="social-text" href="https://x.com/pr7ham_develops" target="_blank" rel="noreferrer" aria-label="X">𝕏</a></div>
             </div>
-            <div className="hero-index" aria-label="Portfolio overview"><span><b>05</b> selected systems</span><span><b>03</b> production roles</span><span><b>∞</b> failure modes considered</span></div>
+            <div className="hero-index" aria-label="Portfolio overview"><span><span className="index-value">05</span> selected systems</span><span><span className="index-value">03</span> production roles</span><span><span className="index-value">∞</span> failure modes considered</span></div>
           </FadeIn>
         </div>
         <FadeIn delay={0.1} className="portrait-column" eager>
@@ -65,7 +65,7 @@ export default function Home() {
 
       <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
         <FadeIn><SectionLabel index="01">Experience</SectionLabel><div className="section-heading-row"><h2 id="experience-heading">Work measured in <span>outcomes.</span></h2><p>Roles where ownership meant making hard systems understandable, dependable, and ready for real users.</p></div></FadeIn>
-        <TimelineRail>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item experience-card"><div className="timeline-logo-cell"><span className={item.current ? 'timeline-node is-current' : 'timeline-node'}><CompanyLogo logo={item.logo} company={item.company} /></span></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><b>Y</b> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</TimelineRail>
+        <TimelineRail>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item experience-card"><div className="timeline-logo-cell"><span className={item.current ? 'timeline-node is-current' : 'timeline-node'}><CompanyLogo logo={item.logo} company={item.company} /></span></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><span className="yc-mark">Y</span> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</TimelineRail>
       </section>
 
       <section className="section page-shell" id="work" aria-labelledby="work-heading">

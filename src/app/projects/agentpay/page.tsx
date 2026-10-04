@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: 'article',
     url: `${siteUrl}/projects/agentpay`,
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AgentPay — Case Study | Pratham Ranka',
+    description: 'Secure x402 payments and API commerce infrastructure built on Go and AWS.',
+  },
 };
 
 const domains = ['Catalog', 'Intents', 'Payments', 'Proxy', 'Evidence', 'Disputes', 'Settlement'];

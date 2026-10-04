@@ -46,7 +46,7 @@ export function SkillsShowcase({ groups }: { groups: SkillGroup[] }) {
                 <p>WORKING LAYER</p>
                 <h3>{group.label}</h3>
               </div>
-              <b>{group.skills.length.toString().padStart(2, '0')}</b>
+              <span className="capability-count">{group.skills.length.toString().padStart(2, '0')}</span>
             </div>
             <p className="capability-note">{groupNotes[groupIndex]}</p>
             <div className="capability-skills">

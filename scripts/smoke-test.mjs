@@ -168,6 +168,18 @@ try {
   ]);
   const homepage = await homepageResponse.text();
   const project = await projectResponse.text();
+  const homepageH1s = [...homepage.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)];
+  const homepageAlternates = [...homepage.matchAll(/<link rel="alternate" hrefLang="([^"]+)" href="([^"]+)"/g)];
+  const homepageDescription = homepage.match(/<meta name="description" content="([^"]+)"/)?.[1] || '';
+  if (homepageH1s.length !== 1 || !homepageH1s[0][1].includes('Backend Engineer Building Reliable Systems')) {
+    failures.push('homepage: expected one descriptive H1');
+  }
+  if (homepageDescription.length < 100 || homepageDescription.length > 160) {
+    failures.push('homepage: meta description is outside the concise validation range');
+  }
+  if (homepageAlternates.length !== 2 || !homepageAlternates.some(([, lang]) => lang === 'en-IN') || homepageAlternates.some(([, lang]) => lang === 'en')) {
+    failures.push('homepage: duplicate or incorrect language alternates');
+  }
   if (!homepage.includes('<link rel="canonical" href="https://www.prathamranka.in"')) {
     failures.push('homepage: incorrect canonical URL');
   }
@@ -179,6 +191,12 @@ try {
   }
   if (!project.includes('property="og:url" content="https://www.prathamranka.in/projects/agentpay"')) {
     failures.push('AgentPay: incorrect Open Graph URL');
+  }
+  if (!project.includes('name="twitter:title" content="AgentPay — Case Study | Pratham Ranka"')) {
+    failures.push('AgentPay: missing route-specific Twitter title');
+  }
+  if (homepageResponse.headers.has('x-powered-by')) {
+    failures.push('homepage: X-Powered-By header is exposed');
   }
 } catch (error) {
   failures.push(`${error instanceof Error ? error.message : 'Canonical metadata request failed'} canonical metadata`);

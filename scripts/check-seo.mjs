@@ -15,10 +15,14 @@ const authRoute = readFileSync(resolve('src', 'app', 'auth.md', 'route.ts'), 'ut
 const protectedResourceRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-protected-resource', 'route.ts'), 'utf8');
 const authorizationServerRoute = readFileSync(resolve('src', 'app', '.well-known', 'oauth-authorization-server', 'route.ts'), 'utf8');
 const agentPayPage = readFileSync(resolve('src', 'app', 'projects', 'agentpay', 'page.tsx'), 'utf8');
+const homepage = readFileSync(resolve('src', 'app', 'page.tsx'), 'utf8');
+const nextConfig = readFileSync(resolve('next.config.ts'), 'utf8');
 const checks = [
   ['metadata title', /title:\s*\{/],
-  ['metadata description', /description:\s*['"`]/],
+  ['homepage title positioning', /default:\s*'Pratham Ranka \| Backend & Full-Stack Engineer'/],
+  ['concise homepage description', /Pratham Ranka is a backend and full-stack engineer in India building distributed systems, cloud infrastructure, and developer tools\./],
   ['canonical URL', /alternates:\s*\{[\s\S]*canonical:\s*siteUrl/],
+  ['single language alternate', /languages:\s*\{\s*'x-default': siteUrl,\s*'en-IN': siteUrl,\s*\}/],
   ['preferred canonical hostname', /https:\/\/www\.prathamranka\.in/],
   ['no stale canonical hostname', /^(?![\s\S]*owasptiet\.com\/recruit-core)[\s\S]*$/],
   ['JSON-LD', /application\/ld\+json/],
@@ -49,8 +53,11 @@ const checks = [
   ['no fabricated registration endpoint', /^(?![\s\S]*registration_endpoint:)[\s\S]*$/],
   ['AgentPay canonical URL', /canonical:\s*`\$\{siteUrl\}\/projects\/agentpay`/],
   ['AgentPay Open Graph URL', /url:\s*`\$\{siteUrl\}\/projects\/agentpay`/],
+  ['AgentPay Twitter metadata', /twitter:\s*\{[\s\S]*AgentPay — Case Study \| Pratham Ranka/],
+  ['descriptive homepage H1', /name-last">Ranka<\/span><span className="sr-only"> — Backend Engineer Building Reliable Systems/],
+  ['disable powered by header', /poweredByHeader:\s*false/],
 ];
-const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}\n${agentPayPage}`;
+const source = `${layout}\n${sitemap}\n${robots}\n${agentRoute}\n${agentManifest}\n${profileRoute}\n${projectsRoute}\n${securityRoute}\n${feedRoute}\n${ardRoute}\n${authRoute}\n${protectedResourceRoute}\n${authorizationServerRoute}\n${agentPayPage}\n${homepage}\n${nextConfig}`;
 const failures = checks.filter(([, pattern]) => !pattern.test(source));
 if (!existsSync(resolve('public', 'llms.txt'))) failures.push(['public llms.txt', /./]);
 if (failures.length) {

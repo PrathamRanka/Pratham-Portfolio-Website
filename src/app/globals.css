@@ -264,7 +264,7 @@ a:focus-visible, button:focus-visible {
   letter-spacing: .04em;
 }
 .hero-index span { display: inline-flex; align-items: center; gap: 7px; }
-.hero-index b { color: var(--coral); font-size: 14px; font-weight: 700; letter-spacing: -.04em; }
+.hero-index .index-value { color: var(--coral); font-size: 14px; font-weight: 700; letter-spacing: -.04em; }
 .project-title-line { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .project-status { padding: 3px 7px; border: 1px solid rgba(120,230,239,.2); border-radius: 99px; color: var(--cyan); font-size: 9px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
 .approach-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 42px; }
@@ -350,7 +350,7 @@ a:focus-visible, button:focus-visible {
 .timeline-content .role { margin: 3px 0 20px; color: #abb1b8; font-size: 12px; }
 .timeline-content > p:last-child { margin: 0; color: #858c94; font-size: 14px; line-height: 1.7; }
 .yc-badge { padding: 3px 8px 3px 4px; border: 1px solid rgba(255,118,64,.24); border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; color: #ad8580; font-size: 9px; font-weight: 680; letter-spacing: .08em; }
-.yc-badge b { width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #ff5a1f; font-size: 9px; }
+.yc-badge .yc-mark { width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #ff5a1f; font-size: 9px; }
 
 .project-list { border-top: 1px solid var(--line); }
 .project-row { min-height: 150px; padding: 22px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 74px minmax(280px, 1fr) auto auto; gap: 30px; align-items: center; transition: padding .4s cubic-bezier(.22,1,.36,1), background .3s ease; }
@@ -1177,7 +1177,7 @@ body::after {
 }
 .capability-card-heading p { margin: 0 0 3px; color: #59636a; font-size: 7px; font-weight: 740; letter-spacing: .17em; }
 .capability-card-heading h3 { margin: 0; font-size: clamp(19px, 2vw, 25px); font-weight: 560; letter-spacing: -.035em; }
-.capability-card-heading b { color: rgba(var(--card-accent),.33); font-size: 34px; font-weight: 380; line-height: .9; letter-spacing: -.08em; }
+.capability-card-heading .capability-count { color: rgba(var(--card-accent),.33); font-size: 34px; font-weight: 380; line-height: .9; letter-spacing: -.08em; }
 .capability-note { position: relative; z-index: 1; max-width: 470px; margin: 24px 0 25px; color: #758089; font-size: 12px; line-height: 1.65; }
 .capability-skills { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
 .capability-skill {

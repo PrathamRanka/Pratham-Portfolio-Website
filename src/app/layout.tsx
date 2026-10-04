@@ -29,11 +29,11 @@ const siteUrl = 'https://www.prathamranka.in';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Pratham Ranka — Backend Engineer',
+    default: 'Pratham Ranka | Backend & Full-Stack Engineer',
     template: '%s | Pratham Ranka',
   },
   description:
-    'Pratham Ranka is a backend engineer and software engineer in India building distributed systems, cloud infrastructure, developer tools, and production-grade products for global teams.',
+    'Pratham Ranka is a backend and full-stack engineer in India building distributed systems, cloud infrastructure, and developer tools.',
   applicationName: 'Pratham Ranka',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
@@ -64,7 +64,6 @@ export const metadata: Metadata = {
     canonical: siteUrl,
     languages: {
       'x-default': siteUrl,
-      en: siteUrl,
       'en-IN': siteUrl,
     },
   },
@@ -85,9 +84,9 @@ export const metadata: Metadata = {
   },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    title: 'Pratham Ranka — Backend Engineer',
+    title: 'Pratham Ranka | Backend & Full-Stack Engineer',
     description:
-      'Backend engineer building reliable production systems, distributed infrastructure, and open-source software.',
+      'Backend and full-stack engineer building distributed systems, cloud infrastructure, and developer tools.',
     url: siteUrl,
     siteName: 'Pratham Ranka',
     locale: 'en_IN',
@@ -108,9 +107,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pratham Ranka — Backend Engineer',
+    title: 'Pratham Ranka | Backend & Full-Stack Engineer',
     description:
-      'Backend engineer building reliable production systems, distributed infrastructure, and open-source software.',
+      'Backend and full-stack engineer building distributed systems, cloud infrastructure, and developer tools.',
     creator: '@pr7ham_develops',
     site: '@pr7ham_develops',
     images: ['/social/pratham-ranka-og.png'],
@@ -165,7 +164,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         '@type': 'ProfilePage',
         '@id': `${siteUrl}/#profile`,
         url: siteUrl,
-        name: 'Pratham Ranka — Backend Engineer',
+        name: 'Pratham Ranka | Backend & Full-Stack Engineer',
         description:
           'Portfolio of Pratham Ranka, a backend engineer building distributed systems and production infrastructure.',
         primaryImageOfPage: {

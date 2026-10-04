@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const url = process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in';
+  const url = 'https://www.prathamranka.in';
   return {
     rules: [
       {
