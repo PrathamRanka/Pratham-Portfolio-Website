@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
 						key: 'X-Robots-Tag',
 						value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 					},
+					{
+						key: 'Link',
+						value: '</.well-known/api-catalog>; rel="api-catalog", </.well-known/agent.json>; rel="describedby", </api/agent>; rel="service-doc", </.well-known/api-catalog; rel="service-desc"',
+					},
 				],
 			},
 			{
@@ -82,6 +86,29 @@ const nextConfig: NextConfig = {
 					{ key: 'Cache-Control', value: 'public, max-age=300, s-maxage=3600' },
 					{ key: 'Access-Control-Allow-Origin', value: '*' },
 				],
+			},
+			{
+				source: '/.well-known/api-catalog',
+				headers: [{ key: 'Content-Type', value: 'application/linkset+json; charset=utf-8' }],
+			},
+			{
+				source: '/.well-known/ai-catalog.json',
+				headers: [
+					{ key: 'Content-Type', value: 'application/json; charset=utf-8' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' },
+				],
+			},
+			{
+				source: '/.well-known/mcp/server-card.json',
+				headers: [{ key: 'Content-Type', value: 'application/json; charset=utf-8' }],
+			},
+			{
+				source: '/.well-known/agent-skills/index.json',
+				headers: [{ key: 'Content-Type', value: 'application/json; charset=utf-8' }],
+			},
+			{
+				source: '/auth.md',
+				headers: [{ key: 'Content-Type', value: 'text/markdown; charset=utf-8' }],
 			},
 		];
 	},

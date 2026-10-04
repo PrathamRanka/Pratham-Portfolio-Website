@@ -34,6 +34,23 @@ The workflow also polls open Dependabot pull requests every 15 minutes, because
 Actions settings must allow auto-merge and the workflow token must have pull-request write
 permission for GitHub to complete the merge.
 
+### Agent discovery deployment notes
+
+The application publishes RFC 8288 `Link` headers, Markdown negotiation, Content Signals,
+an RFC 9727-style API catalog, OAuth discovery metadata, an MCP Server Card, WebMCP tools,
+Agent Skills discovery, and an ARD catalog.
+
+DNS-AID cannot be published from application code. Add these records at the DNS provider for
+`prathamranka.in`, enable DNSSEC, and verify them with a DNSSEC-validating resolver:
+
+```text
+_index._agents.prathamranka.in.  HTTPS 1 . alpn="h2" endpoint="https://www.prathamranka.in/.well-known/ai-catalog.json"
+_a2a._agents.prathamranka.in.    HTTPS 1 . alpn="h2" endpoint="https://www.prathamranka.in/.well-known/agent.json"
+```
+
+The exact `HTTPS` record syntax varies by DNS provider; preserve the `_agents` owner names,
+HTTPS/SVCB service mode, `alpn`, and `endpoint` parameters.
+
 ## Tech Stack
 
 | Category | Technology |

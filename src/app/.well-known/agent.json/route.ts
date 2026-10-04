@@ -14,6 +14,10 @@ export function GET() {
       contact: `${siteUrl}/api/agent`,
       feed: `${siteUrl}/feed.xml`,
       security: `${siteUrl}/.well-known/security.txt`,
+      apiCatalog: `${siteUrl}/.well-known/api-catalog`,
+      aiCatalog: `${siteUrl}/.well-known/ai-catalog.json`,
+      mcpServerCard: `${siteUrl}/.well-known/mcp/server-card.json`,
+      agentSkills: `${siteUrl}/.well-known/agent-skills/index.json`,
     },
     policy: {
       contact_requires_human_confirmation: true,

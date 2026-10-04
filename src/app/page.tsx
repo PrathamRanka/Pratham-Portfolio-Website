@@ -4,6 +4,7 @@ import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { SkillsShowcase } from '@/components/skills-showcase';
 import { ContactDraftForm } from '@/components/contact-draft-form';
+import { WebMcpTools } from '@/components/webmcp-tools';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
 export const revalidate = 3600;
@@ -34,7 +35,7 @@ function Dock() {
 }
 
 export default function Home() {
-  return <>
+  return <><WebMcpTools />
     <a className="skip-link" href="#top">Skip to content</a>
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />

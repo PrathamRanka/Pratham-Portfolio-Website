@@ -30,14 +30,14 @@ export function ContactDraftForm() {
   }
 
   return (
-    <form className="contact-draft-form" onSubmit={handleSubmit}>
+    <form className="contact-draft-form" onSubmit={handleSubmit} {...{ toolname: 'prepare_contact_draft', tooldescription: 'Prepare a human-reviewed email draft for Pratham Ranka.' }}>
       <label>
         Subject
-        <input name="subject" maxLength={160} placeholder="Engineering opportunity" />
+        <input name="subject" maxLength={160} placeholder="Engineering opportunity" {...{ toolparamdescription: 'Optional subject for the email draft.' }} />
       </label>
       <label>
         Message
-        <textarea name="message" required maxLength={4000} rows={4} placeholder="Tell me what you are building..." />
+        <textarea name="message" required maxLength={4000} rows={4} placeholder="Tell me what you are building..." {...{ toolparamdescription: 'Message to include in the draft.' }} />
       </label>
       <label className="contact-form-trap" aria-hidden="true">
         Website
