@@ -98,7 +98,7 @@ jobs:
 
       - name: Check out the dependency pull request
         if: steps.scope.outputs.repairable == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ steps.scope.outputs.branch }}
@@ -164,7 +164,7 @@ jobs:
 
       - name: Check out the dependency pull request
         if: steps.scope.outputs.repairable == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.event.pull_request.head.ref }}
