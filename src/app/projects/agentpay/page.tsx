@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-const siteUrl = 'https://www.prathamranka.in';
+const siteUrl = 'https://prathamranka.in';
 
 export const metadata: Metadata = {
   title: 'AgentPay — Case Study',

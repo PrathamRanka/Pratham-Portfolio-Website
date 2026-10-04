@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { projects } from '@/data/portfolio';
 
-const siteUrl = 'https://www.prathamranka.in';
+const siteUrl = 'https://prathamranka.in';
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 

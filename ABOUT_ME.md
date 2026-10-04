@@ -47,7 +47,7 @@ Contact email: pranka0789@gmail.com
 
 Phone: +91 70232 06003 (from `Hero` quick-contact link)
 
-Website: https://www.prathamranka.in
+Website: https://prathamranka.in
 
 LinkedIn: https://www.linkedin.com/in/prathamranka06/
 

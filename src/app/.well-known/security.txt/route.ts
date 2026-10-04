@@ -1,5 +1,5 @@
 export function GET() {
-  const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+  const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
   return new Response([
     'Contact: mailto:prathamworks06@gmail.com',
     `Policy: ${siteUrl}/#contact`,

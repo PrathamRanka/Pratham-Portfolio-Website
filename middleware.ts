@@ -6,16 +6,16 @@ Pratham Ranka is a software engineer in India building distributed systems, prod
 
 ## Machine-readable resources
 
-- Profile: https://www.prathamranka.in/api/profile
-- Projects: https://www.prathamranka.in/api/projects
-- Agent capabilities: https://www.prathamranka.in/api/agent
-- Discovery manifest: https://www.prathamranka.in/.well-known/agent.json
-- API catalog: https://www.prathamranka.in/.well-known/api-catalog
-- AI catalog: https://www.prathamranka.in/.well-known/ai-catalog.json
-- MCP server card: https://www.prathamranka.in/.well-known/mcp/server-card.json
-- Agent Skills index: https://www.prathamranka.in/.well-known/agent-skills/index.json
-- Sitemap: https://www.prathamranka.in/sitemap.xml
-- RSS feed: https://www.prathamranka.in/feed.xml
+- Profile: https://prathamranka.in/api/profile
+- Projects: https://prathamranka.in/api/projects
+- Agent capabilities: https://prathamranka.in/api/agent
+- Discovery manifest: https://prathamranka.in/.well-known/agent.json
+- API catalog: https://prathamranka.in/.well-known/api-catalog
+- AI catalog: https://prathamranka.in/.well-known/ai-catalog.json
+- MCP server card: https://prathamranka.in/.well-known/mcp/server-card.json
+- Agent Skills index: https://prathamranka.in/.well-known/agent-skills/index.json
+- Sitemap: https://prathamranka.in/sitemap.xml
+- RSS feed: https://prathamranka.in/feed.xml
 - Contact: mailto:prathamworks06@gmail.com
 `;
 
@@ -69,7 +69,7 @@ Allow: /auth.md
 Disallow: /api/github/
 
 Content-Signal: ai-train=no, search=yes, ai-input=yes
-Sitemap: https://www.prathamranka.in/sitemap.xml
+Sitemap: https://prathamranka.in/sitemap.xml
 `;
 
 export function middleware(request: NextRequest) {

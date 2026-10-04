@@ -21,7 +21,7 @@ jobs:
       - run: npm audit --audit-level=high
       - run: npm run check:links
       - run: npm run check:seo
-      - run: SITE_URL=https://www.prathamranka.in npm run smoke
+      - run: SITE_URL=https://prathamranka.in npm run smoke
 
   lighthouse:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
       - uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            https://www.prathamranka.in/
-            https://www.prathamranka.in/projects/agentpay
+            https://prathamranka.in/
+            https://prathamranka.in/projects/agentpay
           budgetPath: .github/lighthouse-budget.json
           uploadArtifacts: true

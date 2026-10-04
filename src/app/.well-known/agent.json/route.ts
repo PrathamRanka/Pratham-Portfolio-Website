@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export function GET() {
-  const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+  const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
   return NextResponse.json({
     schema_version: '1.0',
     name: 'Pratham Ranka portfolio agent interface',

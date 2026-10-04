@@ -1,6 +1,6 @@
 import { experience, projects } from '@/data/portfolio';
 
-const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
 
 function escapeXml(value: string) {
   return value.replace(/[<>&'"]/g, (character) => ({

@@ -23,7 +23,7 @@ When changing a person, project, company, contact detail, or social link, update
 
 ## Content facts
 
-Use only details supported by the repository or the live portfolio. Do not invent employers, dates, metrics, education, certifications, project URLs, or availability. The canonical public contact email is `prathamworks06@gmail.com`; the canonical website is `https://www.prathamranka.in`.
+Use only details supported by the repository or the live portfolio. Do not invent employers, dates, metrics, education, certifications, project URLs, or availability. The canonical public contact email is `prathamworks06@gmail.com`; the canonical website is `https://prathamranka.in`.
 
 ## Editing guidance
 

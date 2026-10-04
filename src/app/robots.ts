@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const url = 'https://www.prathamranka.in';
+  const url = 'https://prathamranka.in';
   return {
     rules: [
       {

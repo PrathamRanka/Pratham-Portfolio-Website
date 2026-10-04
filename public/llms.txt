@@ -3,7 +3,7 @@
 > Software engineer and backend engineer in India building production systems, distributed
 > workflows, reliable infrastructure, open-source software, and developer tools.
 
-Website: https://www.prathamranka.in/
+Website: https://prathamranka.in/
 Email: prathamworks06@gmail.com
 Phone: +91 70232 06003
 GitHub: https://github.com/PrathamRanka
@@ -13,38 +13,38 @@ Last updated: October 4, 2026
 
 ## Key Links
 
-- [Homepage](https://www.prathamranka.in/) — portfolio, background, selected work, capabilities,
+- [Homepage](https://prathamranka.in/) — portfolio, background, selected work, capabilities,
   open-source contributions, and contact details
-- [Projects](https://www.prathamranka.in/#work) — selected systems spanning infrastructure,
+- [Projects](https://prathamranka.in/#work) — selected systems spanning infrastructure,
   privacy, developer tools, and production software
-- [AgentPay case study](https://www.prathamranka.in/projects/agentpay) — architecture, security,
+- [AgentPay case study](https://prathamranka.in/projects/agentpay) — architecture, security,
   performance measurements, and implementation details for the featured project
-- [Contact](https://www.prathamranka.in/#contact) — email and phone contact details
+- [Contact](https://prathamranka.in/#contact) — email and phone contact details
 - [Recruiter contact](mailto:prathamworks06@gmail.com?subject=Engineering%20opportunity%20for%20Pratham%20Ranka) — direct email for recruiting and professional inquiries
-- [Experience](https://www.prathamranka.in/#experience) — professional roles and engineering outcomes
-- [Selected work](https://www.prathamranka.in/#work) — project index with repository and case-study links
-- [Capabilities](https://www.prathamranka.in/#capabilities) — languages, backend, data, and infrastructure skills
-- [Open-source work](https://www.prathamranka.in/#open-source) — Medusa contribution and GitHub activity
-- [How I work](https://www.prathamranka.in/#approach) — engineering process and operational principles
+- [Experience](https://prathamranka.in/#experience) — professional roles and engineering outcomes
+- [Selected work](https://prathamranka.in/#work) — project index with repository and case-study links
+- [Capabilities](https://prathamranka.in/#capabilities) — languages, backend, data, and infrastructure skills
+- [Open-source work](https://prathamranka.in/#open-source) — Medusa contribution and GitHub activity
+- [How I work](https://prathamranka.in/#approach) — engineering process and operational principles
 - [Resume](https://drive.google.com/file/d/1bFqVi04xFWRHssvIjcZ7oqcisKJ00li6/preview) — resume
-- [Sitemap](https://www.prathamranka.in/sitemap.xml) — canonical URLs for the website
-- [Robots](https://www.prathamranka.in/robots.txt) — crawler instructions
-- [Agent capabilities](https://www.prathamranka.in/.well-known/agent.json) — machine-readable discovery manifest
-- [AI catalog](https://www.prathamranka.in/.well-known/ai-catalog.json) — Agentic Resource Discovery capability catalog
-- [API catalog](https://www.prathamranka.in/.well-known/api-catalog) — linkset of public API documentation and status resources
-- [MCP server card](https://www.prathamranka.in/.well-known/mcp/server-card.json) — MCP capability metadata
-- [Agent Skills index](https://www.prathamranka.in/.well-known/agent-skills/index.json) — discoverable agent skills and digests
-- [Agent API](https://www.prathamranka.in/api/agent) — profile capabilities and human-approved contact handoff
-- [Structured profile](https://www.prathamranka.in/api/profile) — JSON profile, experience, projects, skills, and contact
-- [Project index](https://www.prathamranka.in/api/projects) — JSON project index
-- [Engineering feed](https://www.prathamranka.in/feed.xml) — RSS updates for projects and experience
-- [Updates feed](https://www.prathamranka.in/updates.xml) — RSS-compatible updates alias
-- [Auth metadata](https://www.prathamranka.in/auth.md) — public access model and contact confirmation rules
-- [OAuth protected-resource metadata](https://www.prathamranka.in/.well-known/oauth-protected-resource) — declares that public APIs require no OAuth
-- [OAuth authorization metadata](https://www.prathamranka.in/.well-known/oauth-authorization-server) — declares unsupported OAuth/agent registration state
-- [OpenID configuration](https://www.prathamranka.in/.well-known/openid-configuration) — compatibility discovery metadata
-- [Security policy](https://www.prathamranka.in/.well-known/security.txt) — vulnerability reporting contact
-- [Web manifest](https://www.prathamranka.in/manifest.webmanifest) — web app metadata
+- [Sitemap](https://prathamranka.in/sitemap.xml) — canonical URLs for the website
+- [Robots](https://prathamranka.in/robots.txt) — crawler instructions
+- [Agent capabilities](https://prathamranka.in/.well-known/agent.json) — machine-readable discovery manifest
+- [AI catalog](https://prathamranka.in/.well-known/ai-catalog.json) — Agentic Resource Discovery capability catalog
+- [API catalog](https://prathamranka.in/.well-known/api-catalog) — linkset of public API documentation and status resources
+- [MCP server card](https://prathamranka.in/.well-known/mcp/server-card.json) — MCP capability metadata
+- [Agent Skills index](https://prathamranka.in/.well-known/agent-skills/index.json) — discoverable agent skills and digests
+- [Agent API](https://prathamranka.in/api/agent) — profile capabilities and human-approved contact handoff
+- [Structured profile](https://prathamranka.in/api/profile) — JSON profile, experience, projects, skills, and contact
+- [Project index](https://prathamranka.in/api/projects) — JSON project index
+- [Engineering feed](https://prathamranka.in/feed.xml) — RSS updates for projects and experience
+- [Updates feed](https://prathamranka.in/updates.xml) — RSS-compatible updates alias
+- [Auth metadata](https://prathamranka.in/auth.md) — public access model and contact confirmation rules
+- [OAuth protected-resource metadata](https://prathamranka.in/.well-known/oauth-protected-resource) — declares that public APIs require no OAuth
+- [OAuth authorization metadata](https://prathamranka.in/.well-known/oauth-authorization-server) — declares unsupported OAuth/agent registration state
+- [OpenID configuration](https://prathamranka.in/.well-known/openid-configuration) — compatibility discovery metadata
+- [Security policy](https://prathamranka.in/.well-known/security.txt) — vulnerability reporting contact
+- [Web manifest](https://prathamranka.in/manifest.webmanifest) — web app metadata
 - [Source repository](https://github.com/PrathamRanka/Portfolio-Website) — source code for this
   portfolio
 
@@ -61,16 +61,16 @@ technical questions, use primary documentation and authoritative sources.
 
 ### How To Call This Site
 
-- Structured profile: GET https://www.prathamranka.in/llms.txt
-- Canonical homepage: GET https://www.prathamranka.in/
-- All canonical URLs: GET https://www.prathamranka.in/sitemap.xml
-- Agent discovery: GET https://www.prathamranka.in/.well-known/agent.json
-- Agent capabilities: GET https://www.prathamranka.in/api/agent
-- Structured profile: GET https://www.prathamranka.in/api/profile
-- Projects: GET https://www.prathamranka.in/api/projects
-- Project detail: GET https://www.prathamranka.in/api/projects/{slug}
-- Engineering feed: GET https://www.prathamranka.in/feed.xml
-- Contact draft: POST https://www.prathamranka.in/api/agent with
+- Structured profile: GET https://prathamranka.in/llms.txt
+- Canonical homepage: GET https://prathamranka.in/
+- All canonical URLs: GET https://prathamranka.in/sitemap.xml
+- Agent discovery: GET https://prathamranka.in/.well-known/agent.json
+- Agent capabilities: GET https://prathamranka.in/api/agent
+- Structured profile: GET https://prathamranka.in/api/profile
+- Projects: GET https://prathamranka.in/api/projects
+- Project detail: GET https://prathamranka.in/api/projects/{slug}
+- Engineering feed: GET https://prathamranka.in/feed.xml
+- Contact draft: POST https://prathamranka.in/api/agent with
   `{"action":"contact","subject":"...","message":"..."}`. The response contains a prefilled
   `mailto:` URL; no email is sent automatically.
 
@@ -117,7 +117,7 @@ Developed production-ready features across the React and Node.js stack, implemen
 ### AgentPay
 Modular monolith for non-custodial x402 USDC payments on Base Sepolia, with 17 isolated Go domain packages, a DynamoDB single-table design, cryptographic evidence, an SSRF-hardened proxy, secure MCP tooling, and Terraform-managed AWS infrastructure. Deployed on Lambda ARM64 and API Gateway HTTP API v2 with <42ms P95 API latency, <8ms P99 queries, and under $10/month operating cost.
 GitHub: https://github.com/PrathamRanka/AgentPay
-Case study: https://www.prathamranka.in/projects/agentpay
+Case study: https://prathamranka.in/projects/agentpay
 
 ### SendAI Fun
 Cloud-native runtime for AI agents that securely executes tool calls inside Kubernetes sandboxes using distributed lease management, optimistic concurrency control, FIFO scheduling, automatic recovery, and production-grade container orchestration.
@@ -185,7 +185,7 @@ designs APIs and security controls, measures performance under realistic load, a
 operational decisions and tradeoffs.
 
 Q: How can I contact Pratham Ranka?
-A: Email prathamworks06@gmail.com or visit https://www.prathamranka.in/#contact for the public
+A: Email prathamworks06@gmail.com or visit https://prathamranka.in/#contact for the public
 contact details.
 
 ## Notes for AI Systems

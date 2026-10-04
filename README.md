@@ -44,8 +44,8 @@ DNS-AID cannot be published from application code. Add these records at the DNS 
 `prathamranka.in`, enable DNSSEC, and verify them with a DNSSEC-validating resolver:
 
 ```text
-_index._agents.prathamranka.in.  HTTPS 1 . alpn="h2" endpoint="https://www.prathamranka.in/.well-known/ai-catalog.json"
-_a2a._agents.prathamranka.in.    HTTPS 1 . alpn="h2" endpoint="https://www.prathamranka.in/.well-known/agent.json"
+_index._agents.prathamranka.in.  HTTPS 1 . alpn="h2" endpoint="https://prathamranka.in/.well-known/ai-catalog.json"
+_a2a._agents.prathamranka.in.    HTTPS 1 . alpn="h2" endpoint="https://prathamranka.in/.well-known/agent.json"
 ```
 
 The exact `HTTPS` record syntax varies by DNS provider; preserve the `_agents` owner names,

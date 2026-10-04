@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { NextResponse } from 'next/server';
 
-const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
 const definitions = [
   ['profile-discovery', 'Read the structured public profile.', '/api/profile'],
   ['project-discovery', 'Read public software project details.', '/api/projects'],

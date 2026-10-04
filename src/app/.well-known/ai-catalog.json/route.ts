@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_URL || 'https://prathamranka.in').replace(/\/$/, '');
 
 export function GET() {
   return NextResponse.json({

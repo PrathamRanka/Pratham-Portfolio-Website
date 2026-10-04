@@ -19,7 +19,7 @@ const projects = [...portfolio.matchAll(
     description,
     '',
     `GitHub: ${github}`,
-    caseStudy ? `Case study: https://www.prathamranka.in${caseStudy}` : '',
+    caseStudy ? `Case study: https://prathamranka.in${caseStudy}` : '',
     live ? `Live: ${live}` : '',
   ].filter(Boolean).join('\n');
 });

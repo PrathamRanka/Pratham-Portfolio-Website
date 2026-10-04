@@ -1,4 +1,4 @@
-const baseUrl = (process.env.SITE_URL || 'https://www.prathamranka.in').replace(/\/$/, '');
+const baseUrl = (process.env.SITE_URL || 'https://prathamranka.in').replace(/\/$/, '');
 const routes = [
   '/',
   '/llms.txt',
@@ -101,7 +101,7 @@ try {
 try {
   const response = await fetch(`${baseUrl}/sitemap.xml`, { redirect: 'follow' });
   const body = await response.text();
-  const canonicalSitemapBase = 'https://www.prathamranka.in';
+  const canonicalSitemapBase = 'https://prathamranka.in';
   const requiredSitemapUrls = [`${canonicalSitemapBase}/`, `${canonicalSitemapBase}/projects/agentpay`];
   const forbiddenSitemapPaths = [
     '/api/',
@@ -180,16 +180,16 @@ try {
   if (homepageAlternates.length !== 2 || !homepageAlternates.some(([, lang]) => lang === 'en-IN') || homepageAlternates.some(([, lang]) => lang === 'en')) {
     failures.push('homepage: duplicate or incorrect language alternates');
   }
-  if (!homepage.includes('<link rel="canonical" href="https://www.prathamranka.in"')) {
+  if (!homepage.includes('<link rel="canonical" href="https://prathamranka.in"')) {
     failures.push('homepage: incorrect canonical URL');
   }
-  if (!homepage.includes('property="og:url" content="https://www.prathamranka.in"')) {
+  if (!homepage.includes('property="og:url" content="https://prathamranka.in"')) {
     failures.push('homepage: incorrect Open Graph URL');
   }
-  if (!project.includes('<link rel="canonical" href="https://www.prathamranka.in/projects/agentpay"')) {
+  if (!project.includes('<link rel="canonical" href="https://prathamranka.in/projects/agentpay"')) {
     failures.push('AgentPay: incorrect canonical URL');
   }
-  if (!project.includes('property="og:url" content="https://www.prathamranka.in/projects/agentpay"')) {
+  if (!project.includes('property="og:url" content="https://prathamranka.in/projects/agentpay"')) {
     failures.push('AgentPay: incorrect Open Graph URL');
   }
   if (!project.includes('name="twitter:title" content="AgentPay — Case Study | Pratham Ranka"')) {

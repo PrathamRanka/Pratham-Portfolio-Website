@@ -24,7 +24,7 @@ const hanken = localFont({
   variable: '--font-hanken',
 });
 
-const siteUrl = 'https://www.prathamranka.in';
+const siteUrl = 'https://prathamranka.in';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
