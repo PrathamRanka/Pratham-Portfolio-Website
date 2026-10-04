@@ -1,6 +1,6 @@
 :root {
-  --bg: #070809;
-  --bg-elevated: #0c1012;
+  --bg: #0d0b0d;
+  --bg-elevated: #171216;
   --ink: #f4f6f8;
   --muted: #858c95;
   --line: rgba(255, 255, 255, 0.1);
@@ -47,7 +47,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   cursor: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.8645 16.1896L13.3727 20.817C13.0881 21.3457 12.9457 21.61 12.7745 21.6769C12.6259 21.7349 12.4585 21.7185 12.324 21.6328C12.1689 21.534 12.0806 21.2471 11.9038 20.6733L8.44519 9.44525C8.3008 8.97651 8.2286 8.74213 8.28669 8.58383C8.33729 8.44595 8.44595 8.33729 8.58383 8.2867C8.74213 8.22861 8.9765 8.3008 9.44525 8.44519L20.6732 11.9038C21.247 12.0806 21.5339 12.169 21.6327 12.324C21.7185 12.4586 21.7348 12.6259 21.6768 12.7745C21.61 12.9458 21.3456 13.0881 20.817 13.3728L16.1896 15.8645C16.111 15.9068 16.0717 15.9279 16.0374 15.9551C16.0068 15.9792 15.9792 16.0068 15.9551 16.0374C15.9279 16.0717 15.9068 16.111 15.8645 16.1896Z" fill="%23FFFFFF" stroke="%23000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 3.5V2M5.06066 5.06066L4 4M5.06066 13L4 14.0607M13 5.06066L14.0607 4M3.5 9H2" stroke="%23000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') 12 12, auto;
-  font-family: var(--font-hanken), sans-serif;
+  font-family: var(--font-hanken), 'Trebuchet MS', sans-serif;
   font-size: 16px;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
@@ -83,6 +83,13 @@ body::after {
 a { color: inherit; text-decoration: none; }
 button, a { -webkit-tap-highlight-color: transparent; }
 h1, h2, h3, p { margin-top: 0; }
+
+h1, h2, h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+}
+
+h1 em, h2 em, h3 em { font-style: italic; }
 
 .sr-only {
   position: absolute;
@@ -580,6 +587,8 @@ body::after {
   font-weight: 620;
   letter-spacing: .065em;
   text-transform: uppercase;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
 }
 .hero-status span { filter: drop-shadow(0 0 7px rgba(255,174,79,.7)); }
 
@@ -843,6 +852,62 @@ body::after {
   background: rgba(5,7,8,.7);
   box-shadow: 0 28px 90px rgba(0,0,0,.27), inset 0 1px rgba(255,255,255,.025);
   perspective: 1200px;
+}
+
+.capability-atlas {
+  border-color: rgba(255, 194, 161, .16);
+  border-radius: 26px 8px 26px 8px;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255, 159, 120, .12), transparent 22rem),
+    radial-gradient(circle at 12% 88%, rgba(120, 230, 239, .08), transparent 24rem),
+    rgba(13, 11, 13, .82);
+  box-shadow: 0 30px 100px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.05);
+}
+
+.capability-atlas::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 18px 4px 18px 4px;
+}
+
+.capability-atlas-header {
+  color: #d6b7a9;
+  letter-spacing: .08em;
+}
+
+.capability-atlas-header > div:last-child {
+  color: #7f7379;
+  letter-spacing: .03em;
+  text-transform: none;
+}
+
+.capability-atlas-grid { gap: 10px; padding: 16px; }
+.capability-atlas .capability-card {
+  border-color: rgba(255,255,255,.09);
+  border-radius: 18px 5px 18px 5px;
+  background: linear-gradient(145deg, rgba(35, 26, 30, .92), rgba(15, 13, 16, .9));
+}
+.capability-atlas .capability-card:hover {
+  border-color: rgba(255, 170, 135, .36);
+  transform: translateY(-4px);
+}
+.capability-atlas .capability-card-heading h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(21px, 2.2vw, 29px);
+  letter-spacing: -.04em;
+}
+.capability-atlas .capability-card-heading p { color: #a8877b; }
+.capability-atlas .capability-skill {
+  border-radius: 10px 3px 10px 3px;
+  background: rgba(255,255,255,.035);
+}
+.capability-atlas .capability-skill strong { color: #e0d7d8; }
+.capability-atlas .capability-marquee {
+  border-block-color: rgba(255, 194, 161, .1);
+  background: rgba(255, 255, 255, .018);
 }
 .capability-console::before {
   content: '';

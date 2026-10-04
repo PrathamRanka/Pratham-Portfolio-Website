@@ -18,11 +18,11 @@ export function SkillsShowcase({ groups }: { groups: SkillGroup[] }) {
   const skills = groups.flatMap((group) => group.skills);
 
   return (
-    <div className="capability-console" data-capability-console>
+    <div className="capability-console capability-atlas" data-capability-console>
       <SkillsInteractions />
-      <div className="capability-console-bar" aria-hidden="true">
-        <div><span className="console-live" /> SYSTEM CAPABILITY INDEX</div>
-        <div>{String(skills.length).padStart(2, '0')} MODULES / 04 DOMAINS</div>
+      <div className="capability-console-bar capability-atlas-header">
+        <div><span className="console-live" /> THE TOOLKIT</div>
+        <div>{String(skills.length).padStart(2, '0')} tools · four working layers</div>
       </div>
 
       <div className="capability-marquee" aria-label="Technology overview">
@@ -33,7 +33,7 @@ export function SkillsShowcase({ groups }: { groups: SkillGroup[] }) {
         </div>
       </div>
 
-      <div className="capability-matrix">
+      <div className="capability-matrix capability-atlas-grid">
         {groups.map((group, groupIndex) => (
           <article
             className={`capability-card capability-card-${groupIndex + 1}`}
@@ -43,7 +43,7 @@ export function SkillsShowcase({ groups }: { groups: SkillGroup[] }) {
             <div className="capability-card-heading">
               <span>0{groupIndex + 1}</span>
               <div>
-                <p>DOMAIN</p>
+                <p>WORKING LAYER</p>
                 <h3>{group.label}</h3>
               </div>
               <b>{group.skills.length.toString().padStart(2, '0')}</b>
