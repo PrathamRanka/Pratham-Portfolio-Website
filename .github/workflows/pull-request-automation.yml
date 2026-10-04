@@ -22,6 +22,89 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  repair-known-dependency-failures:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.name == 'Quality checks'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check whether this is the known ESLint incompatibility
+        id: scope
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pullRequest = context.payload.workflow_run.pull_requests?.[0];
+            if (!pullRequest) {
+              core.setOutput('repairable', 'false');
+              return;
+            }
+
+            const { data: details } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: pullRequest.number,
+            });
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner,
+              repo,
+              pull_number: pullRequest.number,
+              per_page: 100,
+            });
+            const allowed = new Set(['package.json', 'package-lock.json']);
+            const onlyDependencyFiles = files.length > 0 &&
+              files.every(({ filename }) => allowed.has(filename));
+            const isEslintUpdate = /^chore\(deps-dev\): bump eslint from /i.test(details.title);
+            const sameRepository = details.head.repo?.full_name === `${owner}/${repo}`;
+            const repairable = details.user.login === 'dependabot[bot]' &&
+              !details.draft &&
+              onlyDependencyFiles &&
+              isEslintUpdate &&
+              sameRepository;
+            core.setOutput('repairable', repairable ? 'true' : 'false');
+            core.setOutput('branch', details.head.ref);
+            core.setOutput('pull-number', String(pullRequest.number));
+
+            if (!repairable) {
+              core.info('This failed dependency pull request is outside the known repair scope.');
+            }
+
+      - name: Check out the dependency pull request
+        if: steps.scope.outputs.repairable == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ steps.scope.outputs.branch }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        if: steps.scope.outputs.repairable == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Repair the known ESLint incompatibility
+        if: steps.scope.outputs.repairable == 'true'
+        run: node scripts/repair-dependency-pr.mjs
+
+      - name: Commit and push the dependency repair
+        if: steps.scope.outputs.repairable == 'true'
+        env:
+          PR_BRANCH: ${{ steps.scope.outputs.branch }}
+          PR_NUMBER: ${{ steps.scope.outputs.pull-number }}
+        run: |
+          if git diff --quiet -- package.json package-lock.json; then
+            echo "No dependency repair was necessary for #${PR_NUMBER}."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "fix: keep eslint within supported range"
+          git push origin "HEAD:${PR_BRANCH}"
+
   repair-generated-profile:
     if: >-
       github.event_name == 'pull_request_target' &&

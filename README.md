@@ -26,7 +26,8 @@ Dependabot pull requests are evaluated by `.github/workflows/pull-request-automa
 The workflow only repairs the generated `public/llms.txt` file when a dependency update
 has no other source changes. It enables squash auto-merge only for non-draft Dependabot
 pull requests after both `validate` and `links` pass and GitHub reports the pull request
-as clean. Other pull requests are never modified or merged automatically.
+as clean. It also repairs the known ESLint 10 incompatibility by keeping ESLint within
+the supported ESLint 9 range. Other pull requests are never modified or merged automatically.
 
 ## Tech Stack
 
