@@ -58,7 +58,11 @@ const capabilities = {
 };
 
 export function GET() {
-  return NextResponse.json(capabilities);
+  return NextResponse.json(capabilities, {
+    headers: {
+      'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
 }
 
 export async function POST(request: Request) {
@@ -94,5 +98,9 @@ export async function POST(request: Request) {
     message: 'Draft created. Open the mailto URL to review and send it.',
     recipient: email,
     mailto,
+  }, {
+    headers: {
+      'Cache-Control': 'no-store',
+    },
   });
 }
