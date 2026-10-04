@@ -50,6 +50,39 @@ const nextConfig: NextConfig = {
 					{ key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400' },
 				],
 			},
+			{
+				source: '/.well-known/security.txt',
+				headers: [
+					{ key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+					{ key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=604800' },
+				],
+			},
+			{
+				source: '/feed.xml',
+				headers: [
+					{ key: 'Content-Type', value: 'application/rss+xml; charset=utf-8' },
+				],
+			},
+			{
+				source: '/updates.xml',
+				headers: [
+					{ key: 'Content-Type', value: 'application/rss+xml; charset=utf-8' },
+				],
+			},
+			{
+				source: '/api/profile',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=300, s-maxage=3600' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' },
+				],
+			},
+			{
+				source: '/api/projects/:path*',
+				headers: [
+					{ key: 'Cache-Control', value: 'public, max-age=300, s-maxage=3600' },
+					{ key: 'Access-Control-Allow-Origin', value: '*' },
+				],
+			},
 		];
 	},
 	images: {

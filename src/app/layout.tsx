@@ -72,6 +72,11 @@ export const metadata: Metadata = {
     'llms-txt': `${siteUrl}/llms.txt`,
     'profile-page': siteUrl,
     'recruiter-contact': `${siteUrl}/#contact`,
+    'agent-discovery': `${siteUrl}/.well-known/agent.json`,
+    'machine-profile': `${siteUrl}/api/profile`,
+    'project-index': `${siteUrl}/api/projects`,
+    'rss-feed': `${siteUrl}/feed.xml`,
+    'security-policy': `${siteUrl}/.well-known/security.txt`,
     'content-language': 'en-IN',
     'audience': 'recruiters, engineering leaders, founders, and open-source maintainers',
     'mobile-web-app-capable': 'yes',
@@ -278,6 +283,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-IN">
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable profile" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Engineering updates" />
         <link rel="me" href="https://github.com/PrathamRanka" />
         <link rel="me" href="https://www.linkedin.com/in/prathamranka06/" />
         <link rel="me" href="https://x.com/pr7ham_develops" />

@@ -19,6 +19,7 @@ This repository is designed to be forked and personalized. Replace the content, 
 - Automated `llms.txt` freshness updates through GitHub Actions
 - Generated portfolio data and CI validation for links, SEO, builds, and deployments
 - Guarded Dependabot pull request automation with generated-file repair and squash auto-merge
+- Machine-readable profile, project APIs, RSS updates, security reporting, and agent discovery
 
 ### Pull request automation
 
@@ -28,6 +29,10 @@ has no other source changes. It enables squash auto-merge only for non-draft Dep
 pull requests after both `validate` and `links` pass and GitHub reports the pull request
 as clean. It also repairs the known ESLint 10 incompatibility by keeping ESLint within
 the supported ESLint 9 range. Other pull requests are never modified or merged automatically.
+The workflow also polls open Dependabot pull requests every 15 minutes, because
+`workflow_run` events do not reliably include every existing pull request. Repository
+Actions settings must allow auto-merge and the workflow token must have pull-request write
+permission for GitHub to complete the merge.
 
 ## Tech Stack
 

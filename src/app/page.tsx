@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
 import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
 import { SkillsShowcase } from '@/components/skills-showcase';
+import { ContactDraftForm } from '@/components/contact-draft-form';
 import { experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
 
 export const revalidate = 3600;
@@ -89,7 +90,7 @@ export default function Home() {
         <div className="approach-grid">{['Clarify requirements and failure modes', 'Model domain boundaries and access patterns', 'Design APIs, tests, and security controls', 'Measure performance under realistic load', 'Document decisions and operational playbooks'].map((step, index) => <div className="approach-step" key={step}><span>0{index + 1}</span><p>{step}</p></div>)}</div>
       </section>
 
-      <section className="contact contact-shell page-shell" id="contact" aria-labelledby="contact-heading"><FadeIn><p className="eyebrow">Recruiter &amp; team inquiries welcome</p><h2 id="contact-heading">Let&apos;s make it<br /><span>dependable.</span></h2><div className="contact-row"><div className="contact-links"><a className="contact-email" href={`mailto:${email}?subject=Engineering%20opportunity%20for%20Pratham%20Ranka`}>{email} <ArrowUpRight size={22} /></a><a className="contact-phone" href={phoneHref}><PhoneIcon /> {phoneDisplay}</a></div><p>For recruiters and engineering teams anywhere, email directly with the role, product, or system you would like to discuss.</p></div></FadeIn></section>
+      <section className="contact contact-shell page-shell" id="contact" aria-labelledby="contact-heading"><FadeIn><p className="eyebrow">Recruiter &amp; team inquiries welcome</p><h2 id="contact-heading">Let&apos;s make it<br /><span>dependable.</span></h2><div className="contact-row"><div className="contact-links"><a className="contact-email" href={`mailto:${email}?subject=Engineering%20opportunity%20for%20Pratham%20Ranka`}>{email} <ArrowUpRight size={22} /></a><a className="contact-phone" href={phoneHref}><PhoneIcon /> {phoneDisplay}</a></div><p>For recruiters and engineering teams anywhere, email directly with the role, product, or system you would like to discuss.</p></div><ContactDraftForm /></FadeIn></section>
     </main>
 
     <footer className="footer page-shell"><p>&copy; {new Date().getFullYear()} Pratham Ranka</p><div>{socialLinks.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}<a href={`mailto:${email}`}>Email</a><a href={phoneHref}>Phone</a></div><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a><a className="footer-badge" href="https://destroy.spritefusion.com/?from=badge"><Image src="https://destroy.spritefusion.com/badge.svg" alt="Destroy this website" width={180} height={40} unoptimized /></a></footer>

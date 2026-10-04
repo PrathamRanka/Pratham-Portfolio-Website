@@ -8,6 +8,8 @@ const capabilities = {
   version: '1.0',
   description: 'Machine-readable profile discovery and human-approved contact handoff.',
   profile: `${siteUrl}/llms.txt`,
+  structuredProfile: `${siteUrl}/api/profile`,
+  projects: `${siteUrl}/api/projects`,
   homepage: siteUrl,
   capabilities: [
     {
@@ -21,6 +23,18 @@ const capabilities = {
       method: 'GET',
       url: `${siteUrl}/api/agent`,
       description: 'Discover available machine-callable actions.',
+    },
+    {
+      name: 'get_structured_profile',
+      method: 'GET',
+      url: `${siteUrl}/api/profile`,
+      description: 'Read structured profile, experience, project, skill, and contact data.',
+    },
+    {
+      name: 'get_projects',
+      method: 'GET',
+      url: `${siteUrl}/api/projects`,
+      description: 'Read the public project index.',
     },
     {
       name: 'contact',

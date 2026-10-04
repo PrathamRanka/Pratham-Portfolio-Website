@@ -8,8 +8,12 @@ export function GET() {
     description: 'Public machine-readable profile and human-approved professional contact actions.',
     endpoints: {
       profile: `${siteUrl}/llms.txt`,
+      structuredProfile: `${siteUrl}/api/profile`,
+      projects: `${siteUrl}/api/projects`,
       capabilities: `${siteUrl}/api/agent`,
       contact: `${siteUrl}/api/agent`,
+      feed: `${siteUrl}/feed.xml`,
+      security: `${siteUrl}/.well-known/security.txt`,
     },
     policy: {
       contact_requires_human_confirmation: true,

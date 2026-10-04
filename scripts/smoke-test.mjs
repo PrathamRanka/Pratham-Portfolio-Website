@@ -5,7 +5,13 @@ const routes = [
   '/sitemap.xml',
   '/robots.txt',
   '/.well-known/agent.json',
+  '/.well-known/security.txt',
   '/api/agent',
+  '/api/profile',
+  '/api/projects',
+  '/api/projects/agentpay',
+  '/feed.xml',
+  '/updates.xml',
   '/projects/agentpay',
 ];
 const failures = [];

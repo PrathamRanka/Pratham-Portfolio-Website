@@ -1270,4 +1270,41 @@ body::after {
 .project-links a:hover { color: var(--coral); border-color: rgba(255, 156, 120, .3); background: var(--coral-soft); }
 .contact-email:hover { color: var(--coral); border-color: var(--coral); }
 .footer a:hover { color: var(--coral); }
+
+.contact-draft-form {
+  display: grid;
+  gap: 14px;
+  max-width: 620px;
+  margin-top: 28px;
+}
+
+.contact-draft-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.contact-draft-form input,
+.contact-draft-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, .035);
+  font: inherit;
+  resize: vertical;
+}
+
+.contact-draft-form input:focus,
+.contact-draft-form textarea:focus {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.contact-draft-form p { min-height: 1.3em; color: var(--muted); }
+.contact-form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
  
