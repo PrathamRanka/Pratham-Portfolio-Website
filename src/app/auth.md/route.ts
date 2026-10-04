@@ -18,6 +18,22 @@ credential, or agent registration.
 Agent registration is not supported or required. This site does not issue identities,
 credentials, access tokens, API keys, or registration links.
 
+Registration or provisioning endpoint: none.
+Supported registration methods: none.
+Credential use: not applicable.
+
+Machine-readable registration status:
+
+\`\`\`yaml
+agent_auth:
+  status: not_supported
+  register_uri: null
+  identity_types_supported: []
+  credential_types_supported: []
+  claim_uri: null
+  revocation_uri: null
+\`\`\`
+
 ## Contact action
 
 The contact action only creates a prefilled mailto draft. It never sends email automatically.

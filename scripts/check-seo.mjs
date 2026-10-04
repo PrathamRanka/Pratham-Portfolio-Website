@@ -35,10 +35,12 @@ const checks = [
   ['Auth.md heading', /# Auth\.md/],
   ['Auth.md public access model', /public[\s\S]*require no OAuth[\s\S]*agent registration/],
   ['Auth.md registration limitation', /Agent registration[\s\S]*not supported or required/],
+  ['Auth.md registration metadata', /register_uri:\s*null[\s\S]*identity_types_supported:\s*\[\][\s\S]*credential_types_supported:\s*\[\]/],
   ['Auth.md human confirmation', /human[\s\S]*review[\s\S]*send it/],
   ['protected resource identifier', /resource:\s*siteUrl/],
   ['protected resource public metadata', /authorization_servers:\s*\[\][\s\S]*authentication_required:\s*false/],
   ['authorization server unsupported state', /status:\s*'not_supported'/],
+  ['authorization server issuer', /issuer:\s*siteUrl/],
   ['no fabricated authorization endpoint', /^(?![\s\S]*authorization_endpoint:)[\s\S]*$/],
   ['no fabricated registration endpoint', /^(?![\s\S]*registration_endpoint:)[\s\S]*$/],
 ];

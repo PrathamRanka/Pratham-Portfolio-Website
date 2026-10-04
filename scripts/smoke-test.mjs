@@ -53,6 +53,7 @@ await expectJson('/.well-known/oauth-protected-resource', [
 ]);
 
 await expectJson('/.well-known/oauth-authorization-server', [
+  ['canonical issuer', (body) => body.issuer === baseUrl],
   ['unsupported state', (body) => body.status === 'not_supported'],
   ['no authorization endpoint', (body) => !('authorization_endpoint' in body)],
   ['no token endpoint', (body) => !('token_endpoint' in body)],
@@ -86,6 +87,9 @@ try {
   const contentType = response.headers.get('content-type') || '';
   if (!contentType.startsWith('text/markdown')) failures.push('/auth.md: missing Markdown content type');
   if (!body.includes('Agent registration is not supported or required')) failures.push('/auth.md: missing registration limitation');
+  if (!body.includes('register_uri: null') || !body.includes('credential_types_supported: []')) {
+    failures.push('/auth.md: missing machine-readable registration status');
+  }
   if (!body.includes('human') || !body.includes('send it')) failures.push('/auth.md: missing human confirmation policy');
 } catch (error) {
   failures.push(`${error instanceof Error ? error.message : 'Markdown request failed'} /auth.md`);
