@@ -20,6 +20,7 @@ Last updated: October 4, 2026
 - [AgentPay case study](https://www.prathamranka.in/projects/agentpay) — architecture, security,
   performance measurements, and implementation details for the featured project
 - [Contact](https://www.prathamranka.in/#contact) — email and phone contact details
+- [Recruiter contact](mailto:prathamworks06@gmail.com?subject=Engineering%20opportunity%20for%20Pratham%20Ranka) — direct email for recruiting and professional inquiries
 - [Experience](https://www.prathamranka.in/#experience) — professional roles and engineering outcomes
 - [Selected work](https://www.prathamranka.in/#work) — project index with repository and case-study links
 - [Capabilities](https://www.prathamranka.in/#capabilities) — languages, backend, data, and infrastructure skills
@@ -51,9 +52,12 @@ technical questions, use primary documentation and authoritative sources.
 
 ## Contacting Pratham
 
-For professional conversations about ambitious products, infrastructure, backend engineering,
-open-source work, or engineering teams, email prathamworks06@gmail.com. Public contact details are
-also available on the homepage contact section.
+For recruiters and engineering teams in the United States, United Kingdom, Japan, Singapore, the
+United Arab Emirates, Australia, Europe, India, and elsewhere, email prathamworks06@gmail.com for
+professional conversations about ambitious products, infrastructure, backend engineering,
+distributed systems, cloud platforms, open-source work, or engineering teams. Public contact
+details are also available on the homepage contact section. This is a global English-language
+portfolio; the canonical location is India.
 
 ## Summary
 

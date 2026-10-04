@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: '%s | Pratham Ranka',
   },
   description:
-    'Backend engineer building distributed systems, reliable infrastructure, open-source software, and production-grade products.',
+    'Pratham Ranka is a backend engineer and software engineer in India building distributed systems, cloud infrastructure, developer tools, and production-grade products for global teams.',
   applicationName: 'Pratham Ranka',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
@@ -47,6 +47,11 @@ export const metadata: Metadata = {
     'Node.js',
     'TypeScript',
     'Kubernetes',
+    'platform engineer',
+    'cloud infrastructure engineer',
+    'backend systems engineer',
+    'software engineer India',
+    'distributed systems engineer',
   ],
   authors: [{ name: 'Pratham Ranka', url: siteUrl }],
   creator: 'Pratham Ranka',
@@ -55,6 +60,7 @@ export const metadata: Metadata = {
   other: {
     'llms-txt': `${siteUrl}/llms.txt`,
     'profile-page': siteUrl,
+    'recruiter-contact': `${siteUrl}/#contact`,
     'mobile-web-app-capable': 'yes',
     'msapplication-TileColor': '#050607',
     'msapplication-TileImage': '/icons/icon-192.png',
@@ -165,6 +171,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         email: 'mailto:prathamworks06@gmail.com',
         telephone: '+91-70232-06003',
         address: { '@type': 'PostalAddress', addressCountry: 'IN' },
+        knowsLanguage: 'English',
         knowsAbout: ['Backend Engineering', 'Distributed Systems', 'Production Infrastructure', 'Open Source Software', ...skills],
         sameAs: profileLinks,
         hasOccupation: {
@@ -174,6 +181,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           skills: skills.join(', '),
         },
         subjectOf: { '@id': `${siteUrl}/#website` },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'recruiting and professional inquiries',
+          email: 'prathamworks06@gmail.com',
+          telephone: '+91-70232-06003',
+          availableLanguage: 'English',
+          url: `${siteUrl}/#contact`,
+        },
       },
       {
         '@type': 'WebSite',
