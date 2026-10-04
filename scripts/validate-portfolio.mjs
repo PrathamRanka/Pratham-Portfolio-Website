@@ -7,16 +7,21 @@ const required = [
   '## Portfolio Data (Generated)',
   '## Experience',
   '## Projects',
+  '## Skills',
   'prathamranka.in',
   'prathamworks06@gmail.com',
 ];
 const missing = required.filter((value) => !llms.includes(value));
 const projectNames = [...portfolio.matchAll(/name:\s*"([^"]+)"/g)].map(([, name]) => name);
 const missingProjects = projectNames.filter((name) => !llms.includes(`### ${name}`));
+const duplicateSections = ['## Work Experience', '## Projects'].filter(
+  (heading) => (llms.match(new RegExp(heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) ?? []).length > 1,
+);
 
-if (missing.length || missingProjects.length) {
+if (missing.length || missingProjects.length || duplicateSections.length) {
   if (missing.length) console.error(`Missing llms.txt content: ${missing.join(', ')}`);
   if (missingProjects.length) console.error(`Missing projects: ${missingProjects.join(', ')}`);
+  if (duplicateSections.length) console.error(`Duplicate sections: ${duplicateSections.join(', ')}`);
   process.exit(1);
 }
 

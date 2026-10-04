@@ -13,8 +13,9 @@ const projects = [...portfolio.matchAll(
 const experience = [...portfolio.matchAll(
   /company:\s*"([^"]+)"[\s\S]*?role:\s*"([^"]+)"[\s\S]*?date:\s*"([^"]+)"[\s\S]*?description:\s*\n?\s*"([^"]+)"/g,
 )].map(([, company, role, date, description]) => `### ${role} — ${company}\n${date}\n\n${description}`);
+const skills = [...new Set([...portfolio.matchAll(/\{ name: '([^']+)'/g)].map(([, name]) => name))];
 
-if (projects.length === 0 || experience.length === 0) {
+if (projects.length === 0 || experience.length === 0 || skills.length === 0) {
   throw new Error('Could not extract projects and experience from portfolio.ts.');
 }
 
@@ -31,15 +32,17 @@ const generated = [
   '## Projects',
   '',
   projects.join('\n\n'),
+  '',
+  '## Skills',
+  '',
+  skills.join(', '),
   '<!-- END GENERATED PORTFOLIO DATA -->',
 ].join('\n');
 const markerPattern = /<!-- BEGIN GENERATED PORTFOLIO DATA -->[\s\S]*?<!-- END GENERATED PORTFOLIO DATA -->/;
 
-if (!markerPattern.test(llms)) {
-  throw new Error(`Could not find generated section markers in ${llmsPath}.`);
-}
-
-const updated = llms.replace(markerPattern, generated);
+const updated = markerPattern.test(llms)
+  ? llms.replace(markerPattern, generated)
+  : llms.replace(/<!-- BEGIN GENERATED PORTFOLIO DATA -->[\s\S]*?(?=\n## Open Source)/, `${generated}\n`);
 if (updated !== llms) {
   writeFileSync(llmsPath, updated);
   console.log(`Generated portfolio data in ${llmsPath}.`);

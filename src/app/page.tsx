@@ -34,10 +34,11 @@ function Dock() {
 
 export default function Home() {
   return <>
+    <a className="skip-link" href="#top">Skip to content</a>
     <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
     <Dock />
 
-    <main id="top">
+    <main id="top" tabIndex={-1}>
       <section className="hero page-shell" aria-labelledby="hero-heading">
         <div className="hero-kanji" aria-hidden="true">構築</div>
         <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
