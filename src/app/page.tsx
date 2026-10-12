@@ -81,7 +81,6 @@ export default function Home() {
       <section className="section page-shell" id="open-source" aria-labelledby="oss-heading">
         <FadeIn><SectionLabel index="04">Open source & GitHub</SectionLabel></FadeIn>
         <div className="oss-layout">
-          <FadeIn className="oss-panel"><div className="medusa-mark"><span>M</span></div><div className="oss-copy"><p className="oss-kicker">Medusa / Contributor</p><h2 id="oss-heading">Contributing to the infrastructure behind modern commerce.</h2><p>Thoughtful code contributions to Medusa&apos;s open-source commerce platform, with the same emphasis on clarity and maintainability I bring to product work.</p></div><a href="https://github.com/medusajs/medusa" target="_blank" rel="noreferrer" className="text-link">Explore Medusa <ArrowUpRight /></a></FadeIn>
           <FadeIn delay={0.08} className="github-heatmap-card"><div className="github-heatmap-heading"><div><GithubIcon size={20} /><span>Autonomous public GitHub signal</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">Open profile <ArrowUpRight size={13} /></a></div><a className="github-heatmap-link" href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="Open Pratham Ranka on GitHub"><Image src="/api/github/heatmap" alt="Pratham Ranka public GitHub contribution heatmap with live statistics" width={854} height={289} unoptimized sizes="(max-width: 900px) calc(100vw - 40px), 854px" /></a></FadeIn>
         </div>
       </section>
