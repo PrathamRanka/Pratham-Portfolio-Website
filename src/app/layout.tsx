@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-
+import SmoothScroll from "@/components/smooth-scroll";
 import { education, experience, projects, skillGroups, socialLinks } from '@/data/portfolio';
 import './globals.css';
 
@@ -317,7 +317,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="me" href="https://x.com/pr7ham_develops" />
       </head>
       <body className={hanken.variable}>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         <Analytics />
         <SpeedInsights />
