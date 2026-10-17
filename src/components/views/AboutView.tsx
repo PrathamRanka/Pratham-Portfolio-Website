@@ -1,3 +1,4 @@
+import { LinkButton } from '@/components/ui/button';
 import { resumeUrl } from '@/data/portfolio';
 import { ArrowUpRight } from '@/components/icons';
 
@@ -11,36 +12,48 @@ export function AboutView() {
       >
         About
       </h2>
-
       <div className="space-y-4 text-sm sm:text-[15px] text-neutral-400 leading-relaxed max-w-xl">
         <p>
-          I am a software engineer and Computer Engineering student at Thapar Institute of Engineering
-          &amp; Technology (2028 batch) based in India. I focus on building robust, product-first
-          backend systems, distributed architectures, and scalable full-stack web applications.
+          I'm a Computer Engineering student at Thapar Institute of Engineering
+          &amp; Technology (2028), focused on backend engineering, distributed
+          systems, and building reliable full-stack products.
         </p>
+
         <p>
-          My work spans fintech infrastructure, payment settlement systems, autonomous AI agent
-          runtimes, and developer tooling. I have engineered production systems handling millions
-          in asset workflows, non-custodial x402 USDC micropayments with Go and AWS, and low-latency
-          distributed caching pipelines.
+          My experience spans fintech and payment infrastructure at PAASA (YC S24),
+          software engineering at S45, and cloud-native systems built with Go, AWS,
+          and Terraform. I enjoy tackling challenges in system design, reliability,
+          security, and performance.
         </p>
+
         <p>
-          Outside of production systems, I contribute to open-source software (including Medusa) and
-          believe that great engineering is defined by making failure modes, domain boundaries, and
-          operational tradeoffs explicit, testable, and dependable.
+          I'm an open-source contributor, including work on Medusa, and placed
+          4th at the Qualcomm × Snapdragon Multiverse Hackathon.
+        </p>
+
+        <p className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-[#F97316]/25 bg-[#F97316]/10 px-2 py-1 font-semibold text-[#FB923C]">
+            <span aria-hidden="true">🍥</span>
+            Dattebayo!
+          </span>
+          <span>
+            Big Naruto fan inspired by the determination to keep improving,
+            no matter how many times you get knocked down.
+          </span>
         </p>
       </div>
 
       <div className="mt-4">
-        <a
+        <LinkButton
           href={resumeUrl}
           target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 hover:underline font-medium"
+          rel="noopener noreferrer"
+          variant="primary"
+          size="md"
         >
-          <span>Read verified resume</span>
-          <ArrowUpRight size={13} />
-        </a>
+          Resume
+          <ArrowUpRight size={14} />
+        </LinkButton>
       </div>
     </section>
   );
