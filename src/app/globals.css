@@ -1,5 +1,5 @@
-
 @import "tailwindcss";
+
 :root {
   color-scheme: dark;
 
@@ -15,7 +15,7 @@
   --muted: oklch(0.7 0 0);
   --subtle: oklch(0.55 0 0);
 
-  /* Brand blue — shared with existing button.tsx */
+  /* Brand */
   --color-kumo-brand: oklch(0.5772 0.2324 260);
   --brand: var(--color-kumo-brand);
   --brand-hover: oklch(0.488 0.243 264.376);
@@ -26,26 +26,17 @@
   --line: oklch(1 0 0 / 0.1);
   --line-soft: oklch(1 0 0 / 0.05);
 
-  /* Status colors */
-  --success: oklch(0.765 0.177 163.223);
-  --warning: oklch(0.75 0.183 55.934);
-  --danger: oklch(0.637 0.237 25.331);
-  --info: oklch(0.685 0.169 237.323);
-
-  /* Legacy accents — preserve heatmap appearance */
+  /* GitHub heatmap legacy accents — preserved */
   --cyan: #38bdf8;
   --cyan-soft: rgba(56, 189, 248, 0.12);
-  --coral: #ff9c78;
-  --coral-soft: rgba(255, 156, 120, 0.12);
-  --amber: #ffbd7a;
-  --violet: #a78bfa;
   --green: #72e39a;
 
+  /* Layout */
   --max-width: 1240px;
   --side: clamp(22px, 5vw, 78px);
 }
 
-/* Tailwind CSS v4 semantic color utilities */
+/* Tailwind CSS v4 semantic utilities */
 @theme inline {
   --color-background: var(--bg);
   --color-surface: var(--bg-surface);
@@ -64,11 +55,6 @@
 
   --color-border: var(--line);
   --color-border-soft: var(--line-soft);
-
-  --color-success: var(--success);
-  --color-warning: var(--warning);
-  --color-danger: var(--danger);
-  --color-info: var(--info);
 }
 
 * {
@@ -78,27 +64,7 @@
 html {
   scroll-padding-top: 90px;
   scroll-behavior: smooth;
-  scrollbar-color: #262626 transparent;
-  scrollbar-width: thin;
   background: var(--bg);
-}
-
-html::-webkit-scrollbar {
-  width: 8px;
-}
-
-html::-webkit-scrollbar-track {
-  background: #080808;
-}
-
-html::-webkit-scrollbar-thumb {
-  min-height: 48px;
-  border-radius: 99px;
-  background: #262626;
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: #383838;
 }
 
 body {
@@ -106,7 +72,8 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   font-size: 15px;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -138,7 +105,8 @@ p {
 h1,
 h2,
 h3 {
-  font-family: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-hanken), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   font-weight: 600;
   letter-spacing: -0.025em;
   color: #ffffff;
@@ -168,14 +136,14 @@ h3 em {
   top: 12px;
   left: 50%;
   padding: 10px 14px;
-  border: 1px solid rgba(56, 189, 248, .42);
+  border: 1px solid rgba(56, 189, 248, 0.42);
   border-radius: 999px;
   color: #061012;
   background: var(--cyan);
   font-size: 12px;
   font-weight: 700;
   transform: translate(-50%, -160%);
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .skip-link:focus {
@@ -189,33 +157,20 @@ button:focus-visible {
   border-radius: 6px;
 }
 
-[data-reveal] {
-  opacity: 1;
-  transform: none;
-}
-
-[data-reveal].is-reveal-ready {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .5s ease-out, transform .5s cubic-bezier(.22, 1, .36, 1);
-}
-
-[data-reveal].is-reveal-ready.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ==========================================================================
-   PROTECTED GITHUB CONTRIBUTION HEATMAP SECTION
-   Original styling preserved
-   ========================================================================== */
+/* GitHub contribution heatmap — original styling preserved */
 .github-heatmap-card {
   padding: 16px;
-  border: 1px solid rgba(31, 111, 235, .35);
+  border: 1px solid rgba(31, 111, 235, 0.35);
   border-radius: 7px 20px 7px 20px;
   overflow: hidden;
-  background: linear-gradient(145deg, rgba(13, 20, 32, .94), rgba(7, 10, 15, .98));
-  box-shadow: inset 0 1px rgba(255, 255, 255, .04), 0 24px 70px rgba(0, 0, 0, .22);
+  background: linear-gradient(
+    145deg,
+    rgba(13, 20, 32, 0.94),
+    rgba(7, 10, 15, 0.98)
+  );
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 70px rgba(0, 0, 0, 0.22);
 }
 
 .github-heatmap-heading {
@@ -237,19 +192,19 @@ button:focus-visible {
 }
 
 .github-heatmap-heading > div::before {
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 12px rgba(114, 227, 154, .55);
+  box-shadow: 0 0 12px rgba(114, 227, 154, 0.55);
 }
 
 .github-heatmap-heading a {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: color .25s ease;
+  transition: color 0.25s ease;
 }
 
 .github-heatmap-heading a:hover {
