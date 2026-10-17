@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ArrowUpRight, GithubIcon } from '@/components/icons';
-
+import { LinkButton } from '@/components/ui/button';
 
 export function OpenSourceView() {
   return (
@@ -22,9 +22,16 @@ export function OpenSourceView() {
             <div>
               <GithubIcon size={20} />
             </div>
-            <a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">
-              Open profile <ArrowUpRight size={13} />
-            </a>
+              <LinkButton
+                href="https://github.com/PrathamRanka"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="primary"
+                size="sm"
+              >
+                <span>Open profile</span>
+                <ArrowUpRight size={13} />
+              </LinkButton>
           </div>
           <a
             className="github-heatmap-link"
