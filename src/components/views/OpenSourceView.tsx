@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ArrowUpRight, GithubIcon } from '@/components/icons';
-import { FadeIn } from '@/components/motion';
+
 
 export function OpenSourceView() {
   return (
@@ -18,7 +18,6 @@ export function OpenSourceView() {
 
       {/* PROTECTED GITHUB COMPONENT: EXACT COMPONENT, JSX, CLASSES, AND STYLES PRESERVED */}
       <div className="oss-layout">
-        <FadeIn delay={0.08} className="github-heatmap-card">
           <div className="github-heatmap-heading">
             <div>
               <GithubIcon size={20} />
@@ -44,7 +43,6 @@ export function OpenSourceView() {
               sizes="(max-width: 900px) calc(100vw - 40px), 854px"
             />
           </a>
-        </FadeIn>
       </div>
     </section>
   );
