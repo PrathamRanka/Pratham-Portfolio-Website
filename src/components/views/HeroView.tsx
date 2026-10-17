@@ -48,7 +48,7 @@ export function HeroView() {
       <div className="flex items-center flex-wrap gap-3 mt-6">
         <a
           href="#projects"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white text-black text-xs font-semibold hover:bg-neutral-200 transition-colors shadow-sm"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-700 text-neutral-100 text-xs font-semibold hover:bg-neutral-800 hover:border-neutral-600 hover:text-white transition-colors shadow-sm"
         >
           <span>View Work</span>
           <ArrowDownIcon size={12} />

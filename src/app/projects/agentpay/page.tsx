@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import './agentpay.css';
+
 
 const siteUrl = 'https://prathamranka.in';
 
