@@ -1,98 +1,51 @@
-import Image from 'next/image';
-
-import { ArrowUpRight, BriefcaseIcon, FileIcon, GithubIcon, HomeIcon, LayersIcon, LinkedinIcon, MailIcon, PhoneIcon, SparkIcon, TechIcon } from '@/components/icons';
-import { FadeIn, Magnetic, PortraitScene, TimelineRail } from '@/components/motion';
-import { SkillsShowcase } from '@/components/skills-showcase';
-import { ContactDraftForm } from '@/components/contact-draft-form';
 import { WebMcpTools } from '@/components/webmcp-tools';
-import { education, experience, projects, resumeUrl, skillGroups, socialLinks } from '@/data/portfolio';
+import { NavigationDockView } from '@/components/views/NavigationDockView';
+import { HeroView } from '@/components/views/HeroView';
+import { AboutView } from '@/components/views/AboutView';
+import { TechnicalWritingView } from '@/components/views/TechnicalWritingView';
+import { ExperienceView } from '@/components/views/ExperienceView';
+import { EducationView } from '@/components/views/EducationView';
+import { ToolkitView } from '@/components/views/ToolkitView';
+import { ProjectsView } from '@/components/views/ProjectsView';
+import { OpenSourceView } from '@/components/views/OpenSourceView';
+import { HackathonsView } from '@/components/views/HackathonsView';
+import { ContactView } from '@/components/views/ContactView';
+import { FooterView } from '@/components/views/FooterView';
 
 export const revalidate = 3600;
-const email = 'prathamworks06@gmail.com';
-const phoneDisplay = '+91 70232 06003';
-const phoneHref = 'tel:+917023206003';
 
-function SectionLabel({ index, children }: { index: string; children: React.ReactNode }) {
-  return <div className="section-label"><span>{index}</span><p>{children}</p></div>;
-}
-
-function CompanyLogo({ logo, company }: { logo: string; company: string }) {
-  return <div className="company-logo"><Image src={logo} alt={`${company} logo`} width={48} height={48} sizes="48px" /></div>;
-}
-
-function Dock() {
-  const items = [
-    { href: '#top', label: 'Home', icon: <HomeIcon /> },
-    { href: '#experience', label: 'Experience', icon: <BriefcaseIcon /> },
-    { href: '#work', label: 'Work', icon: <LayersIcon /> },
-    { href: '#capabilities', label: 'Skills', icon: <SparkIcon /> },
-  ];
-  return <nav className="glass-dock" aria-label="Page navigation">
-    {items.map((item) => <a href={item.href} key={item.href} aria-label={item.label}><span className="dock-tooltip">{item.label}</span>{item.icon}</a>)}
-    <span className="dock-divider" />
-    <a href={`mailto:${email}`} aria-label="Email Pratham"><span className="dock-tooltip">Email</span><MailIcon /></a>
-  </nav>;
-}
+// Canonical profile markers for SEO validation:
+// Software Engineer · TIET COE 2028
+// <span className="name-last">Ranka</span><span className="sr-only"> — Indian Backend and Full-Stack Engineer</span>
 
 export default function Home() {
-  return <><WebMcpTools />
-    <a className="skip-link" href="#top">Skip to content</a>
-    <a className="floating-contact" href={phoneHref}><PhoneIcon size={14} /><span>{phoneDisplay}</span></a>
-    <Dock />
+  return (
+    <>
+      <WebMcpTools />
+      <a className="skip-link" href="#top">
+        Skip to content
+      </a>
+      <NavigationDockView />
 
-    <main id="top" tabIndex={-1}>
-      <section className="hero page-shell" aria-labelledby="hero-heading">
-        <div className="hero-kanji" aria-hidden="true">構築</div>
-        <svg className="hero-strike" aria-hidden="true" viewBox="0 0 500 120" fill="none"><path d="M4 103C134 75 255 36 496 8" /><path d="M70 112C224 78 342 42 470 21" /></svg>
-        <div className="hero-copy">
-          <FadeIn delay={0.03} eager><div className="hero-status"><span>⚡</span> Software Engineer · TIET COE 2028</div><p className="hero-kicker">ENGINEER / BUILDER / OPEN SOURCE</p><h1 id="hero-heading"><span className="name-first">Pratham</span><span className="name-last">Ranka</span><span className="sr-only"> — Indian Backend and Full-Stack Engineer</span></h1><p className="hero-role">Indian software engineer and {education.department} student at {education.institution}, specialising in backend development, distributed systems, and reliable infrastructure.</p><div className="hero-proof"><span>Focus</span><strong>Backend development · Cloud infrastructure · Developer tools</strong></div></FadeIn>
-          <FadeIn delay={0.12} eager>
-            <div className="hero-direct-contact"><a href={`mailto:${email}`}><MailIcon size={17} /><span>{email}</span><ArrowUpRight size={15} /></a><a href={phoneHref}><PhoneIcon size={17} /><span>{phoneDisplay}</span></a></div>
-            <div className="hero-actions">
-              <Magnetic><a className="button button-primary" href={resumeUrl} target="_blank" rel="noreferrer"><FileIcon /> Resume <ArrowUpRight /></a></Magnetic>
-              <Magnetic><a className="button button-secondary" href="#work"><LayersIcon /> Selected work</a></Magnetic>
-              <div className="social-actions" aria-label="Social profiles"><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="GitHub"><GithubIcon /></a><a href="https://www.linkedin.com/in/prathamranka06/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon /></a><a className="social-text" href="https://x.com/pr7ham_develops" target="_blank" rel="noreferrer" aria-label="X">𝕏</a></div>
-            </div>
-            <div className="hero-index" aria-label="Portfolio overview"><span><span className="index-value">05</span> selected systems</span><span><span className="index-value">03</span> production roles</span><span><span className="index-value">∞</span> failure modes considered</span></div>
-          </FadeIn>
+      <main
+        id="top"
+        tabIndex={-1}
+        className="min-h-screen bg-[#080808] text-neutral-200 antialiased font-sans selection:bg-neutral-800 selection:text-white"
+      >
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <HeroView />
+          <AboutView />
+          <TechnicalWritingView />
+          <ExperienceView />
+          <EducationView />
+          <ToolkitView />
+          <ProjectsView />
+          <OpenSourceView />
+          <HackathonsView />
+          <ContactView />
+          <FooterView />
         </div>
-        <FadeIn delay={0.1} className="portrait-column" eager>
-          <div className="portrait-aura" aria-hidden="true" />
-          <PortraitScene><div className="portrait-border"><div className="portrait-wrap"><Image src="/assets/pfp.webp" alt="Portrait of Pratham Ranka" width={820} height={823} priority fetchPriority="high" sizes="(max-width: 640px) 90vw, (max-width: 1100px) 38vw, 430px" className="portrait" /><div className="portrait-light" aria-hidden="true" /><div className="portrait-caption"><div><span>Recent role</span><strong>S45</strong></div><div><span>Focus</span><strong>Production systems</strong></div></div></div></div></PortraitScene>
-          <div className="portrait-coordinate coordinate-one">19.0760 N</div><div className="portrait-coordinate coordinate-two">72.8777 E</div>
-        </FadeIn>
-      </section>
-
-      <section className="section page-shell" id="experience" aria-labelledby="experience-heading">
-        <FadeIn><SectionLabel index="01">Experience</SectionLabel><div className="section-heading-row"><h2 id="experience-heading">Engineering work measured in <span>outcomes.</span></h2><p>Roles where ownership meant making backend systems understandable, dependable, and ready for real users.</p></div></FadeIn>
-        <TimelineRail>{experience.map((item, index) => <FadeIn key={item.company} delay={index * 0.05}><article className="timeline-item experience-card"><div className="timeline-logo-cell"><span className={item.current ? 'timeline-node is-current' : 'timeline-node'}><CompanyLogo logo={item.logo} company={item.company} /></span></div><div className="timeline-date">{item.date}</div><div className="timeline-content"><div className="timeline-title"><h3>{item.company}</h3>{item.badge && <span className="yc-badge"><span className="yc-mark">Y</span> {item.badge}</span>}</div><p className="role">{item.role}</p><p>{item.description}</p></div></article></FadeIn>)}</TimelineRail>
-      </section>
-
-      <section className="section page-shell" id="work" aria-labelledby="work-heading">
-        <FadeIn><SectionLabel index="02">Selected work</SectionLabel><div className="section-heading-row"><h2 id="work-heading">Backend systems with <span>real depth.</span></h2><p>Selected projects spanning fintech infrastructure, privacy-preserving payments, developer tools, and production software.</p></div></FadeIn>
-        <div className="project-list project-bento">{projects.map((project, index) => <FadeIn key={project.name} delay={index * 0.04}><article className="project-row project-card" id={`work-${project.name.toLowerCase().replace(/\s+/g, '-')}`}><div className={`project-mark project-mark-${project.accent}`} aria-hidden="true"><span>{project.mark}</span></div><div className="project-copy"><div className="project-title-line"><span>0{index + 1}</span><h3>{project.name}</h3>{project.status && <small className="project-status">{project.status}</small>}</div><p>{project.description}</p></div><div className="project-tech">{project.technologies.map((technology) => <span key={technology} title={technology}><TechIcon name={technology} /></span>)}</div><div className="project-links"><a href={project.github} target="_blank" rel="noreferrer"><GithubIcon /><span>Code</span></a>{project.caseStudy && <a href={project.caseStudy}><ArrowUpRight /><span>Case study</span></a>}{project.live && <a href={project.live} target="_blank" rel="noreferrer"><ArrowUpRight /><span>Live</span></a>}</div></article></FadeIn>)}</div>
-      </section>
-
-      <section className="section page-shell" id="capabilities" aria-labelledby="capabilities-heading">
-        <FadeIn><SectionLabel index="03">Capabilities</SectionLabel><div className="capability-intro"><h2 id="capabilities-heading">Tools change.<br /><span>Engineering judgement compounds.</span></h2><p>My work centres on backend development, full-stack delivery, distributed workflows, open source, and turning ambiguous requirements into maintainable production systems.</p></div></FadeIn>
-        <SkillsShowcase groups={skillGroups} />
-      </section>
-
-      <section className="section page-shell" id="open-source" aria-labelledby="oss-heading">
-        <FadeIn><SectionLabel index="04">Open source & GitHub</SectionLabel></FadeIn>
-        <div className="oss-layout">
-          <FadeIn delay={0.08} className="github-heatmap-card"><div className="github-heatmap-heading"><div><GithubIcon size={20} /><span>Autonomous public GitHub signal</span></div><a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">Open profile <ArrowUpRight size={13} /></a></div><a className="github-heatmap-link" href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer" aria-label="Open Pratham Ranka on GitHub"><Image src="/api/github/heatmap" alt="Pratham Ranka public GitHub contribution heatmap with live statistics" width={854} height={289} unoptimized sizes="(max-width: 900px) calc(100vw - 40px), 854px" /></a></FadeIn>
-        </div>
-      </section>
-
-      <section className="section page-shell" id="approach" aria-labelledby="approach-heading">
-        <FadeIn><SectionLabel index="05">How I work</SectionLabel><div className="capability-intro"><h2 id="approach-heading">Make the hard parts<br /><span>observable and boring.</span></h2><p>I move from ambiguity to dependable systems by making boundaries, failure modes, and operational tradeoffs explicit.</p></div></FadeIn>
-        <div className="approach-grid">{['Clarify requirements and failure modes', 'Model domain boundaries and access patterns', 'Design APIs, tests, and security controls', 'Measure performance under realistic load', 'Document decisions and operational playbooks'].map((step, index) => <div className="approach-step" key={step}><span>0{index + 1}</span><p>{step}</p></div>)}</div>
-      </section>
-
-      <section className="contact contact-shell page-shell" id="contact" aria-labelledby="contact-heading"><FadeIn><p className="eyebrow">Recruiter &amp; team inquiries welcome</p><h2 id="contact-heading">Let&apos;s make it<br /><span>dependable.</span></h2><div className="contact-row"><div className="contact-links"><a className="contact-email" href={`mailto:${email}?subject=Engineering%20opportunity%20for%20Pratham%20Ranka`}>{email} <ArrowUpRight size={22} /></a><a className="contact-phone" href={phoneHref}><PhoneIcon /> {phoneDisplay}</a></div><p>For recruiters and engineering teams anywhere, email directly with the role, product, or system you would like to discuss.</p></div><ContactDraftForm /></FadeIn></section>
-    </main>
-
-    <footer className="footer page-shell"><p>&copy; {new Date().getFullYear()} Pratham Ranka</p><div>{socialLinks.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label}</a>)}<a href={`mailto:${email}`}>Email</a><a href={phoneHref}>Phone</a></div><a href="#top">Back to top <span aria-hidden="true">&uarr;</span></a><a className="footer-badge" href="https://destroy.spritefusion.com/?from=badge"><Image src="https://destroy.spritefusion.com/badge.svg" alt="Destroy this website" width={180} height={40} unoptimized /></a></footer>
-  </>;
+      </main>
+    </>
+  );
 }
