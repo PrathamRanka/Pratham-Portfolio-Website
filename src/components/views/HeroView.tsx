@@ -13,7 +13,7 @@ export function HeroView() {
           className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
           aria-hidden="true"
         />
-        <span>Software Engineer · TIET COE 2028 · Full-Stack Development</span>
+        <span>Software Engineer</span>
       </div>
 
       {/* Main Hero Header */}
