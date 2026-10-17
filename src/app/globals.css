@@ -230,7 +230,7 @@ button:focus-visible {
 }
 
 .viewport-guides {
-  --frame-w: 940px; /* gap between rails; content card is ~860px */
+  --frame-w: 850px; /* gap between rails; content card is ~860px */
   position: fixed;
   inset: 0;
   pointer-events: none;
