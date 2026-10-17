@@ -68,15 +68,15 @@ export function HeroView() {
           Contact Me
         </LinkButton>
 
-        <a
+        <LinkButton
           href={resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 hover:underline px-2 py-2 font-medium"
+          size="md"
         >
           <span>Resume</span>
           <ArrowUpRight size={13} />
-        </a>
+        </LinkButton>
       </div>
     </section>
   );
