@@ -9,7 +9,6 @@ import { EducationView } from '@/components/views/EducationView';
 import { ToolkitView } from '@/components/views/ToolkitView';
 import { ProjectsView } from '@/components/views/ProjectsView';
 import { OpenSourceView } from '@/components/views/OpenSourceView';
-import { HackathonsView } from '@/components/views/HackathonsView';
 import { ContactView } from '@/components/views/ContactView';
 import { FooterView } from '@/components/views/FooterView';
 
@@ -44,7 +43,6 @@ export default function Home() {
           <ToolkitView />
           <ProjectsView />
           <OpenSourceView />
-          <HackathonsView />
           <ContactView />
           <FooterView />
         </div>
