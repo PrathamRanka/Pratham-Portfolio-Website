@@ -10,7 +10,6 @@ import {
   GithubIcon,
   LinkedinIcon,
   XIcon,
-  MoonIcon,
 } from '@/components/icons';
 
 export function NavigationDockView() {
@@ -106,15 +105,6 @@ export function NavigationDockView() {
             X
           </span>
         </a>
-
-        {/* Theme indicator */}
-        <div
-          title="Dark mode active"
-          aria-label="Dark mode active"
-          className="p-2 text-neutral-500 rounded-full"
-        >
-          <MoonIcon size={15} />
-        </div>
       </div>
     </nav>
   );
