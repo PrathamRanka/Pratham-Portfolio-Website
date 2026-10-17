@@ -1,5 +1,5 @@
-@import "tailwindcss";
 
+@import "tailwindcss";
 :root {
   color-scheme: dark;
 
@@ -15,8 +15,9 @@
   --muted: oklch(0.7 0 0);
   --subtle: oklch(0.55 0 0);
 
-  /* Brand — Kumo-inspired blue */
-  --brand: oklch(0.5772 0.2324 260);
+  /* Brand blue — shared with existing button.tsx */
+  --color-kumo-brand: oklch(0.5772 0.2324 260);
+  --brand: var(--color-kumo-brand);
   --brand-hover: oklch(0.488 0.243 264.376);
   --brand-soft: oklch(0.5772 0.2324 260 / 0.14);
   --brand-ring: color-mix(in oklch, var(--brand), black 10%);
@@ -31,7 +32,7 @@
   --danger: oklch(0.637 0.237 25.331);
   --info: oklch(0.685 0.169 237.323);
 
-  /* Legacy aliases — preserve existing component appearance */
+  /* Legacy accents — preserve heatmap appearance */
   --cyan: #38bdf8;
   --cyan-soft: rgba(56, 189, 248, 0.12);
   --coral: #ff9c78;
@@ -44,7 +45,7 @@
   --side: clamp(22px, 5vw, 78px);
 }
 
-/* Tailwind CSS v4 utility mappings */
+/* Tailwind CSS v4 semantic color utilities */
 @theme inline {
   --color-background: var(--bg);
   --color-surface: var(--bg-surface);
@@ -69,6 +70,7 @@
   --color-danger: var(--danger);
   --color-info: var(--info);
 }
+
 * {
   box-sizing: border-box;
 }
@@ -203,6 +205,10 @@ button:focus-visible {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   PROTECTED GITHUB CONTRIBUTION HEATMAP SECTION
+   Original styling preserved
+   ========================================================================== */
 .github-heatmap-card {
   padding: 16px;
   border: 1px solid rgba(31, 111, 235, .35);
