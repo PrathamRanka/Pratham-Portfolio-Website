@@ -60,48 +60,4 @@ export function useExperienceController(initialExpandedIndex: number | null = nu
   };
 }
 
-export function useContactController() {
-  const [status, setStatus] = useState<string>('');
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    if (form.get('website')) return;
-
-    setIsSubmitting(true);
-    setStatus('Preparing a reviewed email draft...');
-
-    try {
-      const response = await fetch('/api/agent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'contact',
-          subject: form.get('subject'),
-          message: form.get('message'),
-        }),
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        setStatus(result.error || 'Could not prepare the message.');
-        setIsSubmitting(false);
-        return;
-      }
-
-      setStatus('Draft ready. Opening your email app...');
-      window.location.href = result.mailto;
-    } catch {
-      setStatus('Could not connect to service. Please email directly.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  }, []);
-
-  return {
-    status,
-    isSubmitting,
-    handleSubmit,
-  };
-}
