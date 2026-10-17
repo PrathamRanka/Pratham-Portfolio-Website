@@ -1,4 +1,3 @@
-
 import type { SimpleIcon } from 'simple-icons';
 import {
   siTypescript,
@@ -17,7 +16,7 @@ import {
   siKubernetes,
   siGithubactions,
   siSolidity,
-  siGit,
+  siFfmpeg,
 } from 'simple-icons';
 import {
   Radio,
@@ -47,7 +46,7 @@ const icons: Partial<Record<IconName, SimpleIcon>> = {
   githubActions: siGithubactions,
   githubactions: siGithubactions,
   solidity: siSolidity,
-  ethers: siGit,
+  ffmpeg: siFfmpeg,
 };
 
 type Props = {
@@ -55,7 +54,16 @@ type Props = {
   className?: string;
 };
 
-export function TechnologyIcon({ name, className = 'size-4' }: Props) {
+const fallbackColors: Partial<Record<IconName, string>> = {
+  websocket: 'text-[#22C55E]',
+  snarkjs: 'text-[#A78BFA]',
+  cli: 'text-foreground',
+};
+
+export function TechnologyIcon({
+  name,
+  className = 'size-4',
+}: Props) {
   const icon = icons[name];
 
   if (icon) {
@@ -64,7 +72,7 @@ export function TechnologyIcon({ name, className = 'size-4' }: Props) {
         viewBox="0 0 24 24"
         aria-hidden="true"
         className={`shrink-0 ${className}`}
-        fill="currentColor"
+        fill={name === 'nextjs' ? '#FFFFFF' : `#${icon.hex}`}
       >
         <path d={icon.path} />
       </svg>
@@ -72,11 +80,20 @@ export function TechnologyIcon({ name, className = 'size-4' }: Props) {
   }
 
   const Fallback =
-    name === 'websocket' ? Radio
-    : name === 'aws' ? Cloud
-    : name === 'cli' || name === 'ffmpeg' ? Terminal
-    : name === 'snarkjs' || name === 'base' ? ShieldCheck
-    : CircleHelp;
+    name === 'websocket'
+      ? Radio
+      : name === 'aws'
+        ? Cloud
+        : name === 'cli' || name === 'ffmpeg'
+          ? Terminal
+          : name === 'snarkjs' || name === 'base'
+            ? ShieldCheck
+            : CircleHelp;
 
-  return <Fallback aria-hidden="true" className={`shrink-0 ${className}`} />;
+  return (
+    <Fallback
+      aria-hidden="true"
+      className={`shrink-0 ${className} ${fallbackColors[name] ?? 'text-foreground'}`}
+    />
+  );
 }
