@@ -1,7 +1,8 @@
+
 import Image from 'next/image';
 import { resumeUrl } from '@/data/portfolio';
 import { ArrowDownIcon, ArrowUpRight } from '@/components/icons';
-import { Button } from '@/components/ui/button';
+import { LinkButton } from '@/components/ui/button';
 
 export function HeroView() {
   return (
@@ -54,36 +55,23 @@ export function HeroView() {
 
       {/* Hero Actions */}
       <div className="flex items-center flex-wrap gap-3 mt-6">
-        <Button
-          size="md"
-          onClick={() => {
-            document.getElementById('projects')?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }}
-        >
+        <LinkButton href="#projects" size="md">
           <span>View Work</span>
           <ArrowDownIcon size={12} />
-        </Button>
+        </LinkButton>
 
-        <Button
+        <LinkButton
+          href="#contact"
           size="md"
           variant="secondary"
-          onClick={() => {
-            document.getElementById('contact')?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }}
         >
           Contact Me
-        </Button>
+        </LinkButton>
 
         <a
           href={resumeUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-xs text-sky-400 hover:text-sky-300 hover:underline px-2 py-2 font-medium"
         >
           <span>Resume</span>
