@@ -100,14 +100,6 @@ export function MailIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-export function FileIcon({ size = 18 }: { size?: number }) {
-  return (
-    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path d="M6 3h8l4 4v14H6V3Zm8 0v5h4M9 13h6M9 17h4" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export function HomeIcon({ size = 18 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="m4 10 8-7 8 7v10h-6v-6h-4v6H4V10Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
 }
@@ -118,14 +110,6 @@ export function BriefcaseIcon({ size = 18 }: { size?: number }) {
 
 export function LayersIcon({ size = 18 }: { size?: number }) {
   return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="m12 3 9 5-9 5-9-5 9-5Zm-8.5 10L12 18l8.5-5M3.5 17 12 22l8.5-5" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
-}
-
-export function SparkIcon({ size = 18 }: { size?: number }) {
-  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M12 2c.7 5.4 3.6 8.3 9 9-5.4.7-8.3 3.6-9 9-.7-5.4-3.6-8.3-9-9 5.4-.7 8.3-3.6 9-9Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
-}
-
-export function PhoneIcon({ size = 18 }: { size?: number }) {
-  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M7.3 3H4.5C3.7 3 3 3.7 3.1 4.5c.7 8.7 7.7 15.7 16.4 16.4.8.1 1.5-.6 1.5-1.4v-2.8l-4-1.6-1.4 2.3a15.2 15.2 0 0 1-9-9L9 7 7.3 3Z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round" /></svg>;
 }
 
 export function ChevronRightIcon({ size = 16, className }: { size?: number; className?: string }) {

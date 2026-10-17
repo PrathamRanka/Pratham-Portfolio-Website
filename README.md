@@ -1,327 +1,184 @@
-# Portfolio Website
+# Pratham Ranka — Portfolio
 
-A polished, responsive developer portfolio built with Next.js, React, TypeScript, and Motion. It includes experience and project showcases, a live GitHub contribution heatmap, SEO metadata, PWA support, and production analytics.
+Personal portfolio of [Pratham Ranka](https://prathamranka.in), a software engineer and Computer Engineering student at TIET (2028 batch) focused on backend systems, distributed infrastructure, and open-source software.
 
-This repository is designed to be forked and personalized. Replace the content, images, links, and metadata with your own details, then deploy it as your portfolio.
+**Live site →** [prathamranka.in](https://prathamranka.in)
 
-## Features
+---
 
-- Responsive single-page portfolio with an editorial, dark visual system
-- Experience timeline, selected projects, skills, open-source work, and contact sections
-- Live GitHub profile statistics and contribution heatmap
-- Smooth entrance and component motion using Motion for React
-- Lightweight native pointer interactions for the custom cursor and skills tilt effects
-- Search-engine metadata, Open Graph cards, JSON-LD, sitemap, and robots configuration
-- Installable PWA manifest and application icons
-- Vercel Analytics and Speed Insights integration
-- Local variable fonts and optimized images
-- Type-safe content configuration with TypeScript
-- Automated `llms.txt` freshness updates through GitHub Actions
-- Generated portfolio data and CI validation for links, SEO, builds, and deployments
-- Guarded Dependabot pull request automation with generated-file repair and squash auto-merge
-- Machine-readable profile, project APIs, RSS updates, security reporting, and agent discovery
+## Stack
 
-### Pull request automation
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org) (App Router, Turbopack) |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS v4 (via `@tailwindcss/postcss`) + custom CSS |
+| Animations | [Motion for React](https://motion.dev) |
+| Analytics | Vercel Analytics + Speed Insights |
+| Font | [Hanken Grotesk](https://fonts.google.com/specimen/Hanken+Grotesk) (self-hosted variable font) |
+| Deployment | Vercel |
 
-Dependabot pull requests are evaluated by `.github/workflows/pull-request-automation.yml`.
-The workflow only repairs the generated `public/llms.txt` file when a dependency update
-has no other source changes. It enables squash auto-merge only for non-draft Dependabot
-pull requests after both `validate` and `links` pass and GitHub reports the pull request
-as clean. It also repairs the known ESLint 10 incompatibility by keeping ESLint within
-the supported ESLint 9 range. Other pull requests are never modified or merged automatically.
-The workflow also polls open Dependabot pull requests every 15 minutes, because
-`workflow_run` events do not reliably include every existing pull request. Repository
-Actions settings must allow auto-merge and the workflow token must have pull-request write
-permission for GitHub to complete the merge.
+---
 
-### Agent discovery deployment notes
+## Project Structure
 
-The application publishes RFC 8288 `Link` headers, Markdown negotiation, Content Signals,
-an RFC 9727-style API catalog, OAuth discovery metadata, an MCP Server Card, WebMCP tools,
-Agent Skills discovery, and an ARD catalog.
+```
+src/
+├── app/
+│   ├── layout.tsx              # Root layout — metadata, JSON-LD, font, analytics
+│   ├── page.tsx                # Home page — assembles all section views
+│   ├── globals.css             # Global design tokens + GitHub heatmap styles
+│   ├── manifest.ts             # Web app manifest
+│   ├── robots.ts               # Robots.txt
+│   ├── sitemap.ts              # Sitemap
+│   ├── api/
+│   │   ├── agent/              # AI-agent contact draft endpoint
+│   │   ├── github/heatmap/     # GitHub contribution heatmap image (SVG, 1h cache)
+│   │   ├── profile/            # Machine-readable profile JSON
+│   │   └── projects/           # Machine-readable projects JSON
+│   ├── projects/
+│   │   └── agentpay/
+│   │       ├── page.tsx        # AgentPay case study page
+│   │       └── agentpay.css    # Route-scoped case study styles
+│   └── .well-known/            # Agent discovery, MCP, security, OAuth endpoints
+│
+├── components/
+│   ├── icons.tsx               # Inline SVG icon library (TechIcon + UI icons)
+│   ├── motion.tsx              # FadeIn scroll-reveal (IntersectionObserver)
+│   ├── webmcp-tools.tsx        # Web-MCP tool registration for AI agents
+│   └── views/                  # One component per page section
+│       ├── NavigationDockView.tsx
+│       ├── HeroView.tsx
+│       ├── AboutView.tsx
+│       ├── TechnicalWritingView.tsx
+│       ├── ExperienceView.tsx
+│       ├── EducationView.tsx
+│       ├── ToolkitView.tsx
+│       ├── ProjectsView.tsx
+│       ├── OpenSourceView.tsx
+│       ├── HackathonsView.tsx
+│       ├── ContactView.tsx
+│       └── FooterView.tsx
+│
+├── controllers/
+│   └── portfolio.controller.ts # React hooks — nav, experience expand, contact form
+│
+├── models/
+│   └── portfolio.model.ts      # TypeScript interfaces for all data shapes
+│
+├── data/
+│   ├── portfolio.ts            # Canonical content — experience, projects, skills, links
+│   └── hackathons.ts           # Hackathon entries
+│
+└── lib/
+    ├── external-data.ts        # GitHub API fetcher (contributions + stats)
+    └── github-heatmap.ts       # SVG heatmap renderer
 
-DNS-AID cannot be published from application code. Add these records at the DNS provider for
-`prathamranka.in`, enable DNSSEC, and verify them with a DNSSEC-validating resolver:
+public/
+├── assets/                     # Profile photo (pfp.webp)
+├── fonts/                      # HankenGrotesk variable TTFs
+├── icons/                      # PWA icons
+├── social/                     # OG image
+└── llms.txt                    # LLM-readable public profile
 
-```text
-_index._agents.prathamranka.in.  HTTPS 1 . alpn="h2" endpoint="https://prathamranka.in/.well-known/ai-catalog.json"
-_a2a._agents.prathamranka.in.    HTTPS 1 . alpn="h2" endpoint="https://prathamranka.in/.well-known/agent.json"
+scripts/
+├── validate-portfolio.mjs      # Validates required data fields
+├── check-seo.mjs               # SEO field audit
+├── check-links.mjs             # External link health check
+└── smoke-test.mjs              # Smoke test against live URL
 ```
 
-The exact `HTTPS` record syntax varies by DNS provider; preserve the `_agents` owner names,
-HTTPS/SVCB service mode, `alpn`, and `endpoint` parameters.
+---
 
-Verify publication with:
+## Architecture
 
-```bash
-dig +short HTTPS _index._agents.prathamranka.in
-dig +short HTTPS _a2a._agents.prathamranka.in
-dig +short DS prathamranka.in
-```
+This project follows a **Model-View-Controller** pattern adapted for Next.js:
 
-The `DS` query must return a record for DNSSEC validation to be active. DNS records cannot
-be created by this Next.js project; they must be applied in the registrar or DNS provider
-dashboard for `prathamranka.in`.
+- **Models** (`src/models/`) — Pure TypeScript interfaces; no logic.
+- **Data** (`src/data/`) — The single source of truth for all portfolio content. Edit here to update the site.
+- **Controllers** (`src/controllers/`) — Client-side React hooks encapsulating state and side effects (`useNavigationController`, `useExperienceController`, `useContactController`).
+- **Views** (`src/components/views/`) — Presentational components, one per page section. Import data directly or consume controller hooks.
+- **Lib** (`src/lib/`) — Server-side utilities (GitHub API, heatmap rendering).
 
-## Tech Stack
-
-| Category | Technology |
-| --- | --- |
-| Framework | Next.js 15 App Router |
-| UI | React 19, TypeScript |
-| Styling | Global CSS with custom properties and responsive layouts |
-| Motion | Motion for React with native pointer interactions |
-| Icons | Custom React icons and Simple Icons |
-| Analytics | Vercel Analytics and Speed Insights |
-| Quality | ESLint, Prettier, TypeScript |
+---
 
 ## Getting Started
 
-### 1. Clone the repository
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+
+### Install and run
 
 ```bash
 git clone https://github.com/PrathamRanka/Portfolio-Website.git
 cd Portfolio-Website
-```
-
-### 2. Install dependencies
-
-```bash
 npm install
-```
-
-### 3. Configure environment variables
-
-Copy `.env.example` to `.env.local`:
-
-```bash
-cp .env.example .env.local
-```
-
-On PowerShell:
-
-```powershell
-Copy-Item .env.example .env.local
-```
-
-Update the values for your portfolio:
-
-```env
-NEXT_PUBLIC_URL="http://localhost:3000"
-GITHUB_USERNAME="your-github-username"
-GITHUB_TOKEN=""
-```
-
-`GITHUB_TOKEN` is optional, but recommended for higher GitHub API rate limits. Keep it server-side and never prefix it with `NEXT_PUBLIC_`.
-
-### 4. Start the development server
-
-```bash
+cp .env.example .env.local   # add GITHUB_TOKEN for heatmap
 npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Updating the LLM profile
+### Environment variables
 
-The `public/llms.txt` profile is refreshed automatically after every push to `main`. The
-workflow updates its `Last updated` date from the latest commit and pushes a bot commit only when
-the file changes. Its portfolio section is generated from `src/data/portfolio.ts`. Pull requests
-also run lint, build, profile, SEO, and link checks. A weekly maintenance workflow runs dependency
-audits, production smoke tests, and Lighthouse checks; Dependabot opens npm and GitHub Actions
-update pull requests.
+| Variable | Required | Description |
+|---|---|---|
+| `GITHUB_TOKEN` | Yes (for heatmap) | GitHub PAT with `read:user` scope |
 
-```bash
-npm run update:llms
-```
+See [`.env.example`](.env.example) for the full list.
 
-## Personalizing the Portfolio
+---
 
-Most portfolio content lives in a few focused files:
-
-| What to change | File |
-| --- | --- |
-| Experience, projects, skills, resume, and social links | `src/data/portfolio.ts` |
-| Name, introduction, contact details, section copy, and open-source feature | `src/app/page.tsx` |
-| Page title, description, social cards, structured data, and personal identity | `src/app/layout.tsx` |
-| GitHub username fallback and data behavior | `src/lib/external-data.ts` |
-| PWA name, description, theme, and icons | `src/app/manifest.ts` |
-| Colors, typography, spacing, responsive behavior, and component styles | `src/app/globals.css` |
-| Custom cursor behavior | `src/components/custom-cursor.tsx` |
-| Skills presentation and content layout | `src/components/skills-showcase.tsx` |
-| Deferred skills interactions | `src/components/skills-interactions.tsx` |
-| Portrait and brand images | `public/assets/` |
-| Company logos | `public/company/` |
-| Social preview image | `public/social/` |
-| Favicons and PWA icons | `public/icons/` |
-
-### Personalization checklist
-
-Before publishing your fork, replace all of the following:
-
-- Name, role, biography, location, email address, and phone number
-- Resume URL, social profiles, project links, and company information
-- Portrait, logo, company logos, social preview image, and app icons
-- GitHub username in `.env.local`
-- Metadata, JSON-LD person data, and canonical production URL
-- PWA manifest identity and theme values
-- Default personal references by searching the repository:
-
-```bash
-rg "Pratham|Ranka|PrathamRanka|prathamranka|pr7ham|70232"
-```
-
-If `rg` is unavailable, use your editor's global search.
-
-## Current Project Structure
-
-Generated directories such as `.next/` and `node_modules/` are intentionally omitted.
-
-```text
-Portfolio-Website/
-|-- public/
-|   |-- assets/
-|   |   `-- pfp.webp
-|   |-- company/
-|   |   |-- paasa.webp
-|   |   |-- s45.webp
-|   |   `-- talkeys.webp
-|   |-- fonts/
-|   |   |-- HankenGrotesk-Italic-Variable.ttf
-|   |   `-- HankenGrotesk-Variable.ttf
-|   |-- icons/
-|   |   |-- apple-touch-icon.png
-|   |   |-- favicon-32.png
-|   |   |-- icon-192.png
-|   |   |-- icon-512.png
-|   |   `-- icon-maskable-512.png
-|   `-- social/
-|       `-- pratham-ranka-og.png
-|-- src/
-|   |-- app/
-|   |   |-- api/
-|   |   |   `-- github/
-|   |   |       `-- heatmap/
-|   |   |           `-- route.ts
-|   |   |-- favicon.ico
-|   |   |-- globals.css
-|   |   |-- layout.tsx
-|   |   |-- manifest.ts
-|   |   |-- page.tsx
-|   |   |-- robots.ts
-|   |   `-- sitemap.ts
-|   |-- components/
-|   |   |-- custom-cursor.tsx
-|   |   |-- icons.tsx
-|   |   |-- motion.tsx
-|   |   |-- skills-interactions.tsx
-|   |   `-- skills-showcase.tsx
-|   |-- data/
-|   |   `-- portfolio.ts
-|   `-- lib/
-|       |-- external-data.ts
-|       `-- github-heatmap.ts
-|-- .env.example
-|-- .gitignore
-|-- .prettierrc
-|-- .prettierrc.json
-|-- ABOUT_ME.md
-|-- CONTRIBUTING.md
-|-- LICENSE
-|-- README.md
-|-- eslint.config.mjs
-|-- next.config.ts
-|-- package-lock.json
-|-- package.json
-`-- tsconfig.json
-```
-
-## Available Scripts
+## Scripts
 
 | Command | Description |
-| --- | --- |
-| `npm run dev` | Starts the Turbopack development server |
-| `npm run build` | Creates an optimized production build |
-| `npm run start` | Runs the production server after a build |
-| `npm run lint` | Checks the project with ESLint |
+|---|---|
+| `npm run dev` | Start dev server with Turbopack |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run validate:portfolio` | Validate required data fields in `portfolio.ts` |
+| `npm run check:seo` | Audit SEO metadata fields |
+| `npm run check:links` | Health-check all external links |
+| `npm run smoke` | Smoke test against live `prathamranka.in` |
+| `npm run update:llms` | Regenerate `public/llms.txt` from portfolio data |
 
-## GitHub Integration
+---
 
-The portfolio reads public GitHub data in two ways:
+## Customising for Your Own Use
 
-1. `src/lib/external-data.ts` fetches profile and repository statistics from the GitHub REST API.
-2. `src/app/api/github/heatmap/route.ts` serves the contribution heatmap used on the home page.
+All personal content lives in two files. Change those and the site updates everywhere — metadata, JSON-LD, OG tags, API endpoints, and `llms.txt`.
 
-The data is cached and revalidated every five minutes. If GitHub is unavailable, the portfolio handles the failure without breaking the page.
+1. **`src/data/portfolio.ts`** — Experience, projects, skills, social links, education, resume URL.
+2. **`src/data/hackathons.ts`** — Hackathon entries.
 
-## Production Build
+Additional updates needed when forking:
 
-Run the quality checks before deployment:
+- `src/app/layout.tsx` — `siteUrl`, metadata, JSON-LD person/website nodes.
+- `public/llms.txt` — Run `npm run update:llms` after editing data.
+- `public/social/pratham-ranka-og.png` — Replace with your OG image.
+- `public/assets/pfp.webp` — Replace with your profile photo.
 
-```bash
-npm run lint
-npm run build
-```
+---
 
-For production, set these environment variables in your hosting provider:
+## Agentic Features
 
-```env
-NEXT_PUBLIC_URL="https://your-domain.com"
-GITHUB_USERNAME="your-github-username"
-GITHUB_TOKEN="your-optional-server-token"
-```
+This portfolio is designed to be machine-readable by AI agents and recruiters using LLM tooling:
 
-## Deployment
+| Endpoint | Description |
+|---|---|
+| `/llms.txt` | Plain-text profile for LLMs |
+| `/api/profile` | Structured JSON profile |
+| `/api/projects` | Structured JSON project list |
+| `/api/github/heatmap` | Live GitHub contribution heatmap (1h cache) |
+| `/.well-known/agent.json` | Agent discovery manifest |
+| `/.well-known/mcp/server-card.json` | MCP server card |
 
-### Vercel
+The `WebMcpTools` component registers `get_profile` and `get_projects` tools with any Web-MCP-compatible AI agent visiting the page.
 
-1. Push your customized repository to GitHub.
-2. Import the repository into Vercel.
-3. Add the production environment variables.
-4. Deploy and connect your custom domain.
-
-The project already includes Vercel Analytics and Speed Insights. They activate automatically on a supported Vercel deployment.
-
-### Other platforms
-
-Any platform that supports a standard Next.js Node.js deployment can run the project:
-
-```bash
-npm run build
-npm run start
-```
-
-## Accessibility and Performance
-
-The interface uses semantic sections, descriptive labels, keyboard focus styles, responsive images, local fonts, and reduced-motion handling. The portfolio content remains server-rendered, so search engines and visitors receive the complete skills content without waiting for JavaScript.
-
-Animation is implemented as progressive enhancement:
-
-- Pointer interactions use native animation frames, avoiding a second animation runtime.
-- The custom cursor initializes only after the first pointer movement on devices with a fine pointer.
-- Skills tilt effects load only when the capabilities section approaches the viewport.
-- Touch devices do not initialize pointer-tracking effects.
-- Visitors using `prefers-reduced-motion` receive the complete interface without decorative motion.
-- High-frequency pointer values are applied directly through refs and animation frames instead of React state, avoiding render loops.
-- Animated elements use `transform` and `opacity` to avoid layout shifts and expensive reflow.
-
-These safeguards help protect Largest Contentful Paint, Interaction to Next Paint, Cumulative Layout Shift, accessibility, and SEO while retaining the interactive desktop experience.
-
-Before deployment, measure the optimized production build rather than the development server:
-
-```bash
-npm run build
-npm run start
-```
-
-Then run Lighthouse against the local production URL or the deployed site. Re-test after changing images, fonts, analytics, animation timing, or third-party scripts because those changes can affect Core Web Vitals.
-
-When customizing the interface, preserve meaningful image alt text, visible focus states, heading order, sufficient color contrast, and reduced-motion behavior.
-
-## Contributing
-
-Contributions are welcome. Read `CONTRIBUTING.md`, create a focused branch, and open a pull request with a clear description of the change. Run linting and a production build before submitting.
+---
 
 ## License
 
-This project is available under the [MIT License](LICENSE). You may use, modify, and distribute it for your own portfolio. Attribution is appreciated but not required by the license.
+[MIT](LICENSE) — Free to use as a template. Do not copy personal content (name, experience, projects, links).
