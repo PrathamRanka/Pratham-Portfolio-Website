@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import SmoothScroll from "@/components/smooth-scroll";
 import { education, experience, projects, skillGroups, socialLinks } from '@/data/portfolio';
+import ViewportGuides from "@/components/ui/viewport-guides";
 import './globals.css';
 
 const hanken = localFont({
@@ -317,7 +318,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="me" href="https://x.com/pr7ham_develops" />
       </head>
       <body className={hanken.variable}>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+        <ViewportGuides />
+        
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         <Analytics />
         <SpeedInsights />

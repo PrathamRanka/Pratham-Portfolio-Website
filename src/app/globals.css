@@ -228,3 +228,43 @@ button:focus-visible {
     padding: 10px;
   }
 }
+
+.viewport-guides {
+  --frame-w: 940px; /* gap between rails; content card is ~860px */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  isolation: isolate;
+}
+
+.viewport-guides__top {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: calc(50% - var(--frame-w) / 2);
+  width: var(--frame-w);
+  height: 92px;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 2%), transparent);
+  border-bottom: 1px solid rgb(255 255 255 / 45%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 5px rgb(255 255 255 / 4%);
+}
+
+.viewport-guides__left,
+.viewport-guides__right {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgb(255 255 255 / 22%);
+}
+
+.viewport-guides__left  { left: calc(50% - var(--frame-w) / 2); }
+.viewport-guides__right { left: calc(50% + var(--frame-w) / 2); }
+
+@media (max-width: 1000px) {
+  .viewport-guides { display: none; }
+}
