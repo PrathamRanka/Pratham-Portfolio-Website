@@ -3,7 +3,6 @@ import { WebMcpTools } from '@/components/webmcp-tools';
 import { NavigationDockView } from '@/components/views/NavigationDockView';
 import { HeroView } from '@/components/views/HeroView';
 import { AboutView } from '@/components/views/AboutView';
-import { TechnicalWritingView } from '@/components/views/TechnicalWritingView';
 import { ExperienceView } from '@/components/views/ExperienceView';
 import { EducationView } from '@/components/views/EducationView';
 import { ToolkitView } from '@/components/views/ToolkitView';
@@ -37,7 +36,6 @@ export default function Home() {
         <div className="mx-auto w-full max-w-2xl px-4 sm:px-6">
           <HeroView />
           <AboutView />
-          <TechnicalWritingView />
           <ExperienceView />
           <EducationView />
           <ToolkitView />

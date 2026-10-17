@@ -21,7 +21,6 @@ export function OpenSourceView() {
           <div className="github-heatmap-heading">
             <div>
               <GithubIcon size={20} />
-              <span>Autonomous public GitHub signal</span>
             </div>
             <a href="https://github.com/PrathamRanka" target="_blank" rel="noreferrer">
               Open profile <ArrowUpRight size={13} />
