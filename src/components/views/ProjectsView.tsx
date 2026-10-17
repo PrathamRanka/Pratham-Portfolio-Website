@@ -7,7 +7,7 @@ import { TechnologyIcon } from '@/components/ui/technology-icon';
 
 const projectBanners: Record<string, string> = {
   AgentPay: 'projects/agentpay.webp',
-  'Sendai Fun': 'projects/sendaifun.webp',
+  'SendAI Fun': 'projects/sendaifun.webp',
   StarSwap: 'projects/starswap.webp',
   ZKavach: 'projects/zkavach.webp',
   SpotifyDownloader: 'projects/spotifydownloader.webp',
