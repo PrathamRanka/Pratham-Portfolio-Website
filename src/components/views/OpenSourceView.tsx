@@ -9,18 +9,12 @@ export function OpenSourceView() {
       <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400 block mb-1">
         Open Source &amp; GitHub
       </span>
-      <h2
-        id="oss-heading"
-        className="text-lg sm:text-xl font-bold text-white mb-5 tracking-tight"
-      >
-        Public GitHub Signal
-      </h2>
 
       {/* PROTECTED GITHUB COMPONENT: EXACT COMPONENT, JSX, CLASSES, AND STYLES PRESERVED */}
       <div className="oss-layout">
           <div className="github-heatmap-heading">
             <div>
-              <GithubIcon size={20} />
+              <GithubIcon size={28} />
             </div>
               <LinkButton
                 href="https://github.com/PrathamRanka"
@@ -29,7 +23,7 @@ export function OpenSourceView() {
                 variant="primary"
                 size="sm"
               >
-                <span>Open profile</span>
+                <span className="text-white">Open profile</span>
                 <ArrowUpRight size={13} />
               </LinkButton>
           </div>
