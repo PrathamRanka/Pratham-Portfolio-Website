@@ -28,7 +28,7 @@ const siteUrl = 'https://prathamranka.in';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Pratham Ranka | TIET COE 2028 Software Engineer',
+    default: 'Pratham Ranka | Software Engineer',
     template: '%s | Pratham Ranka',
   },
   description:
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   },
   formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
-    title: 'Pratham Ranka | TIET COE 2028 Software Engineer',
+    title: 'Pratham Ranka | Software Engineer',
     description:
       'TIET Computer Engineering student from the 2028 batch and Indian software engineer specialising in backend and full-stack development, distributed systems, and cloud infrastructure.',
     url: siteUrl,
@@ -172,7 +172,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         '@type': 'ProfilePage',
         '@id': `${siteUrl}/#profile`,
         url: siteUrl,
-        name: 'Pratham Ranka | TIET COE 2028 Software Engineer',
+        name: 'Pratham Ranka | Software Engineer',
         description:
           'Portfolio of Pratham Ranka, a TIET Computer Engineering student from the 2028 batch and Indian software engineer specialising in backend development, distributed systems, cloud infrastructure, and production software.',
         primaryImageOfPage: {
