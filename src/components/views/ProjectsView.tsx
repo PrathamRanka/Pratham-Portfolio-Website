@@ -6,11 +6,11 @@ import { LinkButton } from '@/components/ui/button';
 import { TechnologyIcon } from '@/components/ui/technology-icon';
 
 const projectBanners: Record<string, string> = {
-  AgentPay: 'public/projects/agentpay.webp',
-  'Sendai Fun': 'public/projects/sendaifun.webp',
-  StarSwap: 'public/projects/starswap.webp',
-  ZKavach: 'public/projects/zkavach.webp',
-  SpotifyDownloader: 'public/projects/spotifydownloader.webp',
+  AgentPay: 'projects/agentpay.webp',
+  'Sendai Fun': 'projects/sendaifun.webp',
+  StarSwap: 'projects/starswap.webp',
+  ZKavach: 'projects/zkavach.webp',
+  SpotifyDownloader: 'projects/spotifydownloader.webp',
 };
 
 export function ProjectsView() {
