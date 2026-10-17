@@ -50,11 +50,23 @@ export function ExperienceView() {
                       <h3 className="text-sm sm:text-base font-semibold text-white tracking-tight">
                         {item.company}
                       </h3>
-                      {item.badge && (
-                        <span className="text-[11px] font-medium px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300">
-                          {item.badge}
+                    {item.badge && (
+                      <span
+                        className="inline-flex items-center gap-1.5 rounded-md border border-[#F26522]/25 bg-[#F26522]/[0.07] px-2 py-1"
+                        aria-label={`Y Combinator ${item.badge.replace('YC ', '')}`}
+                      >
+                        {item.badge.startsWith('YC') && (
+                          <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-[3px] bg-[#F26522] text-[11px] font-extrabold leading-none text-white">
+                            Y
+                          </span>
+                        )}
+                        <span className="text-[11px] font-semibold tracking-tight text-[#F26522]">
+                          {item.badge.startsWith('YC')
+                            ? `Combinator ${item.badge.replace('YC ', '')}`
+                            : item.badge}
                         </span>
-                      )}
+                      </span>
+                    )}
                     </div>
                     <p className="text-xs sm:text-sm text-neutral-400 mt-0.5 truncate">
                       {item.role}
