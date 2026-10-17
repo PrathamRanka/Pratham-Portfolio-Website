@@ -7,7 +7,7 @@ import { TechnologyIcon } from '@/components/ui/technology-icon';
 
 const projectBanners: Record<string, string> = {
   AgentPay: 'public/projects/agentpay.webp',
-  SendAI: 'public/projects/sendaifun.webp',
+  'Sendai Fun': 'public/projects/sendaifun.webp',
   StarSwap: 'public/projects/starswap.webp',
   ZKavach: 'public/projects/zkavach.webp',
   SpotifyDownloader: 'public/projects/spotifydownloader.webp',
@@ -44,11 +44,11 @@ export function ProjectsView() {
           >
             <div className="relative h-32 overflow-hidden border-b border-border bg-background">
               <Image
-                src={projectBanners[project.name] ?? '/projects/agentpay.webp'}
+                src={projectBanners[project.name]}
                 alt={`${project.name} banner`}
                 fill
                 sizes="(max-width: 640px) 100vw, 320px"
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                className="object-cover"
               />
 
               {project.status && (
