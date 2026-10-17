@@ -1,17 +1,21 @@
 import Image from 'next/image';
 import { resumeUrl } from '@/data/portfolio';
 import { ArrowDownIcon, ArrowUpRight } from '@/components/icons';
+import { Button } from '@/components/ui/button';
 
 export function HeroView() {
   return (
     <section className="pt-8 sm:pt-14 pb-8" aria-labelledby="hero-heading">
       {/* Eyebrow */}
       <div className="text-[11px] sm:text-xs font-semibold tracking-wider text-neutral-400 uppercase mb-3 flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
+        <span
+          className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+          aria-hidden="true"
+        />
         <span>Software Engineer · TIET COE 2028 · Full-Stack Development</span>
       </div>
 
-      {/* Main Hero Header: Text + Portrait */}
+      {/* Main Hero Header */}
       <div className="flex items-start justify-between gap-6 sm:gap-8">
         <div className="flex-1">
           <h1
@@ -19,14 +23,18 @@ export function HeroView() {
             className="text-3xl sm:text-4xl font-bold tracking-tight text-white flex items-center flex-wrap gap-2"
           >
             Hi, I&apos;m Pratham <span className="name-last">Ranka</span>
-            <span className="sr-only"> — Indian Backend and Full-Stack Engineer</span>
+            <span className="sr-only">
+              {' '}— Indian Backend and Full-Stack Engineer
+            </span>
             <span className="text-2xl sm:text-3xl">👋</span>
           </h1>
 
           <p className="mt-4 text-sm sm:text-base text-neutral-400 leading-relaxed max-w-xl">
-            Computer Engineering student at Thapar Institute of Engineering &amp; Technology (TIET),
-            full-stack developer, open-source contributor, and fintech enthusiast. Specialising in
-            high-reliability backend systems, distributed workflows, and cloud-native infrastructure.
+            Computer Engineering student at Thapar Institute of Engineering
+            &amp; Technology (TIET), full-stack developer, open-source
+            contributor, and fintech enthusiast. Specialising in
+            high-reliability backend systems, distributed workflows, and
+            cloud-native infrastructure.
           </p>
         </div>
 
@@ -46,20 +54,31 @@ export function HeroView() {
 
       {/* Hero Actions */}
       <div className="flex items-center flex-wrap gap-3 mt-6">
-        <a
-          href="#projects"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-700 text-neutral-100 text-xs font-semibold hover:bg-neutral-800 hover:border-neutral-600 hover:text-white transition-colors shadow-sm"
+        <Button
+          size="md"
+          onClick={() => {
+            document.getElementById('projects')?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }}
         >
           <span>View Work</span>
           <ArrowDownIcon size={12} />
-        </a>
+        </Button>
 
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-200 text-xs font-semibold hover:bg-neutral-800 hover:text-white transition-colors"
+        <Button
+          size="md"
+          variant="secondary"
+          onClick={() => {
+            document.getElementById('contact')?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }}
         >
-          <span>Contact Me</span>
-        </a>
+          Contact Me
+        </Button>
 
         <a
           href={resumeUrl}
