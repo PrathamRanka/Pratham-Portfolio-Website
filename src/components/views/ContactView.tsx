@@ -2,8 +2,10 @@
 
 import { useContactController } from '@/controllers/portfolio.controller';
 import { ArrowUpRight } from '@/components/icons';
+import { LinkButton } from '@/components/ui/button';
 
 const email = 'prathamworks06@gmail.com';
+const phone = '+917023206003';
 
 export function ContactView() {
   const { status, isSubmitting, handleSubmit } = useContactController();
@@ -29,42 +31,54 @@ export function ContactView() {
         </p>
 
         {/* Email Direct Link */}
-        <div className="mb-6">
-          <a
+        <div className="mb-6 flex flex-wrap items-center gap-4">
+          <LinkButton
             href={`mailto:${email}?subject=Engineering%20opportunity%20for%20Pratham%20Ranka`}
-            className="text-sky-400 hover:text-sky-300 underline font-medium text-sm sm:text-base inline-flex items-center gap-1.5"
+            variant="primary"
+            size="md"
           >
-            <span>{email}</span>
+            <span>Email Me</span>
             <ArrowUpRight size={14} />
-          </a>
+          </LinkButton>
+
+          <LinkButton
+            href={`tel:${phone}`}
+            variant="secondary"
+            size="md"
+          >
+            <span>+91 70232 06003</span>
+            <ArrowUpRight size={14} />
+          </LinkButton>
         </div>
 
         {/* Social Links Row */}
         <div className="flex items-center gap-4 text-sm mb-8">
-          <a
+          <LinkButton
             href="https://github.com/PrathamRanka"
             target="_blank"
+            variant='secondary'
             rel="noreferrer"
             className="text-sky-400 hover:text-sky-300 underline font-medium"
           >
             GitHub
-          </a>
-          <a
+          </LinkButton>
+          <LinkButton
             href="https://www.linkedin.com/in/prathamranka06/"
             target="_blank"
             rel="noreferrer"
             className="text-sky-400 hover:text-sky-300 underline font-medium"
           >
             LinkedIn
-          </a>
-          <a
+          </LinkButton>
+          <LinkButton
             href="https://x.com/pr7ham_develops"
             target="_blank"
+            variant='secondary'
             rel="noreferrer"
             className="text-sky-400 hover:text-sky-300 underline font-medium"
           >
             X
-          </a>
+          </LinkButton>
         </div>
 
         {/* Contact Draft Form for AI Agents & Recruiters */}
