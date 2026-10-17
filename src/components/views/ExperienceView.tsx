@@ -6,7 +6,7 @@ import { useExperienceController } from '@/controllers/portfolio.controller';
 import { ChevronRightIcon } from '@/components/icons';
 
 export function ExperienceView() {
-  const { expandedIndex, toggleExpand } = useExperienceController(0);
+  const { expandedIndex, toggleExpand } = useExperienceController(-1);
 
   return (
     <section id="experience" className="pt-8 pb-4" aria-labelledby="experience-heading">
