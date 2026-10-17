@@ -1,79 +1,95 @@
-import Link from 'next/link';
+
+import Image from 'next/image';
 import { projects } from '@/data/portfolio';
 import { ArrowUpRight, GithubIcon, GlobeIcon } from '@/components/icons';
 import { LinkButton } from '@/components/ui/button';
+import { TechnologyIcon } from '@/components/ui/technology-icon';
+
+const projectBanners: Record<string, string> = {
+  AgentPay: '/projects/agentpay.webp',
+  'SendAI Fun': '/projects/sendaifun.webp',
+  StarSwap: '/projects/starswap.webp',
+  ZKavach: '/projects/zkavach.webp',
+  SpotifyDownloader: '/projects/spotifydownloader.webp',
+};
 
 export function ProjectsView() {
   return (
     <section id="projects" className="pt-8 pb-4" aria-labelledby="projects-heading">
-      <hr className="border-neutral-800/80 mb-8" />
-      
-      {/* Section Eyebrow & Heading */}
-      <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400 block mb-1">
+      <hr className="mb-8 border-border" />
+
+      <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-muted">
         Selected work
       </span>
+
       <h2
         id="projects-heading"
-        className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2"
+        className="mb-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
       >
         Projects I&apos;ve built
       </h2>
-      <p className="text-sm text-neutral-400 max-w-xl leading-relaxed mb-6">
-        Production systems spanning fintech infrastructure, autonomous agent sandboxes, privacy-preserving
-        payments, and high-throughput developer platforms.
+
+      <p className="mb-6 max-w-xl text-sm leading-relaxed text-muted">
+        Production systems spanning fintech infrastructure, autonomous agent
+        sandboxes, privacy-preserving payments, and high-throughput developer
+        platforms.
       </p>
 
-      {/* 2-Column Grid matching reference layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {projects.map((project) => (
           <article
             key={project.name}
             id={`work-${project.name.toLowerCase().replace(/\s+/g, '-')}`}
-            className="group rounded-xl border border-neutral-800/80 bg-neutral-950/60 hover:border-neutral-700/80 transition-all duration-200 overflow-hidden flex flex-col"
+            className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface-elevated transition-colors duration-200 hover:border-brand/40"
           >
-            {/* Visual Preview Banner */}
-            <div className="h-32 bg-gradient-to-b from-neutral-900/80 to-neutral-950/40 border-b border-neutral-800/60 flex items-center justify-center p-4 relative overflow-hidden">
-              <div className="w-14 h-14 rounded-xl border border-neutral-800 bg-neutral-900/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200">
-                <span className="text-lg font-bold text-neutral-200 tracking-wider">
-                  {project.mark}
-                </span>
-              </div>
+            <div className="relative h-32 overflow-hidden border-b border-border bg-background">
+              <Image
+                src={projectBanners[project.name] ?? '/projects/agentpay.webp'}
+                alt={`${project.name} banner`}
+                fill
+                sizes="(max-width: 640px) 100vw, 320px"
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+
               {project.status && (
-                <span className="absolute top-3 right-3 text-[10px] font-medium px-2 py-0.5 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-400">
+                <span className="absolute right-3 top-3 rounded-full border border-white/10 bg-black/70 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur-sm">
                   {project.status}
                 </span>
               )}
             </div>
 
-            {/* Content Body */}
-            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
               <div>
-                <h3 className="text-base font-semibold text-white group-hover:text-sky-300 transition-colors tracking-tight">
+                <h3 className="text-base font-semibold tracking-tight text-foreground transition-colors group-hover:text-brand">
                   {project.name}
                 </h3>
-                <p className="text-xs sm:text-[13px] text-neutral-400 mt-2 leading-relaxed">
+
+                <p className="mt-2 text-xs leading-relaxed text-muted sm:text-[13px]">
                   {project.description}
                 </p>
               </div>
 
-              {/* Technologies & Actions */}
               <div className="mt-4">
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.technologies.slice(0, 5).map((tech) => (
+                <div
+                  className="mb-4 flex flex-wrap gap-2"
+                  aria-label={`${project.name} technology stack`}
+                >
+                  {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="text-[10px] uppercase tracking-wider font-medium px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300"
+                      title={tech}
+                      className="inline-flex size-8 items-center justify-center rounded-lg border border-border bg-background text-muted transition-colors hover:border-brand/50 hover:bg-brand-soft hover:text-foreground"
                     >
-                      {tech}
+                      <TechnologyIcon name={tech} />
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2 pt-3 border-t border-neutral-900">
+                <div className="flex flex-wrap items-center gap-2 border-t border-border-soft pt-3">
                   <LinkButton
                     href={project.github}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     variant="outline"
                     size="sm"
                   >
@@ -92,7 +108,7 @@ export function ProjectsView() {
                     <LinkButton
                       href={project.live}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       variant="outline"
                       size="sm"
                     >
