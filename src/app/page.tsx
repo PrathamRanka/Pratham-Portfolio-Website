@@ -1,3 +1,4 @@
+
 import { WebMcpTools } from '@/components/webmcp-tools';
 import { NavigationDockView } from '@/components/views/NavigationDockView';
 import { HeroView } from '@/components/views/HeroView';
@@ -22,17 +23,19 @@ export default function Home() {
   return (
     <>
       <WebMcpTools />
+
       <a className="skip-link" href="#top">
         Skip to content
       </a>
+
       <NavigationDockView />
 
       <main
         id="top"
         tabIndex={-1}
-        className="min-h-screen bg-[#080808] text-neutral-200 antialiased font-sans selection:bg-neutral-800 selection:text-white"
+        className="min-h-screen bg-background text-foreground antialiased font-sans selection:bg-neutral-800 selection:text-white"
       >
-        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-2xl px-4 sm:px-6">
           <HeroView />
           <AboutView />
           <TechnicalWritingView />
