@@ -1,74 +1,42 @@
 import Image from 'next/image';
+import HalftoneWordmarkFooter from '@/components/ui/footer';
 
 export function FooterView() {
   return (
-    <footer className="pt-8 pb-24 border-t border-neutral-900 text-xs text-neutral-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div className="flex items-center gap-4 flex-wrap">
-        <p>&copy; {new Date().getFullYear()} Pratham Ranka</p>
-        <span className="text-neutral-700">·</span>
-        <a
-          href="https://github.com/PrathamRanka"
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-neutral-300 transition-colors"
-        >
-          GitHub
-        </a>
-        <a
-          href="https://www.linkedin.com/in/prathamranka06/"
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-neutral-300 transition-colors"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://x.com/pr7ham_develops"
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-neutral-300 transition-colors"
-        >
-          X
-        </a>
+    <>
+      <div className="mx-auto w-full max-w-[900px]">
+        <HalftoneWordmarkFooter
+          wordmark="pratham"
+          label="Pratham Ranka"
+          meta={`©${new Date().getFullYear()} · Backend Engineer`}
+          columns={[]}
+          preset="night"
+          palette={{ background: '#0a0a0a', ink: '#ffffff', warm: '#2f6bff' }}
+          height="340px"
+          dotGap={5}
+          radius={70}
+          crop={0.2}
+          grain={0.35}
+          className="border-t border-neutral-900"
+          extra={
+            <a
+              className="opacity-70 hover:opacity-100 transition-opacity"
+              href="https://destroy.spritefusion.com/?from=badge"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="https://destroy.spritefusion.com/badge.svg"
+                alt="Destroy this website"
+                width={140}
+                height={32}
+                unoptimized
+              />
+            </a>
+          }
+        />
       </div>
-
-      <div className="flex items-center gap-4">
-        <a href="#top" className="hover:text-neutral-300 transition-colors">
-          Back to top &uarr;
-        </a>
-        <a
-          className="opacity-70 hover:opacity-100 transition-opacity"
-          href="https://destroy.spritefusion.com/?from=badge"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Image
-            src="https://destroy.spritefusion.com/badge.svg"
-            alt="Destroy this website"
-            width={140}
-            height={32}
-            unoptimized
-          />
-        </a>
-      </div>
-    </footer>
+      <div className="h-24 bg-[#0a0a0a]" />
+    </>
   );
 }
-
-
-
-
-/*"use client"
-
-import HalftoneWordmarkFooter from "@/components/ui/halftone-wordmark-footer"
-
-export default function Demo() {
-  // w-full matters: 21st centres demos in a flex wrapper, and a flex item
-  // left at width:auto shrinks the canvas to 0px wide.
-  return (
-    <div className="w-full">
-      <HalftoneWordmarkFooter />
-    </div>
-  )
-}
- */

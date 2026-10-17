@@ -268,3 +268,10 @@ button:focus-visible {
 @media (max-width: 1000px) {
   .viewport-guides { display: none; }
 }
+
+
+/*footer*/
+ .hwf-top {
+  grid-template-columns: minmax(0, 1fr);
+  display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 16px;
+}

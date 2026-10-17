@@ -68,6 +68,8 @@ export interface HalftoneWordmarkFooterProps {
   monoFamily?: string
   /** Root height. A definite length, never a percentage. */
   height?: string
+  /** Extra node next to back-to-top (e.g. a badge). */
+  extra?: React.ReactNode
   /** Extra root class names. */
   className?: string
 }
@@ -196,6 +198,7 @@ export default function HalftoneWordmarkFooter({
   fontWeight = 800,
   monoFamily = MONO_STACK,
   height = "560px",
+  extra = null,
   className = "",
 }: HalftoneWordmarkFooterProps) {
   const colors = { ...(PRESETS[preset] || PRESETS.night), ...(palette || {}) }
@@ -486,6 +489,7 @@ export default function HalftoneWordmarkFooter({
         ))}
       </div>
       <div className="hwf-rule">
+        {extra}
         {backToTop ? (
           <button type="button" className="hwf-up" onClick={toTop}>
             Back to top ↑
