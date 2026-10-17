@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { projects } from '@/data/portfolio';
 import { ArrowUpRight, GithubIcon, GlobeIcon } from '@/components/icons';
+import { LinkButton } from '@/components/ui/button';
 
 export function ProjectsView() {
   return (
@@ -69,36 +70,35 @@ export function ProjectsView() {
                 </div>
 
                 <div className="flex items-center gap-2 pt-3 border-t border-neutral-900">
-                  <a
+                  <LinkButton
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-200 text-xs font-medium hover:bg-neutral-800 hover:text-white transition-colors"
+                    variant="outline"
+                    size="sm"
                   >
                     <GithubIcon size={13} />
                     <span>Source</span>
-                  </a>
+                  </LinkButton>
 
                   {project.caseStudy && (
-                    <Link
-                      href={project.caseStudy}
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-sky-950/40 border border-sky-800/40 text-sky-300 text-xs font-medium hover:bg-sky-900/40 transition-colors"
-                    >
+                    <LinkButton href={project.caseStudy} variant="primary" size="sm">
                       <span>Case study</span>
                       <ArrowUpRight size={12} />
-                    </Link>
+                    </LinkButton>
                   )}
 
                   {project.live && (
-                    <a
+                    <LinkButton
                       href={project.live}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-200 text-xs font-medium hover:bg-neutral-800 hover:text-white transition-colors"
+                      variant="outline"
+                      size="sm"
                     >
                       <GlobeIcon size={13} />
                       <span>Live</span>
-                    </a>
+                    </LinkButton>
                   )}
                 </div>
               </div>
