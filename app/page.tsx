@@ -2,7 +2,6 @@ import { About } from "@/components/landing/about";
 import { Bookmarks } from "@/components/landing/bookmarks";
 import { Campfire } from "@/components/landing/campfire";
 import { Certifications } from "@/components/landing/certifications";
-import { ComponentHighlights } from "@/components/landing/component-highlights";
 import { CTA } from "@/components/landing/cta";
 import { Experience } from "@/components/landing/experience";
 import { Footer } from "@/components/landing/footer";
@@ -16,7 +15,6 @@ import { Services } from "@/components/landing/services";
 import { GitSkeleton } from "@/components/skeletons/github-skeleton";
 import { Skills } from "@/components/landing/skills";
 import Social from "@/components/landing/social";
-// import { SponsorsSection } from "@/components/landing/sponsors";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Vader } from "@/components/landing/vader";
 import { PixelDissolve } from "@/components/ui/pixel-dissolve";
@@ -59,10 +57,8 @@ const staticSections: Record<Exclude<SectionId, "github">, ReactElement> = {
       title={projectsSectionConfig.title}
     />
   ),
-  components: <ComponentHighlights />,
   bookmarks: <Bookmarks />,
   certifications: <Certifications />,
-  // sponsors: <SponsorsSection />,
   experience: <Experience />,
   services: <Services />,
   workflow: <HowIWork />,

@@ -4,7 +4,6 @@ import type { ComponentType, SVGProps } from "react";
 export type SectionId =
   | "socials"
   | "skills"
-  | "components"
   | "about"
   | "testimonials"
   | "projects"
@@ -14,7 +13,6 @@ export type SectionId =
   | "github"
   | "bookmarks"
   | "certifications"
-  | "sponsors"
   | "contact";
 
 export interface SectionFlags {
@@ -251,6 +249,8 @@ export interface ExperienceItem {
   highlights?: string[];
   order: number;
   enabled?: boolean;
+  companyLogo?: string;
+  ycBadge?: boolean;
 }
 
 export interface ListSectionConfig {

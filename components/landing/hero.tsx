@@ -208,7 +208,6 @@ export function Hero() {
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent("hero_resume_clicked")}
               className="micro-transition rounded-sm px-1 py-0.5 font-sans hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20"
             >
               View Resume ↗

@@ -17,14 +17,12 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useMemo } from "react";
 
-import { getComponentIcon } from "@/components/showcase/component-icons";
 import {
   CommandPalette,
   type CommandPaletteGroup,
   type CommandPaletteItem,
   type CommandPalettePage,
 } from "@/components/ui/command-palette";
-import { getEnabledComponents } from "@/config/components";
 import { projectsConfig } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 

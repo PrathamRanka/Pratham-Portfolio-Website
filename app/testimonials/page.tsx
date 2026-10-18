@@ -1,5 +1,4 @@
 import { TestimonialsGrid } from "@/components/landing/testimonials-grid";
-import { SponsorsSection } from "@/components/landing/sponsors";
 import { Footer } from "@/components/landing/footer";
 import { getAllTestimonials } from "@/config/testimonials";
 import { openGraphConfig } from "@/config/opengraph";
@@ -119,8 +118,6 @@ export default function TestimonialsPage() {
           <h2 className="sr-only">all testimonials</h2>
           <TestimonialsGrid testimonials={testimonials} />
         </section>
-
-        <SponsorsSection />
       </main>
       <Footer />
     </>
