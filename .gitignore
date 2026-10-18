@@ -60,3 +60,4 @@ next-env.d.ts
 /.zcode/
 /outputs/
 /.cdp-profile/
+node_modules
