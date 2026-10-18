@@ -1,0 +1,515 @@
+import type { MetadataRoute } from "next";
+import type { ComponentType, SVGProps } from "react";
+
+export type SectionId =
+  | "socials"
+  | "skills"
+  | "components"
+  | "about"
+  | "testimonials"
+  | "projects"
+  | "experience"
+  | "services"
+  | "workflow"
+  | "github"
+  | "bookmarks"
+  | "certifications"
+  | "sponsors"
+  | "contact";
+
+export interface SectionFlags {
+  [key: string]: boolean;
+}
+
+export interface SectionNoteConfig {
+  text: string;
+  side: "left" | "right";
+}
+
+export interface SiteMetaConfig {
+  url: string;
+  title: string;
+  titleTemplate: string;
+  shortTitle: string;
+  description: string;
+  keywords: string[];
+  authors: Array<{ name: string; url: string }>;
+  creator: string;
+  publisher: string;
+  classification: string;
+  category: string;
+  locale: string;
+  ogImage: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  twitterCreator: string;
+  icon: string;
+  appleIcon: string;
+  googleVerification: string;
+  manifest: MetadataRoute.Manifest;
+  robots: MetadataRoute.Robots;
+  sitemap: Array<{
+    url: string;
+    changeFrequency:
+      | "always"
+      | "hourly"
+      | "daily"
+      | "weekly"
+      | "monthly"
+      | "yearly"
+      | "never";
+    priority: number;
+  }>;
+}
+
+export interface PersonalInfo {
+  fullName: string;
+  firstName: string;
+  avatar: {
+    src: string;
+    alt: string;
+    fallback: string;
+  };
+  location: {
+    label: string;
+    timeZone: string;
+  };
+  githubUsername: string;
+}
+
+export interface HeroConfig {
+  greeting: string;
+  waveEmoji: string | React.ElementType;
+  headlineBefore: string;
+  highlightedPhrases: string[];
+  headlineAfter: string;
+  description: string;
+  descriptionHighlight: string;
+}
+
+export interface ProfileBannerSticker {
+  id: "notebook" | "keyboard" | "plane" | "coffee";
+  src: string;
+  alt: string;
+  label: string;
+  tilt: number;
+  order: number;
+  soundSrc?: string;
+}
+
+export interface AboutConfig {
+  title: string;
+  body: string;
+}
+
+export interface FooterConfig {
+  quote: string;
+  attribution: string;
+  credit: string;
+  artwork: {
+    src: string;
+    width: number;
+    height: number;
+  };
+}
+
+export type AboutGreetings = Record<"morning" | "afternoon" | "evening", string>;
+
+export interface AboutItem {
+  id: string;
+  lead: string;
+  illustration: "browser" | "notebook" | "plane";
+  body: string;
+}
+
+export type SkillCategory =
+  | "language"
+  | "frontend"
+  | "backend"
+  | "workflow-ai"
+  | "data"
+  | "infrastructure";
+
+export interface SkillCategoryConfig {
+  id: SkillCategory;
+  label: string;
+}
+
+export interface SkillItem {
+  id: string;
+  name: string;
+  icon: SkillIcon;
+  category: SkillCategory;
+  order: number;
+  enabled?: boolean;
+}
+
+export type SkillIcon =
+  | "nextjs"
+  | "react"
+  | "typescript"
+  | "javascript"
+  | "tailwind"
+  | "ai-sdk"
+  | "shadcn"
+  | "better-auth"
+  | "prisma"
+  | "trpc"
+  | "tanstack"
+  | "claude"
+  | "cursor"
+  | "go"
+  | "python"
+  | "cplusplus"
+  | "nodejs"
+  | "fastapi"
+  | "websocket"
+  | "postgresql"
+  | "dynamodb"
+  | "redis"
+  | "kafka"
+  | "mongodb"
+  | "docker"
+  | "kubernetes"
+  | "githubactions"
+  | "terraform"
+  | "linkedin";
+
+export interface SocialLink {
+  id: string;
+  platform: string;
+  handle: string;
+  href?: string;
+  icon: SocialIcon;
+  order: number;
+  enabled?: boolean;
+  action?: "copy" | "external" | "mailto";
+  copyValue?: string;
+  shortcutKey?: string;
+  tooltipDefault?: string;
+}
+
+export type SocialIcon =
+  | "github"
+  | "x"
+  | "peerlist"
+  | "discord"
+  | "gmail"
+  | "reddit"
+  | "linkedin";
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  content: string;
+  avatar: string;
+  image: string;
+  /** Permalink to the original X or Reddit post, when one exists. */
+  href?: string;
+  order: number;
+  enabled?: boolean;
+}
+
+export interface ProjectMetric {
+  icon: "users" | "chart";
+  label: string;
+}
+
+export type ProjectStatus = "building" | "new" | "shipped";
+
+export interface Project {
+  id: string;
+  title: string;
+
+  description: string;
+  content?: string;
+  image: string;
+  imageAlt: string;
+  liveUrl?: string;
+  githubUrl?: string;
+
+  year: number;
+  status: ProjectStatus;
+  category: string;
+
+  tags: string[];
+  metrics?: ProjectMetric[];
+  order: number;
+  enabled?: boolean;
+}
+
+export interface ExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  summary: string;
+  highlights?: string[];
+  order: number;
+  enabled?: boolean;
+}
+
+export interface ListSectionConfig {
+  title: string;
+  items: string[];
+}
+
+export interface WorkflowItem {
+  label: string;
+  description: string;
+}
+
+export interface PricingAnchor {
+  label: string;
+  value: string;
+  note: string;
+}
+
+export interface ContactConfig {
+  title: string;
+  description: string;
+  pricing: PricingAnchor[];
+  channels: SocialLink[];
+}
+
+export type LinkCardIcon = ComponentType<
+  SVGProps<SVGSVGElement> & {
+    size?: number | string;
+    color?: string;
+  }
+>;
+
+export interface BookmarksConfig {
+  title: string;
+  items: Bookmark[];
+}
+
+export interface CertificationsConfig {
+  title: string;
+  items: Certification[];
+}
+
+export interface Bookmark {
+  id: string;
+  url: string;
+  title: string;
+  domain: string;
+  icon?: LinkCardIcon;
+}
+
+export interface Certification {
+  id: string;
+  url: string;
+  title: string;
+  domain: string;
+  date?: string;
+  icon?: LinkCardIcon;
+}
+
+export interface Sponsor {
+  id: string;
+  name: string;
+  /** Optional date the supporter joined. */
+  date?: string;
+  url?: string;
+  /** Square logo image, shown in the supporter list. Falls back to a generated avatar. */
+  logo?: string;
+  /** 0-based supporter seat index. */
+  seat: number;
+  order: number;
+  enabled?: boolean;
+  /** Dodo payment id, present on sponsors added through the payment webhook. */
+  paymentId?: string;
+  /** False until the sponsor has submitted the claim form with url and logo. */
+  claimed?: boolean;
+}
+
+export interface SponsorTier {
+  id: string;
+  name: string;
+  /** One-time price in USD. */
+  price: number;
+  /** How long the seat stays up. Shown verbatim next to the price. */
+  duration: string;
+  description: string;
+  /** Bullet-free short list of what the tier includes. */
+  perks: string[];
+  /** Marks the tier as the recommended one in the UI. */
+  featured?: boolean;
+  order: number;
+  enabled?: boolean;
+}
+
+export interface SponsorsSectionConfig {
+  label: string;
+  heading: string;
+  description: string;
+  supportLabel: string;
+  supportNote: string;
+  seats: number;
+  tiers: SponsorTier[];
+}
+
+/** One numbered point on the /sponsor page, used for the why and steps lists. */
+export interface SponsorPagePoint {
+  label: string;
+  description: string;
+}
+
+export interface SponsorPageConfig {
+  title: string;
+  tagline: string;
+  description: string;
+  /** Serif italic caption under the hero mascot. */
+  mascotCaption: string;
+  whyHeading: string;
+  why: SponsorPagePoint[];
+  tierHeading: string;
+  stepsHeading: string;
+  steps: SponsorPagePoint[];
+  ctaHeading: string;
+  ctaDescription: string;
+}
+
+export type ComponentIcon =
+  | "testimonial"
+  | "reactions"
+  | "todo"
+  | "globe"
+  | "terminal"
+  | "git"
+  | "folder"
+  | "blur"
+  | "slider"
+  | "carousel"
+  | "theme"
+  | "appearance"
+  | "pills"
+  | "channels"
+  | "rail"
+  | "bars"
+  | "command"
+  | "sparkles"
+  | "prompt"
+  | "models"
+  | "stack"
+  | "status"
+  | "snake"
+  | "rolodex";
+
+export interface ComponentDoc {
+  id: string;
+  title: string;
+  description: string;
+  icon: ComponentIcon;
+  /** Path (relative to project root) of the tsx file used as the live preview. */
+  demoPath: string;
+  /** Path (relative to project root) of the markdown docs rendered below the preview. */
+  docPath: string;
+  order: number;
+  enabled?: boolean;
+  /** Display a new component indicator dot on cards and teasers. */
+  new?: boolean;
+}
+
+/** A named colour ramp offered by the preview props panel. */
+export interface PlaygroundPalette {
+  id: string;
+  label: string;
+  /** Low to high. Drives both the swatch chip and the resolved prop values. */
+  colors: string[];
+}
+
+/**
+ * One control in the props panel. V1 covers four kinds: a fixed palette picker,
+ * a slider, a toggle, and a small segmented switch for enum props.
+ */
+export type PlaygroundControl =
+  | {
+      kind: "palette";
+      key: string;
+      label?: string;
+      /** Palette id selected on first paint. */
+      default: string;
+    }
+  | {
+      kind: "slider";
+      key: string;
+      label: string;
+      min: number;
+      max: number;
+      step: number;
+      default: number;
+      /** Readout formatter. Defaults to two decimals. */
+      format?: (value: number) => string;
+    }
+  | {
+      kind: "toggle";
+      key: string;
+      label: string;
+      /** Second line under the label, e.g. what the toggle does. */
+      description?: string;
+      default: boolean;
+    }
+  | {
+      kind: "segmented";
+      key: string;
+      label: string;
+      options: Array<{ value: string; label: string }>;
+      default: string;
+    };
+
+/** Live control values, keyed by control key. */
+export type PlaygroundValues = Record<string, string | number | boolean>;
+
+/**
+ * Per-component description of the props panel. The panel only ever feeds the
+ * live preview; the static props table in the markdown docs is untouched.
+ *
+ * V1 allows a single palette control per component, so `resolve` receives the
+ * selected ramp directly.
+ */
+export interface PlaygroundSchema {
+  /** Export name used when copying the current values as a JSX snippet. */
+  componentName: string;
+  controls: PlaygroundControl[];
+  /** Resolved keys to leave out of the copied snippet. */
+  omitFromSnippet?: string[];
+  /** Maps control values onto the props the component actually takes. */
+  resolve: (
+    values: PlaygroundValues,
+    palette: PlaygroundPalette,
+  ) => Record<string, unknown>;
+}
+
+export interface PortfolioConfig {
+  meta: SiteMetaConfig;
+  personal: PersonalInfo;
+  sectionOrder: SectionId[];
+  sectionFlags: Record<SectionId, boolean>;
+  bookmarks: BookmarksConfig;
+  certifications: CertificationsConfig;
+  banner: {
+    imageSrc: string;
+    imageAlt: string;
+    openSourceUrl: string;
+    openSourceTooltip: string;
+    themeToggleLabel: string;
+    themeShortcut: string;
+    themeTooltip: string;
+    switchAudioSrc: string;
+  };
+  about: AboutConfig;
+  services: ListSectionConfig;
+  workflow: {
+    title: string;
+    items: WorkflowItem[];
+  };
+  contact: ContactConfig;
+}
+
+

@@ -1,0 +1,121 @@
+"use client";
+
+import { InfiniteSlider } from "@/components/motion-primitives/infinite-slider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  getAllTestimonials,
+  getEnabledTestimonials,
+  testimonialsSectionConfig,
+} from "@/config/testimonials";
+import type { Testimonial } from "@/config/types";
+import Link from "next/link";
+import { BsArrowUpRightCircle } from "react-icons/bs";
+
+const MARQUEE_SPEED = 64;
+const MARQUEE_SPEED_HOVER = 24;
+
+const enabledTestimonials = getEnabledTestimonials();
+const marqueeSplit = Math.ceil(enabledTestimonials.length / 2);
+const marqueeTop = enabledTestimonials.slice(0, marqueeSplit);
+const marqueeBottom = enabledTestimonials.slice(marqueeSplit);
+
+function TestimonialSlide({ testimonial }: { testimonial: Testimonial }) {
+  const card = (
+      <Card className="h-full bg-background hover:bg-muted/50 transition-colors rounded-none">
+        <CardContent className="p-2 flex flex-col gap-1 h-full">
+          <p className="text-[10px] text-muted-foreground leading-tight flex-1">
+            &quot;{testimonial.content}&quot;
+          </p>
+
+          <div className="flex items-center gap-1.5 mt-auto">
+            <Avatar className="h-6 w-6">
+              <AvatarImage
+                src={testimonial.image}
+                alt={testimonial.name}
+              />
+              <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+            </Avatar>
+
+            <div className="flex flex-col">
+              <span className="text-[10px] font-medium leading-none">
+                {testimonial.name}
+              </span>
+              <span className="text-[9px] text-muted-foreground mt-0.5 font-sans">
+                {testimonial.role}
+              </span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+  );
+
+  return (
+    <div className="w-80 md:w-82 py-2 md:py-2.5">
+      {testimonial.href ? (
+        <a
+          href={testimonial.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+          aria-label={`Open original post from ${testimonial.name}`}
+        >
+          {card}
+        </a>
+      ) : (
+        card
+      )}
+    </div>
+  );
+}
+
+function TestimonialsTrack({
+  items,
+  reverse = false,
+}: {
+  items: Testimonial[];
+  reverse?: boolean;
+}) {
+  return (
+    <InfiniteSlider
+      gap={0}
+      speed={MARQUEE_SPEED}
+      speedOnHover={MARQUEE_SPEED_HOVER}
+      reverse={reverse}
+    >
+      {items.map((testimonial) => (
+        <TestimonialSlide key={testimonial.id} testimonial={testimonial} />
+      ))}
+    </InfiniteSlider>
+  );
+}
+
+export function Testimonials() {
+  return (
+    <section className="border-t border-dashed pt-5 overflow-hidden">
+      <h2 className="no-js-visible section-heading mb-1.5">
+        Community
+      </h2>
+      <div className="relative px-6">
+        <TestimonialsTrack items={marqueeTop} />
+        {marqueeBottom.length > 0 && (
+          <TestimonialsTrack items={marqueeBottom} reverse />
+        )}
+        {/* pointer-events-none: these sit at z-10 above the slider and would
+            otherwise swallow interaction in the outer 32px on each side. */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-linear-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-background to-transparent z-10" />
+      </div>
+
+      <div className="flex justify-center items-center border-y py-3">
+        <Link
+          href="/testimonials"
+          className="flex items-center gap-2 font-sans text-[10px] text-muted-foreground transition-colors hover:text-foreground"
+        >
+          {`${testimonialsSectionConfig.seeMoreLabel} ${getAllTestimonials().length} testimonials`}
+          <BsArrowUpRightCircle className="size-3" />
+        </Link>
+      </div>
+    </section>
+  );
+}

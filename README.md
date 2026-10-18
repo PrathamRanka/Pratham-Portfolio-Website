@@ -1,0 +1,61 @@
+# hey, i'm Pratham
+
+this is my portfolio and a record of how i think about shipping products.
+
+i help early-stage founders launch scoped saas mvps. my sweet spot is auth, billing, dashboards, admin tools, and the first core workflow that needs to get into users' hands quickly.
+
+the site is open source because i want the work to be inspectable, reusable, and easy to learn from.
+
+## the stack
+
+built with the tools i use for actual product work
+
+- **next.js 16** (app router)
+- **tailwind css v4** + **shadcn ui**
+- **typescript**
+- **motion** for animations
+
+## run it locally
+
+clone the repo and install dependencies
+
+```bash
+git clone https://github.com/PrathamRanka/prathamranka.git
+cd prathamranka
+npm install
+npm run dev
+```
+
+go to [http://localhost:3000](http://localhost:3000) and check it out.
+
+## the component registry
+
+every component under `/components` is published as a [shadcn](https://ui.shadcn.com) registry, so you can install it into your own project instead of copying files.
+
+```bash
+npx shadcn@latest add @akoder/dotted-world-map
+```
+
+the `@akoder` namespace is published in the official shadcn directory, so the cli resolves it with no setup. replace `dotted-world-map` with any item from `registry.json`.
+
+`registry.json` at the repo root is the source of truth. after editing a component or adding a new one, rebuild the served json files
+
+```bash
+npm run registry:build
+```
+
+this writes `public/r/registry.json` (the index) and one file per item. commit the output — it is served statically.
+
+## contact
+
+if you have a product idea, a clear user, and a realistic deadline, reach out.
+dm me on [twitter](https://x.com/PrathamRanka) or [email me](mailto:prathamranka@example.com).
+
+if you found this useful maybe [buy me a coffee](https://buymeacoffee.com/prathamranka)
+
+cheers
+pratham ranka
+
+## license
+
+this project is licensed under the [MIT License](./LICENSE).
