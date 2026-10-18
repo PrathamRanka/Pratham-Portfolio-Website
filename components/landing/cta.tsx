@@ -1,0 +1,157 @@
+"use client";
+
+import { siteConfig } from "@/config/site";
+import type { SocialIcon, SocialLink } from "@/config/types";
+import { trackEvent } from "@/lib/analytics";
+import Gmail from "@/public/stacks/gmail";
+import X from "@/public/x-icon";
+import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { CopyStatusIcon } from "@/components/showcase/copy-status-icon";
+
+const contactChannels = siteConfig.contact.channels
+  .filter((item) => item.enabled !== false)
+  .sort((a, b) => a.order - b.order);
+
+function ContactIcon({ icon }: { icon: SocialIcon }) {
+  if (icon === "gmail") {
+    return <Gmail size="18" />;
+  }
+  if (icon === "discord") {
+    return <Image src="/discord.svg" alt="Discord" width={18} height={18} />;
+  }
+  return <X size={18} />;
+}
+
+export function CTA() {
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  const copyValue = (channel: SocialLink) => {
+    if (!channel.copyValue || typeof navigator === "undefined") {
+      return;
+    }
+    navigator.clipboard
+      .writeText(channel.copyValue)
+      .then(() => {
+        trackEvent("social_handle_copied", {
+          platform: channel.platform,
+          handle: channel.handle,
+          method: "click",
+          location: "contact_section",
+        });
+        setCopiedField(channel.id);
+        setTimeout(() => setCopiedField(null), 2000);
+      })
+      .catch(() => {});
+  };
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="no-js-visible border-t border-dashed pt-4 pb-4"
+    >
+      <h2 className="section-heading mb-1.5">{siteConfig.contact.title}</h2>
+      <div>
+        <p className="px-6 text-xs text-muted-foreground mb-3">{siteConfig.contact.description}</p>
+        <div className="px-6 mb-4">
+          <Button asChild size="sm" className="w-fit">
+            <Link
+              href="https://x.com/PrathamRanka"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent("social_link_clicked", {
+                  platform: "x",
+                  url: "https://x.com/PrathamRanka",
+                  location: "contact_section",
+                });
+              }}
+            >
+              <X data-icon="inline-start" />
+              Follow @PrathamRanka
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid border-t border-b border-dashed grid-cols-3 max-sm:grid-cols-1 overflow-hidden gap-px">
+          {contactChannels.map((channel) => {
+            const content = (
+              <div className="group relative flex items-center gap-2 p-3 border-b border-r border-dashed max-sm:border-r-0 transition-colors hover:bg-muted/10 overflow-hidden">
+                <div className="absolute inset-0 blueprint-bg opacity-50 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-muted-foreground/4 group-hover:ring-muted-foreground/8 transition-colors pointer-events-none" />
+
+                <div className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-sm text-muted-foreground group-hover:text-foreground transition-colors bg-background">
+                  <ContactIcon icon={channel.icon} />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-muted-foreground/4 pointer-events-none rounded-sm"></div>
+                </div>
+                <div className="relative z-10 flex flex-col min-w-0">
+                  <span className="text-xs font-medium leading-none">{channel.platform}</span>
+                  <span className="text-[10px] text-muted-foreground mt-0.5 truncate">{channel.handle}</span>
+                </div>
+                {channel.action === "copy" ? (
+                  <div className="relative z-10 ml-auto">
+                    <CopyStatusIcon
+                      status={copiedField === channel.id ? "copied" : "idle"}
+                      className="text-muted-foreground transition-colors group-hover:text-foreground"
+                    />
+                  </div>
+                ) : null}
+              </div>
+            );
+
+            if (channel.action === "copy") {
+              return (
+                <Tooltip key={channel.id}>
+                  <TooltipTrigger asChild>
+                    <button onClick={() => copyValue(channel)} className="text-left cursor-pointer">
+                      {content}
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{copiedField === channel.id ? "Copied!" : channel.tooltipDefault}</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            }
+
+            return (
+              <Tooltip key={channel.id}>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={channel.href ?? "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      trackEvent("social_link_clicked", {
+                        platform: channel.platform,
+                        url: channel.href ?? "",
+                        location: "contact_section",
+                      });
+                    }}
+                    className="focus-visible:outline-none"
+                  >
+                    {content}
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{channel.tooltipDefault}</p>
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </div>
+      </div>
+    </motion.section>
+  );
+}

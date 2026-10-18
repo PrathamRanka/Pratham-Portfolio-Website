@@ -1,0 +1,73 @@
+import type { SocialLink } from "@/config/types";
+
+export const socialSectionConfig = {
+  title: "Socials",
+};
+
+export const socialsConfig: SocialLink[] = [
+  {
+    id: "github",
+    platform: "GitHub",
+    handle: "@PrathamRanka",
+    href: "https://github.com/PrathamRanka",
+    icon: "github",
+    action: "external",
+    order: 1,
+    enabled: true,
+  },
+  {
+    id: "x",
+    platform: "X (Twitter)",
+    handle: "@pr7ham_develops",
+    href: "https://x.com/pr7ham_develops",
+    icon: "x",
+    action: "external",
+    tooltipDefault: "Message on X",
+    order: 2,
+    enabled: true,
+  },
+  {
+    id: "linkedin",
+    platform: "LinkedIn",
+    handle: "@prathamranka06",
+    href: "https://www.linkedin.com/in/prathamranka06/",
+    icon: "linkedin",
+    action: "external",
+    order: 3,
+    enabled: true,
+  },
+  {
+    id: "discord",
+    platform: "Discord",
+    handle: "@pratham_ranka",
+    icon: "discord",
+    action: "copy",
+    copyValue: "t1x_faker",
+    shortcutKey: "C",
+    tooltipDefault: "Copy username",
+    order: 5,
+    enabled: true,
+  },
+  {
+    id: "email",
+    platform: "Email",
+    handle: "prathamworks06@gmail.com",
+    href: "mailto:prathamworks06@gmail.com",
+    icon: "gmail",
+    action: "mailto",
+    tooltipDefault: "Send email",
+    order: 6,
+    enabled: true,
+  },
+  {
+    id: "reddit",
+    platform: "Reddit",
+    handle: "u/Full_Half_340",
+    href: "https://www.reddit.com/user/Full_Half_340/",
+    icon: "reddit",
+    action: "external",
+    tooltipDefault: "Visit Reddit profile",
+    order: 7,
+    enabled: true,
+  },
+];
