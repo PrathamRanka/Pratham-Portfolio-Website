@@ -1,8 +1,8 @@
+
 import { openGraphConfig } from "@/config/opengraph";
 import { siteConfig } from "@/config/site";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { createElement } from "react";
 
 export const OG_SIZE = { width: 1200, height: 630 } as const;
 export const OG_CONTENT_TYPE = "image/png";
@@ -10,7 +10,7 @@ export const OG_CONTENT_TYPE = "image/png";
 const SERIF = "Instrument Serif";
 const SANS = "Geist";
 const MONO = "Geist Mono";
-const { colors, artwork } = openGraphConfig;
+const { colors } = openGraphConfig;
 
 const loadFont = (file: string) =>
   readFileSync(path.join(process.cwd(), "lib", "fonts", file));
@@ -44,10 +44,16 @@ function clamp(text: string, max: number) {
     .replace(/\s*\u2014\s*/g, ", ")
     .replace(/\s+/g, " ")
     .trim();
+
   if (clean.length <= max) return clean;
+
   const cut = clean.slice(0, max);
   const at = cut.lastIndexOf(" ");
-  const body = (at > 0 ? cut.slice(0, at) : cut).replace(/[,;:.\s]+$/, "");
+  const body = (at > 0 ? cut.slice(0, at) : cut).replace(
+    /[,;:.\s]+$/,
+    "",
+  );
+
   return `${body}…`;
 }
 
@@ -74,10 +80,6 @@ export function OgCard({
   counter,
 }: OgCardProps) {
   const heading = title.replace(/\s*\u2014\s*/g, ": ");
-  const garden = readFileSync(
-    path.join(process.cwd(), "public", artwork.src),
-    "base64",
-  );
 
   return (
     <div
@@ -94,13 +96,6 @@ export function OgCard({
         fontFamily: SANS,
       }}
     >
-      {createElement("img", {
-        src: `data:image/png;base64,${garden}`,
-        alt: "",
-        width: OG_SIZE.width,
-        height: Math.round(OG_SIZE.width * artwork.height / artwork.width),
-        style: { position: "absolute", left: 0, bottom: -285 },
-      })}
       <div
         style={{
           display: "flex",
@@ -116,6 +111,7 @@ export function OgCard({
         <span>/</span>
         <span>{eyebrow}</span>
       </div>
+
       {counter ? (
         <div
           style={{
@@ -131,6 +127,7 @@ export function OgCard({
           {counter}
         </div>
       ) : null}
+
       <div
         style={{
           display: "flex",
@@ -156,6 +153,7 @@ export function OgCard({
         >
           {heading}
         </div>
+
         <div
           style={{
             display: "flex",
@@ -169,6 +167,7 @@ export function OgCard({
         >
           {clamp(description, 180)}
         </div>
+
         <div
           style={{
             display: "flex",
