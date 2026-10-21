@@ -65,7 +65,14 @@ export const metadata: Metadata = {
     title: siteConfig.meta.title,
     description: siteConfig.meta.description,
     siteName: siteConfig.meta.shortTitle,
-    images: [siteConfig.meta.ogImage],
+    images: [
+      {
+        url: siteConfig.meta.ogImage.url,
+        width: siteConfig.meta.ogImage.width,
+        height: siteConfig.meta.ogImage.height,
+        alt: siteConfig.meta.ogImage.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
