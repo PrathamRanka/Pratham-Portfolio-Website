@@ -1,6 +1,7 @@
 import { aboutGreetings, aboutItems, siteConfig } from "@/config/site";
 import { AboutGreeting } from "./about-greeting";
 import { AboutIllustration } from "./about-illustration";
+import Link from "next/link";
 
 export const About = () => {
   return (
@@ -17,6 +18,12 @@ export const About = () => {
         backend engineering, distributed systems, infrastructure, and
         full-stack development. He is open to software engineering internships,
         backend and infrastructure roles, and technical collaborations.
+        <Link
+          href="/resume"
+          className="ml-1 text-foreground underline decoration-border/60 underline-offset-4"
+        >
+          View the resume.
+        </Link>
       </p>
       <ul className="list-disc space-y-1.5 px-6 pb-2 pl-10 marker:text-muted-foreground/40">
         {aboutItems.map((item) => (

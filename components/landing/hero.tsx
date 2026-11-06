@@ -10,8 +10,6 @@ import { motion, Variants } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useHaptic } from "react-haptic";
 
-const RESUME_URL = "https://drive.google.com/file/d/1bFqVi04xFWRHssvIjcZ7oqcisKJ00li6/preview"; // <- replace this
-
 const entryTransition = {
   duration: 0.2,
   ease: [0.22, 1, 0.36, 1] as const,
@@ -205,12 +203,12 @@ export function Hero() {
             </span>
 
             <a
-              href={RESUME_URL}
+              href="/resume"
               target="_blank"
               rel="noopener noreferrer"
               className="micro-transition rounded-sm px-1 py-0.5 font-sans hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20"
             >
-              View Resume ↗
+              View resume ↗
             </a>
           </motion.div>
         </div>

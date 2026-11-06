@@ -47,6 +47,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+
   outputFileTracingIncludes: {
     "/**": ["./lib/fonts/**/*"],
     "/opengraph-image": ["./public/images/og/garden.png"],
@@ -67,6 +69,15 @@ const nextConfig: NextConfig = {
 
   async headers() {
     return [
+      {
+        source: "/(.*\\.(?:avif|gif|ico|jpe?g|png|svg|webp|woff2?|mp3|mp4))",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       {
         source: "/:path*",
         headers: securityHeaders,

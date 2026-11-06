@@ -99,6 +99,11 @@ export const metadata: Metadata = {
   },
   verification: {
     google: siteConfig.meta.googleVerification || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? {
+          "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+        }
+      : undefined,
   },
 };
 

@@ -150,14 +150,9 @@ export const siteConfig: PortfolioConfig = {
     sitemap: [
       { url: "https://prathamranka.in", changeFrequency: "weekly", priority: 1 },
       {
-        url: "https://prathamranka.in/testimonials",
+        url: "https://prathamranka.in/resume",
         changeFrequency: "monthly",
-        priority: 0.6,
-      },
-      {
-        url: "https://prathamranka.in/sponsor",
-        changeFrequency: "monthly",
-        priority: 0.6,
+        priority: 0.8,
       },
     ],
   },
@@ -182,6 +177,7 @@ export const siteConfig: PortfolioConfig = {
     "skills",
     "github",    
     "socials",
+    "contact",
   ],
   sectionFlags: {
     socials: true,
@@ -196,7 +192,6 @@ export const siteConfig: PortfolioConfig = {
     github: true,
     testimonials: true,
     contact: true,
-    // contact: true,
   },
   banner: {
     imageSrc: "/images/profile-banner-cutout.webp",

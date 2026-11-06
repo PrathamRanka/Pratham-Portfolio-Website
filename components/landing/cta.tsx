@@ -82,6 +82,12 @@ export function CTA() {
               Follow @PrathamRanka
             </Link>
           </Button>
+          <Link
+            href="/resume"
+            className="ml-3 text-xs text-muted-foreground underline decoration-border/60 underline-offset-4 hover:text-foreground"
+          >
+            View resume
+          </Link>
         </div>
 
         <div className="grid border-t border-b border-dashed grid-cols-3 max-sm:grid-cols-1 overflow-hidden gap-px">
