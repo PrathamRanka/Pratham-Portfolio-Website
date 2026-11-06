@@ -116,12 +116,37 @@ const jsonLd = {
       },
     },
     {
+      "@type": ["WebPage", "ProfilePage"],
+      "@id": `${siteConfig.meta.url}/#profile`,
+      url: siteConfig.meta.url,
+      name: siteConfig.meta.title,
+      description: siteConfig.meta.description,
+      isPartOf: {
+        "@id": `${siteConfig.meta.url}/#website`,
+      },
+      about: {
+        "@id": `${siteConfig.meta.url}/#person`,
+      },
+      mainEntity: {
+        "@id": `${siteConfig.meta.url}/#person`,
+      },
+    },
+    {
       "@type": "Person",
       "@id": `${siteConfig.meta.url}/#person`,
       name: siteConfig.personal.fullName,
       url: siteConfig.meta.url,
       jobTitle: "Software Engineer",
       description: siteConfig.meta.description,
+      image: `${siteConfig.meta.url}${siteConfig.personal.avatar.src}`,
+      homeLocation: {
+        "@type": "Place",
+        name: siteConfig.personal.location.label,
+      },
+      affiliation: {
+        "@type": "EducationalOrganization",
+        name: "Thapar Institute of Engineering & Technology",
+      },
       knowsAbout: [
         "Next.js",
         "TypeScript",
@@ -142,7 +167,6 @@ const jsonLd = {
         "https://x.com/pr7ham_develops",
         "https://www.linkedin.com/in/prathamranka06/",
       ],
-      image: `${siteConfig.meta.url}/profile.png`,
     },
   ],
 };

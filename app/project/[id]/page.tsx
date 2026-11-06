@@ -44,6 +44,12 @@ export async function generateMetadata({
       title: project.title,
       description: project.description,
       siteName: siteConfig.meta.shortTitle,
+      images: [
+        {
+          url: project.image,
+          alt: project.imageAlt,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -73,5 +79,32 @@ export default async function ProjectPage({
   const prev = index > 0 ? enabled[index - 1] : undefined;
   const next = index < enabled.length - 1 ? enabled[index + 1] : undefined;
 
-  return <ProjectContent project={project} prev={prev} next={next} />;
+  const projectUrl = `${siteConfig.meta.url}/project/${project.id}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "@id": `${projectUrl}/#software`,
+    name: project.title,
+    description: project.description,
+    url: projectUrl,
+    image: `${siteConfig.meta.url}${project.image}`,
+    codeRepository: project.liveUrl,
+    programmingLanguage: project.tags,
+    author: {
+      "@id": `${siteConfig.meta.url}/#person`,
+    },
+    isPartOf: {
+      "@id": `${siteConfig.meta.url}/#website`,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProjectContent project={project} prev={prev} next={next} />
+    </>
+  );
 }

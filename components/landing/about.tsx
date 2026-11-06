@@ -11,6 +11,13 @@ export const About = () => {
           greetings={aboutGreetings}
         />
       </h2>
+      <p className="px-6 pb-2 text-sm leading-7 text-muted-foreground">
+        Pratham Ranka is a Computer Engineering student at Thapar Institute of
+        Engineering &amp; Technology and a software engineer focused on
+        backend engineering, distributed systems, infrastructure, and
+        full-stack development. He is open to software engineering internships,
+        backend and infrastructure roles, and technical collaborations.
+      </p>
       <ul className="list-disc space-y-1.5 px-6 pb-2 pl-10 marker:text-muted-foreground/40">
         {aboutItems.map((item) => (
           <li

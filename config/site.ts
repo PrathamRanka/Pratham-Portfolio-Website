@@ -115,11 +115,36 @@ export const siteConfig: PortfolioConfig = {
       ],
     },
     robots: {
-      rules: {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/"],
-      },
+      rules: [
+        {
+          userAgent: "*",
+          allow: "/",
+          disallow: ["/api/"],
+        },
+        {
+          userAgent: "GPTBot",
+          disallow: "/",
+        },
+        {
+          userAgent: "OAI-SearchBot",
+          allow: "/",
+          disallow: ["/api/"],
+        },
+        {
+          userAgent: "ClaudeBot",
+          disallow: "/",
+        },
+        {
+          userAgent: "Claude-SearchBot",
+          allow: "/",
+          disallow: ["/api/"],
+        },
+        {
+          userAgent: "PerplexityBot",
+          allow: "/",
+          disallow: ["/api/"],
+        },
+      ],
       sitemap: "https://prathamranka.in/sitemap.xml",
     },
     sitemap: [
