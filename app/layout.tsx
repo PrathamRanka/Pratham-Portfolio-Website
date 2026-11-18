@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
+import VisitorTracker from "@/components/visitor-tracker";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -205,17 +206,18 @@ export default function RootLayout({
         </noscript>
         <ThemeProvider>
           <TooltipProvider>
-            <PostHogProvider>
-              <SiteHeader />
-              <FrameGutters />
-              <div className="relative mx-auto w-full max-w-[var(--frame-max-w)]">
-                <div className="relative w-full border-x bg-muted/20">
-                  {children}
+            <VisitorTracker />
+              <PostHogProvider>
+                <SiteHeader />
+                <FrameGutters />
+                <div className="relative mx-auto w-full max-w-[var(--frame-max-w)]">
+                  <div className="relative w-full border-x bg-muted/20">
+                    {children}
+                  </div>
+                  <BottomNav />
                 </div>
-                <BottomNav />
-              </div>
-            </PostHogProvider>
-          </TooltipProvider>
+              </PostHogProvider>
+            </TooltipProvider>
         </ThemeProvider>
         <Analytics />
         <Script
