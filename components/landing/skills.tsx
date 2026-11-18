@@ -110,9 +110,9 @@ function SkillChip({ skill }: { skill: SkillItem }) {
   // Deliberately no hover:/focus-visible: styles here. These chips are labels,
   // not controls: there is nothing to click and nothing to focus (a div with
   // no tabIndex can never receive focus, so a focus ring is unreachable CSS).
-  // Styling them like interactive filter chips made users click them, which
-  // PostHog then recorded as $dead_click. If these ever become filters or
-  // links, restore the affordances along with the handler.
+  // Styling them like interactive filter chips would imply that they are
+  // controls. If these ever become filters or links, restore the affordances
+  // along with the handler.
   const chipClasses =
     "no-js-visible inline-flex items-center gap-1.5 rounded-lg border border-dashed px-3 py-1 text-sm text-muted-foreground";
 
