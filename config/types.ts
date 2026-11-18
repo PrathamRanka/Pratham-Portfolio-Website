@@ -65,6 +65,8 @@ export interface SiteMetaConfig {
 export interface PersonalInfo {
   fullName: string;
   firstName: string;
+  phone: string;
+  phoneHref: string;
   avatar: {
     src: string;
     alt: string;
@@ -183,7 +185,7 @@ export interface SocialLink {
   icon: SocialIcon;
   order: number;
   enabled?: boolean;
-  action?: "copy" | "external" | "mailto";
+  action?: "copy" | "external" | "mailto" | "tel";
   copyValue?: string;
   shortcutKey?: string;
   tooltipDefault?: string;
@@ -196,7 +198,8 @@ export type SocialIcon =
   | "discord"
   | "gmail"
   | "reddit"
-  | "linkedin";
+  | "linkedin"
+  | "phone";
 
 export interface Testimonial {
   id: string;

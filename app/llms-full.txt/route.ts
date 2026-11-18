@@ -28,7 +28,12 @@ ${project.content}`,
     .join(", ");
 
   const profiles = socialsConfig
-    .filter((social) => social.enabled !== false && social.href)
+    .filter(
+      (social) =>
+        social.enabled !== false &&
+        social.href &&
+        social.id !== "phone",
+    )
     .map((social) => `- ${social.platform}: ${social.href}`)
     .join("\n");
 
@@ -59,6 +64,8 @@ ${projects}
 ${profiles}
 
 - Email: mailto:prathamworks06@gmail.com
+- Phone: +91 70232-06003
+- Telephone link: tel:+917023206003
 
 This file describes the public content available on the portfolio. It does not guarantee indexing, ranking, or citation by any search engine or AI system.
 `;

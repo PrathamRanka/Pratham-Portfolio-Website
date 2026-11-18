@@ -26,6 +26,13 @@ export const About = () => {
         >
           View the resume.
         </a>
+        {" "}Phone:{" "}
+        <a
+          href={siteConfig.personal.phoneHref}
+          className="text-foreground underline decoration-border/60 underline-offset-4"
+        >
+          {siteConfig.personal.phone}
+        </a>
       </p>
       <ul className="list-disc space-y-1.5 px-6 pb-2 pl-10 marker:text-muted-foreground/40">
         {aboutItems.map((item) => (

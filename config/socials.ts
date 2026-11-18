@@ -60,6 +60,17 @@ export const socialsConfig: SocialLink[] = [
     enabled: true,
   },
   {
+    id: "phone",
+    platform: "Phone",
+    handle: "+91 70232-06003",
+    href: "tel:+917023206003",
+    icon: "phone",
+    action: "tel",
+    tooltipDefault: "Call Pratham",
+    order: 7,
+    enabled: true,
+  },
+  {
     id: "reddit",
     platform: "Reddit",
     handle: "u/Full_Half_340",
@@ -67,7 +78,7 @@ export const socialsConfig: SocialLink[] = [
     icon: "reddit",
     action: "external",
     tooltipDefault: "Visit Reddit profile",
-    order: 7,
+    order: 8,
     enabled: true,
   },
 ];

@@ -13,6 +13,7 @@ import X from "@/public/x-icon";
 import LinkedIn from "@/public/stacks/linkedin";
 import { Kbd } from "@/components/ui/kbd";
 import { FaReddit } from "react-icons/fa";
+import { Phone } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -50,6 +51,8 @@ function SocialIconNode({
       return <FaReddit size={size} className="fill-orange-500" />;
     case "linkedin":
       return <LinkedIn size={String(size)} />;
+    case "phone":
+      return <Phone size={size} />;
     default:
       return null;
   }

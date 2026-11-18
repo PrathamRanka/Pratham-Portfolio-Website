@@ -9,7 +9,12 @@ const publicSkills = skillsConfig
   .join(", ");
 
 const publicProfiles = socialsConfig
-  .filter((social) => social.enabled !== false && social.href)
+  .filter(
+    (social) =>
+      social.enabled !== false &&
+      social.href &&
+      social.id !== "phone",
+  )
   .map((social) => `- ${social.platform}: ${social.href}`)
   .join("\n");
 
@@ -44,6 +49,8 @@ ${publicSkills}
 ${publicProfiles}
 
 - Email: mailto:prathamworks06@gmail.com
+- Phone: +91 70232-06003
+- Telephone link: tel:+917023206003
 
 ## Canonical pages
 

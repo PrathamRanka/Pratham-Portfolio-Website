@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
 import { motion, useReducedMotion, useSpring, type Variants } from "motion/react";
 import { DiscordStatus } from "@/components/landing/discord-status";
-import { footerConfig } from "@/config/site";
+import { footerConfig, siteConfig } from "@/config/site";
 import { MOTION_EASE } from "@/lib/motion";
 
 const itemVariants: Variants = {
@@ -137,6 +137,12 @@ export function FooterScene({ children }: { children: ReactNode }) {
           variants={itemVariants}
           className="mt-4 flex flex-col items-center gap-1 sm:flex-row sm:gap-5"
         >
+          <a
+            href={siteConfig.personal.phoneHref}
+            className="micro-transition font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20"
+          >
+            {siteConfig.personal.phone}
+          </a>
           <p className="text-center font-mono text-[10px] leading-relaxed tracking-[0.06em] text-muted-foreground">
             {footerConfig.credit}
           </p>

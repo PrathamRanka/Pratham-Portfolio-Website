@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: Record<string, any>;
+  let body: Record<string, unknown>;
 
   try {
     const text = await request.text();
@@ -151,8 +151,14 @@ export async function POST(request: NextRequest) {
       : "/";
 
   const referrer = clean(body.referrer, 250);
-  const browserInfo = body.browser || {};
-  const acquisition = body.acquisition || {};
+  const browserInfo =
+    body.browser && typeof body.browser === "object"
+      ? (body.browser as Record<string, unknown>)
+      : {};
+  const acquisition =
+    body.acquisition && typeof body.acquisition === "object"
+      ? (body.acquisition as Record<string, unknown>)
+      : {};
 
   // Approximate location from Vercel headers.
   const city = clean(

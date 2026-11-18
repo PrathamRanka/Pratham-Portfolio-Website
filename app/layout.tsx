@@ -143,6 +143,7 @@ const jsonLd = {
       name: siteConfig.personal.fullName,
       url: siteConfig.meta.url,
       jobTitle: "Software Engineer",
+      telephone: "+917023206003",
       description: siteConfig.meta.description,
       image: `${siteConfig.meta.url}${siteConfig.personal.avatar.src}`,
       homeLocation: {

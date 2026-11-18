@@ -153,6 +153,8 @@ export const siteConfig: PortfolioConfig = {
   personal: {
     fullName: "Pratham Ranka",
     firstName: "Pratham",
+    phone: "+91 70232-06003",
+    phoneHref: "tel:+917023206003",
     avatar: {
       src: "/images/profile-cutout.webp",
       alt: "Portrait of Pratham Ranka",
