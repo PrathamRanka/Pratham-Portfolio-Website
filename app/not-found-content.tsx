@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useSpring, useTransform } from "motion/react";
-import { ArrowLeft, ArrowRightIcon } from "@/components/shared/site-icons";
+import { ArrowLeft } from "@/components/shared/site-icons";
 import { Button } from "@/components/ui/button";
 import { notFoundConfig } from "@/config/not-found";
 import { MOTION_EASE, revealVariants } from "@/lib/motion";
@@ -169,15 +169,6 @@ export function NotFoundContent() {
               className="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 motion-reduce:transform-none"
             />
             {notFoundConfig.home.label}
-          </Link>
-        </Button>
-        <Button asChild variant="ghost" className="group h-9 gap-1.5 px-3">
-          <Link href={notFoundConfig.components.href}>
-            {notFoundConfig.components.label}
-            <ArrowRightIcon
-              aria-hidden="true"
-              className="size-3.5 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none"
-            />
           </Link>
         </Button>
       </motion.div>

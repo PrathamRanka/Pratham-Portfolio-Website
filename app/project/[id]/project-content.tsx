@@ -146,7 +146,7 @@ export function ProjectContent({
           alt={project.imageAlt}
           fill
           sizes="(min-width: 768px) 768px, 100vw"
-          className="object-cover"
+          className="object-contain"
           priority
         />
         <div
@@ -248,7 +248,7 @@ export function ProjectContent({
           {prev ? (
             <Link
               href={`/project/${prev.id}`}
-              className="group inline-flex min-w-0 max-w-full flex-col gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              className="group flex w-full min-w-0 flex-col gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             >
               <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
                 <ArrowLeft
@@ -257,7 +257,7 @@ export function ProjectContent({
                 />
                 Prev
               </span>
-              <span className="truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
+              <span className="block max-w-full truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
                 {prev.title}
               </span>
             </Link>
@@ -275,7 +275,7 @@ export function ProjectContent({
           {next ? (
             <Link
               href={`/project/${next.id}`}
-              className="group inline-flex min-w-0 max-w-full flex-col items-end gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              className="group flex w-full min-w-0 flex-col items-end gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             >
               <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
                 Next
@@ -284,7 +284,7 @@ export function ProjectContent({
                   className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
                 />
               </span>
-              <span className="truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
+              <span className="block max-w-full truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
                 {next.title}
               </span>
             </Link>

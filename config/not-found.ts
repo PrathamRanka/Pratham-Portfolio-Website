@@ -5,7 +5,6 @@ export const notFoundConfig = {
   description:
     "This page has wandered off. Let's get you back to familiar ground.",
   home: { label: "Back to home", href: "/" },
-  components: { label: "Explore components", href: "/components" },
   artwork: {
     map: {
       src: "/images/not-found-map.webp",
