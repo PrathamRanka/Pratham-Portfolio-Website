@@ -7,7 +7,6 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 import VisitorTracker from "@/components/visitor-tracker";
 import "./globals.css";
@@ -218,11 +217,6 @@ export default function RootLayout({
             </TooltipProvider>
         </ThemeProvider>
         <Analytics />
-        <Script
-          defer
-          src="https://talvess.vercel.app/script.js"
-          data-website-id="60de5aa9-eea8-4f05-b1d6-8a3d244d5644"
-        />
       </body>
     </html>
   );
