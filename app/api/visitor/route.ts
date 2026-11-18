@@ -13,13 +13,30 @@ const ALLOWED_ORIGINS = [
     : []),
 ];
 
+function formatIST(date = new Date()): string {
+  return (
+    new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).format(date) + " IST"
+  );
+}
+
 function clean(value: unknown, max = 200): string {
   if (typeof value !== "string") return "Unavailable";
 
-  return value
-    .replace(/[\r\n]/g, " ")
-    .trim()
-    .slice(0, max) || "Unavailable";
+  return (
+    value
+      .replace(/[\r\n]/g, " ")
+      .trim()
+      .slice(0, max) || "Unavailable"
+  );
 }
 
 function getBrowser(userAgent: string) {
@@ -39,8 +56,9 @@ function getBrowser(userAgent: string) {
   else if (/Mac OS X|Macintosh/i.test(userAgent)) os = "macOS";
   else if (/Linux/i.test(userAgent)) os = "Linux";
 
-  if (/iPad|Tablet/i.test(userAgent)) device = "Tablet";
-  else if (/Mobile|Android|iPhone|iPod/i.test(userAgent)) {
+  if (/iPad|Tablet/i.test(userAgent)) {
+    device = "Tablet";
+  } else if (/Mobile|Android|iPhone|iPod/i.test(userAgent)) {
     device = "Mobile";
   }
 
@@ -124,7 +142,10 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
+  if (
+    !process.env.TELEGRAM_BOT_TOKEN ||
+    !process.env.TELEGRAM_CHAT_ID
+  ) {
     console.error("Telegram configuration is missing.");
 
     return NextResponse.json(
@@ -149,10 +170,12 @@ export async function POST(request: NextRequest) {
       : "/";
 
   const referrer = clean(body.referrer, 250);
+
   const browserInfo =
     body.browser && typeof body.browser === "object"
       ? (body.browser as Record<string, unknown>)
       : {};
+
   const acquisition =
     body.acquisition && typeof body.acquisition === "object"
       ? (body.acquisition as Record<string, unknown>)
@@ -175,9 +198,13 @@ export async function POST(request: NextRequest) {
     request.headers.get("x-vercel-ip-timezone"),
   );
 
-  const location = [city, region, country]
-    .filter((value) => value !== "Unavailable")
-    .join(", ") || "Unavailable";
+  const location =
+    [city, region, country]
+      .filter((value) => value !== "Unavailable")
+      .join(", ") || "Unavailable";
+
+  // Use server receipt time and display it in IST.
+  const visitTime = formatIST();
 
   // Build Telegram message.
   const message = [
@@ -187,7 +214,7 @@ export async function POST(request: NextRequest) {
     `• ID: ${body.visitorId}`,
     `• Status: ${body.status === "Returning" ? "Returning" : "First-time"}`,
     `• Page: ${page}`,
-    `• Time: ${new Date().toISOString()}`,
+    `• Time: ${visitTime}`,
     "",
     "LOCATION",
     `• City: ${location}`,

@@ -2,6 +2,22 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { sendTelegramMessage } from "@/lib/telegram";
 
+// Format timestamps in Indian Standard Time.
+function formatIST(date = new Date()): string {
+  return (
+    new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).format(date) + " IST"
+  );
+}
+
 // API rate limiting
 const RATE_LIMIT = 30;
 const RATE_WINDOW_MS = 60_000;
@@ -64,6 +80,45 @@ const AI_CRAWLERS = [
   { name: "CCBot", pattern: /\bCCBot\b/i },
 ];
 
+// Ignore static files and metadata endpoints, but keep actual pages
+// and the two AI-readable text resources.
+function shouldTrackCrawlerPath(pathname: string): boolean {
+  if (
+    pathname === "/llms.txt" ||
+    pathname === "/llms-full.txt"
+  ) {
+    return true;
+  }
+
+  if (
+    pathname.startsWith("/api/") ||
+    pathname.startsWith("/_next/")
+  ) {
+    return false;
+  }
+
+  if (
+    pathname === "/manifest.webmanifest" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml" ||
+    pathname === "/opengraph-image" ||
+    pathname.endsWith("/opengraph-image")
+  ) {
+    return false;
+  }
+
+  // Ignore images, fonts, scripts, stylesheets, media and other files.
+  if (
+    /\.(avif|gif|ico|jpe?g|png|svg|webp|woff2?|ttf|otf|css|js|map|mp3|mp4|pdf|webmanifest|xml)$/i.test(
+      pathname,
+    )
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 const notified = new Map<string, number>();
 const CRAWLER_COOLDOWN_MS = 2 * 60_000;
 
@@ -72,13 +127,20 @@ async function notifyCrawler(
   crawlerName: string,
   userAgent: string,
 ) {
-  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) return;
+  if (
+    !process.env.TELEGRAM_BOT_TOKEN ||
+    !process.env.TELEGRAM_CHAT_ID
+  ) {
+    return;
+  }
 
   const key = `${crawlerName}:${request.nextUrl.pathname}`;
   const now = Date.now();
 
   for (const [entry, expiry] of notified) {
-    if (expiry <= now) notified.delete(entry);
+    if (expiry <= now) {
+      notified.delete(entry);
+    }
   }
 
   if (notified.has(key)) return;
@@ -88,7 +150,9 @@ async function notifyCrawler(
   const location = [
     request.headers.get("x-vercel-ip-city"),
     request.headers.get("x-vercel-ip-country"),
-  ].filter(Boolean).join(", ") || "Unavailable";
+  ]
+    .filter(Boolean)
+    .join(", ") || "Unavailable";
 
   const message = [
     "🤖 AI / SEARCH CRAWLER VISITED",
@@ -96,7 +160,7 @@ async function notifyCrawler(
     `• Crawler: ${crawlerName}`,
     `• URL: ${request.nextUrl.pathname}`,
     `• Location: ${location}`,
-    `• Time: ${new Date().toISOString()}`,
+    `• Time: ${formatIST()}`,
     "",
     `User-Agent: ${userAgent.slice(0, 300)}`,
     "",
@@ -131,8 +195,11 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Detect AI and search crawlers on page requests.
-  if (request.method === "GET") {
+  // Only inspect GET requests for crawler notifications.
+  if (
+    request.method === "GET" &&
+    shouldTrackCrawlerPath(pathname)
+  ) {
     const userAgent = request.headers.get("user-agent") || "";
 
     const crawler = AI_CRAWLERS.find((bot) =>
