@@ -12,8 +12,7 @@ export type SectionId =
   | "workflow"
   | "github"
   | "bookmarks"
-  | "certifications"
-  | "contact";
+  | "certifications";
 
 export interface SectionFlags {
   [key: string]: boolean;
@@ -263,19 +262,6 @@ export interface WorkflowItem {
   description: string;
 }
 
-export interface PricingAnchor {
-  label: string;
-  value: string;
-  note: string;
-}
-
-export interface ContactConfig {
-  title: string;
-  description: string;
-  pricing: PricingAnchor[];
-  channels: SocialLink[];
-}
-
 export type LinkCardIcon = ComponentType<
   SVGProps<SVGSVGElement> & {
     size?: number | string;
@@ -509,7 +495,4 @@ export interface PortfolioConfig {
     title: string;
     items: WorkflowItem[];
   };
-  contact: ContactConfig;
 }
-
-

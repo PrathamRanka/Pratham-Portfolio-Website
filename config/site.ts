@@ -1,4 +1,3 @@
-import { socialsConfig } from "@/config/socials";
 import type { AboutGreetings, AboutItem, FooterConfig, PortfolioConfig } from "@/config/types";
 
 export const aboutGreetings: AboutGreetings = {
@@ -172,7 +171,6 @@ export const siteConfig: PortfolioConfig = {
     "skills",
     "github",    
     "socials",
-    "contact",
   ],
   sectionFlags: {
     socials: true,
@@ -186,7 +184,6 @@ export const siteConfig: PortfolioConfig = {
     workflow: false,
     github: true,
     testimonials: true,
-    contact: true,
   },
   banner: {
     imageSrc: "/images/profile-banner-cutout.webp",
@@ -229,31 +226,6 @@ export const siteConfig: PortfolioConfig = {
           "I ship clean code, deployment support, and next-step recommendations after the first release.",
       },
     ],
-  },
-  contact: {
-    title: "Follow the build, not just the launch",
-    description:
-      "On X, I share product progress, technical decisions, failed ideas, and the lessons that only appear after shipping.",
-    pricing: [
-      {
-        label: "Minimum engagement",
-        value: "$700",
-        note: "A good fit for smaller scoped builds, feature sprints, or setup work.",
-      },
-      {
-        label: "Typical MVP range",
-        value: "$2.5k-$5k",
-        note: "Most founder MVP builds land here once scope, integrations, and handoff are clear.",
-      },
-      {
-        label: "How pricing works",
-        value: "Final quote depends on scope",
-        note: "Complex workflows, billing, roles, and admin tooling push projects higher.",
-      },
-    ],
-    channels: socialsConfig.filter((item) =>
-      ["email", "x", "discord"].includes(item.id),
-    ),
   },
   bookmarks: {
     title: "Bookmarks",

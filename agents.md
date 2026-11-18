@@ -88,7 +88,7 @@ component.
 | File | Holds |
 | --- | --- |
 | `config/types.ts` | Every shared type, plus the `SectionId` union |
-| `config/site.ts` | The root `siteConfig` object, meta, personal info, section order, section flags, banner, about, services, workflow, contact |
+| `config/site.ts` | The root `siteConfig` object, meta, personal info, section order, section flags, banner, about, services, and workflow |
 | `config/hero.ts` | `heroConfig`, hero copy |
 | `config/skills.ts` | `skillsSectionConfig` + `skillsConfig` |
 | `config/socials.ts` | `socialSectionConfig` + `socialsConfig` |
@@ -137,8 +137,6 @@ All types live in `config/types.ts`.
   (certifications only), `icon` component.
 - **`ComponentDoc`**, `id`, `title`, `description`, `icon`, `demoPath`,
   `docPath`, `order`, `enabled`.
-- **`ContactConfig`**, `title`, `description`, `pricing` (label, value, note),
-  `channels` (reuses `SocialLink`).
 - **`PortfolioConfig`**, `meta`, `personal`, `sectionOrder`, `sectionFlags`,
   `bookmarks`, `certifications`, `banner`, `about`, `services`, `workflow`,
   `contact`.
@@ -157,7 +155,7 @@ The home page is a loop, not a hand-written layout.
   `GITHUB_TOKEN` is present.
 - The current order is projects, components, skills, about, github,
   testimonials, bookmarks, socials, sponsors. Certifications, experience,
-  services, workflow and contact exist but are flagged off. The `sponsors`
+  services and workflow exist but are flagged off. The `sponsors`
   section is a compact, single-row logo strip with one invitation, not an orbit
   or a grid of empty seats. On the home page it sits directly after About.
   Supporter names appear in tooltips on hover and keyboard focus. Logo hover

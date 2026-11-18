@@ -2,7 +2,6 @@ import { About } from "@/components/landing/about";
 import { Bookmarks } from "@/components/landing/bookmarks";
 import { Campfire } from "@/components/landing/campfire";
 import { Certifications } from "@/components/landing/certifications";
-import { CTA } from "@/components/landing/cta";
 import { Experience } from "@/components/landing/experience";
 import { Footer } from "@/components/landing/footer";
 import { GitHubSection } from "@/components/landing/github-section";
@@ -62,7 +61,6 @@ const staticSections: Record<Exclude<SectionId, "github">, ReactElement> = {
   experience: <Experience />,
   services: <Services />,
   workflow: <HowIWork />,
-  contact: <CTA />,
 };
 
 export default function Home() {
