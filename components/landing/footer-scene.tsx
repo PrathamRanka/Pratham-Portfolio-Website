@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
 import { motion, useReducedMotion, useSpring, type Variants } from "motion/react";
-import { DiscordStatus } from "@/components/landing/discord-status";
 import { footerConfig, siteConfig } from "@/config/site";
 import { MOTION_EASE } from "@/lib/motion";
+import { socialsConfig } from "@/config/socials";
+import { useCopy } from "@/lib/use-copy";
+import { CopyStatusIcon } from "@/components/showcase/copy-status-icon";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 12 },
@@ -36,6 +38,8 @@ const wordVariants: Variants = {
 
 export function FooterScene({ children }: { children: ReactNode }) {
   const reducedMotion = useReducedMotion();
+  const { status: copyStatus, copy } = useCopy();
+  const discord = socialsConfig.find((social) => social.id === "discord");
   const x = useSpring(0, parallaxSpring);
   const y = useSpring(0, parallaxSpring);
   const rotate = useSpring(0, parallaxSpring);
@@ -129,7 +133,22 @@ export function FooterScene({ children }: { children: ReactNode }) {
           variants={itemVariants}
           className="mt-5 w-full max-w-[16rem]"
         >
-          <DiscordStatus />
+          {discord?.copyValue ? (
+            <button
+              type="button"
+              onClick={() => void copy(discord.copyValue!)}
+              aria-label={`Copy Discord username ${discord.copyValue}`}
+              className="micro-transition mx-auto flex h-8 items-center gap-2 rounded-md px-2.5 font-mono text-[10px] text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20"
+            >
+              <CopyStatusIcon
+                status={copyStatus}
+                idleIcon={
+                  <Image src="/discord.svg" alt="" width={12} height={12} />
+                }
+              />
+              <span>{copyStatus === "copied" ? "Copied!" : discord.handle}</span>
+            </button>
+          ) : null}
         </motion.div>
 
         <motion.div

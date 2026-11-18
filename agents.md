@@ -39,7 +39,7 @@ database, no auth, no payments. All content is typed configuration.
 | Inline prompt editing | Tiptap 3.31.4, with inline context chips and plain text submission |
 | Language | TypeScript 5, strict |
 | Styling | Tailwind 4 via `@tailwindcss/postcss`, plus `@tailwindcss/typography` and `tw-animate-css` |
-| Primitives | Radix UI and Base UI, vendored into `components/ui/`; Vaul for the mobile suggestion drawer |
+| Primitives | Radix UI and Base UI, vendored into `components/ui/` |
 | Motion | Motion 12 |
 | Icons | HugeIcons for site controls via `components/shared/site-icons.tsx`; `lucide-react` remains in shared UI, published components, and demos; `react-icons` and local assets supply brand icons |
 | Fonts | Geist (sans, mono) and Instrument Serif (`lib/fonts/`) |
@@ -65,14 +65,14 @@ There is no typecheck script; run `npx tsc --noEmit` directly.
 
 | Path | Contents |
 | --- | --- |
-| `app/` | Routes: `page.tsx` (home), `components/` and `components/[id]/` (showcase; the detail route adds `preview-box.tsx` and `playground.tsx`), `project/[id]/` (case studies), `testimonials/` (all quotes, 2 col grid), `api/` (discord-status, visitor-count, sponsor-checkout, sponsor-claim, dodo-webhook, component-suggestion); plus `layout.tsx`, `error.tsx`, `globals.css`, `robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`, `not-found.tsx`. `bookmarks/` and `certifications/` are home sections only, not routes. |
+| `app/` | Routes: `page.tsx` (home), `project/[id]/` (case studies), `api/` (visitor tracking); plus `layout.tsx`, `error.tsx`, `globals.css`, `robots.ts`, `sitemap.ts`, `manifest.ts`, `opengraph-image.tsx`, `not-found.tsx`. |
 | `components/` | Subdivided into `landing/` (one file per home section, hero, about, skills, etc.), `showcase/` (catalog, preview, props panel), `shared/` (header, footer, theme provider, logo), `ui/`, `motion-primitives/`, `skeletons/` |
 | `components/ui/` | Vendored shadcn and Radix primitives; source of most registry items |
 | `components/motion-primitives/` | Motion-heavy building blocks |
 | `components/skeletons/` | Loading placeholders |
 | `config/` | The data layer, one file per domain, plus `types.ts` and `playground.ts` (preview props panel schemas) |
 | `content/` | Markdown docs for the showcase |
-| `lib/` | `utils.ts` (the `cn` helper), `github.ts`, `discord-status.ts`, `highlight.ts`, `markdown/` (shared Markdown rendering helpers), `react-query.ts`, `fonts/` |
+| `lib/` | `utils.ts` (the `cn` helper), `github.ts`, `highlight.ts`, `markdown/` (shared Markdown rendering helpers), `fonts/` |
 | `public/` | Static assets; `public/r/` holds generated registry JSON |
 | `scripts/` | `build-registry.mjs` |
 | `plans/` | Private planning docs, gitignored |
@@ -402,13 +402,6 @@ Rules:
 - `config/components.ts` holds `componentRegistry` plus two helpers:
   `findComponent(id)` skips disabled entries, and `getEnabledComponents()`
   returns enabled entries sorted by `order`.
-- The catalog's trailing slot is the suggestion CTA
-  (`components/showcase/component-suggestion.tsx`): a dialog on desktop and a
-  Vaul drawer on mobile. It POSTs to `/api/component-suggestion`, which
-  moderates (heuristics plus Jev when `TYPESAFE_API_KEY` is set) and forwards
-  to the Discord webhook. Moderation rejects answer 200 with a fake success
-  so abusers get no signal. The X handle is required; success copy says we
-  will contact that handle about progress.
 - Each entry points at a live demo under `app/components/[id]/demos/` and a
   Markdown doc under `content/components/`.
 - `getComponentIcon(name)` in `components/showcase/component-icons.tsx` maps an
@@ -442,7 +435,6 @@ Rules:
 | Variable | Used by | Behaviour when missing |
 | --- | --- | --- |
 | `GITHUB_TOKEN` | `lib/github.ts`, `app/page.tsx` | The GitHub section is skipped entirely, by design, not a bug |
-| `DISCORD_USER_ID` | `app/api/discord-status/route.ts` | Falls back to a hardcoded user id |
 | `VERCEL_TOKEN` | `app/api/visitor-count/route.ts` | The footer visitor counter stays hidden (the route returns null counts) |
 | `VERCEL_PROJECT_ID` | `app/api/visitor-count/route.ts` | Same as above; both vars are required to query the Web Analytics count endpoint |
 | `VERCEL_TEAM_ID` | `app/api/visitor-count/route.ts` | Optional, only needed when the project lives under a Vercel team |

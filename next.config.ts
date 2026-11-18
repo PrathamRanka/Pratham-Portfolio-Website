@@ -33,7 +33,7 @@ const securityHeaders = [
       "default-src 'self'",
       `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://va.vercel-scripts.com`,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://i.scdn.co https://cdn.discordapp.com https://wsrv.nl https://flagcdn.com",
+      "img-src 'self' data: blob: https://flagcdn.com",
       "font-src 'self' data:",
       "connect-src 'self' https://api.github.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
       "object-src 'none'",
@@ -56,11 +56,6 @@ const nextConfig: NextConfig = {
 
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      { hostname: "i.scdn.co" },
-      { hostname: "cdn.discordapp.com" },
-      { hostname: "wsrv.nl" },
-    ],
   },
 
   experimental: {

@@ -1,5 +1,6 @@
 
 import { NextRequest, NextResponse } from "next/server";
+import { sendTelegramMessage } from "@/lib/telegram";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -123,10 +124,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!token || !chatId) {
+  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
     console.error("Telegram configuration is missing.");
 
     return NextResponse.json(
@@ -213,29 +211,7 @@ export async function POST(request: NextRequest) {
 
   // Send Telegram notification.
   try {
-    const response = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message.slice(0, 3900),
-          disable_web_page_preview: true,
-        }),
-        signal: AbortSignal.timeout(5000),
-        cache: "no-store",
-      },
-    );
-
-    const result = await response.json();
-
-    if (!response.ok || !result.ok) {
-      throw new Error("Telegram notification failed");
-    }
-
+    await sendTelegramMessage(message);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Telegram error:", error);

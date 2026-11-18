@@ -1,5 +1,6 @@
 
 import { NextResponse, type NextRequest } from "next/server";
+import { sendTelegramMessage } from "@/lib/telegram";
 
 // API rate limiting
 const RATE_LIMIT = 30;
@@ -71,10 +72,7 @@ async function notifyCrawler(
   crawlerName: string,
   userAgent: string,
 ) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!token || !chatId) return;
+  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) return;
 
   const key = `${crawlerName}:${request.nextUrl.pathname}`;
   const now = Date.now();
@@ -106,26 +104,7 @@ async function notifyCrawler(
   ].join("\n");
 
   try {
-    const response = await fetch(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message,
-          disable_web_page_preview: true,
-        }),
-        signal: AbortSignal.timeout(4000),
-        cache: "no-store",
-      },
-    );
-
-    const result = await response.json();
-
-    if (!response.ok || !result.ok) {
-      throw new Error("Telegram notification failed");
-    }
+    await sendTelegramMessage(message);
   } catch (error) {
     notified.delete(key);
     console.error("Crawler notification failed:", error);
