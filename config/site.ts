@@ -149,11 +149,6 @@ export const siteConfig: PortfolioConfig = {
     },
     sitemap: [
       { url: "https://prathamranka.in", changeFrequency: "weekly", priority: 1 },
-      {
-        url: "https://prathamranka.in/resume",
-        changeFrequency: "monthly",
-        priority: 0.8,
-      },
     ],
   },
   personal: {

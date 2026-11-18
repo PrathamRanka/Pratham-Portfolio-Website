@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import { resumeConfig } from "@/config/resume";
 import type { SocialIcon, SocialLink } from "@/config/types";
 import { trackEvent } from "@/lib/analytics";
 import Gmail from "@/public/stacks/gmail";
@@ -82,12 +83,14 @@ export function CTA() {
               Follow @PrathamRanka
             </Link>
           </Button>
-          <Link
-            href="/resume"
+          <a
+            href={resumeConfig.viewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-3 text-xs text-muted-foreground underline decoration-border/60 underline-offset-4 hover:text-foreground"
           >
             View resume
-          </Link>
+          </a>
         </div>
 
         <div className="grid border-t border-b border-dashed grid-cols-3 max-sm:grid-cols-1 overflow-hidden gap-px">

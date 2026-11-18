@@ -3,6 +3,7 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { WritingUnderline } from "./writing-underline";
 import { heroConfig } from "@/config/hero";
+import { resumeConfig } from "@/config/resume";
 import { siteConfig } from "@/config/site";
 import { trackEvent } from "@/lib/analytics";
 import { RotatingGlobe } from "./rotating-globe";
@@ -171,7 +172,7 @@ export function Hero() {
             )}
           </motion.p>
 
-          {/* Location + Resume, same plain style */}
+          {/* Location and resume, same plain style */}
           <motion.div
             className="no-js-visible mt-2 flex items-center gap-2.5 text-xs text-muted-foreground"
             initial={{ opacity: 0, y: 10 }}
@@ -203,7 +204,7 @@ export function Hero() {
             </span>
 
             <a
-              href="/resume"
+              href={resumeConfig.viewUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="micro-transition rounded-sm px-1 py-0.5 font-sans hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/20"
