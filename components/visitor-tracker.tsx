@@ -49,11 +49,10 @@ export default function VisitorTracker() {
               timezone:
                 Intl.DateTimeFormat().resolvedOptions().timeZone,
               screen: `${screen.width} × ${screen.height}`,
-              platform: navigator.userAgentData?.platform ||
-                navigator.platform ||
-                "Unknown",
-              mobile: navigator.userAgentData?.mobile ?? false,
-            },
+              platform: navigator.platform || "Unknown",
+              mobile: /Android|iPhone|iPad|iPod|Mobile/i.test(
+                navigator.userAgent
+              ),
 
             acquisition: {
               source: params.get("utm_source"),
