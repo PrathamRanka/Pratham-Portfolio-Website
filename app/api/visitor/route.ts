@@ -4,128 +4,209 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const ALLOWED_ORIGINS = new Set([
+const ALLOWED_ORIGINS = [
   "https://prathamranka.in",
   "https://www.prathamranka.in",
   ...(process.env.NODE_ENV !== "production"
     ? ["http://localhost:3000"]
     : []),
-]);
+];
 
-function sanitizePage(value: unknown): string {
-  if (
-    typeof value !== "string" ||
-    value.length > 300 ||
-    !value.startsWith("/") ||
-    value.startsWith("//") ||
-    value.includes("\\")
-  ) {
-    return "/";
-  }
+function clean(value: unknown, max = 200): string {
+  if (typeof value !== "string") return "Unavailable";
 
-  try {
-    return new URL(
-      value,
-      "https://prathamranka.in"
-    ).pathname.slice(0, 200);
-  } catch {
-    return "/";
-  }
+  return value
+    .replace(/[\r\n]/g, " ")
+    .trim()
+    .slice(0, max) || "Unavailable";
 }
 
-function sanitizeReferrer(value: unknown): string {
-  if (typeof value !== "string" || !value) {
-    return "Direct";
+function getBrowser(userAgent: string) {
+  let browser = "Other";
+  let os = "Other";
+  let device = "Desktop";
+
+  if (/Edg/i.test(userAgent)) browser = "Edge";
+  else if (/OPR|Opera/i.test(userAgent)) browser = "Opera";
+  else if (/Chrome|Chromium/i.test(userAgent)) browser = "Chrome";
+  else if (/Firefox/i.test(userAgent)) browser = "Firefox";
+  else if (/Safari/i.test(userAgent)) browser = "Safari";
+
+  if (/Windows/i.test(userAgent)) os = "Windows";
+  else if (/Android/i.test(userAgent)) os = "Android";
+  else if (/iPhone|iPad|iPod/i.test(userAgent)) os = "iOS";
+  else if (/Mac OS X|Macintosh/i.test(userAgent)) os = "macOS";
+  else if (/Linux/i.test(userAgent)) os = "Linux";
+
+  if (/iPad|Tablet/i.test(userAgent)) device = "Tablet";
+  else if (/Mobile|Android|iPhone|iPod/i.test(userAgent)) {
+    device = "Mobile";
   }
 
-  try {
-    return new URL(value).hostname.slice(0, 150);
-  } catch {
-    return "Direct";
-  }
+  return { browser, os, device };
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    // Validate origin
-    const origin = request.headers.get("origin");
+  // Check request origin.
+  const origin = request.headers.get("origin");
 
-    if (!origin || !ALLOWED_ORIGINS.has(origin)) {
-      return NextResponse.json(
-        { error: "Forbidden" },
-        { status: 403 }
-      );
-    }
-
-    // Validate request context
-    const fetchSite = request.headers.get("sec-fetch-site");
-
-    if (fetchSite && fetchSite !== "same-origin") {
-      return NextResponse.json(
-        { error: "Forbidden" },
-        { status: 403 }
-      );
-    }
-
-    // Validate content type
-    const contentType = request.headers.get("content-type") || "";
-
-    if (!contentType.toLowerCase().startsWith("application/json")) {
-      return NextResponse.json(
-        { error: "Invalid content type" },
-        { status: 415 }
-      );
-    }
-
-    // Enforce a small payload
-    const contentLength = Number(
-      request.headers.get("content-length") || 0
+  if (!origin || !ALLOWED_ORIGINS.includes(origin)) {
+    return NextResponse.json(
+      { error: "Forbidden" },
+      { status: 403 },
     );
+  }
 
-    if (contentLength > 1024) {
+  // Accept only JSON.
+  if (
+    !request.headers
+      .get("content-type")
+      ?.toLowerCase()
+      .startsWith("application/json")
+  ) {
+    return NextResponse.json(
+      { error: "Invalid content type" },
+      { status: 415 },
+    );
+  }
+
+  // Limit request size.
+  const contentLength = Number(
+    request.headers.get("content-length") || 0,
+  );
+
+  if (contentLength > 3000) {
+    return NextResponse.json(
+      { error: "Payload too large" },
+      { status: 413 },
+    );
+  }
+
+  let body: Record<string, any>;
+
+  try {
+    const text = await request.text();
+
+    if (text.length > 3000) {
       return NextResponse.json(
         { error: "Payload too large" },
-        { status: 413 }
+        { status: 413 },
       );
     }
 
-    const body: unknown = await request.json();
+    const parsed = JSON.parse(text);
 
-    if (!body || typeof body !== "object") {
-      return NextResponse.json(
-        { error: "Invalid payload" },
-        { status: 400 }
-      );
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      Array.isArray(parsed)
+    ) {
+      throw new Error("Invalid body");
     }
 
-    const data = body as Record<string, unknown>;
+    body = parsed;
+  } catch {
+    return NextResponse.json(
+      { error: "Invalid JSON" },
+      { status: 400 },
+    );
+  }
 
-    const page = sanitizePage(data.page);
-    const referrer = sanitizeReferrer(data.referrer);
+  // Validate visitor ID.
+  if (
+    typeof body.visitorId !== "string" ||
+    !/^v_[a-zA-Z0-9_-]{8,100}$/.test(body.visitorId)
+  ) {
+    return NextResponse.json(
+      { error: "Invalid visitor ID" },
+      { status: 400 },
+    );
+  }
 
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    if (!token || !chatId) {
-      console.error("Missing Telegram configuration");
+  if (!token || !chatId) {
+    console.error("Telegram configuration is missing.");
 
-      return NextResponse.json(
-        { error: "Service unavailable" },
-        { status: 503 }
-      );
-    }
+    return NextResponse.json(
+      { error: "Notification service unavailable" },
+      { status: 503 },
+    );
+  }
 
-    const message = [
-      "👀 NEW PORTFOLIO VISITOR",
-      "",
-      "🌐 Website: prathamranka.in",
-      `📄 Page: ${page}`,
-      `🔗 Referrer: ${referrer}`,
-      `🕒 Time: ${new Date().toLocaleString("en-IN", {
-        timeZone: "Asia/Kolkata",
-      })} IST`,
-    ].join("\n");
+  // Request information.
+  const userAgent = clean(
+    request.headers.get("user-agent"),
+    400,
+  );
 
+  const { browser, os, device } = getBrowser(userAgent);
+
+  const page =
+    typeof body.page === "string" &&
+    body.page.startsWith("/") &&
+    !body.page.startsWith("//")
+      ? clean(body.page, 200)
+      : "/";
+
+  const referrer = clean(body.referrer, 250);
+  const browserInfo = body.browser || {};
+  const acquisition = body.acquisition || {};
+
+  // Approximate location from Vercel headers.
+  const city = clean(
+    request.headers.get("x-vercel-ip-city"),
+  );
+
+  const region = clean(
+    request.headers.get("x-vercel-ip-country-region"),
+  );
+
+  const country = clean(
+    request.headers.get("x-vercel-ip-country"),
+  );
+
+  const timezone = clean(
+    request.headers.get("x-vercel-ip-timezone"),
+  );
+
+  const location = [city, region, country]
+    .filter((value) => value !== "Unavailable")
+    .join(", ") || "Unavailable";
+
+  // Build Telegram message.
+  const message = [
+    "👀 NEW PORTFOLIO VISITOR",
+    "",
+    "VISITOR",
+    `• ID: ${body.visitorId}`,
+    `• Status: ${body.status === "Returning" ? "Returning" : "First-time"}`,
+    `• Page: ${page}`,
+    `• Time: ${new Date().toISOString()}`,
+    "",
+    "LOCATION",
+    `• City: ${location}`,
+    `• Timezone: ${timezone}`,
+    "",
+    "DEVICE",
+    `• Device: ${device}`,
+    `• Browser: ${browser}`,
+    `• OS: ${os}`,
+    `• Screen: ${clean(browserInfo.screen)}`,
+    `• Language: ${clean(browserInfo.language)}`,
+    `• Browser timezone: ${clean(browserInfo.timezone)}`,
+    `• Platform: ${clean(browserInfo.platform)}`,
+    "",
+    "ACQUISITION",
+    `• Referrer: ${referrer}`,
+    `• Source: ${clean(acquisition.source)}`,
+    `• Medium: ${clean(acquisition.medium)}`,
+    `• Campaign: ${clean(acquisition.campaign)}`,
+  ].join("\n");
+
+  // Send Telegram notification.
+  try {
     const response = await fetch(
       `https://api.telegram.org/bot${token}/sendMessage`,
       {
@@ -135,39 +216,27 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           chat_id: chatId,
-          text: message,
+          text: message.slice(0, 3900),
           disable_web_page_preview: true,
         }),
         signal: AbortSignal.timeout(5000),
         cache: "no-store",
-      }
+      },
     );
-
-    if (!response.ok) {
-      console.error("Telegram API error:", response.status);
-
-      return NextResponse.json(
-        { error: "Notification failed" },
-        { status: 502 }
-      );
-    }
 
     const result = await response.json();
 
-    if (!result.ok) {
-      return NextResponse.json(
-        { error: "Telegram rejected notification" },
-        { status: 502 }
-      );
+    if (!response.ok || !result.ok) {
+      throw new Error("Telegram notification failed");
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Visitor API error:", error);
+    console.error("Telegram error:", error);
 
     return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
+      { error: "Notification failed" },
+      { status: 502 },
     );
   }
 }
